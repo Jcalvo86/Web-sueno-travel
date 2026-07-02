@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viaje a Medida | Sueño Travel</title>
+  <meta name="description" content="Diseña tu viaje soñado a Egipto a tu propio ritmo. Completa nuestro formulario interactivo y recibe una cotización gratuita y personalizada.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo" id="headerLogo">
+        <div class="logo-icon"><i class="fa-solid fa-pyramid"></i></div>
+        <span>Sueño Travel</span>
+      </a>
+      
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" id="navHome">Inicio</a></li>
+        <li><a href="viajes-a-egipto.html" id="navEgipto">Viajes a Egipto</a></li>
+        <li><a href="#" id="navOtros">Otros Destinos</a></li>
+        <li><a href="viajes-combinados.html" id="navCombinados">Viajes Combinados</a></li>
+        <li><a href="sobre-nosotros.html" id="navNosotros">Sobre Nosotros</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="egipto-a-medida.html" class="btn btn-primary active" id="btnMedidaHeader">Viaje a Medida</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Title section -->
+  <section class="section section-bg" style="padding: 60px 0 30px 0;">
+    <div class="container">
+      <div class="section-title-wrapper" style="margin-bottom: 0;">
+        <h1 class="section-title">Diseña tu Viaje a Medida</h1>
+        <p class="section-subtitle">Dinos qué te gustaría vivir y nuestros egiptólogos prepararán un itinerario exclusivo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="section">
+    <div class="container">
+      <div class="form-container">
+        <form id="customTripForm">
+          <!-- Section 1: Datos de Contacto -->
+          <h3 style="font-family: var(--font-headings); font-size: 1.25rem; color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid var(--secondary); padding-bottom: 8px;">1. Datos Personales</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre Completo *</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="Juan Pérez">
+            </div>
+            <div class="form-group">
+              <label for="email">Correo Electrónico *</label>
+              <input type="email" id="email" name="email" required placeholder="juan.perez@example.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefono">Teléfono / WhatsApp</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+56 9 1234 5678">
+            </div>
+            <div class="form-group">
+              <label for="pais">País de Residencia</label>
+              <input type="text" id="pais" name="pais" placeholder="Chile">
+            </div>
+          </div>
+
+          <!-- Section 2: Preferencias del Viaje -->
+          <h3 style="font-family: var(--font-headings); font-size: 1.25rem; color: var(--primary); margin-top: 40px; margin-bottom: 20px; border-bottom: 2px solid var(--secondary); padding-bottom: 8px;">2. Detalles del Itinerario</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fecha">Fecha Estimada de Salida</label>
+              <input type="date" id="fecha" name="fecha">
+            </div>
+            <div class="form-group">
+              <label for="duracion">Duración del Viaje</label>
+              <select id="duracion" name="duracion">
+                <option value="7-9">1 Semana (7-9 días)</option>
+                <option value="10-12" selected>10 a 12 días</option>
+                <option value="13-15">2 Semanas (13-15 días)</option>
+                <option value="16+">Más de 15 días</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="viajeros">Número de Viajeros</label>
+              <input type="number" id="viajeros" name="viajeros" min="1" value="2">
+            </div>
+            <div class="form-group">
+              <label for="categoria-hotel">Categoría de Alojamiento Preferida</label>
+              <select id="categoria-hotel" name="categoria-hotel">
+                <option value="4-estrellas">Turista Superior (4★)</option>
+                <option value="5-estrellas" selected>Primera Clase / Lujo (5★)</option>
+                <option value="lujo-premium">Lujo Exclusivo / Boutique</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section 3: Comentarios y Preferencias Especiales -->
+          <h3 style="font-family: var(--font-headings); font-size: 1.25rem; color: var(--primary); margin-top: 40px; margin-bottom: 20px; border-bottom: 2px solid var(--secondary); padding-bottom: 8px;">3. Preferencias Especiales</h3>
+          <div class="form-group">
+            <label for="intereses">¿Qué te gustaría incluir en tu viaje?</label>
+            <div style="display: grid; grid-template-cols: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 10px; margin-bottom: 15px;">
+              <label style="font-weight: 400; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" name="preferencias" value="crucero" checked style="width: auto;"> Crucero por el Nilo
+              </label>
+              <label style="font-weight: 400; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" name="preferencias" value="mar-rojo" style="width: auto;"> Playas del Mar Rojo (Hurgada/Sharm)
+              </label>
+              <label style="font-weight: 400; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" name="preferencias" value="desierto" style="width: auto;"> Aventura en el Desierto Blanco
+              </label>
+              <label style="font-weight: 400; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" name="preferencias" value="alejandria" style="width: auto;"> Visita a Alejandría
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="detalles">Cuéntanos más detalles sobre tu viaje ideal (ritmo, intereses especiales, sorpresas, aniversarios)</label>
+            <textarea id="detalles" name="detalles" rows="4" placeholder="Ej: Viajamos de luna de miel, nos gustaría un ritmo relajado y dar prioridad a visitas arqueológicas guiadas..."></textarea>
+          </div>
+
+          <div style="margin-top: 40px; text-align: center;">
+            <button type="submit" class="btn btn-primary" style="padding: 14px 45px; font-size: 1.05rem;">Enviar Solicitud de Viaje</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Sueño Travel</h3>
+          <p>Tu socio de confianza para descubrir el encanto milenario y las leyendas de Egipto de forma segura y personalizada.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Destinos</h4>
+          <ul>
+            <li><a href="#">El Cairo</a></li>
+            <li><a href="#">Lúxor</a></li>
+            <li><a href="#">Asuán</a></li>
+            <li><a href="#">Hurgada</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Nuestra Empresa</h4>
+          <ul>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="egipto-a-medida.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <p><i class="fa-solid fa-envelope" style="color: var(--primary); margin-right: 8px;"></i> info@sueno-travel.com</p>
+          <p><i class="fa-solid fa-phone" style="color: var(--primary); margin-right: 8px;"></i> +56 9 9999 8888</p>
+          <p><i class="fa-solid fa-location-dot" style="color: var(--primary); margin-right: 8px;"></i> Santiago, Chile / El Cairo, Egipto</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sueño Travel. Todos los derechos reservados.</p>
+        <p>Desarrollado con pasión por el turismo.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

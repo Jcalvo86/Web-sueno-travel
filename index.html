@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sueño Travel | Experiencias Únicas en Egipto</title>
+  <meta name="description" content="Encuentra lo que te hace feliz en cualquier rincón del país de los faraones con Sueño Travel. Reserva tus paquetes de viaje a Egipto hoy.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo" id="headerLogo">
+        <div class="logo-icon"><i class="fa-solid fa-pyramid"></i></div>
+        <span>SUEÑO TRAVEL</span>
+      </a>
+      
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active" id="navHome">Inicio</a></li>
+        <li><a href="viajes-a-egipto.html" id="navEgipto">Viajes a Egipto</a></li>
+        <li><a href="#" id="navOtros">Otros Destinos</a></li>
+        <li><a href="viajes-combinados.html" id="navCombinados">Viajes Combinados</a></li>
+        <li><a href="sobre-nosotros.html" id="navNosotros">Sobre Nosotros</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="egipto-a-medida.html" class="btn btn-primary" id="btnMedidaHeader">Viaje a Medida</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="heroSection">
+    <div class="container">
+      <div class="hero-content">
+        <h1 id="heroTitle">Experiencias Únicas En Egipto.<br>Una Sola Búsqueda.</h1>
+        <p id="heroSubtitle">Encuentra lo que te hace feliz en cualquier rincón del país de los faraones.</p>
+        <a href="viajes-a-egipto.html" class="btn btn-orange" id="heroCta">Ver Paquetes de Viajes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section (3 icons with thin red/orange circular border) -->
+  <section class="section" id="featuresSection">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1" id="feature1">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-inner"><i class="fa-solid fa-map-location-dot"></i></div>
+          </div>
+          <h3>Explora las maravillas de Egipto</h3>
+          <p>Ofrecemos una variedad de itinerarios para conocer la cuna de los faraones a tu propio ritmo.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2" id="feature2">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-inner"><i class="fa-solid fa-tags"></i></div>
+          </div>
+          <h3>Ofertas Exclusivas</h3>
+          <p>Asegure su viaje soñado al mejor precio con tarifas garantizadas y promociones continuas.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3" id="feature3">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-inner"><i class="fa-solid fa-shield-halved"></i></div>
+          </div>
+          <h3>Viajes de Confianza</h3>
+          <p>Con asistencia telefónica las 24 horas y traslados privados en vehículos climatizados y seguros.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations Section -->
+  <section class="section" id="destinationsSection">
+    <div class="container">
+      <div class="destinations-header">
+        <div>
+          <h2 style="font-size: 2rem; color: var(--text-dark);">Explora Los Destinos De Egipto</h2>
+        </div>
+        <div class="destinations-arrows">
+          <button class="arrow-btn" aria-label="Anterior destino"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="arrow-btn" aria-label="Siguiente destino"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="destinations-grid">
+        <div class="destination-card reveal reveal-delay-1" id="destAlejandria">
+          <img src="https://images.unsplash.com/photo-1600077106724-946750eeaf3c?q=80&w=600&auto=format&fit=crop" alt="Alejandría">
+          <div class="destination-overlay">
+            <h3>Alejandría</h3>
+          </div>
+        </div>
+        <div class="destination-card reveal reveal-delay-2" id="destAsuan">
+          <img src="https://images.unsplash.com/photo-1548786811-dd6e453ccca7?q=80&w=600&auto=format&fit=crop" alt="Asuán">
+          <div class="destination-overlay">
+            <h3>Asuán</h3>
+          </div>
+        </div>
+        <div class="destination-card reveal reveal-delay-3" id="destCairo">
+          <img src="https://images.unsplash.com/photo-1572252009286-268acec5a0af?q=80&w=600&auto=format&fit=crop" alt="El Cairo">
+          <div class="destination-overlay">
+            <h3>El Cairo</h3>
+          </div>
+        </div>
+        <div class="destination-card reveal reveal-delay-4" id="destHurgada">
+          <img src="https://images.unsplash.com/photo-1583248369069-9d91f1640fe6?q=80&w=600&auto=format&fit=crop" alt="Hurgada">
+          <div class="destination-overlay">
+            <h3>Hurgada</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vacation Packages Showcase Section (6 Packages matching mockup) -->
+  <section class="section" id="packagesSection">
+    <div class="container">
+      <div class="section-title-wrapper reveal">
+        <h2 class="section-title">Los Mejores Paquetes Para Sus Vacaciones</h2>
+      </div>
+      <div class="packages-grid">
+        <!-- Package 1 -->
+        <div class="package-card reveal reveal-delay-1" id="pkg1">
+          <div class="package-img">
+            <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?q=80&w=600&auto=format&fit=crop" alt="Crucero Abu Simbel">
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">Crucero de 4 días y crucero por el Templo de Abu Simbel</h3>
+            <div class="package-details-row">
+              <span>Desde $799</span>
+              <span><i class="fa-regular fa-clock"></i> 4 Días</span>
+            </div>
+            <div class="package-footer">
+              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
+            </div>
+          </div>
+        </div>
+        <!-- Package 2 -->
+        <div class="package-card reveal reveal-delay-2" id="pkg2">
+          <div class="package-img">
+            <img src="https://images.unsplash.com/photo-1553913861-c0fdec298916?q=80&w=600&auto=format&fit=crop" alt="Crucero Asuán">
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">Crucero de 5 días por el Cairo y Crucero de Asuán</h3>
+            <div class="package-details-row">
+              <span>Desde $899</span>
+              <span><i class="fa-regular fa-clock"></i> 5 Días</span>
+            </div>
+            <div class="package-footer">
+              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
+            </div>
+          </div>
+        </div>
+        <!-- Package 3 -->
+        <div class="package-card reveal reveal-delay-3" id="pkg3">
+          <div class="package-img">
+            <img src="https://images.unsplash.com/photo-1572252009286-268acec5a0af?q=80&w=600&auto=format&fit=crop" alt="Crucero El Cairo">
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">Crucero de 8 días por el Cairo</h3>
+            <div class="package-details-row">
+              <span>Desde $1,200</span>
+              <span><i class="fa-regular fa-clock"></i> 8 Días</span>
+            </div>
+            <div class="package-footer">
+              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
+            </div>
+          </div>
+        </div>
+        <!-- Package 4 -->
+        <div class="package-card reveal reveal-delay-1" id="pkg4">
+          <div class="package-img">
+            <img src="https://images.unsplash.com/photo-1599933310631-8378d7a5aa93?q=80&w=600&auto=format&fit=crop" alt="Egipto Clásico 8 Días">
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">8 Días El Cairo Y Crucero Con Abu Simbel</h3>
+            <div class="package-details-row">
+              <span>Desde $1,190</span>
+              <span><i class="fa-regular fa-clock"></i> 8 Días</span>
+            </div>
+            <div class="package-footer">
+              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
+            </div>
+          </div>
+        </div>
+        <!-- Package 5 -->
+        <div class="package-card reveal reveal-delay-2" id="pkg5">
+          <div class="package-img">
+            <img src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=600&auto=format&fit=crop" alt="Cairo, Crucero y Hurgada">
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">9 Días El Cairo, Crucero En El Nilo Y Hurghada</h3>
+            <div class="package-details-row">
+              <span>Desde $1,190</span>
+              <span><i class="fa-regular fa-clock"></i> 9 Días</span>
+            </div>
+            <div class="package-footer">
+              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
+            </div>
+          </div>
+        </div>
+        <!-- Package 6 -->
+        <div class="package-card reveal reveal-delay-3" id="pkg6">
+          <div class="package-img">
+            <img src="https://images.unsplash.com/photo-1503177119275-0aa32b31d468?q=80&w=600&auto=format&fit=crop" alt="Circuito 11 Días">
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">Circuito De 11 Días Por El Cairo, Crucero Y Alejandría</h3>
+            <div class="package-details-row">
+              <span>Desde $1,450</span>
+              <span><i class="fa-regular fa-clock"></i> 11 Días</span>
+            </div>
+            <div class="package-footer">
+              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilitamos Los Viajes Por Egipto Section -->
+  <section class="section" id="facilitamosSection">
+    <div class="container">
+      <div class="facilitamos-section">
+        <div class="facilitamos-grid">
+          <div class="facilitamos-content reveal-left">
+            <h2>Facilitamos Los Viajes Por Egipto</h2>
+            <p>Al viajar por tu propia cuenta y a tu propio ritmo, necesitas de asistencia experta local con tu destino y diversas tareas:</p>
+            <ul class="facilitamos-list">
+              <li><i class="fa-solid fa-circle-check"></i> Tasa del visado de entrada para la mayoría de los países incluida.</li>
+              <li><i class="fa-solid fa-circle-check"></i> Acompañamiento por egiptólogo de habla hispana en los templos.</li>
+              <li><i class="fa-solid fa-circle-check"></i> Traslados privados por carretera en vehículos climatizados.</li>
+              <li><i class="fa-solid fa-circle-check"></i> Asistencia telefónica las 24 horas y soporte directo.</li>
+            </ul>
+            <a href="viajes-a-egipto.html" class="btn btn-primary">Ver Todos los Paquetes</a>
+          </div>
+          <div class="facilitamos-img-wrapper reveal-right">
+            <div class="facilitamos-main-img">
+              <img src="https://images.unsplash.com/photo-1548786811-dd6e453ccca7?q=80&w=600&auto=format&fit=crop" alt="Selfie en Egipto">
+            </div>
+            <div class="floating-icon f-icon-1"><i class="fa-solid fa-camera"></i></div>
+            <div class="floating-icon f-icon-2"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="floating-icon f-icon-3"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="floating-icon f-icon-4"><i class="fa-solid fa-calendar-days"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inspiración, Guías, Historias (Blog Section) -->
+  <section class="section" id="blogSection">
+    <div class="container">
+      <div class="destinations-header">
+        <div>
+          <h2 style="font-size: 2rem; color: var(--text-dark);">Inspiración, Guías, Historias</h2>
+        </div>
+        <div class="destinations-arrows">
+          <button class="arrow-btn" aria-label="Anterior artículo"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="arrow-btn" aria-label="Siguiente artículo"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="blog-grid">
+        <!-- Card 1 -->
+        <div class="blog-card reveal reveal-delay-1" id="blog1">
+          <div class="blog-img">
+            <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?q=80&w=600&auto=format&fit=crop" alt="Guía Viajar a Egipto">
+          </div>
+          <div class="blog-content">
+            <h3 class="blog-title">La Guía Definitiva para Viajar a Egipto en 2026</h3>
+            <a href="#" class="blog-link">Leer Artículo <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="blog-card reveal reveal-delay-2" id="blog2">
+          <div class="blog-img">
+            <img src="https://images.unsplash.com/photo-1572252009286-268acec5a0af?q=80&w=600&auto=format&fit=crop" alt="Descubre Egipto">
+          </div>
+          <div class="blog-content">
+            <h3 class="blog-title">Descubre la Parroquia Alrededor de Egipto Que no Debes perderte</h3>
+            <a href="#" class="blog-link">Leer Artículo <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="blog-card reveal reveal-delay-3" id="blog3">
+          <div class="blog-img">
+            <img src="https://images.unsplash.com/photo-1600077106724-946750eeaf3c?q=80&w=600&auto=format&fit=crop" alt="Explorar Egipto">
+          </div>
+          <div class="blog-content">
+            <h3 class="blog-title">Explorar Egipto: Consejos Esenciales para Quienes Viajan por Primera Vez</h3>
+            <a href="#" class="blog-link">Leer Artículo <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs Section -->
+  <section class="section section-bg-sand" id="faqSection">
+    <div class="container">
+      <div class="section-title-wrapper reveal">
+        <h2 class="section-title">FAQs</h2>
+        <p class="section-subtitle">Aquí Encontrará Respuestas a las Preguntas Más Frecuentes Sobre Viajes</p>
+      </div>
+      <div class="faq-accordion">
+        <div class="faq-item active reveal reveal-delay-1" id="faqItem1">
+          <button class="faq-question">
+            <span>¿Es seguro viajar a Egipto?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 200px;">
+            <p>Sí, Egipto es un destino muy seguro para los turistas. El gobierno aplica estrictos controles de seguridad en todos los templos, cruceros y zonas de interés arqueológico para que puedas disfrutar de tus vacaciones con total tranquilidad en cualquier rincón del país.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal reveal-delay-2" id="faqItem2">
+          <button class="faq-question">
+            <span>¿Cómo planificar un viaje a Egipto?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Para planificar tu viaje te recomendamos definir la duración de tu estadía (aconsejable mínimo 8 días), seleccionar un paquete cerrado o solicitar un viaje a medida completando nuestro formulario en línea, y coordinar vuelos con nuestro equipo local.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal reveal-delay-3" id="faqItem3">
+          <button class="faq-question">
+            <span>¿Qué llevar en tu viaje a Egipto?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Es indispensable llevar ropa ligera y de algodón, calzado muy cómodo para caminar por arena y piedras, sombrero, gafas de sol, protector solar biodegradable y repelente de insectos para las tardes de navegación en el Nilo.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal reveal-delay-4" id="faqItem4">
+          <button class="faq-question">
+            <span>¿Cómo puedo obtener un visado para viajar?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>El visado puede gestionarse de forma online con antelación o comprarse de forma física al arribo en el aeropuerto por un costo de 25 dólares estadounidenses. Nuestros paquetes ya traen asistencia para facilitar este proceso.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal reveal-delay-5" id="faqItem5">
+          <button class="faq-question">
+            <span>¿Cuáles son los requisitos de pasaporte y visa?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Tu pasaporte debe tener una validez mínima de 6 meses desde el día programado de ingreso a territorio egipcio. Adicionalmente deberás presentar la visa de turismo de entrada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (Sand Background) -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>SUEÑO TRAVEL</h3>
+          <p>Tu socio de confianza para descubrir el encanto milenario y las leyendas de Egipto de forma segura y personalizada.</p>
+          <div class="footer-social-wrapper">
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Destinos</h4>
+          <ul>
+            <li><a href="#">El Cairo</a></li>
+            <li><a href="#">Lúxor</a></li>
+            <li><a href="#">Asuán</a></li>
+            <li><a href="#">Hurgada</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Nuestra Empresa</h4>
+          <ul>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="egipto-a-medida.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <p><i class="fa-solid fa-envelope"></i> info@sueno-travel.com</p>
+          <p><i class="fa-solid fa-phone"></i> +56 9 9999 8888</p>
+          <p><i class="fa-solid fa-location-dot"></i> Santiago, Chile / El Cairo, Egipto</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="lang-selector">
+          <img src="https://flagcdn.com/w40/es.png" alt="Bandera de España">
+          <span>ESP</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem; margin-left: 4px;"></i>
+        </div>
+        <p>&copy; 2026 Sueño Travel. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Chat Widget -->
+  <div class="chat-widget" onclick="window.location.href='https://wa.me/56999998888'">
+    <div class="chat-bubble">¿Cómo te podemos ayudar?</div>
+    <div class="chat-icon"><i class="fa-brands fa-whatsapp"></i></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
