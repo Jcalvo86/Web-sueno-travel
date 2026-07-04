@@ -24,6 +24,12 @@
 
 <body class="construction-page">
 
+  <!-- Background Overlays for smooth crossfade -->
+  <div id="bg-overlay-1" class="bg-overlay active"
+    style="background: linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed; background-size: cover;">
+  </div>
+  <div id="bg-overlay-2" class="bg-overlay"></div>
+
   <main class="construction-container">
     <!-- Columna Izquierda: Información de la marca -->
     <div class="info-column">
@@ -40,6 +46,9 @@
     <!-- Columna Derecha: Panel Interactivo Glassmorphic -->
     <div class="panel-column">
       <div class="main-card" id="mainCard">
+
+        <h2 class="contact-form-title">¿Planeas viajar pronto?</h2>
+
         <!-- Destination Showcase -->
         <div class="destinations-grid">
           <div class="dest-card" data-country="egipto" onclick="selectCountry('egipto')">
@@ -62,7 +71,7 @@
 
         <!-- Contact Form Section -->
         <div class="contact-form-section">
-          <h2 class="contact-form-title">¿Planeas viajar pronto?</h2>
+
           <p class="contact-form-subtitle">Déjanos tu contacto e indícanos qué te gustaría cotizar.</p>
 
           <form id="constructionForm" onsubmit="handleSubmit(event)">
@@ -103,8 +112,9 @@
   <!-- Footer -->
   <footer>
     <div class="social-links">
-      <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-      <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/ofertasegipto/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/travelegipto/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tripadvisor.com/Attraction_Review-g294205-d17582622-Reviews-Sueno_Travel-Luxor_Nile_River_Valley.html" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Tripadvisor"><i class="fa-brands fa-tripadvisor"></i></a>
     </div>
     <div class="copyright">
       &copy; 2026 Sueño Travel. Todos los derechos reservados.
@@ -114,28 +124,100 @@
   <!-- Form Handler Script -->
   <script>
     // Configuración de fondos y placeholders para cada país
-      const countryData = {
-        egipto: {
+    const countryData = {
+      egipto: {
         background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop')",
-      placeholder: "Me gustaría recibir información para un viaje a Egipto: cotizar cruceros por el Nilo, visitas a las Pirámides y templos de Luxor..."
+        placeholder: "Me gustaría recibir información para un viaje a Egipto: cotizar cruceros por el Nilo, visitas a las Pirámides y templos de Luxor..."
       },
       jordania: {
         background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1589825274556-94746a018766?q=80&w=1920&auto=format&fit=crop')",
-      placeholder: "Me gustaría recibir información para viajar a Jordania: cotizar tours a Petra, el desierto de Wadi Rum y flotar en el Mar Muerto..."
+        placeholder: "Me gustaría recibir información para viajar a Jordania: cotizar tours a Petra, el desierto de Wadi Rum y flotar en el Mar Muerto..."
       },
       grecia: {
         background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1920&auto=format&fit=crop')",
-      placeholder: "Me gustaría recibir información para un viaje a Grecia: cotizar visitas a Atenas y las islas de Mykonos y Santorini..."
+        placeholder: "Me gustaría recibir información para un viaje a Grecia: cotizar visitas a Atenas y las islas de Mykonos y Santorini..."
       },
       turquia: {
         background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=1920&auto=format&fit=crop')",
-      placeholder: "Me gustaría recibir información para viajar a Turquía: cotizar tours en Estambul, paseos en globo por Capadocia y las piscinas de Pamukkale..."
+        placeholder: "Me gustaría recibir información para viajar a Turquía: cotizar tours en Estambul, paseos en globo por Capadocia y las piscinas de Pamukkale..."
       }
     };
 
-      let selectedCountry = null;
+    let selectedCountry = null;
+    let slideshowInterval = null;
+    let currentBgIndex = 0;
+    let typingInterval = null;
 
-      function selectCountry(country) {
+    function changeBackground(newBg) {
+      const bg1 = document.getElementById('bg-overlay-1');
+      const bg2 = document.getElementById('bg-overlay-2');
+      if (!bg1 || !bg2) return;
+
+      const activeBg = bg1.classList.contains('active') ? bg1 : bg2;
+      const inactiveBg = activeBg === bg1 ? bg2 : bg1;
+
+      inactiveBg.style.background = newBg + " no-repeat center center fixed";
+      inactiveBg.style.backgroundSize = "cover";
+
+      inactiveBg.classList.add('active');
+      activeBg.classList.remove('active');
+    }
+
+    function startSlideshow() {
+      if (slideshowInterval) return;
+      slideshowInterval = setInterval(() => {
+        currentBgIndex = (currentBgIndex + 1) % backgroundsList.length;
+        changeBackground(backgroundsList[currentBgIndex]);
+      }, 5000);
+    }
+
+    function stopSlideshow() {
+      if (slideshowInterval) {
+        clearInterval(slideshowInterval);
+        slideshowInterval = null;
+      }
+    }
+
+    function typePlaceholder(textarea, targetText) {
+      if (!textarea) return;
+
+      if (typingInterval) {
+        clearInterval(typingInterval);
+      }
+
+      textarea.placeholder = "";
+      let index = 0;
+
+      typingInterval = setInterval(() => {
+        if (index < targetText.length) {
+          textarea.placeholder += targetText.charAt(index);
+          index++;
+        } else {
+          clearInterval(typingInterval);
+          typingInterval = null;
+        }
+      }, 15);
+    }
+
+    function checkDeviceMode() {
+      if (window.innerWidth <= 768) {
+        startSlideshow();
+      } else {
+        stopSlideshow();
+        if (selectedCountry === null) {
+          changeBackground(backgroundsList[0]);
+        } else {
+          const data = countryData[selectedCountry];
+          if (data) {
+            changeBackground(data.background);
+          }
+        }
+      }
+    }
+
+    function selectCountry(country) {
+      if (window.innerWidth <= 768) return;
+
       const cards = document.querySelectorAll('.dest-card');
       const textarea = document.getElementById('clientMessage');
       const favicon = document.getElementById('dynamic-favicon');
@@ -144,14 +226,15 @@
       if (selectedCountry === country) {
         selectedCountry = null;
         cards.forEach(card => card.classList.remove('active'));
-      document.body.style.background = "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed";
-      document.body.style.backgroundSize = "cover";
-      textarea.placeholder = "Quiero información de viajes a Egipto, Jordania, Grecia y Turquía desde Chile...";
-      
-      if (favicon) {
-        favicon.setAttribute('href', 'Imagenes/Favicon.png');
-      }
-      return;
+
+        changeBackground("linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop')");
+
+        typePlaceholder(textarea, "Quiero información de viajes a Egipto, Jordania, Grecia y Turquía desde Chile...");
+
+        if (favicon) {
+          favicon.setAttribute('href', 'Imagenes/Favicon.png');
+        }
+        return;
       }
 
       selectedCountry = country;
@@ -159,18 +242,17 @@
       // Cambiar clases activas
       cards.forEach(card => {
         if (card.getAttribute('data-country') === country) {
-        card.classList.add('active');
+          card.classList.add('active');
         } else {
-        card.classList.remove('active');
+          card.classList.remove('active');
         }
       });
 
-      // Cambiar fondo de body y placeholder de textarea
+      // Cambiar fondo de body y placeholder de textarea con efecto máquina de escribir
       const data = countryData[country];
       if (data) {
-        document.body.style.background = data.background + " no-repeat center center fixed";
-      document.body.style.backgroundSize = "cover";
-      textarea.placeholder = data.placeholder;
+        changeBackground(data.background);
+        typePlaceholder(textarea, data.placeholder);
       }
 
       // Cambiar favicon dinámicamente
@@ -190,8 +272,12 @@
       }
     }
 
-      function handleSubmit(e) {
-        e.preventDefault();
+    // Iniciar control y eventos
+    checkDeviceMode();
+    window.addEventListener('resize', checkDeviceMode);
+
+    function handleSubmit(e) {
+      e.preventDefault();
 
       const name = document.getElementById('clientName').value;
       const email = document.getElementById('clientEmail').value;

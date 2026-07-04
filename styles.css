@@ -1071,10 +1071,7 @@ body.construction-page {
   margin: 0;
   padding: 0;
   font-family: 'Urbanist', sans-serif;
-  /* Background Image of Egypt Pyramids with Crepuscular Sunset overlay */
-  background: linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%),
-    url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
-  background-size: cover;
+  background-color: #120e0a;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -1082,7 +1079,22 @@ body.construction-page {
   align-items: center;
   color: var(--text-dark);
   overflow-x: hidden;
-  transition: background 0.8s ease-in-out;
+}
+
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  pointer-events: none;
+}
+
+.bg-overlay.active {
+  opacity: 1;
 }
 
 /* Contenedor Split Screen de Construcción */
@@ -1208,13 +1220,7 @@ body.construction-page {
 
 @media (max-width: 768px) {
   .construction-page .destinations-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .construction-page .destinations-grid {
-    grid-template-columns: 1fr;
+    display: none;
   }
 }
 
@@ -1348,18 +1354,18 @@ body.construction-page {
   margin-top: 24px;
   text-align: center;
   font-size: 0.9rem;
-  color: var(--text-gray);
+  color: #ffffff;
   font-weight: 500;
 }
 
 .construction-page .alternative-contact a {
-  color: var(--primary);
+  color: #ffffff;
   text-decoration: underline;
   font-weight: 700;
 }
 
 .construction-page .alternative-contact a:hover {
-  color: var(--primary-hover);
+  opacity: 0.85;
 }
 
 /* Footer */
