@@ -7,7 +7,7 @@
   <title>Sueño Travel | En Construcción - Viajes a Egipto, Jordania, Grecia y Turquía</title>
   <meta name="description"
     content="Estamos preparando la nueva experiencia de viaje de Sueño Travel. Pronto podrás viajar a Egipto, Jordania, Grecia y Turquía desde Chile. Contáctanos mediante nuestro formulario.">
-  <link rel="icon" type="image/png" href="Imagenes/Favicon.png">
+  <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,19 +43,19 @@
         <!-- Destination Showcase -->
         <div class="destinations-grid">
           <div class="dest-card" data-country="egipto" onclick="selectCountry('egipto')">
-            <div class="dest-icon"><i class="fa-solid fa-pyramid"></i></div>
+            <div class="dest-icon"><img src="Imagenes/Egipto.png" alt="Egipto"></div>
             <div class="dest-name">Egipto</div>
           </div>
           <div class="dest-card" data-country="jordania" onclick="selectCountry('jordania')">
-            <div class="dest-icon"><i class="fa-solid fa-archway"></i></div>
+            <div class="dest-icon"><img src="Imagenes/Jordania.png" alt="Jordania"></div>
             <div class="dest-name">Jordania</div>
           </div>
           <div class="dest-card" data-country="grecia" onclick="selectCountry('grecia')">
-            <div class="dest-icon"><i class="fa-solid fa-landmark"></i></div>
+            <div class="dest-icon"><img src="Imagenes/Grecia.png" alt="Grecia"></div>
             <div class="dest-name">Grecia</div>
           </div>
           <div class="dest-card" data-country="turquia" onclick="selectCountry('turquia')">
-            <div class="dest-icon"><i class="fa-solid fa-mosque"></i></div>
+            <div class="dest-icon"><img src="Imagenes/Turquia.png" alt="Turquía"></div>
             <div class="dest-name">Turquía</div>
           </div>
         </div>
@@ -120,7 +120,7 @@
       placeholder: "Me gustaría recibir información para un viaje a Egipto: cotizar cruceros por el Nilo, visitas a las Pirámides y templos de Luxor..."
       },
       jordania: {
-        background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=1920&auto=format&fit=crop')",
+        background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1589825274556-94746a018766?q=80&w=1920&auto=format&fit=crop')",
       placeholder: "Me gustaría recibir información para viajar a Jordania: cotizar tours a Petra, el desierto de Wadi Rum y flotar en el Mar Muerto..."
       },
       grecia: {
@@ -128,7 +128,7 @@
       placeholder: "Me gustaría recibir información para un viaje a Grecia: cotizar visitas a Atenas y las islas de Mykonos y Santorini..."
       },
       turquia: {
-        background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1527838832700-50592524df75?q=80&w=1920&auto=format&fit=crop')",
+        background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=1920&auto=format&fit=crop')",
       placeholder: "Me gustaría recibir información para viajar a Turquía: cotizar tours en Estambul, paseos en globo por Capadocia y las piscinas de Pamukkale..."
       }
     };
@@ -138,6 +138,7 @@
       function selectCountry(country) {
       const cards = document.querySelectorAll('.dest-card');
       const textarea = document.getElementById('clientMessage');
+      const favicon = document.getElementById('dynamic-favicon');
 
       // Si el país cliqueado ya está seleccionado, deseleccionar
       if (selectedCountry === country) {
@@ -146,6 +147,10 @@
       document.body.style.background = "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed";
       document.body.style.backgroundSize = "cover";
       textarea.placeholder = "Quiero información de viajes a Egipto, Jordania, Grecia y Turquía desde Chile...";
+      
+      if (favicon) {
+        favicon.setAttribute('href', 'Imagenes/Favicon.png');
+      }
       return;
       }
 
@@ -166,6 +171,22 @@
         document.body.style.background = data.background + " no-repeat center center fixed";
       document.body.style.backgroundSize = "cover";
       textarea.placeholder = data.placeholder;
+      }
+
+      // Cambiar favicon dinámicamente
+      if (favicon) {
+        const countryFavicons = {
+          egipto: 'Egipto.png',
+          jordania: 'Jordania.png',
+          grecia: 'Grecia.png',
+          turquia: 'Turquia.png'
+        };
+        const fileName = countryFavicons[country];
+        if (fileName) {
+          favicon.setAttribute('href', `Imagenes/${fileName}`);
+        } else {
+          favicon.setAttribute('href', 'Imagenes/Favicon.png');
+        }
       }
     }
 

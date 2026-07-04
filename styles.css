@@ -1248,8 +1248,6 @@ body.construction-page {
 }
 
 .construction-page .dest-card.active .dest-icon {
-  background: var(--accent-orange);
-  color: #ffffff;
   transform: scale(1.1);
 }
 
@@ -1257,19 +1255,26 @@ body.construction-page {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(15, 118, 110, 0.08);
-  color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
   transition: all 0.3s ease;
 }
 
-.construction-page .dest-card:hover .dest-icon {
-  background: var(--primary);
-  color: #ffffff;
+.construction-page .dest-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.construction-page .dest-card:hover .dest-icon img {
   transform: rotate(15deg);
+}
+
+.construction-page .dest-card.active .dest-icon img {
+  transform: scale(1.05);
 }
 
 .construction-page .dest-name {
