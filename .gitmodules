@@ -1,0 +1,3 @@
+[submodule "controlpanel"]
+	path = controlpanel
+	url = https://github.com/Jcalvo86/crm-controlpanel.git

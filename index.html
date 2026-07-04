@@ -3,414 +3,543 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sueño Travel | Experiencias Únicas en Egipto</title>
-  <meta name="description" content="Encuentra lo que te hace feliz en cualquier rincón del país de los faraones con Sueño Travel. Reserva tus paquetes de viaje a Egipto hoy.">
-  <link rel="stylesheet" href="styles.css">
+  <title>Sueño Travel | En Construcción - Viajes a Egipto, Jordania, Grecia y Turquía</title>
+  <meta name="description" content="Estamos preparando la nueva experiencia de viaje de Sueño Travel. Pronto podrás viajar a Egipto, Jordania, Grecia y Turquía desde Chile. Contáctanos mediante nuestro formulario.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* CSS Variables matching sueno-travel.com brand style */
+    :root {
+      --primary: #0f766e; /* Teal Green */
+      --primary-hover: #0d9488;
+      --accent-orange: #df9c6d; /* Ochre/Sand Orange */
+      --accent-orange-hover: #cf804d;
+      --secondary: #fbf6f0; /* Sand background */
+      --text-dark: #1e293b;
+      --text-gray: #64748b;
+      --bg-light: #ffffff;
+    }
+
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Urbanist', sans-serif;
+      /* Background Image of Egypt Pyramids with Teal/Dark Sunset overlay */
+      background: linear-gradient(rgba(15, 118, 110, 0.45), rgba(24, 24, 37, 0.8)), 
+                  url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-dark);
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    /* Header with Logo */
+    header {
+      width: 100%;
+      max-width: 1200px;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 26px;
+      border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(15, 118, 110, 0.3);
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      color: var(--primary);
+    }
+
+    /* Glassmorphic Main Card (Enhanced) */
+    .main-card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 32px;
+      padding: 45px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+      text-align: center;
+      margin: 30px auto;
+      animation: scaleUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes scaleUp {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(15, 118, 110, 0.12);
+      color: var(--primary);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border: 1px solid rgba(15, 118, 110, 0.1);
+    }
+
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    h1 span {
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    h1 span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-orange);
+      opacity: 0.7;
+      border-radius: 2px;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #334155;
+      margin-bottom: 35px;
+      line-height: 1.6;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+
+    /* Destination grid */
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .destinations-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dest-card {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      padding: 20px 10px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      cursor: default;
+    }
+
+    .dest-card:hover {
+      transform: translateY(-8px);
+      background: #ffffff;
+      box-shadow: 0 15px 30px rgba(15, 118, 110, 0.12);
+      border-color: var(--primary);
+    }
+
+    .dest-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(15, 118, 110, 0.08);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+    }
+
+    .dest-card:hover .dest-icon {
+      background: var(--primary);
+      color: #ffffff;
+      transform: rotate(15deg);
+    }
+
+    .dest-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+    }
+
+    .dest-origin {
+      font-size: 0.8rem;
+      color: var(--text-gray);
+      margin-top: -8px;
+      font-weight: 500;
+    }
+
+    /* Contact Form Styles */
+    .contact-form-section {
+      margin-top: 30px;
+      padding-top: 35px;
+      border-top: 1px dashed rgba(15, 118, 110, 0.25);
+      text-align: left;
+    }
+
+    .contact-form-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .contact-form-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      margin-bottom: 24px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 580px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-control {
+      font-family: 'Urbanist', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 118, 110, 0.2);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.1);
+      background: #ffffff;
+    }
+
+    .form-submit-btn {
+      width: 100%;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 12px;
+      padding: 14px 28px;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      box-shadow: 0 4px 10px rgba(15, 118, 110, 0.2);
+    }
+
+    .form-submit-btn:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 6px 18px rgba(13, 148, 136, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .alternative-contact {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-gray);
+      font-weight: 500;
+    }
+
+    .alternative-contact a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .alternative-contact a:hover {
+      color: var(--primary-hover);
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+      color: rgba(255, 255, 255, 0.95);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .social-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 1rem;
+    }
+
+    .social-icon:hover {
+      background: #ffffff;
+      color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .copyright {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header & Navigation -->
+  <!-- Header -->
   <header>
-    <div class="container navbar">
-      <a href="index.html" class="logo" id="headerLogo">
-        <div class="logo-icon"><i class="fa-solid fa-pyramid"></i></div>
-        <span>SUEÑO TRAVEL</span>
-      </a>
-      
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
-      
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active" id="navHome">Inicio</a></li>
-        <li><a href="viajes-a-egipto.html" id="navEgipto">Viajes a Egipto</a></li>
-        <li><a href="#" id="navOtros">Otros Destinos</a></li>
-        <li><a href="viajes-combinados.html" id="navCombinados">Viajes Combinados</a></li>
-        <li><a href="sobre-nosotros.html" id="navNosotros">Sobre Nosotros</a></li>
-      </ul>
-      
-      <div class="nav-actions">
-        <a href="egipto-a-medida.html" class="btn btn-primary" id="btnMedidaHeader">Viaje a Medida</a>
-      </div>
+    <div class="logo-container">
+      <div class="logo-icon"><i class="fa-solid fa-pyramid"></i></div>
+      <span class="logo-text">SUEÑO TRAVEL</span>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="heroSection">
-    <div class="container">
-      <div class="hero-content">
-        <h1 id="heroTitle">Experiencias Únicas En Egipto.<br>Una Sola Búsqueda.</h1>
-        <p id="heroSubtitle">Encuentra lo que te hace feliz en cualquier rincón del país de los faraones.</p>
-        <a href="viajes-a-egipto.html" class="btn btn-orange" id="heroCta">Ver Paquetes de Viajes</a>
+  <!-- Main Content Card -->
+  <main class="main-card" id="mainCard">
+    <div class="badge">Próximamente</div>
+    <h1>Estamos Diseñando tu <span>Próximo Destino</span></h1>
+    <p class="subtitle">
+      Muy pronto podrás explorar las mejores experiencias y paquetes turísticos de forma personalizada hacia 
+      <strong>Egipto, Jordania, Grecia y Turquía</strong> desde Chile.
+    </p>
+
+    <!-- Destination Showcase -->
+    <div class="destinations-grid">
+      <div class="dest-card">
+        <div class="dest-icon"><i class="fa-solid fa-pyramid"></i></div>
+        <div class="dest-name">Egipto</div>
+        <div class="dest-origin">Desde Chile</div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-icon"><i class="fa-solid fa-archway"></i></div>
+        <div class="dest-name">Jordania</div>
+        <div class="dest-origin">Desde Chile</div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-icon"><i class="fa-solid fa-landmark"></i></div>
+        <div class="dest-name">Grecia</div>
+        <div class="dest-origin">Desde Chile</div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-icon"><i class="fa-solid fa-mosque"></i></div>
+        <div class="dest-name">Turquía</div>
+        <div class="dest-origin">Desde Chile</div>
       </div>
     </div>
-  </section>
 
-  <!-- Features Section (3 icons with thin red/orange circular border) -->
-  <section class="section" id="featuresSection">
-    <div class="container">
-      <div class="features-grid">
-        <div class="feature-card reveal reveal-delay-1" id="feature1">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon-inner"><i class="fa-solid fa-map-location-dot"></i></div>
+    <!-- Contact Form Section -->
+    <div class="contact-form-section">
+      <h2 class="contact-form-title">¿Planeas viajar pronto?</h2>
+      <p class="contact-form-subtitle">Déjanos tu contacto e indícanos qué te gustaría cotizar.</p>
+      
+      <form id="constructionForm" onsubmit="handleSubmit(event)">
+        <!-- Name and Email in one line -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="clientName">Nombre Completo *</label>
+            <input type="text" id="clientName" class="form-control" placeholder="Ej: Juan Pérez" required>
           </div>
-          <h3>Explora las maravillas de Egipto</h3>
-          <p>Ofrecemos una variedad de itinerarios para conocer la cuna de los faraones a tu propio ritmo.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-2" id="feature2">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon-inner"><i class="fa-solid fa-tags"></i></div>
+          <div class="form-group">
+            <label class="form-label" for="clientEmail">Correo Electrónico *</label>
+            <input type="email" id="clientEmail" class="form-control" placeholder="Ej: juan@example.com" required>
           </div>
-          <h3>Ofertas Exclusivas</h3>
-          <p>Asegure su viaje soñado al mejor precio con tarifas garantizadas y promociones continuas.</p>
         </div>
-        <div class="feature-card reveal reveal-delay-3" id="feature3">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon-inner"><i class="fa-solid fa-shield-halved"></i></div>
-          </div>
-          <h3>Viajes de Confianza</h3>
-          <p>Con asistencia telefónica las 24 horas y traslados privados en vehículos climatizados y seguros.</p>
+        
+        <!-- Text Area below it -->
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label" for="clientMessage">¿Qué información te gustaría recibir? *</label>
+          <textarea id="clientMessage" class="form-control" rows="4" placeholder="Quiero información de viajes a Egipto, Jordania, Grecia y Turquía desde Chile..." required></textarea>
         </div>
+        
+        <button type="submit" class="form-submit-btn">
+          <i class="fa-regular fa-paper-plane"></i> Enviar Solicitud de Información
+        </button>
+      </form>
+      
+      <div class="alternative-contact">
+        O si prefieres, escríbenos directamente a <a href="mailto:info@sueno-travel.com?subject=Consulta%20de%20Viaje%20-%20Sueño%20Travel">info@sueno-travel.com</a>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- Destinations Section -->
-  <section class="section" id="destinationsSection">
-    <div class="container">
-      <div class="destinations-header">
-        <div>
-          <h2 style="font-size: 2rem; color: var(--text-dark);">Explora Los Destinos De Egipto</h2>
-        </div>
-        <div class="destinations-arrows">
-          <button class="arrow-btn" aria-label="Anterior destino"><i class="fa-solid fa-chevron-left"></i></button>
-          <button class="arrow-btn" aria-label="Siguiente destino"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="destinations-grid">
-        <div class="destination-card reveal reveal-delay-1" id="destAlejandria">
-          <img src="https://images.unsplash.com/photo-1600077106724-946750eeaf3c?q=80&w=600&auto=format&fit=crop" alt="Alejandría">
-          <div class="destination-overlay">
-            <h3>Alejandría</h3>
-          </div>
-        </div>
-        <div class="destination-card reveal reveal-delay-2" id="destAsuan">
-          <img src="https://images.unsplash.com/photo-1548786811-dd6e453ccca7?q=80&w=600&auto=format&fit=crop" alt="Asuán">
-          <div class="destination-overlay">
-            <h3>Asuán</h3>
-          </div>
-        </div>
-        <div class="destination-card reveal reveal-delay-3" id="destCairo">
-          <img src="https://images.unsplash.com/photo-1572252009286-268acec5a0af?q=80&w=600&auto=format&fit=crop" alt="El Cairo">
-          <div class="destination-overlay">
-            <h3>El Cairo</h3>
-          </div>
-        </div>
-        <div class="destination-card reveal reveal-delay-4" id="destHurgada">
-          <img src="https://images.unsplash.com/photo-1583248369069-9d91f1640fe6?q=80&w=600&auto=format&fit=crop" alt="Hurgada">
-          <div class="destination-overlay">
-            <h3>Hurgada</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Vacation Packages Showcase Section (6 Packages matching mockup) -->
-  <section class="section" id="packagesSection">
-    <div class="container">
-      <div class="section-title-wrapper reveal">
-        <h2 class="section-title">Los Mejores Paquetes Para Sus Vacaciones</h2>
-      </div>
-      <div class="packages-grid">
-        <!-- Package 1 -->
-        <div class="package-card reveal reveal-delay-1" id="pkg1">
-          <div class="package-img">
-            <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?q=80&w=600&auto=format&fit=crop" alt="Crucero Abu Simbel">
-          </div>
-          <div class="package-content">
-            <h3 class="package-title">Crucero de 4 días y crucero por el Templo de Abu Simbel</h3>
-            <div class="package-details-row">
-              <span>Desde $799</span>
-              <span><i class="fa-regular fa-clock"></i> 4 Días</span>
-            </div>
-            <div class="package-footer">
-              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
-            </div>
-          </div>
-        </div>
-        <!-- Package 2 -->
-        <div class="package-card reveal reveal-delay-2" id="pkg2">
-          <div class="package-img">
-            <img src="https://images.unsplash.com/photo-1553913861-c0fdec298916?q=80&w=600&auto=format&fit=crop" alt="Crucero Asuán">
-          </div>
-          <div class="package-content">
-            <h3 class="package-title">Crucero de 5 días por el Cairo y Crucero de Asuán</h3>
-            <div class="package-details-row">
-              <span>Desde $899</span>
-              <span><i class="fa-regular fa-clock"></i> 5 Días</span>
-            </div>
-            <div class="package-footer">
-              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
-            </div>
-          </div>
-        </div>
-        <!-- Package 3 -->
-        <div class="package-card reveal reveal-delay-3" id="pkg3">
-          <div class="package-img">
-            <img src="https://images.unsplash.com/photo-1572252009286-268acec5a0af?q=80&w=600&auto=format&fit=crop" alt="Crucero El Cairo">
-          </div>
-          <div class="package-content">
-            <h3 class="package-title">Crucero de 8 días por el Cairo</h3>
-            <div class="package-details-row">
-              <span>Desde $1,200</span>
-              <span><i class="fa-regular fa-clock"></i> 8 Días</span>
-            </div>
-            <div class="package-footer">
-              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
-            </div>
-          </div>
-        </div>
-        <!-- Package 4 -->
-        <div class="package-card reveal reveal-delay-1" id="pkg4">
-          <div class="package-img">
-            <img src="https://images.unsplash.com/photo-1599933310631-8378d7a5aa93?q=80&w=600&auto=format&fit=crop" alt="Egipto Clásico 8 Días">
-          </div>
-          <div class="package-content">
-            <h3 class="package-title">8 Días El Cairo Y Crucero Con Abu Simbel</h3>
-            <div class="package-details-row">
-              <span>Desde $1,190</span>
-              <span><i class="fa-regular fa-clock"></i> 8 Días</span>
-            </div>
-            <div class="package-footer">
-              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
-            </div>
-          </div>
-        </div>
-        <!-- Package 5 -->
-        <div class="package-card reveal reveal-delay-2" id="pkg5">
-          <div class="package-img">
-            <img src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=600&auto=format&fit=crop" alt="Cairo, Crucero y Hurgada">
-          </div>
-          <div class="package-content">
-            <h3 class="package-title">9 Días El Cairo, Crucero En El Nilo Y Hurghada</h3>
-            <div class="package-details-row">
-              <span>Desde $1,190</span>
-              <span><i class="fa-regular fa-clock"></i> 9 Días</span>
-            </div>
-            <div class="package-footer">
-              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
-            </div>
-          </div>
-        </div>
-        <!-- Package 6 -->
-        <div class="package-card reveal reveal-delay-3" id="pkg6">
-          <div class="package-img">
-            <img src="https://images.unsplash.com/photo-1503177119275-0aa32b31d468?q=80&w=600&auto=format&fit=crop" alt="Circuito 11 Días">
-          </div>
-          <div class="package-content">
-            <h3 class="package-title">Circuito De 11 Días Por El Cairo, Crucero Y Alejandría</h3>
-            <div class="package-details-row">
-              <span>Desde $1,450</span>
-              <span><i class="fa-regular fa-clock"></i> 11 Días</span>
-            </div>
-            <div class="package-footer">
-              <a href="viajes-a-egipto.html" class="btn btn-secondary">Viaje Detalles</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Facilitamos Los Viajes Por Egipto Section -->
-  <section class="section" id="facilitamosSection">
-    <div class="container">
-      <div class="facilitamos-section">
-        <div class="facilitamos-grid">
-          <div class="facilitamos-content reveal-left">
-            <h2>Facilitamos Los Viajes Por Egipto</h2>
-            <p>Al viajar por tu propia cuenta y a tu propio ritmo, necesitas de asistencia experta local con tu destino y diversas tareas:</p>
-            <ul class="facilitamos-list">
-              <li><i class="fa-solid fa-circle-check"></i> Tasa del visado de entrada para la mayoría de los países incluida.</li>
-              <li><i class="fa-solid fa-circle-check"></i> Acompañamiento por egiptólogo de habla hispana en los templos.</li>
-              <li><i class="fa-solid fa-circle-check"></i> Traslados privados por carretera en vehículos climatizados.</li>
-              <li><i class="fa-solid fa-circle-check"></i> Asistencia telefónica las 24 horas y soporte directo.</li>
-            </ul>
-            <a href="viajes-a-egipto.html" class="btn btn-primary">Ver Todos los Paquetes</a>
-          </div>
-          <div class="facilitamos-img-wrapper reveal-right">
-            <div class="facilitamos-main-img">
-              <img src="https://images.unsplash.com/photo-1548786811-dd6e453ccca7?q=80&w=600&auto=format&fit=crop" alt="Selfie en Egipto">
-            </div>
-            <div class="floating-icon f-icon-1"><i class="fa-solid fa-camera"></i></div>
-            <div class="floating-icon f-icon-2"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="floating-icon f-icon-3"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="floating-icon f-icon-4"><i class="fa-solid fa-calendar-days"></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Inspiración, Guías, Historias (Blog Section) -->
-  <section class="section" id="blogSection">
-    <div class="container">
-      <div class="destinations-header">
-        <div>
-          <h2 style="font-size: 2rem; color: var(--text-dark);">Inspiración, Guías, Historias</h2>
-        </div>
-        <div class="destinations-arrows">
-          <button class="arrow-btn" aria-label="Anterior artículo"><i class="fa-solid fa-chevron-left"></i></button>
-          <button class="arrow-btn" aria-label="Siguiente artículo"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="blog-grid">
-        <!-- Card 1 -->
-        <div class="blog-card reveal reveal-delay-1" id="blog1">
-          <div class="blog-img">
-            <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?q=80&w=600&auto=format&fit=crop" alt="Guía Viajar a Egipto">
-          </div>
-          <div class="blog-content">
-            <h3 class="blog-title">La Guía Definitiva para Viajar a Egipto en 2026</h3>
-            <a href="#" class="blog-link">Leer Artículo <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="blog-card reveal reveal-delay-2" id="blog2">
-          <div class="blog-img">
-            <img src="https://images.unsplash.com/photo-1572252009286-268acec5a0af?q=80&w=600&auto=format&fit=crop" alt="Descubre Egipto">
-          </div>
-          <div class="blog-content">
-            <h3 class="blog-title">Descubre la Parroquia Alrededor de Egipto Que no Debes perderte</h3>
-            <a href="#" class="blog-link">Leer Artículo <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="blog-card reveal reveal-delay-3" id="blog3">
-          <div class="blog-img">
-            <img src="https://images.unsplash.com/photo-1600077106724-946750eeaf3c?q=80&w=600&auto=format&fit=crop" alt="Explorar Egipto">
-          </div>
-          <div class="blog-content">
-            <h3 class="blog-title">Explorar Egipto: Consejos Esenciales para Quienes Viajan por Primera Vez</h3>
-            <a href="#" class="blog-link">Leer Artículo <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQs Section -->
-  <section class="section section-bg-sand" id="faqSection">
-    <div class="container">
-      <div class="section-title-wrapper reveal">
-        <h2 class="section-title">FAQs</h2>
-        <p class="section-subtitle">Aquí Encontrará Respuestas a las Preguntas Más Frecuentes Sobre Viajes</p>
-      </div>
-      <div class="faq-accordion">
-        <div class="faq-item active reveal reveal-delay-1" id="faqItem1">
-          <button class="faq-question">
-            <span>¿Es seguro viajar a Egipto?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" style="max-height: 200px;">
-            <p>Sí, Egipto es un destino muy seguro para los turistas. El gobierno aplica estrictos controles de seguridad en todos los templos, cruceros y zonas de interés arqueológico para que puedas disfrutar de tus vacaciones con total tranquilidad en cualquier rincón del país.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal reveal-delay-2" id="faqItem2">
-          <button class="faq-question">
-            <span>¿Cómo planificar un viaje a Egipto?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Para planificar tu viaje te recomendamos definir la duración de tu estadía (aconsejable mínimo 8 días), seleccionar un paquete cerrado o solicitar un viaje a medida completando nuestro formulario en línea, y coordinar vuelos con nuestro equipo local.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal reveal-delay-3" id="faqItem3">
-          <button class="faq-question">
-            <span>¿Qué llevar en tu viaje a Egipto?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Es indispensable llevar ropa ligera y de algodón, calzado muy cómodo para caminar por arena y piedras, sombrero, gafas de sol, protector solar biodegradable y repelente de insectos para las tardes de navegación en el Nilo.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal reveal-delay-4" id="faqItem4">
-          <button class="faq-question">
-            <span>¿Cómo puedo obtener un visado para viajar?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>El visado puede gestionarse de forma online con antelación o comprarse de forma física al arribo en el aeropuerto por un costo de 25 dólares estadounidenses. Nuestros paquetes ya traen asistencia para facilitar este proceso.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal reveal-delay-5" id="faqItem5">
-          <button class="faq-question">
-            <span>¿Cuáles son los requisitos de pasaporte y visa?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Tu pasaporte debe tener una validez mínima de 6 meses desde el día programado de ingreso a territorio egipcio. Adicionalmente deberás presentar la visa de turismo de entrada.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer (Sand Background) -->
+  <!-- Footer -->
   <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <h3>SUEÑO TRAVEL</h3>
-          <p>Tu socio de confianza para descubrir el encanto milenario y las leyendas de Egipto de forma segura y personalizada.</p>
-          <div class="footer-social-wrapper">
-            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h4>Destinos</h4>
-          <ul>
-            <li><a href="#">El Cairo</a></li>
-            <li><a href="#">Lúxor</a></li>
-            <li><a href="#">Asuán</a></li>
-            <li><a href="#">Hurgada</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Nuestra Empresa</h4>
-          <ul>
-            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-            <li><a href="#">Términos y Condiciones</a></li>
-            <li><a href="#">Política de Privacidad</a></li>
-            <li><a href="egipto-a-medida.html">Contacto</a></li>
-          </ul>
-        </div>
-        <div class="footer-contact">
-          <h4>Contacto</h4>
-          <p><i class="fa-solid fa-envelope"></i> info@sueno-travel.com</p>
-          <p><i class="fa-solid fa-phone"></i> +56 9 9999 8888</p>
-          <p><i class="fa-solid fa-location-dot"></i> Santiago, Chile / El Cairo, Egipto</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="lang-selector">
-          <img src="https://flagcdn.com/w40/es.png" alt="Bandera de España">
-          <span>ESP</span>
-          <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem; margin-left: 4px;"></i>
-        </div>
-        <p>&copy; 2026 Sueño Travel. Todos los derechos reservados.</p>
-      </div>
+    <div class="social-links">
+      <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+    <div class="copyright">
+      &copy; 2026 Sueño Travel. Todos los derechos reservados.
     </div>
   </footer>
 
-  <!-- Floating Chat Widget -->
-  <div class="chat-widget" onclick="window.location.href='https://wa.me/56999998888'">
-    <div class="chat-bubble">¿Cómo te podemos ayudar?</div>
-    <div class="chat-icon"><i class="fa-brands fa-whatsapp"></i></div>
-  </div>
-
-  <script src="app.js"></script>
+  <!-- Form Handler Script -->
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('clientName').value;
+      const email = document.getElementById('clientEmail').value;
+      const message = document.getElementById('clientMessage').value;
+      
+      if (!name || !email || !message) return;
+      
+      const card = document.getElementById('mainCard');
+      card.innerHTML = `
+        <div style="animation: fadeInUp 0.6s ease-out; padding: 30px 10px; text-align: center;">
+          <div style="width: 80px; height: 80px; background: rgba(15, 118, 110, 0.1); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 24px auto; border: 1px solid rgba(15, 118, 110, 0.2);">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.25rem; color: var(--text-dark); margin-bottom: 16px;">¡Solicitud Recibida!</h2>
+          <p style="font-size: 1.15rem; color: #334155; max-width: 600px; margin: 0 auto 24px auto; line-height: 1.6; font-weight: 500;">
+            Gracias por contactarnos, <strong>${name}</strong>. Hemos registrado tu consulta.
+          </p>
+          <p style="font-size: 1rem; color: var(--text-gray); max-width: 500px; margin: 0 auto 36px auto; line-height: 1.6; font-weight: 500;">
+            Uno de nuestros asesores expertos revisará tus requerimientos y te contactará a la brevedad al correo <strong>${email}</strong>.
+          </p>
+          <a href="index.html" class="btn btn-primary" style="padding: 12px 32px; border-radius: 30px;">
+            <i class="fa-solid fa-arrow-rotate-left"></i> Volver a empezar
+          </a>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
