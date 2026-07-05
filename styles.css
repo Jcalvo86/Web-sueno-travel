@@ -1372,10 +1372,9 @@ body.construction-page {
 .construction-page footer {
   width: 100%;
   max-width: none;
-  background-color: var(--footer-bg);
+  background-color: var(--secondary);
   color: var(--text-dark);
-  padding: 40px 20px;
-  text-align: center;
+  padding: 50px 20px 20px 20px;
   box-sizing: border-box;
   animation: fadeInUp 0.8s ease-out;
 }
@@ -1391,38 +1390,132 @@ body.construction-page {
   }
 }
 
+.construction-page .footer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.construction-page .footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.construction-page .footer-logo {
+  height: 55px;
+  width: auto;
+  align-self: flex-start;
+}
+
+.construction-page .footer-description {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-dark);
+  opacity: 0.85;
+}
+
+.construction-page .footer-contact-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.construction-page .footer-contact-column h4 {
+  font-family: var(--font-headings);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
 .construction-page .social-links {
   display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 12px;
+  gap: 12px;
 }
 
 .construction-page .social-icon {
-  width: 38px;
-  height: 38px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #ffffff !important;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: 1rem;
 }
 
 .construction-page .social-icon:hover {
-  background: #ffffff;
-  color: var(--primary);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.construction-page .social-icon.facebook {
+  background: #3b5998;
+}
+
+.construction-page .social-icon.instagram {
+  background: #c13584;
+}
+
+.construction-page .social-icon.tripadvisor {
+  background: #4b9a67;
+}
+
+.construction-page .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.construction-page .contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.construction-page .contact-info-item i {
+  color: #14b8a6;
+  font-size: 1.1rem;
+  width: 18px;
+}
+
+.construction-page .footer-divider {
+  border: 0;
+  border-top: 1px solid rgba(50, 41, 31, 0.15);
+  margin: 25px auto 15px auto;
+  max-width: 1100px;
+  width: 100%;
 }
 
 .construction-page .copyright {
+  text-align: center;
   font-size: 0.85rem;
-  opacity: 0.9;
+  color: var(--text-dark);
+  opacity: 0.8;
   font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .construction-page .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 80px;
+  }
+  .construction-page .footer-brand {
+    max-width: 60%;
+  }
+  .construction-page .footer-contact-column {
+    max-width: 35%;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1457,14 +1550,9 @@ body.construction-page {
   }
 
   .construction-page footer {
-    text-align: left;
     padding-left: 8%;
     padding-right: 8%;
     max-width: none;
     width: 100%;
-  }
-
-  .construction-page .social-links {
-    justify-content: flex-start;
   }
 }
