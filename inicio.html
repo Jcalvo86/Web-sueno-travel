@@ -122,7 +122,12 @@
             height: 2px;
             background-color: currentColor;
         }
-    </style>
+    <!-- CMS/Data Source Connection Scripts -->
+    <script src="controlpanel/adapters/adapter-interface.js"></script>
+    <script src="controlpanel/adapters/supabase-adapter.js"></script>
+    <script src="controlpanel/adapters/firebase-adapter.js"></script>
+    <script src="controlpanel/crm-config.js"></script>
+    <script src="controlpanel/data-source-config.js"></script>
 </head>
 <body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container"><!-- TopNavBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/80 dark:bg-primary/80 backdrop-blur-xl shadow-sm">
@@ -497,6 +502,48 @@
 
     setupFormInteraction('heroInquiryForm');
     setupFormInteraction('contactFormMain');
+
+    // Dynamic links from CMS
+    const updateDynamicLinks = async () => {
+        let checks = 0;
+        while (!window.DataSource && checks < 20) {
+            await new Promise(r => setTimeout(r, 100));
+            checks++;
+        }
+        if (!window.DataSource) return;
+
+        try {
+            const products = await window.DataSource.getItems('cms_products');
+            products.forEach(trip => {
+                if (trip.status === 'hidden' || trip.isDraft) return;
+
+                const nameLower = trip.name.toLowerCase();
+                const skuLower = (trip.sku || '').toLowerCase();
+
+                let selector = '';
+                if (nameLower.includes('egipto') || skuLower.includes('egipto')) {
+                    selector = '#egipto a';
+                } else if (nameLower.includes('jordania') || skuLower.includes('jordania')) {
+                    selector = '#jordania a';
+                } else if (nameLower.includes('grecia') || skuLower.includes('grecia')) {
+                    selector = '#grecia a';
+                } else if (nameLower.includes('turquia') || nameLower.includes('turquía') || skuLower.includes('turquia')) {
+                    selector = '#turquia a';
+                }
+
+                if (selector) {
+                    const btn = document.querySelector(selector);
+                    if (btn) {
+                        btn.setAttribute('href', `viaje.html?id=${trip.id}`);
+                        btn.removeAttribute('onclick');
+                    }
+                }
+            });
+        } catch (e) {
+            console.warn('Error fetching dynamic trip links:', e);
+        }
+    };
+    updateDynamicLinks();
 </script>
 </body>
 </html>

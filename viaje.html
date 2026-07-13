@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cargando itinerario... | Sueño Travel</title>
+    <meta name="description" id="meta-description" content="Diseñamos experiencias de lujo personalizadas para exploradores cultos. Cargando itinerario..." />
+    <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ambient-glow {
+            box-shadow: 0 20px 40px -15px rgba(9, 21, 36, 0.1);
+        }
+        .itinerary-line::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #C59358 0%, #C59358 80%, transparent 100%);
+        }
+        @media (max-width: 768px) {
+            .itinerary-line::before {
+                left: 15px;
+            }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ccc6bc",
+                    "primary": "#091524",
+                    "outline-variant": "#c5c6cc",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dbd9d9",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3c4858",
+                    "inverse-surface": "#303030",
+                    "surface-container": "#efeded",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "surface-bright": "#fbf9f8",
+                    "on-secondary-container": "#7a511c",
+                    "inverse-on-surface": "#f2f0f0",
+                    "tertiary-fixed": "#e8e2d8",
+                    "surface-variant": "#e4e2e2",
+                    "on-secondary-fixed": "#2b1700",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#959087",
+                    "on-primary-fixed": "#101c2b",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "on-secondary-fixed-variant": "#643f0a",
+                    "surface": "#fbf9f8",
+                    "on-surface": "#1b1c1c",
+                    "on-background": "#1b1c1c",
+                    "on-primary-container": "#8591a4",
+                    "primary-container": "#1e2a39",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#eae8e7",
+                    "primary-fixed": "#d7e3f8",
+                    "on-secondary": "#ffffff",
+                    "background": "#fbf9f8",
+                    "tertiary-container": "#2c2923",
+                    "secondary-fixed-dim": "#f3bc7d",
+                    "surface-tint": "#535f70",
+                    "surface-container-highest": "#e4e2e2",
+                    "on-surface-variant": "#44474c",
+                    "secondary": "#7f5621",
+                    "secondary-container": "#ffc788",
+                    "outline": "#75777d",
+                    "surface-container-low": "#f5f3f3",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#ffddb9",
+                    "inverse-primary": "#bbc7db",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#bbc7db",
+                    "tertiary": "#17150f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "80px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Manrope"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- CMS/Data Source Connection Scripts -->
+    <script src="controlpanel/adapters/adapter-interface.js"></script>
+    <script src="controlpanel/adapters/supabase-adapter.js"></script>
+    <script src="controlpanel/adapters/firebase-adapter.js"></script>
+    <script src="controlpanel/crm-config.js"></script>
+    <script src="controlpanel/data-source-config.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/80 backdrop-blur-xl shadow-sm">
+    <div class="flex items-center gap-3">
+        <a href="inicio.html" class="flex items-center gap-3">
+            <img alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
+            <span class="font-display-lg text-2xl text-primary font-black tracking-tight hidden sm:inline-block">Sueño Travel</span>
+        </a>
+    </div>
+    <nav class="hidden md:flex gap-8 items-center">
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#destinos">Destinos</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
+    </nav>
+    <a href="inicio.html#contacto" class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform">Contactar</a>
+</header>
+
+<!-- Loader State -->
+<div id="loading-state" class="min-h-[80vh] flex flex-col items-center justify-center gap-4">
+    <span class="material-symbols-outlined text-secondary text-5xl animate-spin">progress_activity</span>
+    <p class="text-on-surface-variant font-medium text-lg">Cargando itinerario de viaje...</p>
+</div>
+
+<!-- Main Content (Hidden initially) -->
+<div id="content-state" class="hidden">
+    <!-- Hero Section -->
+    <header class="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div id="hero-bg" class="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60"></div>
+        </div>
+        <div class="relative z-10 text-center px-margin-mobile max-w-4xl">
+            <span class="text-secondary-fixed-dim font-label-md tracking-widest uppercase mb-4 block">Experiencia Exclusiva</span>
+            <h1 id="hero-title" class="font-display-lg text-display-lg text-white mb-6"></h1>
+            <p id="hero-subtitle" class="text-white/90 text-body-lg max-w-2xl mx-auto mb-10"></p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a class="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all" href="#itinerary">Explorar Itinerario</a>
+                <a id="btn-map" class="glass-panel text-primary px-8 py-4 rounded-lg font-bold border border-white/20" href="#map">Ver Mapa de la Ruta</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overview Section -->
+    <section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div>
+            <h2 id="overview-title" class="font-display-lg text-headline-lg text-primary mb-6"></h2>
+            <div id="overview-text" class="space-y-4 text-on-surface-variant text-body-lg">
+            </div>
+            <div class="mt-8 grid grid-cols-3 gap-4">
+                <div class="text-center p-4 rounded-xl bg-tertiary-fixed/30">
+                    <span class="material-symbols-outlined text-secondary block mb-2" style="font-size: 32px;">history_edu</span>
+                    <span class="text-label-md font-bold text-primary">Cultura Viva</span>
+                </div>
+                <div class="text-center p-4 rounded-xl bg-tertiary-fixed/30">
+                    <span class="material-symbols-outlined text-secondary block mb-2" style="font-size: 32px;">hotel</span>
+                    <span class="text-label-md font-bold text-primary">Lujo Superior</span>
+                </div>
+                <div class="text-center p-4 rounded-xl bg-tertiary-fixed/30">
+                    <span class="material-symbols-outlined text-secondary block mb-2" style="font-size: 32px;">verified_user</span>
+                    <span class="text-label-md font-bold text-primary">Guía Privado</span>
+                </div>
+            </div>
+        </div>
+        <div class="relative">
+            <div id="overview-img-main" class="rounded-2xl overflow-hidden ambient-glow aspect-[4/5] bg-cover bg-center">
+            </div>
+            <div class="absolute -bottom-6 -left-6 w-48 h-48 rounded-xl overflow-hidden border-8 border-background ambient-glow hidden lg:block">
+                <div id="overview-img-sub" class="w-full h-full bg-cover bg-center">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary Section -->
+    <section class="py-24 bg-surface-container-low" id="itinerary">
+        <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-display-lg text-headline-lg text-primary mb-4">Itinerario Día a Día</h2>
+                <p class="text-on-surface-variant max-w-xl mx-auto">Una cronología de maravillas diseñada para equilibrar el descubrimiento arqueológico con el descanso reparador.</p>
+            </div>
+            <div id="itinerary-list" class="relative itinerary-line pl-12 md:pl-20 space-y-12">
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center" id="map">
+        <h2 class="font-display-lg text-headline-lg text-primary mb-12">Nuestra Ruta</h2>
+        <div class="relative w-full aspect-video rounded-3xl overflow-hidden ambient-glow bg-tertiary-fixed/20 border border-outline-variant">
+            <img id="map-img" class="w-full h-full object-cover opacity-80" alt="Mapa de Ruta" src=""/>
+            <div id="map-overlay" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Bento Grid -->
+    <section class="py-24 bg-primary text-white" id="gallery-section">
+        <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+            <h2 class="font-display-lg text-headline-lg text-white text-center mb-16">Capturando la Eternidad</h2>
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[800px]">
+            </div>
+        </div>
+    </section>
+
+    <!-- Practical Info -->
+    <section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+        <div class="bg-tertiary-fixed/20 rounded-3xl p-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3 text-secondary">
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    <h4 class="font-bold text-primary uppercase">Mejor Época</h4>
+                </div>
+                <p id="info-best-season" class="text-on-surface-variant"></p>
+            </div>
+            <div class="space-y-4 border-l border-outline-variant/30 pl-0 lg:pl-12">
+                <div class="flex items-center gap-3 text-secondary">
+                    <span class="material-symbols-outlined">payments</span>
+                    <h4 class="font-bold text-primary uppercase">Moneda y Pagos</h4>
+                </div>
+                <p id="info-currency" class="text-on-surface-variant"></p>
+            </div>
+            <div class="space-y-4 border-l border-outline-variant/30 pl-0 lg:pl-12">
+                <div class="flex items-center gap-3 text-secondary">
+                    <span class="material-symbols-outlined">description</span>
+                    <h4 class="font-bold text-primary uppercase">Visado</h4>
+                </div>
+                <p id="info-visa" class="text-on-surface-variant"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 px-margin-mobile">
+        <div class="max-w-4xl mx-auto rounded-[2rem] overflow-hidden relative ambient-glow bg-primary-container">
+            <div class="relative z-10 p-12 md:p-20 text-center">
+                <h2 class="font-display-lg text-display-lg text-white mb-6">¿Listo para escribir su propia historia en la arena?</h2>
+                <p class="text-white/80 text-body-lg mb-10">Nuestros especialistas en el destino están listos para personalizar cada detalle de su viaje.</p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                    <a id="cta-reserve" href="inicio.html#contacto" class="bg-secondary text-on-secondary px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-transform active:scale-95 shadow-xl block text-center">Reservar mi Experiencia</a>
+                    <a class="text-white font-bold flex items-center gap-2 hover:underline" href="https://wa.me/201110572308" target="_blank">
+                        <span class="material-symbols-outlined">call</span> Hablar con un Asesor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-primary dark:bg-surface-container-lowest text-on-primary">
+    <div class="max-w-md">
+        <div class="flex items-center gap-3 mb-4">
+            <img alt="Sueño Travel Logo" class="h-8 w-auto bg-white/10 p-1.5 rounded" src="Imagenes/logo_suenoTravel Chile.svg"/>
+            <span class="font-display-lg text-headline-lg text-secondary-fixed block">Sueño Travel</span>
+        </div>
+        <p class="text-on-primary/70 font-body-md">© 2026 Sueño Travel. Experiencias de Lujo en el Destino de tus Sueños.</p>
+    </div>
+    <div class="flex flex-wrap gap-x-12 gap-y-6">
+        <div class="flex flex-col gap-3">
+            <span class="font-bold text-secondary-fixed uppercase text-sm tracking-widest">Navegación</span>
+            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="inicio.html#destinos">Destinos</a>
+            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Certificaciones</a>
+            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="inicio.html#contacto">Contacto</a>
+        </div>
+        <div class="flex flex-col gap-3">
+            <span class="font-bold text-secondary-fixed uppercase text-sm tracking-widest">Legal</span>
+            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Términos y Condiciones</a>
+            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Política de Privacidad</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Smooth reveal on scroll logic
+    const setupRevealObserver = () => {
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.itinerary-line > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    };
+
+    // Sticky header
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('h-16');
+            header.classList.remove('h-20');
+        } else {
+            header.classList.add('h-20');
+            header.classList.remove('h-16');
+        }
+    });
+
+    // Load Data
+    const loadTripData = async () => {
+        const params = new URLSearchParams(window.location.search);
+        const tripId = params.get('id');
+
+        if (!tripId) {
+            showError('No se especificó un identificador de viaje en la URL.');
+            return;
+        }
+
+        try {
+            // Esperar a que window.DataSource esté listo
+            let checks = 0;
+            while (!window.DataSource && checks < 20) {
+                await new Promise(r => setTimeout(r, 100));
+                checks++;
+            }
+
+            if (!window.DataSource) {
+                showError('Error al conectar con la base de datos de contenidos.');
+                return;
+            }
+
+            // Obtener el viaje (producto)
+            const products = await window.DataSource.getItems('cms_products');
+            const trip = products.find(p => p.id === tripId || p.sku === tripId);
+
+            if (!trip) {
+                showError('El viaje solicitado no existe o no se encuentra disponible.');
+                return;
+            }
+
+            renderTrip(trip);
+        } catch (error) {
+            console.error(error);
+            showError('Ocurrió un error al cargar los datos del viaje.');
+        }
+    };
+
+    const showError = (message) => {
+        const loader = document.getElementById('loading-state');
+        if (loader) {
+            loader.innerHTML = `
+                <span class="material-symbols-outlined text-red-500 text-5xl">error</span>
+                <p class="text-on-surface font-semibold text-lg mt-2">${message}</p>
+                <a href="inicio.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg">Volver al inicio</a>
+            `;
+        }
+    };
+
+    const renderTrip = (trip) => {
+        // --- Dynamic SEO ---
+        document.title = `${trip.name} | Sueño Travel`;
+        const metaDesc = document.getElementById('meta-description');
+        if (metaDesc && trip.subtitle) {
+            metaDesc.setAttribute('content', trip.subtitle);
+        }
+
+        // --- Render UI Fields ---
+        document.getElementById('hero-title').textContent = trip.name;
+        document.getElementById('hero-subtitle').textContent = trip.subtitle || '';
+        document.getElementById('hero-bg').style.backgroundImage = `url('${trip.imageUrl || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920'}')`;
+        
+        document.getElementById('overview-title').textContent = `La Magia de tu Destino`;
+        
+        // Split paragraphs of overview
+        const overviewTextEl = document.getElementById('overview-text');
+        overviewTextEl.innerHTML = '';
+        if (trip.overview) {
+            const paragraphs = trip.overview.split('\n\n');
+            paragraphs.forEach(pText => {
+                if (pText.trim()) {
+                    const p = document.createElement('p');
+                    p.textContent = pText.trim();
+                    overviewTextEl.appendChild(p);
+                }
+            });
+        }
+
+        document.getElementById('overview-img-main').style.backgroundImage = `url('${trip.imageUrl || ''}')`;
+        document.getElementById('overview-img-sub').style.backgroundImage = `url('${trip.imageUrl || ''}')`;
+
+        // Render Itinerary Day-by-Day
+        const itineraryList = document.getElementById('itinerary-list');
+        itineraryList.innerHTML = '';
+        if (trip.itineraryJson) {
+            try {
+                const days = JSON.parse(trip.itineraryJson);
+                if (Array.isArray(days)) {
+                    days.forEach(dayInfo => {
+                        const dayDiv = document.createElement('div');
+                        dayDiv.className = 'relative group';
+                        dayDiv.innerHTML = `
+                            <div class="absolute -left-[14px] md:-left-[21px] top-0 w-8 h-8 rounded-full bg-secondary border-4 border-background z-10 transition-transform group-hover:scale-125"></div>
+                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                <div class="lg:col-span-1">
+                                    <span class="font-label-md text-secondary font-bold uppercase tracking-tighter">${dayInfo.day}</span>
+                                    <h3 class="font-headline-lg text-primary mt-1">${dayInfo.title}</h3>
+                                </div>
+                                <div class="lg:col-span-2 bg-white p-8 rounded-2xl ambient-glow">
+                                    <p class="text-on-surface-variant mb-4">${dayInfo.desc}</p>
+                                    ${dayInfo.info || dayInfo.meals ? `
+                                        <div class="flex gap-4 items-center text-label-md text-secondary font-bold flex-wrap">
+                                            ${dayInfo.meals ? `<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">restaurant</span> ${dayInfo.meals}</span>` : ''}
+                                            ${dayInfo.info ? `<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> ${dayInfo.info}</span>` : ''}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        `;
+                        itineraryList.appendChild(dayDiv);
+                    });
+                }
+            } catch (e) {
+                console.error("Error parsing itinerary JSON:", e);
+                itineraryList.innerHTML = `<p class="text-red-500 italic">Error al estructurar el itinerario día a día.</p>`;
+            }
+        }
+
+        // Render Map
+        if (trip.mapUrl) {
+            document.getElementById('map-img').src = trip.mapUrl;
+            document.getElementById('map-overlay').innerHTML = `
+                <div class="bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-xl max-w-xs pointer-events-auto">
+                    <span class="text-secondary font-bold block mb-2">Ruta de Viaje</span>
+                    <p class="text-body-md text-on-surface-variant">Mapa de ruta interactivo y paradas exclusivas de tu experiencia.</p>
+                </div>
+            `;
+        } else {
+            document.getElementById('map').style.display = 'none';
+        }
+
+        // Render Gallery
+        const galleryGrid = document.getElementById('gallery-grid');
+        galleryGrid.innerHTML = '';
+        if (trip.galleryUrls) {
+            const urls = Array.isArray(trip.galleryUrls) ? trip.galleryUrls : trip.galleryUrls.split('\n').map(u => u.trim()).filter(Boolean);
+            if (urls.length > 0) {
+                // Render up to 4 images in a bento grid
+                const templates = [
+                    'md:col-span-2 md:row-span-2',
+                    'md:col-span-2',
+                    '',
+                    ''
+                ];
+                urls.slice(0, 4).forEach((url, index) => {
+                    const colClass = templates[index] || '';
+                    const div = document.createElement('div');
+                    div.className = `${colClass} rounded-2xl overflow-hidden group`;
+                    div.innerHTML = `
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('${url}')"></div>
+                    `;
+                    galleryGrid.appendChild(div);
+                });
+            } else {
+                document.getElementById('gallery-section').style.display = 'none';
+            }
+        } else {
+            document.getElementById('gallery-section').style.display = 'none';
+        }
+
+        // Render Practical Info
+        document.getElementById('info-best-season').textContent = trip.bestSeason || 'Octubre a Abril';
+        document.getElementById('info-currency').textContent = trip.currency || 'Moneda internacional y local';
+        document.getElementById('info-visa').textContent = trip.visa || 'Consultar con nuestros asesores';
+
+        // CTA settings
+        const ctaBtn = document.getElementById('cta-reserve');
+        if (ctaBtn) {
+            ctaBtn.addEventListener('click', () => {
+                localStorage.setItem('selectedDestination', trip.name);
+            });
+        }
+
+        // Switch layouts
+        document.getElementById('loading-state').classList.add('hidden');
+        document.getElementById('content-state').classList.remove('hidden');
+
+        // Setup triggers for scroll reveal
+        setTimeout(setupRevealObserver, 150);
+    };
+
+    window.onload = loadTripData;
+</script>
+</body>
+</html>
