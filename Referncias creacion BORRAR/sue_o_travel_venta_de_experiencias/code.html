@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffddb9",
+                    "background": "#fbf9f8",
+                    "secondary-fixed-dim": "#f3bc7d",
+                    "secondary": "#7f5621",
+                    "inverse-primary": "#bbc7db",
+                    "surface": "#fbf9f8",
+                    "on-secondary-container": "#7a511c",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ccc6bc",
+                    "on-background": "#1b1c1c",
+                    "primary-fixed": "#d7e3f8",
+                    "tertiary-fixed": "#e8e2d8",
+                    "primary-fixed-dim": "#bbc7db",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#c5c6cc",
+                    "tertiary-container": "#2c2923",
+                    "primary": "#091524",
+                    "on-tertiary-container": "#959087",
+                    "on-primary-fixed-variant": "#3c4858",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-container-highest": "#e4e2e2",
+                    "on-primary-container": "#8591a4",
+                    "surface-container-high": "#eae8e7",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "inverse-on-surface": "#f2f0f0",
+                    "surface-container": "#efeded",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#2b1700",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#44474c",
+                    "outline": "#75777d",
+                    "inverse-surface": "#303030",
+                    "surface-tint": "#535f70",
+                    "secondary-container": "#ffc788",
+                    "surface-variant": "#e4e2e2",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "tertiary": "#17150f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#101c2b",
+                    "primary-container": "#1e2a39",
+                    "surface-dim": "#dbd9d9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1b1c1c",
+                    "on-secondary-fixed-variant": "#643f0a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "80px",
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Manrope"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .ambient-glow {
+            box-shadow: 0 20px 40px -15px rgba(9, 21, 36, 0.08);
+        }
+        .nav-active-indicator {
+            position: relative;
+        }
+        .nav-active-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto bg-surface/80 dark:bg-primary/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center gap-2">
+<span class="font-display-lg text-headline-lg text-primary dark:text-primary-fixed font-black tracking-tight">Sueño Travel</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="#egipto">Egipto</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="#jordania">Jordania</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="#grecia">Grecia</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="#turquia">Turquía</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/90">
+            Contactar
+        </button>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center scale-105 transform" data-alt="A majestic cinematic wide shot of the Great Pyramids of Giza at sunset. The golden hour lighting casts long shadows across the textured desert dunes, creating a warm and adventurous atmosphere. The sky transitions from a deep amber to a soft indigo, embodying the premium travel aesthetic of Sueño Travel with clear detail and high contrast." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzJKKMVpsC8SuetoB85b3hzk6-9QJk4sNdXydKHDQzCyzsdMdQT6COq2zomuqlzkDGniahhdu5K0b6ErODW7p4lsrcM0YKDBAYbZnUT98ZtFVtC_Gz14XAd4Tb4Mzx7HCCkOx227Mn8R64XmoHFWVmU71tbzrtwY-LR7rfnKqYoZtO2SUVHBGAHu6t87QdhRhpi_b4no8-m8hnl7-TZOdXYf8V3-jh0ERJjGfXLni7f5Pd-qYUe3AL')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid md:grid-cols-2 gap-gutter items-center">
+<div class="text-on-primary space-y-6">
+<img alt="Sueño Travel Logo" class="h-20 w-auto mb-4 bg-white/10 backdrop-blur-md p-4 rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAypLngC8xQUddVQVbmeeX0nO2vA0j3TcalVDKh3iAbwWsBp8HX1S65bbc6h62tk06LAQRwZ9tKoHxZvetjtlw-lpoFPgueUB4LJQ3F_KYTAf4iwMl99O8mLttZE2bL4Alvj6YEzSuS8TwTizZj8-gvGD0pbVuIhut_W-7YpWrrJDgxMkW5zIUYShC3dBT-9XkHxqhTCvM8B5Cw_HADCmj1YNx0YZgiOxgdGlTw-ybLxlPbYWGQ5Za3szd1qbySMorQ8A"/>
+<h1 class="font-display-lg text-[56px] leading-[64px] font-extrabold tracking-tight">
+                        Tu Próximo Destino <br/>
+<span class="text-secondary-fixed">Comienza Aquí</span>
+</h1>
+<p class="font-body-lg text-body-lg max-w-lg opacity-90">
+                        Diseñamos experiencias de lujo personalizadas para exploradores cultos. Desde los susurros del desierto en Jordania hasta los mármoles eternos de Grecia.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<a class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-lg font-bold text-lg hover:bg-secondary-fixed-dim transition-all shadow-lg flex items-center gap-2" href="#destinos">
+                            Explorar Destinos
+                            <span class="material-symbols-outlined">explore</span>
+</a>
+</div>
+</div>
+<!-- Interactive Hero Floating Form -->
+<div class="hidden md:block">
+<div class="glass-panel p-10 rounded-3xl ambient-glow border border-white/20">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">¿Planeas viajar pronto?</h2>
+<p class="text-on-surface-variant mb-8">Cuéntanos tu sueño y nosotros lo haremos realidad.</p>
+<div class="grid grid-cols-4 gap-4 mb-8">
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl">temple_hindu</span>
+</div>
+<span class="font-label-md text-xs uppercase tracking-tighter">Egipto</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl">castle</span>
+</div>
+<span class="font-label-md text-xs uppercase tracking-tighter">Jordania</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl">account_balance</span>
+</div>
+<span class="font-label-md text-xs uppercase tracking-tighter">Grecia</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl">mosque</span>
+</div>
+<span class="font-label-md text-xs uppercase tracking-tighter">Turquía</span>
+</div>
+</div>
+<form class="space-y-4">
+<div>
+<label class="block font-label-md text-sm text-primary mb-1">Nombre Completo</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 focus:ring-2 focus:ring-secondary" placeholder="Ej: Juan Pérez" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-sm text-primary mb-1">Correo Electrónico</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 focus:ring-2 focus:ring-secondary" placeholder="ej: juan@example.com" type="email"/>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined">send</span>
+                                Enviar Solicitud de Información
+                            </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Destinations Bento Grid -->
+<section class="py-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop" id="destinos">
+<div class="text-center mb-16 space-y-4">
+<h2 class="font-display-lg text-display-lg text-primary">Destinos que Inspiran</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto text-lg">Seleccionamos cuidadosamente cada ruta para ofrecer el equilibrio perfecto entre historia milenaria y confort contemporáneo.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+<!-- Egypt -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-3xl ambient-glow" id="egipto">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A luxury dahabiya boat sailing slowly down the Nile River in Egypt during a hazy sunrise. The palm trees on the riverbanks are reflected in the calm water. The scene is peaceful, sophisticated, and high-end, utilizing a soft color palette of sand, teal, and gold to match Sueño Travel's premium branding." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC21HcAA-eLGjKKNOu3nimssvF1BzqrZtxgkWzFqn2uFvvWu9zubXPFmBkhx5DX9ydjuCDnZKWESOXoJ2MsU9GCt3300gpNHueS3SdnDtNJQIaD6dBxkBsT-QbTYSba0nADYE2ve4nPbO2UIu7VkWIxIsXxZtpvpOuQTxpOQzdYn-ZqtWATFj04Cz-iqQHZoVf_vYqQxBTPRm1Lsw3wtTKfAKPIQtC8Ze3Pa3TqGQoxtL4lCZtVjSYl')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full flex justify-between items-end">
+<div class="text-on-primary">
+<span class="bg-secondary px-3 py-1 rounded text-xs font-bold uppercase mb-2 inline-block">Misterio Milenario</span>
+<h3 class="text-3xl font-bold mb-2">Egipto</h3>
+<p class="max-w-md opacity-80 text-sm">Navega el Nilo en un Dahabiya privado y descubre los secretos de los faraones.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-lg hover:bg-white/40 transition-all font-label-md">Ver Itinerario</button>
+<button class="bg-secondary text-on-primary px-4 py-2 rounded-lg hover:bg-secondary/90 transition-all font-label-md">Preguntar</button>
+</div>
+</div>
+</div>
+<!-- Jordan -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-3xl ambient-glow" id="jordania">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="The Treasury building at Petra, Jordan, carved into the red sandstone cliffs. The lighting is focused and dramatic, highlighting the intricate classical architecture. The surrounding rock has deep red and orange tones, reflecting the 'Austral Sands' theme. Cinematic and high-quality photography style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARW6O-iYW0cCE6qywTlen-VnUlwIUb5izt7istCid-AL43a3K2iVhX-1iaWdiN9go_61I1HjP2wmx0ESzzU76cKCqu_NGztzUyHashzvY7yORPqLjSACCgyTe00Bv3SGaolY5usEnDlMA22mrWvyIH3qLiNCAND0fPv7sE7aHpcjejcS39u2EH1RSrxy7cWo384KDgmKOTuV1sFuWOQePMUmXENlA8p4n97TgP78Y_2rDr8TGlO95v')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<div class="text-on-primary mb-4">
+<h3 class="text-2xl font-bold">Jordania</h3>
+<p class="opacity-80 text-sm">Cruza el Siq hasta Petra y duerme bajo las estrellas en Wadi Rum.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-white/20 backdrop-blur-md text-white px-3 py-2 rounded-lg text-sm">Itinerario</button>
+<button class="bg-secondary text-on-primary px-3 py-2 rounded-lg text-sm">Preguntar</button>
+</div>
+</div>
+</div>
+<!-- Greece -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-3xl ambient-glow" id="grecia">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A serene view of Santorini, Greece, with iconic white-washed buildings and blue domes overlooking the deep blue Aegean Sea at dusk. The lighting is soft and romantic, with small warm lights glowing from windows. The composition is elegant and spacious, emphasizing the cultured luxury of the destination." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRPNyuNnsvszdmjNwdzlgJZch5nLMNYdygJFrwX6MkTGbQ1--zQZ3gtYkh9xhP3A_uIsRRw_XVrGg9xVelBtyqHkVQ0YlCZ2Icf3Gt8eHOC7xyzjCVimJZDYfl0cLgooVTtoQNP__K-b4Mb1GRvxOieqjqV5NIS1UOAsO1ikMYPYZU6shDczugSPq5VmF8ZyS_hYuICiRFLYam8KZSxLMOTk03DaQPdnen_6_FHl1LL89KVLDtWfSV')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<div class="text-on-primary mb-4">
+<h3 class="text-2xl font-bold">Grecia</h3>
+<p class="opacity-80 text-sm">Desde la Acrópolis hasta las puestas de sol infinitas de Santorini.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-white/20 backdrop-blur-md text-white px-3 py-2 rounded-lg text-sm">Itinerario</button>
+<button class="bg-secondary text-on-primary px-3 py-2 rounded-lg text-sm">Preguntar</button>
+</div>
+</div>
+</div>
+<!-- Turkey -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-3xl ambient-glow" id="turquia">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="The Blue Mosque in Istanbul at twilight, its minarets reaching into a violet sky. The foreground shows the Bosphorus with twinkling city lights. The image feels vibrant yet historical, capturing the bridge between East and West. Rich textures and a palette of deep blues and warm ambers predominate." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full flex justify-between items-end">
+<div class="text-on-primary">
+<span class="bg-secondary px-3 py-1 rounded text-xs font-bold uppercase mb-2 inline-block">Puente entre Mundos</span>
+<h3 class="text-3xl font-bold mb-2">Turquía</h3>
+<p class="max-w-md opacity-80 text-sm">Bazaares vibrantes, globos en Capadocia y el alma de Estambul.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-lg hover:bg-white/40 transition-all font-label-md">Ver Itinerario</button>
+<button class="bg-secondary text-on-primary px-4 py-2 rounded-lg hover:bg-secondary/90 transition-all font-label-md">Preguntar</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Section: ¿Qué visitar? -->
+<section class="bg-primary py-24">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1 grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<div class="rounded-2xl overflow-hidden h-64">
+<img class="w-full h-full object-cover" data-alt="Close up of the weathered stone texture of the Great Pyramids, golden sun hitting the edges, creating strong shadows. Detailed archaeological view." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD87m4Wmfj6ZphEPwOt_VHZOPZD8FrFosUqNwgPfBp1hKT81O8_7UiuCaiXu9bMnN9RTyOvGbNl5hKRefef8iL3QfvDVD9HAbLvY2A5rr3QNSSsJKgk5drr2CmsUIlishUoNOyDR7wtwPJ7vGWu_MZ74rLSGFp50WZQVdaYqGY5UgM0_gvlWcbjP3aAhGW9jsYZz63nYm4mx56haC8H3e6-kMG0JmQV2OgNFE2_NXicQTGldH5D2kZ4"/>
+</div>
+<div class="rounded-2xl overflow-hidden h-48">
+<img class="w-full h-full object-cover" data-alt="Traditional Turkish lanterns hanging in a Grand Bazaar stall, colorful glowing glass, intricate patterns, shallow depth of field, warm light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKpuOU-Z25k5Ovr6w9iB0i3dWZ7FWzzLtr4cyr586msvEPleUvT5MrN29Kb4TbLQ9LeAog6wr-P-NQS2qlEFdJSTBh5xCVNGcujIds27H0Np5ly7uGgHs16VNcgAdMsbCvBfsg-ohwY1Xx2R9TyxELBTgepMmJa8eCph5HrzPtVZ7DqTJY1YQgnoLm2wpL4fgvbdyAW_kZGWVieVr4YNuhGSkoQm2JpK1FTSwljtY_NJ-rbbYIC9g8"/>
+</div>
+</div>
+<div class="pt-8 space-y-4">
+<div class="rounded-2xl overflow-hidden h-48">
+<img class="w-full h-full object-cover" data-alt="The pillars of the Acropolis in Athens against a clear blue sky, marble textures, ancient Greek architecture, professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwdc1ko-NLsluSmskx1Bmf6ipIa1d--LMQLjDSBMycp5DstQUXDzi0pWZrgxF6O23rUcHKTfnA-pNLDTm4Pb3lFnaATkWfp6rZA1-_yfugX1POWmIXHeOM7GcsFj81cX6wrwO21xsHSSsEc9rHBpnenOTnsHozloXgtyQlOwY8E1FP1wUnei7IwzNvISidqZh1X0w7iRmkjVw1Xvb6RVVsjj7a8DhawgtAtD3UzX33ql-1II4a_vCe"/>
+</div>
+<div class="rounded-2xl overflow-hidden h-64">
+<img class="w-full h-full object-cover" data-alt="A bedouin sitting by a small fire in the Wadi Rum desert, red sand mountains in the background, sunset colors, authentic travel experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu74geOeNWsQGhRD3PauI02I--clj6hlK7Pn7XmQYjNNKpCdecwkTi5vanefw8PIvx7LFvg48LqhcVXfEmfcV_XyM3bycgKg9DezNRz6mwlMWpz07OwEMnZ5S2jn7lCfGZpzTrIvoD52LTKlc5HoTRP8GfhZl48RXi8LNlHL6biXuPQXf6AIi2FEsVPO1HUPGikL9HljdZk9zS8l5Fc0ZZjui6Rsd4x5JiTmVT4Zm7TfGEBH4a9Yfe"/>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 text-on-primary space-y-8">
+<h2 class="font-display-lg text-display-lg">¿Qué visitar?</h2>
+<p class="text-on-primary-container text-lg">No solo vendemos viajes, creamos legados. Estos son los hitos que transformarán tu visión del mundo.</p>
+<div class="space-y-6">
+<div class="flex gap-6 items-start">
+<div class="bg-secondary text-on-primary w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-secondary-fixed">Pirámides de Giza</h4>
+<p class="text-sm opacity-80 mt-1">Contempla la última de las Siete Maravillas del Mundo Antiguo que aún permanece en pie.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="bg-secondary text-on-primary w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">landscape</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-secondary-fixed">Petra: La Ciudad Rosa</h4>
+<p class="text-sm opacity-80 mt-1">Caminata por el Siq para descubrir una ciudad esculpida directamente en los acantilados.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="bg-secondary text-on-primary w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-secondary-fixed">Acrópolis de Atenas</h4>
+<p class="text-sm opacity-80 mt-1">El corazón de la civilización occidental bajo el sol radiante del Mediterráneo.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="bg-secondary text-on-primary w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">synagogue</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-secondary-fixed">Magia de Estambul</h4>
+<p class="text-sm opacity-80 mt-1">Navega entre dos continentes y déjate envolver por los aromas de sus especias.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Inquiry Section: Interactive Form -->
+<section class="py-24 bg-surface-container-low relative overflow-hidden" id="contacto">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+<div class="bg-white rounded-[40px] shadow-2xl overflow-hidden grid lg:grid-cols-5">
+<div class="lg:col-span-2 bg-secondary p-12 text-on-primary flex flex-col justify-between">
+<div>
+<h2 class="text-4xl font-bold mb-6">Empecemos a planear</h2>
+<p class="opacity-90 mb-8">Nuestros asesores expertos están listos para diseñar tu itinerario a medida. Respuesta garantizada en menos de 24 horas.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined">check_circle</span>
+<span>Hoteles de Gran Lujo</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined">check_circle</span>
+<span>Guías Privados Certificados</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined">check_circle</span>
+<span>Traslados VIP Exclusivos</span>
+</li>
+</ul>
+</div>
+<div class="pt-8 border-t border-white/20">
+<p class="text-sm mb-2 opacity-80 uppercase tracking-widest">Escríbenos directamente</p>
+<a class="text-xl font-bold hover:underline" href="mailto:info@sueno-travel.com">info@sueno-travel.com</a>
+</div>
+</div>
+<div class="lg:col-span-3 p-12">
+<form class="space-y-8">
+<div class="grid md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-md text-primary">Nombre Completo *</label>
+<input class="w-full border-b border-outline-variant focus:border-secondary outline-none py-2 transition-colors bg-transparent" placeholder="Tu nombre..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-primary">Correo Electrónico *</label>
+<input class="w-full border-b border-outline-variant focus:border-secondary outline-none py-2 transition-colors bg-transparent" placeholder="ejemplo@email.com" type="email"/>
+</div>
+</div>
+<div class="space-y-4">
+<label class="font-label-md text-primary">Destino de interés</label>
+<div class="flex flex-wrap gap-3">
+<label class="cursor-pointer">
+<input class="hidden peer" type="checkbox"/>
+<div class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">Egipto</div>
+</label>
+<label class="cursor-pointer">
+<input class="hidden peer" type="checkbox"/>
+<div class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">Jordania</div>
+</label>
+<label class="cursor-pointer">
+<input class="hidden peer" type="checkbox"/>
+<div class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">Grecia</div>
+</label>
+<label class="cursor-pointer">
+<input class="hidden peer" type="checkbox"/>
+<div class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">Turquía</div>
+</label>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-primary">Mensaje o Detalles Adicionales</label>
+<textarea class="w-full border border-outline-variant rounded-xl p-4 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" placeholder="Cuéntanos más sobre tus fechas ideales y preferencias..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-5 rounded-2xl font-bold text-xl flex items-center justify-center gap-3 hover:bg-primary-container transition-all shadow-xl group" type="submit">
+                                Enviar Solicitud
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+<!-- Abstract background shape -->
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface">
+<div class="space-y-6">
+<span class="font-display-lg text-headline-lg text-secondary-fixed dark:text-secondary block">Sueño Travel</span>
+<p class="max-w-xs text-on-primary/70 dark:text-on-surface/70 font-body-md text-body-md italic">
+                "© 2024 Sueño Travel. Experiencias de Lujo en el Destino de tus Sueños."
+            </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+<div class="space-y-4">
+<p class="font-bold text-secondary-fixed uppercase text-xs tracking-widest">Descubrir</p>
+<nav class="flex flex-col gap-2">
+<a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Destinos</a>
+<a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Certificaciones</a>
+</nav>
+</div>
+<div class="space-y-4">
+<p class="font-bold text-secondary-fixed uppercase text-xs tracking-widest">Legal</p>
+<nav class="flex flex-col gap-2">
+<a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Términos y Condiciones</a>
+<a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
+</nav>
+</div>
+<div class="space-y-4">
+<p class="font-bold text-secondary-fixed uppercase text-xs tracking-widest">Ayuda</p>
+<nav class="flex flex-col gap-2">
+<a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100 font-bold" href="#">Contacto</a>
+</nav>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll behavior for the navbar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.add('h-16');
+                header.classList.remove('h-20');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('h-20');
+                header.classList.remove('h-16');
+            }
+        });
+
+        // Form submission micro-interaction
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Enviando...';
+            btn.classList.add('opacity-70');
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> ¡Recibido!';
+                btn.classList.remove('bg-primary');
+                btn.classList.add('bg-green-600');
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.classList.add('bg-primary');
+                    btn.classList.remove('bg-green-600', 'opacity-70');
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+</body></html>

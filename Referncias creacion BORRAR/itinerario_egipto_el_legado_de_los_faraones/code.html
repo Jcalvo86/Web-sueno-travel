@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Egipto: El Legado de los Faraones | Sueño Travel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ambient-glow {
+            box-shadow: 0 20px 40px -15px rgba(9, 21, 36, 0.1);
+        }
+        .itinerary-line::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #C59358 0%, #C59358 80%, transparent 100%);
+        }
+        @media (max-width: 768px) {
+            .itinerary-line::before {
+                left: 15px;
+            }
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ccc6bc",
+                    "primary": "#091524",
+                    "outline-variant": "#c5c6cc",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dbd9d9",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3c4858",
+                    "inverse-surface": "#303030",
+                    "surface-container": "#efeded",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "surface-bright": "#fbf9f8",
+                    "on-secondary-container": "#7a511c",
+                    "inverse-on-surface": "#f2f0f0",
+                    "tertiary-fixed": "#e8e2d8",
+                    "surface-variant": "#e4e2e2",
+                    "on-secondary-fixed": "#2b1700",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#959087",
+                    "on-primary-fixed": "#101c2b",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "on-secondary-fixed-variant": "#643f0a",
+                    "surface": "#fbf9f8",
+                    "on-surface": "#1b1c1c",
+                    "on-background": "#1b1c1c",
+                    "on-primary-container": "#8591a4",
+                    "primary-container": "#1e2a39",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#eae8e7",
+                    "primary-fixed": "#d7e3f8",
+                    "on-secondary": "#ffffff",
+                    "background": "#fbf9f8",
+                    "tertiary-container": "#2c2923",
+                    "secondary-fixed-dim": "#f3bc7d",
+                    "surface-tint": "#535f70",
+                    "surface-container-highest": "#e4e2e2",
+                    "on-surface-variant": "#44474c",
+                    "secondary": "#7f5621",
+                    "secondary-container": "#ffc788",
+                    "outline": "#75777d",
+                    "surface-container-low": "#f5f3f3",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#ffddb9",
+                    "inverse-primary": "#bbc7db",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#bbc7db",
+                    "tertiary": "#17150f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "80px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Manrope"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto bg-surface/80 backdrop-blur-xl shadow-sm">
+<div class="font-display-lg text-headline-lg text-primary font-black">Sueño Travel</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-md text-label-md uppercase tracking-wider text-secondary font-bold border-b-2 border-secondary" href="#">Egipto</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Jordania</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Grecia</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Turquía</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform">Contactar</button>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105" data-alt="A cinematic, wide-angle shot of the Great Pyramids of Giza at sunset. The sky is painted in warm hues of ochre, gold, and deep indigo. The limestone blocks of the pyramids catch the low sunlight, revealing their immense scale and ancient texture. In the foreground, the rippling desert sands create soft shadows, establishing a sense of timeless luxury and adventure under the Egyptian sun." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRHaN0VGs2llW-Lj2PzsJwcvpL6soimOOUz6iELoFljrLFjQGNBN89Uj43SGbBwFn_huGxdtp2tlHxQ_PmJcyWotPpm690y7rsE-Ib9jfXkLnfB4vX937Bw7hx9vDFGhtX2bjxKKpZzY8JXaiilWc-AknbEVv-4tSkyAeSZpcbhMBuoTMCj1SlIo57GyuBLuZYjpD2FpyG6w8q0Emdjb1pT50PSskvn1fPT9gc4JarsWBHsVzXzLP2')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile max-w-4xl">
+<span class="text-secondary-fixed-dim font-label-md tracking-widest uppercase mb-4 block">Experiencia Exclusiva</span>
+<h1 class="font-display-lg text-display-lg text-white mb-6">Egipto: El Legado de los Faraones</h1>
+<p class="text-white/90 text-body-lg max-w-2xl mx-auto mb-10">Un viaje de 10 días a través del tiempo, desde el bullicio de El Cairo hasta la serenidad del Nilo en una Dahabiya de lujo.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a class="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all" href="#itinerary">Explorar Itinerario</a>
+<a class="glass-panel text-primary px-8 py-4 rounded-lg font-bold border border-white/20" href="#map">Ver Mapa de la Ruta</a>
+</div>
+</div>
+</header>
+<!-- Overview Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-display-lg text-headline-lg text-primary mb-6">La Magia del Nilo y el Eco de la Historia</h2>
+<div class="space-y-4 text-on-surface-variant text-body-lg">
+<p>Egipto no es solo un destino; es un portal al origen de la civilización. En esta travesía meticulosamente diseñada, le invitamos a descubrir el contraste entre la grandeza pétrea de las pirámides y la vida eterna que fluye a orillas del Nilo.</p>
+<p>Nuestro enfoque combina el rigor histórico de guías egiptólogos privados con la exclusividad de alojamientos que definen el lujo contemporáneo en el desierto. Desde las cenas privadas bajo el cielo estrellado de Lúxor hasta el acceso exclusivo a cámaras restringidas, cada detalle ha sido curado para el viajero más exigente.</p>
+</div>
+<div class="mt-8 grid grid-cols-3 gap-4">
+<div class="text-center p-4 rounded-xl bg-tertiary-fixed/30">
+<span class="material-symbols-outlined text-secondary block mb-2" style="font-size: 32px;">history_edu</span>
+<span class="text-label-md font-bold text-primary">Cultura Viva</span>
+</div>
+<div class="text-center p-4 rounded-xl bg-tertiary-fixed/30">
+<span class="material-symbols-outlined text-secondary block mb-2" style="font-size: 32px;">hotel</span>
+<span class="text-label-md font-bold text-primary">Lujo Superior</span>
+</div>
+<div class="text-center p-4 rounded-xl bg-tertiary-fixed/30">
+<span class="material-symbols-outlined text-secondary block mb-2" style="font-size: 32px;">verified_user</span>
+<span class="text-label-md font-bold text-primary">Guía Privado</span>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="rounded-2xl overflow-hidden ambient-glow aspect-[4/5] bg-cover bg-center" data-alt="A portrait-oriented photo of a traditional wooden Dahabiya sailing boat on the calm, blue waters of the Nile at dawn. The sails are white and billowing slightly in the morning breeze. The banks of the river are lined with lush green palms and ancient stone ruins in the distance, bathed in a soft, ethereal morning light. The composition evokes a sense of peace, exclusivity, and historical romance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCdCRFFuUKg-egLYLfToqHox0FAlgDuSfVa_cotKxOY62-LHwPcmA-yzGWicJP3tdIOrnRkkNd5xFV7LqNRG35m1flbstBDfQDoRUigQr84t7gKMD5uI7abltGsN6hJtqRAFRQ_sYEL8NVWvHcLFdnxjfXi551ShJk6LF2HTJ49W-d7OWXHwk1XacxjHDRUs234buJAMb5dXu8GYIY85Rcx5lGZWkvmlPerI2uwzgsVvsrUSkTmrW1')">
+</div>
+<div class="absolute -bottom-6 -left-6 w-48 h-48 rounded-xl overflow-hidden border-8 border-background ambient-glow hidden lg:block">
+<div class="w-full h-full bg-cover bg-center" data-alt="Close up of intricate ancient Egyptian hieroglyphs carved into a sun-drenched sandstone temple wall. The light highlights the deep relief of the carvings, showing figures of gods and symbols. The stone has a rich, warm golden texture, typical of the temples in Luxor or Karnak." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCa-Y5VmebMGP-ti9IsmtSs7oInoLV56cmRhlg-OCBBGS1uLfzT0YnYVqNR1j400eMzeVwaOI48Hc9sNm668S3oCWDgfLhXgxfZBR7fnDzjR-f2tphIrbokZFG6Zaw-T343_U3xPgZX_djAGJur6Hyhgn12rEysa5lNmL7HcHKmxEYXqNkxR8VZFaWDiP6mdAooFHRB7avQjye35olA4Ac0tHeFqd95T5rlBIqO-arIeJyTYVoY14af')">
+</div>
+</div>
+</div>
+</section>
+<!-- Itinerary Section -->
+<section class="py-24 bg-surface-container-low" id="itinerary">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-display-lg text-headline-lg text-primary mb-4">Itinerario Día a Día</h2>
+<p class="text-on-surface-variant max-w-xl mx-auto">Una cronología de maravillas diseñada para equilibrar el descubrimiento arqueológico con el descanso reparador.</p>
+</div>
+<div class="relative itinerary-line pl-12 md:pl-20 space-y-12">
+<!-- Day 1 -->
+<div class="relative group">
+<div class="absolute -left-[14px] md:-left-[21px] top-0 w-8 h-8 rounded-full bg-secondary border-4 border-background z-10 transition-transform group-hover:scale-125"></div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1">
+<span class="font-label-md text-secondary font-bold uppercase tracking-tighter">Día 01</span>
+<h3 class="font-headline-lg text-primary mt-1">Llegada a El Cairo</h3>
+</div>
+<div class="lg:col-span-2 bg-white p-8 rounded-2xl ambient-glow">
+<p class="text-on-surface-variant mb-4">Recepción VIP en el aeropuerto y traslado en vehículo privado al hotel con vistas directas a las Pirámides. Tarde de descanso y cena de bienvenida en el icónico Mena House.</p>
+<div class="flex gap-4 items-center text-label-md text-secondary font-bold">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">restaurant</span> Cena</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> Marriott Mena House</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Day 2-3 -->
+<div class="relative group">
+<div class="absolute -left-[14px] md:-left-[21px] top-0 w-8 h-8 rounded-full bg-secondary border-4 border-background z-10 transition-transform group-hover:scale-125"></div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1">
+<span class="font-label-md text-secondary font-bold uppercase tracking-tighter">Día 02 - 03</span>
+<h3 class="font-headline-lg text-primary mt-1">Giza y Saqqara</h3>
+</div>
+<div class="lg:col-span-2 bg-white p-8 rounded-2xl ambient-glow">
+<p class="text-on-surface-variant mb-4">Exploración profunda de la Necrópolis de Giza, incluyendo la Gran Pirámide y la Esfinge con acceso especial. Visita a la Pirámide Escalonada de Zoser en Saqqara y los nuevos descubrimientos arqueológicos.</p>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="rounded-lg h-32 bg-cover bg-center" data-alt="A close-up perspective of the Great Sphinx of Giza during the golden hour. The sunlight hits the face of the Sphinx, emphasizing its weathered stone features against a clear sky. In the background, the silhouette of a pyramid adds depth and context to this ancient monumental sculpture." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYO6-B4C8eZef6UIihcvLI0aBQf5OcnCMpqT8LcTL8n1_LitzBeOd_-9dL3V2kT96z1jDd4NjleQVzgCCN9gA6Qy-9QOHX54GaaApFwq77zu_AviY5mZxWj3vy7DGaEDCOwABU2eNixFE5CcN7P61f5gk4AIxd150foiYkAX0HFLfFRPv034rQDGt0BIMJHtIFIVvsGdI4dXQmBn53lG54ZtQZrpFM6t6VcdJtO9_AaySxzRMgHkb2')"></div>
+<div class="rounded-lg h-32 bg-cover bg-center" data-alt="A serene view of the Step Pyramid of Djoser in Saqqara, surrounded by the desert landscape. The unique tiered architecture of the pyramid stands out against the pale blue sky. Small groups of travelers are visible in the distance, providing a sense of scale to the massive funerary complex." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLO68t51pwfBA-k1VsnNZaUYqhwyy3ZgZssSzW75nmnefo6A7IyLKNpSdyVXDe38GVK3qPOahxraszmDb7urZBtmh61D4ImDQrsZgqYybQg7-5W3C4ttlUThBTa_Ykxkfg1yNu6wUwjrx_R4B5jqDxQPOIO_cKvae_jVnn3tLNqAurTgIrKzf0ZYx_M_-FGo6AJkAgbnQVpFBCItn1A9c99kisgQhbknkt2JUxOnTSkBessDKU8KkN')"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Day 4-6 -->
+<div class="relative group">
+<div class="absolute -left-[14px] md:-left-[21px] top-0 w-8 h-8 rounded-full bg-secondary border-4 border-background z-10 transition-transform group-hover:scale-125"></div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1">
+<span class="font-label-md text-secondary font-bold uppercase tracking-tighter">Día 04 - 06</span>
+<h3 class="font-headline-lg text-primary mt-1">Vuelo a Lúxor y Navegación</h3>
+</div>
+<div class="lg:col-span-2 bg-white p-8 rounded-2xl ambient-glow">
+<p class="text-on-surface-variant mb-4">Vuelo a Lúxor. Visita a los Templos de Karnak y Lúxor. Embarque en nuestra Dahabiya privada para iniciar una navegación pausada hacia el sur, deteniéndose en templos menos transitados como Edfu y Kom Ombo.</p>
+<div class="flex gap-4 items-center text-label-md text-secondary font-bold">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">directions_boat</span> Dahabiya Queen Farida</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">history</span> Guía Privado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Day 7-8 -->
+<div class="relative group">
+<div class="absolute -left-[14px] md:-left-[21px] top-0 w-8 h-8 rounded-full bg-secondary border-4 border-background z-10 transition-transform group-hover:scale-125"></div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1">
+<span class="font-label-md text-secondary font-bold uppercase tracking-tighter">Día 07 - 08</span>
+<h3 class="font-headline-lg text-primary mt-1">Aswan y Templos de Philae</h3>
+</div>
+<div class="lg:col-span-2 bg-white p-8 rounded-2xl ambient-glow">
+<p class="text-on-surface-variant mb-4">Llegada a la pintoresca Aswan. Visita al Templo de Philae en lancha motora al atardecer. Paseo en faluca por las islas del Nilo y visita al Obelisco Inacabado.</p>
+</div>
+</div>
+</div>
+<!-- Day 9-10 -->
+<div class="relative group">
+<div class="absolute -left-[14px] md:-left-[21px] top-0 w-8 h-8 rounded-full bg-secondary border-4 border-background z-10 transition-transform group-hover:scale-125"></div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1">
+<span class="font-label-md text-secondary font-bold uppercase tracking-tighter">Día 09 - 10</span>
+<h3 class="font-headline-lg text-primary mt-1">Abu Simbel y Regreso</h3>
+</div>
+<div class="lg:col-span-2 bg-white p-8 rounded-2xl ambient-glow">
+<p class="text-on-surface-variant mb-4">Excursión privada a Abu Simbel para admirar los colosales templos de Ramsés II. Vuelo de regreso a El Cairo para una última noche de compras en Khan el-Khalili antes de la partida.</p>
+<div class="bg-primary/5 p-4 rounded-lg flex items-start gap-3 mt-4">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-body-md italic text-primary">Nota: Los vuelos internos Cairo-Lúxor y Aswan-Cairo están incluidos en clase ejecutiva.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center" id="map">
+<h2 class="font-display-lg text-headline-lg text-primary mb-12">Nuestra Ruta por el Nilo</h2>
+<div class="relative w-full aspect-video rounded-3xl overflow-hidden ambient-glow bg-tertiary-fixed/20 border border-outline-variant">
+<!-- Simulated Stylized Map using data-location -->
+<img class="w-full h-full object-cover opacity-80" data-alt="A stylized, artistic map of Egypt focusing on the Nile River valley from Cairo to Abu Simbel. The map features elegant typography, minimal golden route lines connecting key cities like Cairo, Luxor, Aswan, and Abu Simbel. Small, hand-drawn icons of pyramids and temples mark the destinations. The color palette is composed of parchment creams, deep blues for the river, and ochre for the desert areas, maintaining a premium travel brand aesthetic." data-location="Egypt Nile River Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC8IxyPdqWNTyABVSmn9KtbA74xWXGQ32RghuYUZGPFuWGADzvcvc8EWLtzWmMC5ZwJoCHitlKh08iCDJ6glbnijLFGOt7PIhb4ciVcxzur-2YmOJHhn71eR26F-LhCXCo_aipxFbPJRyPs4dcPi6lZcC-KUsYBmZDXzgAEpwsjYN3zH_Rxe0AUIc6u-rbaNpmC8IlLIC4SYfwCOteVeq6rsY8C5zwc61P2UCulTyJumjpFmbX5QGr"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-xl max-w-xs pointer-events-auto">
+<span class="text-secondary font-bold block mb-2">Destinos Clave</span>
+<ul class="text-left space-y-2 text-body-md text-on-surface-variant">
+<li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> El Cairo (Giza &amp; Saqqara)</li>
+<li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> Lúxor (Valle de los Reyes)</li>
+<li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> Edfu &amp; Kom Ombo</li>
+<li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> Aswan &amp; Philae</li>
+<li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div> Abu Simbel</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Bento Grid -->
+<section class="py-24 bg-primary text-white">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-display-lg text-headline-lg text-white text-center mb-16">Capturando la Eternidad</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[800px]">
+<div class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A majestic wide-angle shot of the Great Court of Karnak Temple in Luxor. Rows of massive, intricately carved papyrus columns stretch towards the blue sky. The warm sunlight creates long shadows and highlights the ancient Egyptian reliefs on the stone. The scale of the architecture is awe-inspiring, emphasizing the grandeur of the Pharaohs' legacy." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJ3hzvpm1jicGZZQZ38bkntjVUbiKxMKT74t4Z04ZL1CL9RQI0SBzjXM2hirp8k6JNhN4JKhUFOoa9Rp1J6pJJcKDN277Bl6dnCJ25VAlcp5lJ2pkKnxao9YpDciedYlRzdl989__PEQzA9EGQUUKAFomTWZrZg7jkTZsXpvNTj9jaswS4Qi5G9te1KtKEkujgWvffn1JJxltu3O5hknQMmfocSsJ8L1H2y0xr-sslVb1MfTVplsdB')">
+</div>
+</div>
+<div class="md:col-span-2 rounded-2xl overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="An interior shot of a luxury suite on a Nile Dahabiya. The room features high-end Egyptian cotton linens in crisp white, dark wood furniture, and brass accents. A large window offers a panoramic view of the passing Nile river scenery. The style is classic colonial elegance mixed with modern comfort, bathed in warm, natural afternoon light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJ5rRsXvMjqJyuZH6vxJ-W39p3VnEBgKuqdB8xlzlEbsOwFr3pImNXLgJgPufSKnyjgr4iRzdrVO5DS1PeZAHox878T792wFcJGYgZTauBICPP-9Cj8Hw69yKUY4XlOo1rZDN0qm3JdUm_Le2J7XyLiQBB8q0LyaiZn8yNj4WsmG0g0dq-sYZUv_s67KILtSxVtfxMTBoyXNe9wBpkqPoDBq2dO67O-8fbZCfLRPEwrpCOOtektDlM')">
+</div>
+</div>
+<div class="rounded-2xl overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A vibrant, close-up shot of a traditional Egyptian spice market in Cairo. Sacks of colorful spices like saffron, hibiscus, and cumin are arranged in a bento-like pattern. The textures are rich and earthy, and the scene is filled with the warm, golden light of the bazaar, reflecting a rich cultural experience." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqK2ChCBc3Sjxn1N2PRpxB2ZVfNnXCtLKUsQoKRa_ELMGzO5Mo98Iq4LxxaKC61djzJgoiEri6wY06Two0fG-E8Vun1ZHjbXn-SiDgM7QLlKuHzQQAL4ICj7QmnQsALf4g_9s_2T9gY-5fde5jYOXSDHUbudDHoUHdhMSbEQQdfyZO9nc8gLYvayX3bt-rPx86oSC1-_PyaB_yIEUqVLXqpz7TGHt0EHyP0roPNboOeRBRShXIOgOe')">
+</div>
+</div>
+<div class="rounded-2xl overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A serene sunset view over the Nile in Aswan. Traditional wooden sailboats (feluccas) with triangular white sails glide across the deep blue water. The granite boulders of the Cataracts and the lush Elephantine Island are visible in the background under a sky transitioning from orange to purple." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA137IbgxCFpwxDCqRyNbA9Nnft5VaOILNwC245jYmubcF7OXULCaRcsqo0LTvW0A5I-ISFSpKcXdPaO4dJ5dSq3L86ud6SlLl-2GIyibqFCefxswR4Fjqbitw_M9iWxzF7RB3p8aTTUltUNa7sjNIgHk2UVac5BqVdqZc3bBjjTWFQV1d84Pw575eTpnptYZRr-QTtw8n8AfCfz3A5pUDiCzMiJR4zU9sr6lcjPMXXzl8G7EQPjL4W')">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Practical Info -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="bg-tertiary-fixed/20 rounded-3xl p-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+<div class="space-y-4">
+<div class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined">calendar_month</span>
+<h4 class="font-bold text-primary uppercase">Mejor Época</h4>
+</div>
+<p class="text-on-surface-variant">Recomendamos viajar entre **Octubre y Abril** para disfrutar de temperaturas agradables. Los meses de verano pueden superar los 40°C en el Alto Egipto.</p>
+</div>
+<div class="space-y-4 border-l border-outline-variant/30 pl-0 lg:pl-12">
+<div class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined">payments</span>
+<h4 class="font-bold text-primary uppercase">Moneda y Pagos</h4>
+</div>
+<p class="text-on-surface-variant">La moneda oficial es la Libra Egipcia (EGP). En establecimientos de lujo se aceptan tarjetas de crédito internacionales y USD/EUR.</p>
+</div>
+<div class="space-y-4 border-l border-outline-variant/30 pl-0 lg:pl-12">
+<div class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined">description</span>
+<h4 class="font-bold text-primary uppercase">Visado</h4>
+</div>
+<p class="text-on-surface-variant">La mayoría de nacionalidades requieren visado. Sueño Travel gestiona el visado VIP a su llegada para una entrada sin esperas.</p>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-margin-mobile">
+<div class="max-w-4xl mx-auto rounded-[2rem] overflow-hidden relative ambient-glow">
+<div class="absolute inset-0 bg-primary-container">
+
+</div>
+<div class="relative z-10 p-12 md:p-20 text-center">
+<h2 class="font-display-lg text-display-lg text-white mb-6">¿Listo para escribir su propia historia en la arena?</h2>
+<p class="text-white/80 text-body-lg mb-10">Nuestros especialistas en el destino están listos para personalizar cada detalle de su viaje a Egipto.</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+<button class="bg-secondary text-on-secondary px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-transform active:scale-95 shadow-xl">Reservar mi Experiencia</button>
+<a class="text-white font-bold flex items-center gap-2 hover:underline" href="tel:+34900000000">
+<span class="material-symbols-outlined">call</span> Hablar con un Asesor
+                    </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-primary dark:bg-surface-container-lowest">
+<div class="max-w-md">
+<div class="font-display-lg text-headline-lg text-secondary-fixed mb-4">Sueño Travel</div>
+<p class="text-on-primary/70 font-body-md">© 2024 Sueño Travel. Experiencias de Lujo en el Destino de tus Sueños.</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-6">
+<div class="flex flex-col gap-3">
+<span class="font-bold text-secondary-fixed uppercase text-sm tracking-widest">Navegación</span>
+<a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Destinos</a>
+<a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Certificaciones</a>
+<a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Contacto</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-bold text-secondary-fixed uppercase text-sm tracking-widest">Legal</span>
+<a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Términos y Condiciones</a>
+<a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Política de Privacidad</a>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth reveal on scroll logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.itinerary-line > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+
+        // Simple sticky nav interaction
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                nav.classList.add('h-16');
+                nav.classList.remove('h-20');
+            } else {
+                nav.classList.add('h-20');
+                nav.classList.remove('h-16');
+            }
+            lastScroll = currentScroll;
+        });
+    </script>
+</body></html>
