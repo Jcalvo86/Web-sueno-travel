@@ -9,6 +9,7 @@
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
@@ -122,6 +123,7 @@
             height: 2px;
             background-color: currentColor;
         }
+    </style>
     <!-- CMS/Data Source Connection Scripts -->
     <script src="controlpanel/adapters/adapter-interface.js"></script>
     <script src="controlpanel/adapters/supabase-adapter.js"></script>
@@ -130,17 +132,16 @@
     <script src="controlpanel/data-source-config.js"></script>
 </head>
 <body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container"><!-- TopNavBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/80 dark:bg-primary/80 backdrop-blur-xl shadow-sm">
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-white/80 backdrop-blur-xl shadow-sm">
     <div class="flex items-center gap-3">
         <img alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
-        <span class="font-display-lg text-2xl text-primary dark:text-primary-fixed font-black tracking-tight hidden sm:inline-block">Sueño Travel</span>
     </div>
     <nav class="hidden md:flex gap-8">
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="#egipto">Egipto</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="#jordania">Jordania</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="#grecia">Grecia</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="#turquia">Turquía</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-on-primary-container hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#egipto">Egipto</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#jordania">Jordania</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#grecia">Grecia</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#turquia">Turquía</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
     </nav>
     <a href="#contacto" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/90">
         Contactar
@@ -388,37 +389,37 @@
     </section>
 </main>
 <!-- Footer -->
-<footer class="w-full py-16 px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface">
-    <div class="space-y-6">
-        <div class="flex items-center gap-3">
-            <img alt="Sueño Travel Logo" class="h-8 w-auto bg-white/10 p-1.5 rounded" src="Imagenes/logo_suenoTravel Chile.svg"/>
-            <span class="font-display-lg text-headline-lg text-secondary-fixed dark:text-secondary block">Sueño Travel</span>
+<footer class="w-full bg-[#efdfd1] text-[#32291f] py-12 px-margin-mobile md:px-margin-desktop font-body-md">
+    <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row justify-between gap-8">
+        <!-- Columna Izquierda: Brand -->
+        <div class="flex flex-col gap-4 md:max-w-[60%]">
+            <img src="Imagenes/logo_suenoTravel Chile.svg" alt="Sueño Travel Logo" class="h-14 w-auto self-start">
+            <p class="text-sm md:text-[0.95rem] leading-relaxed text-[#32291f] opacity-85">
+                Sueño Travel es tu puerta a experiencias únicas alrededor del mundo. Con viajes a medida, atención personalizada y un equipo apasionado por el turismo, hacemos realidad el viaje de tus sueños, combinando confort, cultura y aventura en cada destino.
+            </p>
         </div>
-        <p class="max-w-xs text-on-primary/70 dark:text-on-surface/70 font-body-md text-body-md italic">
-            "© 2026 Sueño Travel. Experiencias de Lujo en el Destino de tus Sueños."
-        </p>
+
+        <!-- Columna Derecha: Síguenos y Contacto -->
+        <div class="flex flex-col gap-4 md:max-w-[35%]">
+            <h4 class="font-bold text-[1.15rem]">Síguenos</h4>
+            <div class="flex gap-3">
+                <a href="https://www.facebook.com/ofertasegipto/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full flex items-center justify-center text-white bg-[#3b5998] hover:-translate-y-0.5 transition-transform" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/travelegipto/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full flex items-center justify-center text-white bg-[#c13584] hover:-translate-y-0.5 transition-transform" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tripadvisor.com/Attraction_Review-g294205-d17582622-Reviews-Sueno_Travel-Luxor_Nile_River_Valley.html" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full flex items-center justify-center text-white bg-[#4b9a67] hover:-translate-y-0.5 transition-transform" aria-label="Tripadvisor"><i class="fa-brands fa-tripadvisor"></i></a>
+            </div>
+            <div class="flex flex-col gap-3 mt-1">
+                <a href="https://wa.me/201110572308" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-base text-[#32291f] font-semibold hover:opacity-85">
+                    <i class="fa-solid fa-phone text-[#14b8a6] w-[18px]"></i> +20 111 057 2308
+                </a>
+                <a href="mailto:info@sueno-travel.com" class="flex items-center gap-2 text-base text-[#32291f] font-semibold hover:opacity-85">
+                    <i class="fa-regular fa-envelope text-[#14b8a6] w-[18px]"></i> info@sueno-travel.com
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
-        <div class="space-y-4">
-            <p class="font-bold text-secondary-fixed uppercase text-xs tracking-widest">Descubrir</p>
-            <nav class="flex flex-col gap-2">
-                <a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100" href="#destinos">Destinos</a>
-                <a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Certificaciones</a>
-            </nav>
-        </div>
-        <div class="space-y-4">
-            <p class="font-bold text-secondary-fixed uppercase text-xs tracking-widest">Legal</p>
-            <nav class="flex flex-col gap-2">
-                <a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Términos y Condiciones</a>
-                <a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
-            </nav>
-        </div>
-        <div class="space-y-4">
-            <p class="font-bold text-secondary-fixed uppercase text-xs tracking-widest">Ayuda</p>
-            <nav class="flex flex-col gap-2">
-                <a class="text-on-primary/70 dark:text-on-surface/70 hover:text-secondary-fixed-dim underline transition-all font-body-md text-body-md opacity-80 hover:opacity-100 font-bold" href="#contacto">Contacto</a>
-            </nav>
-        </div>
+    <hr class="border-0 border-t border-[#32291f]/15 my-6 max-w-[1100px] mx-auto w-full">
+    <div class="text-center text-xs md:text-[0.85rem] text-[#32291f] opacity-80 font-semibold">
+        Copyright &copy; 2025 Sueño Travel. Todos los derechos reservados.
     </div>
 </footer>
 
