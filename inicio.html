@@ -123,12 +123,67 @@
             height: 2px;
             background-color: currentColor;
         }
+        
+        /* ==========================================================================
+           HERO SLIDER - SUEÑO TRAVEL
+           ========================================================================== */
+        .hero-slider-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            z-index: 1;
+        }
+        .hero-slide.slide-active {
+            opacity: 1;
+            z-index: 2;
+        }
+        .hero-slide.slide-leaving {
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 1.2s ease-in-out;
+        }
+        .hero-slide-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(15px);
+            transform: scale(1.08);
+            transition: filter 1.2s ease-in-out, transform 1.2s ease-in-out;
+        }
+        .slide-active .hero-slide-bg {
+            filter: blur(0);
+            transform: scale(1.02);
+        }
+        .slide-leaving .hero-slide-bg {
+            filter: blur(15px);
+            transform: scale(1.08);
+        }
+        .hero-slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(9, 21, 36, 0.75) 0%, rgba(9, 21, 36, 0.3) 50%, rgba(9, 21, 36, 0.6) 100%);
+            z-index: 2;
+        }
     </style>
     <!-- CMS/Data Source Connection Scripts -->
     <script src="controlpanel/adapters/adapter-interface.js"></script>
     <script src="controlpanel/adapters/supabase-adapter.js"></script>
     <script src="controlpanel/adapters/firebase-adapter.js"></script>
-    <script src="controlpanel/crm-config.js"></script>
+    <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>
 </head>
 <body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container"><!-- TopNavBar -->
@@ -150,10 +205,9 @@
 <main class="pt-20">
     <!-- Hero Section -->
     <section class="relative min-h-[90vh] flex items-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="w-full h-full bg-cover bg-center scale-105 transform" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzJKKMVpsC8SuetoB85b3hzk6-9QJk4sNdXydKHDQzCyzsdMdQT6COq2zomuqlzkDGniahhdu5K0b6ErODW7p4lsrcM0YKDBAYbZnUT98ZtFVtC_Gz14XAd4Tb4Mzx7HCCkOx227Mn8R64XmoHFWVmU71tbzrtwY-LR7rfnKqYoZtO2SUVHBGAHu6t87QdhRhpi_b4no8-m8hnl7-TZOdXYf8V3-jh0ERJjGfXLni7f5Pd-qYUe3AL')"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent"></div>
-        </div>
+        <!-- Contenedor del Slider Dinámico -->
+        <div id="hero-slider-container" class="hero-slider-container"></div>
+        
         <div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col items-center text-center">
             <div class="text-on-primary space-y-6 max-w-3xl flex flex-col items-center">
                 <img alt="Sueño Travel Logo" class="h-20 w-auto mb-4 bg-white/10 backdrop-blur-md p-4 rounded-xl" src="Imagenes/logo_suenoTravel Chile.svg"/>
@@ -172,7 +226,6 @@
                 </div>
             </div>
         </div>
-    </section></div>
     </section>
     
     <!-- Destinations Bento Grid -->
@@ -545,6 +598,73 @@
         }
     };
     updateDynamicLinks();
+
+    // ==========================================================================
+    // HERO MULTILAYER SLIDER LOGIC
+    // ==========================================================================
+    const HERO_SLIDES = [
+        {
+            bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCzJKKMVpsC8SuetoB85b3hzk6-9QJk4sNdXydKHDQzCyzsdMdQT6COq2zomuqlzkDGniahhdu5K0b6ErODW7p4lsrcM0YKDBAYbZnUT98ZtFVtC_Gz14XAd4Tb4Mzx7HCCkOx227Mn8R64XmoHFWVmU71tbzrtwY-LR7rfnKqYoZtO2SUVHBGAHu6t87QdhRhpi_b4no8-m8hnl7-TZOdXYf8V3-jh0ERJjGfXLni7f5Pd-qYUe3AL' // Egipto (Giza)
+        },
+        {
+            bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARW6O-iYW0cCE6qywTlen-VnUlwIUb5izt7istCid-AL43a3K2iVhX-1iaWdiN9go_61I1HjP2wmx0ESzzU76cKCqu_NGztzUyHashzvY7yORPqLjSACCgyTe00Bv3SGaolY5usEnDlMA22mrWvyIH3qLiNCAND0fPv7sE7aHpcjejcS39u2EH1RSrxy7cWo384KDgmKOTuV1sFuWOQePMUmXENlA8p4n97TgP78Y_2rDr8TGlO95v' // Jordania (Petra)
+        },
+        {
+            bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBRPNyuNnsvszdmjNwdzlgJZch5nLMNYdygJFrwX6MkTGbQ1--zQZ3gtYkh9xhP3A_uIsRRw_XVrGg9xVelBtyqHkVQ0YlCZ2Icf3Gt8eHOC7xyzjCVimJZDYfl0cLgooVTtoQNP__K-b4Mb1GRvxOieqjqV5NIS1UOAsO1ikMYPYZU6shDczugSPq5VmF8ZyS_hYuICiRFLYam8KZSxLMOTk03DaQPdnen_6_FHl1LL89KVLDtWfSV' // Grecia (Santorini)
+        },
+        {
+            bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB' // Turquía (Capadocia)
+        }
+    ];
+
+    const initHeroSlider = () => {
+        console.log("Iniciando initHeroSlider...");
+        const container = document.getElementById('hero-slider-container');
+        if (!container) {
+            console.error("No se encontró el contenedor #hero-slider-container");
+            return;
+        }
+        console.log("Contenedor encontrado:", container);
+
+        // Inyectar HTML para los slides
+        container.innerHTML = HERO_SLIDES.map((slide, idx) => `
+            <div class="hero-slide ${idx === 0 ? 'slide-active' : ''}" data-index="${idx}">
+                <div class="hero-slide-bg" style="background-image: url('${slide.bg}')"></div>
+                <div class="hero-slide-overlay"></div>
+            </div>
+        `).join('');
+        console.log("Slides inyectados HTML:", container.innerHTML);
+
+        let currentIdx = 0;
+        const slidesElements = container.querySelectorAll('.hero-slide');
+        console.log("Elementos de slides encontrados:", slidesElements);
+
+        const changeSlide = () => {
+            console.log("Cambiando slide...", currentIdx);
+            const currentSlide = slidesElements[currentIdx];
+            const nextIdx = (currentIdx + 1) % slidesElements.length;
+            const nextSlide = slidesElements[nextIdx];
+
+            // 1. Iniciar salida de la diapositiva actual (desvanecer y difuminar)
+            currentSlide.classList.remove('slide-active');
+            currentSlide.classList.add('slide-leaving');
+
+            // 2. Iniciar entrada de la diapositiva siguiente
+            nextSlide.classList.add('slide-active');
+            
+            // 3. Limpiar estado de salida de la diapositiva anterior al finalizar la transición (1.2s)
+            setTimeout(() => {
+                currentSlide.classList.remove('slide-leaving');
+                currentIdx = nextIdx;
+                console.log("Slide cambiado con éxito a index:", currentIdx);
+            }, 1200);
+        };
+
+        // Cambiar cada 7 segundos
+        setInterval(changeSlide, 7000);
+    };
+
+    initHeroSlider();
 </script>
 </body>
 </html>
