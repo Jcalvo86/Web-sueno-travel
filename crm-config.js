@@ -1,21 +1,19 @@
 // Configuration file for ControlPanel CRM - Sueño Travel
 window.CRM_CONFIG = {
   // 1. Data Source Provider Configuration
-  provider: "firebase", // 'firebase' | 'supabase' | 'localStorage'
-  
-  supabase: {
-    url: 'https://dzksclkscwljussvyrzx.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6a3NjbGtzY3dsanVzc3Z5cnp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzNjAyNDEsImV4cCI6MjA5ODkzNjI0MX0.DUX9ujl-dCjYKh_nlUyVF_SHj2pmfPIYbFmkkDp3ARQ'
+  provider: "firebase", // Activamos Firebase
+
+  firebase: {
+    apiKey: "AIzaSyD8-SBI4FjoVl1VSyIGlk52UQYdwERmKaI",         // Reemplaza con tu clave
+    projectId: "suenotravel"    // Reemplaza con tu Project ID de Firebase
   },
-
   // 2. Active Modules for this project
-  activeModules: ["terms", "products", "design_tokens"], // Choose from: 'terms', 'blog', 'products', 'design_tokens'
-
+  activeModules: ["terms", "products", "design_tokens"],
   // 3. Project Branding Customizations
   branding: {
     appName: "Sueño Travel",
-    logoUrl: "../favicon.png", // Path or URL to the logo
-    backUrl: "../index.html"          // Path or URL to go back
+    logoUrl: "../favicon.png",
+    backUrl: "../index.html"
   }
 };
 
