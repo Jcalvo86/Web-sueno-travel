@@ -152,7 +152,10 @@
         </a>
     </div>
     <nav class="hidden md:flex gap-8 items-center">
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#destinos">Destinos</a>
+        <a id="nav-egipto" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#egipto">Egipto</a>
+        <a id="nav-jordania" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#jordania">Jordania</a>
+        <a id="nav-grecia" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#grecia">Grecia</a>
+        <a id="nav-turquia" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#turquia">Turquía</a>
         <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
     </nav>
     <a href="inicio.html#contacto" class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform">Contactar</a>
@@ -206,7 +209,7 @@
             </div>
         </div>
         <div class="relative">
-            <div id="overview-img-main" class="rounded-2xl overflow-hidden ambient-glow aspect-[4/5] bg-cover bg-center">
+            <div id="overview-img-main" class="rounded-2xl overflow-hidden ambient-glow aspect-[4/5] bg-cover bg-center cursor-zoom-in">
             </div>
             <div class="absolute -bottom-6 -left-6 w-48 h-48 rounded-xl overflow-hidden border-8 border-background ambient-glow hidden lg:block">
                 <div id="overview-img-sub" class="w-full h-full bg-cover bg-center">
@@ -222,7 +225,7 @@
                 <h2 class="font-display-lg text-headline-lg text-primary mb-4">Itinerario Día a Día</h2>
                 <p class="text-on-surface-variant max-w-xl mx-auto">Una cronología de maravillas diseñada para equilibrar el descubrimiento arqueológico con el descanso reparador.</p>
             </div>
-            <div id="itinerary-list" class="relative itinerary-line pl-12 md:pl-20 space-y-12">
+            <div id="itinerary-list" class="relative itinerary-line pl-12 md:pl-20 space-y-1">
             </div>
         </div>
     </section>
@@ -501,6 +504,29 @@
                 return;
             }
 
+            // Dynamically update the header links for Egipto, Jordania, Grecia, Turquía
+            try {
+                const travels = await window.DataSource.getItems('travel');
+                const products = await window.DataSource.getItems('cms_products');
+                const allItems = [...(travels || []), ...(products || [])];
+                
+                const navEgipto = document.getElementById('nav-egipto');
+                const navJordania = document.getElementById('nav-jordania');
+                const navGrecia = document.getElementById('nav-grecia');
+                const navTurquia = document.getElementById('nav-turquia');
+
+                allItems.forEach(item => {
+                    const title = (item.title || item.name || '').toLowerCase();
+                    const id = item.id;
+                    if (navEgipto && title.includes('egipto')) navEgipto.href = `viaje.html?id=${id}`;
+                    if (navJordania && title.includes('jordania')) navJordania.href = `viaje.html?id=${id}`;
+                    if (navGrecia && title.includes('grecia')) navGrecia.href = `viaje.html?id=${id}`;
+                    if (navTurquia && (title.includes('turquia') || title.includes('turquía'))) navTurquia.href = `viaje.html?id=${id}`;
+                });
+            } catch (navErr) {
+                console.warn("Could not bind dynamic navbar links:", navErr);
+            }
+
             renderTrip(trip);
         } catch (error) {
             console.error(error);
@@ -544,8 +570,16 @@
             overviewTextEl.innerHTML = '<p class="leading-relaxed text-on-surface-variant/70 italic">Descripción general no provista en la base de datos.</p>';
         }
 
-        document.getElementById('overview-img-main').style.backgroundImage = `url('${trip.imageUrl || ''}')`;
+        const mapUrl = trip.mapUrl || 'Imagenes/MapaEgipto.jpg';
+        const mainImgEl = document.getElementById('overview-img-main');
+        mainImgEl.style.backgroundImage = `url('${mapUrl}')`;
+        mainImgEl.setAttribute('onclick', `openMapLightbox('${mapUrl}')`);
+        
         document.getElementById('overview-img-sub').style.backgroundImage = `url('${trip.imageUrl || ''}')`;
+        const subContainer = document.getElementById('overview-img-sub').parentElement;
+        if (subContainer) {
+            subContainer.removeAttribute('onclick');
+        }
 
         // Render Itinerary Day-by-Day
         const itineraryList = document.getElementById('itinerary-list');
@@ -556,22 +590,28 @@
                 if (Array.isArray(days)) {
                     days.forEach((dayInfo, index) => {
                         const dayDiv = document.createElement('div');
-                        dayDiv.className = 'relative group border-b border-outline-variant/10 pb-3 mb-3 last:border-b-0';
+                        dayDiv.className = 'relative group border-b border-outline-variant/10 pb-3 last:border-b-0';
                         
+                        // Helper to get matching icon based on text keywords
+                        const getIcon = (text, type = '') => {
+                            const txt = (text || '').toLowerCase();
+                            const t = (type || '').toLowerCase();
+                            
+                            if (t === 'flight' || txt.includes('vuelo') || txt.includes('llegada') || txt.includes('avión') || txt.includes('partida')) return 'flight';
+                            if (t === 'hotel' || t === 'accommodation' || txt.includes('hotel') || txt.includes('alojamiento') || txt.includes('dormir') || txt.includes('regreso al hotel')) return 'bed';
+                            if (t === 'food' || t === 'restaurant' || t === 'meal' || t === 'meals' || txt.includes('almuerzo') || txt.includes('cena') || txt.includes('desayuno') || txt.includes('restaurante') || txt.includes('comida') || txt.includes('régimen') || txt.includes('típico en')) return 'restaurant';
+                            if (txt.includes('tren') || txt.includes('bus') || txt.includes('autobús') || txt.includes('traslado') || txt.includes('vehículo') || txt.includes('carretera')) return 'directions_bus';
+                            if (t === 'navigation' || t === 'boat' || txt.includes('barco') || txt.includes('crucero') || txt.includes('navegación') || txt.includes('dahabiya') || txt.includes('nilo') || txt.includes('bósforo')) return 'sailing';
+                            if (t === 'cultural' || t === 'sightseeing' || t === 'visit' || t === 'activity' || txt.includes('visita') || txt.includes('recorrer') || txt.includes('excursión') || txt.includes('bazar') || txt.includes('palacio') || txt.includes('mezquita') || txt.includes('basílica') || txt.includes('museo') || txt.includes('pirámide') || txt.includes('esfinge') || txt.includes('valle') || txt.includes('templo') || txt.includes('hipódromo') || txt.includes('teatro')) return 'explore';
+                            
+                            return 'explore';
+                        };
+
                         // Extract activities
                         let activitiesHtml = '';
                         if (dayInfo.activities && dayInfo.activities.length > 0) {
                             activitiesHtml = dayInfo.activities.map(act => {
-                                let icon = 'explore';
-                                const type = (act.type || '').toLowerCase();
-                                if (type === 'flight') icon = 'flight';
-                                else if (type === 'hotel' || type === 'accommodation') icon = 'bed';
-                                else if (type === 'food' || type === 'restaurant' || type === 'meal' || type === 'meals') icon = 'restaurant';
-                                else if (type === 'visit' || type === 'activity') icon = 'explore';
-                                else if (type === 'cultural') icon = 'history';
-                                else if (type === 'sightseeing') icon = 'visibility';
-                                else if (type === 'navigation' || type === 'boat') icon = 'sailing';
-                                
+                                const icon = getIcon(act.description, act.type);
                                 return `
                                     <li class="flex items-start gap-4 text-on-surface-variant">
                                         <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size: 20px;">${icon}</span>
@@ -582,9 +622,8 @@
                         } else {
                             // Split description by lines for clean points
                             const points = (dayInfo.desc || '').split('\n').map(p => p.trim()).filter(Boolean);
-                            const iconsList = ['explore', 'history', 'visibility', 'bed', 'restaurant'];
-                            activitiesHtml = points.map((p, idx) => {
-                                const icon = iconsList[idx % iconsList.length];
+                            activitiesHtml = points.map(p => {
+                                const icon = getIcon(p);
                                 return `
                                     <li class="flex items-start gap-4 text-on-surface-variant">
                                         <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size: 20px;">${icon}</span>
@@ -777,7 +816,32 @@
         }
     };
 
+    window.openMapLightbox = (src) => {
+        const lightbox = document.getElementById('map-lightbox');
+        const img = document.getElementById('lightbox-img');
+        if (lightbox && img) {
+            img.src = src;
+            lightbox.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+    };
+
+    window.closeMapLightbox = () => {
+        const lightbox = document.getElementById('map-lightbox');
+        if (lightbox) {
+            lightbox.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+    };
+
     window.onload = loadTripData;
 </script>
+
+<!-- Modal Lightbox for Map -->
+<div id="map-lightbox" class="fixed inset-0 bg-black/90 z-[9999] hidden flex items-center justify-center p-4 cursor-zoom-out" onclick="closeMapLightbox()">
+    <img id="lightbox-img" class="max-w-full max-h-full rounded-lg shadow-2xl object-contain transition-transform duration-300" src="" alt="Mapa ampliado">
+    <button class="absolute top-6 right-6 text-white text-4xl font-bold cursor-pointer select-none">&times;</button>
+</div>
+
 </body>
 </html>

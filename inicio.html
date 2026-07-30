@@ -192,10 +192,10 @@
         <img alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
     </div>
     <nav class="hidden md:flex gap-8">
-        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#egipto">Egipto</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#jordania">Jordania</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#grecia">Grecia</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#turquia">Turquía</a>
+        <a id="nav-egipto" class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#egipto">Egipto</a>
+        <a id="nav-jordania" class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#jordania">Jordania</a>
+        <a id="nav-grecia" class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#grecia">Grecia</a>
+        <a id="nav-turquia" class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#turquia">Turquía</a>
         <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
     </nav>
     <a href="#contacto" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/90">
@@ -599,6 +599,20 @@
             // Filter active/published trips
             const activeTrips = trips.filter(t => !t.isDraft);
 
+            // Update header navigation links dynamically to point to the actual trip page
+            const navEgipto = document.getElementById('nav-egipto');
+            const navJordania = document.getElementById('nav-jordania');
+            const navGrecia = document.getElementById('nav-grecia');
+            const navTurquia = document.getElementById('nav-turquia');
+
+            activeTrips.forEach(trip => {
+                const lowerTitle = trip.title.toLowerCase();
+                if (navEgipto && lowerTitle.includes('egipto')) navEgipto.href = `viaje.html?id=${trip.id}`;
+                if (navJordania && lowerTitle.includes('jordania')) navJordania.href = `viaje.html?id=${trip.id}`;
+                if (navGrecia && lowerTitle.includes('grecia')) navGrecia.href = `viaje.html?id=${trip.id}`;
+                if (navTurquia && (lowerTitle.includes('turquia') || lowerTitle.includes('turquía'))) navTurquia.href = `viaje.html?id=${trip.id}`;
+            });
+
             if (activeTrips.length > 0) {
                 const grid = document.getElementById('destinations-grid');
                 if (grid) {
@@ -646,7 +660,7 @@
                         if (!tag && trip.desc) tag = 'Experiencia';
 
                         return `
-                            <div class="${spanClass} group relative overflow-hidden rounded-3xl ambient-glow">
+                            <div class="${spanClass} h-[380px] md:h-full group relative overflow-hidden rounded-3xl ambient-glow">
                                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('${bgImg}')"></div>
                                 <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 p-8 ${isWide ? 'w-full flex justify-between items-end' : ''}">
