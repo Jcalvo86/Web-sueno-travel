@@ -234,7 +234,7 @@
             <h2 class="font-display-lg text-display-lg text-primary">Destinos que Inspiran</h2>
             <p class="text-on-surface-variant max-w-2xl mx-auto text-lg">Seleccionamos cuidadosamente cada ruta para ofrecer el equilibrio perfecto entre historia milenaria y confort contemporáneo.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+        <div id="destinations-grid" class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
             <!-- Egypt -->
             <div class="md:col-span-8 group relative overflow-hidden rounded-3xl ambient-glow" id="egipto">
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC21HcAA-eLGjKKNOu3nimssvF1BzqrZtxgkWzFqn2uFvvWu9zubXPFmBkhx5DX9ydjuCDnZKWESOXoJ2MsU9GCt3300gpNHueS3SdnDtNJQIaD6dBxkBsT-QbTYSba0nADYE2ve4nPbO2UIu7VkWIxIsXxZtpvpOuQTxpOQzdYn-ZqtWATFj04Cz-iqQHZoVf_vYqQxBTPRm1Lsw3wtTKfAKPIQtC8Ze3Pa3TqGQoxtL4lCZtVjSYl')"></div>
@@ -557,7 +557,7 @@
     setupFormInteraction('heroInquiryForm');
     setupFormInteraction('contactFormMain');
 
-    // Dynamic links from CMS
+    // Dynamic links and cards from CMS
     const updateDynamicLinks = async () => {
         let checks = 0;
         while (!window.DataSource && checks < 20) {
@@ -567,32 +567,103 @@
         if (!window.DataSource) return;
 
         try {
-            const products = await window.DataSource.getItems('cms_products');
-            products.forEach(trip => {
-                if (trip.status === 'hidden' || trip.isDraft) return;
-
-                const nameLower = trip.name.toLowerCase();
-                const skuLower = (trip.sku || '').toLowerCase();
-
-                let selector = '';
-                if (nameLower.includes('egipto') || skuLower.includes('egipto')) {
-                    selector = '#egipto a';
-                } else if (nameLower.includes('jordania') || skuLower.includes('jordania')) {
-                    selector = '#jordania a';
-                } else if (nameLower.includes('grecia') || skuLower.includes('grecia')) {
-                    selector = '#grecia a';
-                } else if (nameLower.includes('turquia') || nameLower.includes('turquía') || skuLower.includes('turquia')) {
-                    selector = '#turquia a';
+            // Try fetching from travel collection first
+            let trips = [];
+            try {
+                const travelItems = await window.DataSource.getItems('travel');
+                if (travelItems && travelItems.length > 0) {
+                    trips = travelItems.map(item => ({
+                        id: item.id,
+                        title: item.title,
+                        desc: item.description || (item.destinationsSummary ? (Array.isArray(item.destinationsSummary) ? item.destinationsSummary.join(', ') : item.destinationsSummary) : ''),
+                        imgUrl: item.imageUrl || (item.itinerary && item.itinerary[0]?.imageUrl) || '',
+                        isDraft: item.isDraft || !item.isPublished
+                    }));
                 }
+            } catch (e) {
+                console.warn('Error reading from travel collection, trying cms_products:', e);
+            }
 
-                if (selector) {
-                    const btn = document.querySelector(selector);
-                    if (btn) {
-                        btn.setAttribute('href', `viaje.html?id=${trip.id}`);
-                        btn.removeAttribute('onclick');
-                    }
+            // Fallback to cms_products
+            if (trips.length === 0) {
+                const products = await window.DataSource.getItems('cms_products');
+                trips = products.map(item => ({
+                    id: item.id,
+                    title: item.name,
+                    desc: item.subtitle || item.overview || '',
+                    imgUrl: item.imageUrl || '',
+                    isDraft: item.isDraft || item.status === 'hidden'
+                }));
+            }
+
+            // Filter active/published trips
+            const activeTrips = trips.filter(t => !t.isDraft);
+
+            if (activeTrips.length > 0) {
+                const grid = document.getElementById('destinations-grid');
+                if (grid) {
+                    const spans = ['md:col-span-8', 'md:col-span-4', 'md:col-span-4', 'md:col-span-8'];
+                    
+                    const fallbacks = {
+                        egipto: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC21HcAA-eLGjKKNOu3nimssvF1BzqrZtxgkWzFqn2uFvvWu9zubXPFmBkhx5DX9ydjuCDnZKWESOXoJ2MsU9GCt3300gpNHueS3SdnDtNJQIaD6dBxkBsT-QbTYSba0nADYE2ve4nPbO2UIu7VkWIxIsXxZtpvpOuQTxpOQzdYn-ZqtWATFj04Cz-iqQHZoVf_vYqQxBTPRm1Lsw3wtTKfAKPIQtC8Ze3Pa3TqGQoxtL4lCZtVjSYl',
+                        jordania: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARW6O-iYW0cCE6qywTlen-VnUlwIUb5izt7istCid-AL43a3K2iVhX-1iaWdiN9go_61I1HjP2wmx0ESzzU76cKCqu_NGztzUyHashzvY7yORPqLjSACCgyTe00Bv3SGaolY5usEnDlMA22mrWvyIH3qLiNCAND0fPv7sE7aHpcjejcS39u2EH1RSrxy7cWo384KDgmKOTuV1sFuWOQePMUmXENlA8p4n97TgP78Y_2rDr8TGlO95v',
+                        grecia: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBRPNyuNnsvszdmjNwdzlgJZch5nLMNYdygJFrwX6MkTGbQ1--zQZ3gtYkh9xhP3A_uIsRRw_XVrGg9xVelBtyqHkVQ0YlCZ2Icf3Gt8eHOC7xyzjCVimJZDYfl0cLgooVTtoQNP__K-b4Mb1GRvxOieqjqV5NIS1UOAsO1ikMYPYZU6shDczugSPq5VmF8ZyS_hYuICiRFLYam8KZSxLMOTk03DaQPdnen_6_FHl1LL89KVLDtWfSV',
+                        turquia: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB',
+                        turquía: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB'
+                    };
+
+                    const tags = {
+                        egipto: 'Misterio Milenario',
+                        jordania: 'Maravilla del Desierto',
+                        grecia: 'Mármoles Eternos',
+                        turquia: 'Puente entre Mundos',
+                        turquía: 'Puente entre Mundos'
+                    };
+
+                    grid.innerHTML = activeTrips.map((trip, idx) => {
+                        const spanClass = spans[idx % 4];
+                        const isWide = (spanClass === 'md:col-span-8');
+                        const lowerTitle = trip.title.toLowerCase();
+                        
+                        let bgImg = trip.imgUrl;
+                        if (!bgImg) {
+                            for (const key in fallbacks) {
+                                if (lowerTitle.includes(key)) {
+                                    bgImg = fallbacks[key];
+                                    break;
+                                }
+                            }
+                        }
+                        if (!bgImg) bgImg = 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920';
+
+                        let tag = '';
+                        for (const key in tags) {
+                            if (lowerTitle.includes(key)) {
+                                tag = tags[key];
+                                break;
+                            }
+                        }
+                        if (!tag && trip.desc) tag = 'Experiencia';
+
+                        return `
+                            <div class="${spanClass} group relative overflow-hidden rounded-3xl ambient-glow">
+                                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('${bgImg}')"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 p-8 ${isWide ? 'w-full flex justify-between items-end' : ''}">
+                                    <div class="text-on-primary ${isWide ? '' : 'mb-4'}">
+                                        ${tag ? `<span class="bg-secondary px-3 py-1 rounded text-xs font-bold uppercase mb-2 inline-block">${tag}</span>` : ''}
+                                        <h3 class="${isWide ? 'text-3xl' : 'text-2xl'} font-bold mb-2">${trip.title}</h3>
+                                        <p class="max-w-md opacity-80 text-sm">${trip.desc}</p>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <a href="viaje.html?id=${trip.id}" class="bg-secondary text-on-primary ${isWide ? 'px-6' : 'px-4'} py-2.5 rounded-lg hover:bg-secondary/90 transition-all font-label-md ${isWide ? '' : 'text-sm'}">Ver Itinerario</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
                 }
-            });
+            }
         } catch (e) {
             console.warn('Error fetching dynamic trip links:', e);
         }

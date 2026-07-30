@@ -167,16 +167,16 @@
 <!-- Main Content (Hidden initially) -->
 <div id="content-state" class="hidden">
     <!-- Hero Section -->
-    <header class="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
+    <header class="relative h-[53vh] w-full flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <div id="hero-bg" class="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105">
             </div>
             <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60"></div>
         </div>
         <div class="relative z-10 text-center px-margin-mobile max-w-4xl">
-            <span class="text-secondary-fixed-dim font-label-md tracking-widest uppercase mb-4 block">Experiencia Exclusiva</span>
-            <h1 id="hero-title" class="font-display-lg text-display-lg text-white mb-6"></h1>
-            <p id="hero-subtitle" class="text-white/90 text-body-lg max-w-2xl mx-auto mb-10"></p>
+            <span id="hero-duration" class="text-secondary-fixed-dim font-label-md tracking-widest uppercase mb-4 block font-bold"></span>
+            <h1 id="hero-title" class="font-display-lg text-display-lg text-white mb-4"></h1>
+            <p id="hero-subtitle" class="text-white/90 text-body-md md:text-body-lg max-w-3xl mx-auto mb-10 leading-relaxed"></p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a class="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all" href="#itinerary">Explorar Itinerario</a>
                 <a id="btn-map" class="glass-panel text-primary px-8 py-4 rounded-lg font-bold border border-white/20" href="#map">Ver Mapa de la Ruta</a>
@@ -227,6 +227,33 @@
         </div>
     </section>
 
+    <!-- Services Included & Excluded Section -->
+    <section class="py-24 bg-white" id="services-section">
+        <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+            <h2 class="font-display-lg text-headline-lg text-primary text-center mb-16">Servicios y Coberturas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Incluidos -->
+                <div class="bg-[#F4F9F5] border border-[#E1EFE5] p-8 md:p-12 rounded-3xl space-y-6">
+                    <div class="flex items-center gap-3 text-green-700">
+                        <span class="material-symbols-outlined text-3xl">check_circle</span>
+                        <h3 class="text-2xl font-bold text-primary">Servicios Incluidos</h3>
+                    </div>
+                    <ul id="services-included-list" class="space-y-4 text-on-surface-variant text-[0.95rem] font-medium">
+                    </ul>
+                </div>
+                <!-- No Incluidos -->
+                <div class="bg-[#FDF5F5] border border-[#FEE2E2] p-8 md:p-12 rounded-3xl space-y-6">
+                    <div class="flex items-center gap-3 text-red-700">
+                        <span class="material-symbols-outlined text-3xl">cancel</span>
+                        <h3 class="text-2xl font-bold text-primary">No Incluido</h3>
+                    </div>
+                    <ul id="services-excluded-list" class="space-y-4 text-on-surface-variant text-[0.95rem] font-medium">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Map Section -->
     <section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center" id="map">
         <h2 class="font-display-lg text-headline-lg text-primary mb-12">Nuestra Ruta</h2>
@@ -246,29 +273,50 @@
         </div>
     </section>
 
-    <!-- Practical Info -->
+    <!-- Practical Info & Costs -->
     <section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-        <div class="bg-tertiary-fixed/20 rounded-3xl p-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="bg-tertiary-fixed/20 rounded-3xl p-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <!-- Resumen del Viaje -->
             <div class="space-y-4">
+                <div class="flex items-center gap-3 text-secondary">
+                    <span class="material-symbols-outlined">map</span>
+                    <h4 class="font-bold text-primary uppercase">Resumen</h4>
+                </div>
+                <div class="text-on-surface-variant space-y-1">
+                    <p class="font-semibold text-primary" id="info-duration"></p>
+                    <p class="text-sm" id="info-destinations"></p>
+                </div>
+            </div>
+            <!-- Mejor Época -->
+            <div class="space-y-4 border-l border-outline-variant/30 pl-0 md:pl-8 lg:pl-12">
                 <div class="flex items-center gap-3 text-secondary">
                     <span class="material-symbols-outlined">calendar_month</span>
                     <h4 class="font-bold text-primary uppercase">Mejor Época</h4>
                 </div>
                 <p id="info-best-season" class="text-on-surface-variant"></p>
             </div>
+            <!-- Moneda y Visado -->
             <div class="space-y-4 border-l border-outline-variant/30 pl-0 lg:pl-12">
                 <div class="flex items-center gap-3 text-secondary">
                     <span class="material-symbols-outlined">payments</span>
-                    <h4 class="font-bold text-primary uppercase">Moneda y Pagos</h4>
+                    <h4 class="font-bold text-primary uppercase">Moneda y Visa</h4>
                 </div>
-                <p id="info-currency" class="text-on-surface-variant"></p>
+                <div class="text-on-surface-variant space-y-1">
+                    <p id="info-currency"></p>
+                    <p class="text-sm text-secondary" id="info-visa"></p>
+                </div>
             </div>
+            <!-- Costos y Tasas -->
             <div class="space-y-4 border-l border-outline-variant/30 pl-0 lg:pl-12">
                 <div class="flex items-center gap-3 text-secondary">
-                    <span class="material-symbols-outlined">description</span>
-                    <h4 class="font-bold text-primary uppercase">Visado</h4>
+                    <span class="material-symbols-outlined">account_balance_wallet</span>
+                    <h4 class="font-bold text-primary uppercase">Costos y Notas</h4>
                 </div>
-                <p id="info-visa" class="text-on-surface-variant"></p>
+                <div class="text-on-surface-variant text-sm space-y-1">
+                    <p id="info-hotel-tax"></p>
+                    <p id="info-visa-cost"></p>
+                    <p class="text-xs italic text-on-surface-variant/80 mt-1" id="info-disclaimer"></p>
+                </div>
             </div>
         </div>
     </section>
@@ -369,8 +417,84 @@
             }
 
             // Obtener el viaje (producto)
-            const products = await window.DataSource.getItems('cms_products');
-            const trip = products.find(p => p.id === tripId || p.sku === tripId);
+            let trip = null;
+            
+            // Try fetching from travel collection first
+            try {
+                const travels = await window.DataSource.getItems('travel');
+                if (travels && travels.length > 0) {
+                    const found = travels.find(t => t.id === tripId || t.sku === tripId);
+                    if (found) {
+                        // Normalize 'travel' module format to the format expected by renderTrip
+                        trip = {
+                            id: found.id,
+                            name: found.title,
+                            subtitle: found.destinationsSummary ? (Array.isArray(found.destinationsSummary) ? found.destinationsSummary.join(', ') : found.destinationsSummary) : found.title,
+                            overview: found.description || '',
+                            imageUrl: found.imageUrl || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
+                            bestSeason: found.guideBestSeason || '',
+                            currency: found.currency || '',
+                            visa: found.visa || '',
+                            mapUrl: found.mapUrl || '',
+                            galleryUrls: found.galleryUrls || (found.itinerary ? found.itinerary.map(day => day.imageUrl).filter(Boolean) : []),
+                            // Additional attributes
+                            durationDays: found.durationDays || found.duration_days || found.duration || 10,
+                            durationNights: found.durationNights || found.duration_nights || 9,
+                            hotelTaxUSD: found.hotelTaxUSD !== undefined ? found.hotelTaxUSD : (found.pricing_and_notes?.hotelTaxUSD || 0),
+                            visaCostUSD: found.visaCostUSD !== undefined ? found.visaCostUSD : (found.pricing_and_notes?.visaCostUSD || 0),
+                            disclaimer: found.disclaimer || found.pricing_and_notes?.disclaimer || '',
+                            servicesIncludedList: found.servicesIncludedList || (found.services_included ? [
+                                ...(found.services_included.egypt || []),
+                                ...(found.services_included.turkey || [])
+                            ] : []),
+                            servicesExcludedList: found.servicesExcludedList || found.services_excluded || [],
+                            // Convert itinerary array to JSON string format expected by renderTrip
+                            itineraryJson: found.itinerary ? JSON.stringify(found.itinerary.map(day => ({
+                                day: `Día ${String(day.dayNumber).padStart(2, '0')}`,
+                                title: day.customLocationName || 'Visita',
+                                desc: (day.activities || []).map(act => act.description).join('\n') || '',
+                                meals: day.accommodationType || '',
+                                info: '',
+                                imageUrl: day.imageUrl || '',
+                                activities: day.activities || []
+                            }))) : '[]'
+                        };
+                    }
+                }
+            } catch (e) {
+                console.warn("Could not load from 'travel' collection, trying 'cms_products'...", e);
+            }
+
+            // Fallback to cms_products if not found in travel
+            if (!trip) {
+                const products = await window.DataSource.getItems('cms_products');
+                const found = products.find(p => p.id === tripId || p.sku === tripId);
+                if (found) {
+                    trip = {
+                        id: found.id,
+                        name: found.name,
+                        subtitle: found.subtitle || '',
+                        overview: found.overview || '',
+                        imageUrl: found.imageUrl || '',
+                        bestSeason: found.bestSeason || '',
+                        currency: found.currency || '',
+                        visa: found.visa || '',
+                        mapUrl: found.mapUrl || '',
+                        galleryUrls: found.galleryUrls || '',
+                        durationDays: found.duration || 10,
+                        durationNights: (found.duration ? found.duration - 1 : 9),
+                        hotelTaxUSD: found.pricing_and_notes?.hotelTaxUSD || 0,
+                        visaCostUSD: found.pricing_and_notes?.visaCostUSD || 0,
+                        disclaimer: found.pricing_and_notes?.disclaimer || '',
+                        servicesIncludedList: found.servicesIncludedList || (found.services_included ? [
+                            ...(found.services_included.egypt || []),
+                            ...(found.services_included.turkey || [])
+                        ] : []),
+                        servicesExcludedList: found.servicesExcludedList || found.services_excluded || [],
+                        itineraryJson: found.itineraryJson || '[]'
+                    };
+                }
+            }
 
             if (!trip) {
                 showError('El viaje solicitado no existe o no se encuentra disponible.');
@@ -404,24 +528,20 @@
         }
 
         // --- Render UI Fields ---
+        document.getElementById('hero-duration').textContent = `${trip.durationDays || '10'} Días | ${trip.durationNights || '9'} Noches`;
         document.getElementById('hero-title').textContent = trip.name;
         document.getElementById('hero-subtitle').textContent = trip.subtitle || '';
         document.getElementById('hero-bg').style.backgroundImage = `url('${trip.imageUrl || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920'}')`;
         
         document.getElementById('overview-title').textContent = `La Magia de tu Destino`;
         
-        // Split paragraphs of overview
         const overviewTextEl = document.getElementById('overview-text');
-        overviewTextEl.innerHTML = '';
-        if (trip.overview) {
-            const paragraphs = trip.overview.split('\n\n');
-            paragraphs.forEach(pText => {
-                if (pText.trim()) {
-                    const p = document.createElement('p');
-                    p.textContent = pText.trim();
-                    overviewTextEl.appendChild(p);
-                }
-            });
+        if (trip.overview && trip.overview.trim().length > 0) {
+            overviewTextEl.innerHTML = trip.overview.split('\n\n')
+                .map(p => `<p class="leading-relaxed text-on-surface-variant mb-4">${p.trim()}</p>`)
+                .join('');
+        } else {
+            overviewTextEl.innerHTML = '<p class="leading-relaxed text-on-surface-variant/70 italic">Descripción general no provista en la base de datos.</p>';
         }
 
         document.getElementById('overview-img-main').style.backgroundImage = `url('${trip.imageUrl || ''}')`;
@@ -434,24 +554,97 @@
             try {
                 const days = JSON.parse(trip.itineraryJson);
                 if (Array.isArray(days)) {
-                    days.forEach(dayInfo => {
+                    days.forEach((dayInfo, index) => {
                         const dayDiv = document.createElement('div');
-                        dayDiv.className = 'relative group';
-                        dayDiv.innerHTML = `
-                            <div class="absolute -left-[14px] md:-left-[21px] top-0 w-8 h-8 rounded-full bg-secondary border-4 border-background z-10 transition-transform group-hover:scale-125"></div>
-                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                                <div class="lg:col-span-1">
-                                    <span class="font-label-md text-secondary font-bold uppercase tracking-tighter">${dayInfo.day}</span>
-                                    <h3 class="font-headline-lg text-primary mt-1">${dayInfo.title}</h3>
-                                </div>
-                                <div class="lg:col-span-2 bg-white p-8 rounded-2xl ambient-glow">
-                                    <p class="text-on-surface-variant mb-4">${dayInfo.desc}</p>
-                                    ${dayInfo.info || dayInfo.meals ? `
-                                        <div class="flex gap-4 items-center text-label-md text-secondary font-bold flex-wrap">
-                                            ${dayInfo.meals ? `<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">restaurant</span> ${dayInfo.meals}</span>` : ''}
-                                            ${dayInfo.info ? `<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> ${dayInfo.info}</span>` : ''}
+                        dayDiv.className = 'relative group border-b border-outline-variant/10 pb-3 mb-3 last:border-b-0';
+                        
+                        // Extract activities
+                        let activitiesHtml = '';
+                        if (dayInfo.activities && dayInfo.activities.length > 0) {
+                            activitiesHtml = dayInfo.activities.map(act => {
+                                let icon = 'explore';
+                                const type = (act.type || '').toLowerCase();
+                                if (type === 'flight') icon = 'flight';
+                                else if (type === 'hotel' || type === 'accommodation') icon = 'bed';
+                                else if (type === 'food' || type === 'restaurant' || type === 'meal' || type === 'meals') icon = 'restaurant';
+                                else if (type === 'visit' || type === 'activity') icon = 'explore';
+                                else if (type === 'cultural') icon = 'history';
+                                else if (type === 'sightseeing') icon = 'visibility';
+                                else if (type === 'navigation' || type === 'boat') icon = 'sailing';
+                                
+                                return `
+                                    <li class="flex items-start gap-4 text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size: 20px;">${icon}</span>
+                                        <span class="text-[0.95rem] leading-relaxed font-medium">${act.description}</span>
+                                    </li>
+                                `;
+                            }).join('');
+                        } else {
+                            // Split description by lines for clean points
+                            const points = (dayInfo.desc || '').split('\n').map(p => p.trim()).filter(Boolean);
+                            const iconsList = ['explore', 'history', 'visibility', 'bed', 'restaurant'];
+                            activitiesHtml = points.map((p, idx) => {
+                                const icon = iconsList[idx % iconsList.length];
+                                return `
+                                    <li class="flex items-start gap-4 text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size: 20px;">${icon}</span>
+                                        <span class="text-[0.95rem] leading-relaxed font-medium">${p}</span>
+                                    </li>
+                                `;
+                            }).join('');
+                        }
+
+                        // Images
+                        let imagesHtml = '';
+                        const imageUrls = [];
+                        if (dayInfo.imageUrl) imageUrls.push(dayInfo.imageUrl);
+                        if (dayInfo.imageUrls && Array.isArray(dayInfo.imageUrls)) {
+                            imageUrls.push(...dayInfo.imageUrls);
+                        }
+                        if (imageUrls.length > 0) {
+                            const gridClass = imageUrls.length === 1 ? 'grid-cols-1' : 'grid-cols-2';
+                            imagesHtml = `
+                                <div class="grid ${gridClass} gap-4 mt-6">
+                                    ${imageUrls.map(url => `
+                                        <div class="rounded-2xl overflow-hidden h-48 md:h-60 shadow-sm">
+                                            <img src="${url}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Detalle del itinerario" />
                                         </div>
-                                    ` : ''}
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+
+                        dayDiv.innerHTML = `
+                            <!-- Dot indicator on timeline -->
+                            <div class="absolute -left-[49px] md:-left-[77px] top-[6px] w-8 h-8 rounded-full bg-secondary border-4 border-background z-10 transition-transform group-hover:scale-115 cursor-pointer flex items-center justify-center text-white" onclick="toggleDayCollapse(${index})">
+                            </div>
+                            
+                            <!-- Day Header (clickable to collapse/expand) -->
+                            <div class="cursor-pointer select-none" onclick="toggleDayCollapse(${index})">
+                                <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                                    <span class="font-label-md text-secondary/70 font-bold uppercase tracking-tighter text-sm whitespace-nowrap">${dayInfo.day}</span>
+                                    <h3 class="font-display-lg text-xl md:text-2xl text-primary font-bold tracking-tight">${dayInfo.title}</h3>
+                                    <span id="chevron-${index}" class="material-symbols-outlined transition-transform duration-300 text-secondary chevron-icon ml-1 align-middle">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Collapsible Content -->
+                            <div id="content-${index}" class="collapsible-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-3 items-start">
+                                    <!-- Empty left column to align content under title on desktop -->
+                                    <div class="hidden lg:block lg:col-span-1"></div>
+                                    
+                                    <div class="lg:col-span-2 space-y-6">
+                                        <!-- Activities Card -->
+                                        <div class="bg-[#FBF9F6] border border-[#EAE6E1] p-6 md:p-8 rounded-2xl">
+                                            <ul class="space-y-4">
+                                                ${activitiesHtml}
+                                            </ul>
+                                        </div>
+                                        
+                                        <!-- Images -->
+                                        ${imagesHtml}
+                                    </div>
                                 </div>
                             </div>
                         `;
@@ -506,10 +699,53 @@
             document.getElementById('gallery-section').style.display = 'none';
         }
 
-        // Render Practical Info
+        // Render Practical Info & Costs
+        document.getElementById('info-duration').textContent = `${trip.durationDays || '10'} Días / ${trip.durationNights || '9'} Noches`;
+        document.getElementById('info-destinations').textContent = trip.subtitle || '';
         document.getElementById('info-best-season').textContent = trip.bestSeason || 'Octubre a Abril';
         document.getElementById('info-currency').textContent = trip.currency || 'Moneda internacional y local';
-        document.getElementById('info-visa').textContent = trip.visa || 'Consultar con nuestros asesores';
+        document.getElementById('info-visa').textContent = `Visado: ${trip.visa || 'Consultar'}`;
+        
+        // Cost details
+        document.getElementById('info-hotel-tax').innerHTML = `Impuesto Hotelero: <strong>USD ${trip.hotelTaxUSD || 0}</strong>`;
+        document.getElementById('info-visa-cost').innerHTML = `Costo Visa aprox: <strong>USD ${trip.visaCostUSD || 0}</strong>`;
+        document.getElementById('info-disclaimer').textContent = trip.disclaimer || '* Precios referenciales sujetos a cambios.';
+
+        // Render Services Included / Excluded
+        const includedUl = document.getElementById('services-included-list');
+        const excludedUl = document.getElementById('services-excluded-list');
+        if (includedUl && excludedUl) {
+            includedUl.innerHTML = '';
+            excludedUl.innerHTML = '';
+
+            if (trip.servicesIncludedList && trip.servicesIncludedList.length > 0) {
+                trip.servicesIncludedList.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'flex items-start gap-3';
+                    li.innerHTML = `
+                        <span class="material-symbols-outlined text-green-600 mt-0.5" style="font-size: 20px;">check</span>
+                        <span>${item}</span>
+                    `;
+                    includedUl.appendChild(li);
+                });
+            } else {
+                includedUl.innerHTML = '<li class="text-on-surface-variant/70 italic">Consultar servicios incluidos con su asesor.</li>';
+            }
+
+            if (trip.servicesExcludedList && trip.servicesExcludedList.length > 0) {
+                trip.servicesExcludedList.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'flex items-start gap-3';
+                    li.innerHTML = `
+                        <span class="material-symbols-outlined text-red-500 mt-0.5" style="font-size: 20px;">close</span>
+                        <span>${item}</span>
+                    `;
+                    excludedUl.appendChild(li);
+                });
+            } else {
+                excludedUl.innerHTML = '<li class="text-on-surface-variant/70 italic">Consultar exclusiones con su asesor.</li>';
+            }
+        }
 
         // CTA settings
         const ctaBtn = document.getElementById('cta-reserve');
@@ -525,6 +761,20 @@
 
         // Setup triggers for scroll reveal
         setTimeout(setupRevealObserver, 150);
+    };
+
+    window.toggleDayCollapse = (index) => {
+        const content = document.getElementById(`content-${index}`);
+        const chevron = document.getElementById(`chevron-${index}`);
+        if (!content || !chevron) return;
+
+        if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+            content.style.maxHeight = '0px';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            chevron.style.transform = 'rotate(180deg)';
+        }
     };
 
     window.onload = loadTripData;
