@@ -58,9 +58,8 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        // Si no has verificado el dominio suenotravel.cl en Resend,
-        // debes usar 'onboarding@resend.dev' como emisor por defecto.
-        from: 'Sueño Travel Web <onboarding@resend.dev>',
+        // Al estar verificado el dominio suenotravel.cl, enviamos desde el propio dominio
+        from: 'Sueño Travel Web <contacto@suenotravel.cl>',
         to: 'contacto@suenotravel.cl',
         subject: `Nueva Cotización Web - ${name}`,
         html: emailHtml,
