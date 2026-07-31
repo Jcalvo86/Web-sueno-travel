@@ -8,10 +8,10 @@
     <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -80,11 +80,11 @@
                     "gutter": "24px"
             },
             "fontFamily": {
-                    "display-lg": ["Manrope"],
+                    "display-lg": ["BJ Cree", "Manrope"],
                     "label-md": ["Manrope"],
-                    "headline-lg-mobile": ["Manrope"],
+                    "headline-lg-mobile": ["BJ Cree", "Manrope"],
                     "body-lg": ["Plus Jakarta Sans"],
-                    "headline-lg": ["Manrope"],
+                    "headline-lg": ["BJ Cree", "Manrope"],
                     "body-md": ["Plus Jakarta Sans"]
             },
             "fontSize": {
@@ -185,23 +185,11 @@
     <script src="controlpanel/adapters/firebase-adapter.js"></script>
     <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>
+    <!-- Dynamic Header Component -->
+    <script src="global-header.js"></script>
 </head>
-<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container"><!-- TopNavBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-white/80 backdrop-blur-xl shadow-sm">
-    <div class="flex items-center gap-3">
-        <img alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
-    </div>
-    <nav class="hidden md:flex gap-8">
-        <a id="nav-egipto" class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#egipto">Egipto</a>
-        <a id="nav-jordania" class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#jordania">Jordania</a>
-        <a id="nav-grecia" class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#grecia">Grecia</a>
-        <a id="nav-turquia" class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="#turquia">Turquía</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-primary/80 hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
-    </nav>
-    <a href="#contacto" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/90">
-        Contactar
-    </a>
-</header>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<div id="global-header"></div>
 <main class="pt-20">
     <!-- Hero Section -->
     <section class="relative min-h-[90vh] flex items-center overflow-hidden">
@@ -389,7 +377,7 @@
                     </div>
                     <div class="pt-8 border-t border-white/20">
                         <p class="text-sm mb-2 opacity-80 uppercase tracking-widest">Escríbenos directamente</p>
-                        <a class="text-xl font-bold hover:underline block" href="mailto:info@sueno-travel.com">info@sueno-travel.com</a>
+                        <a class="text-xl font-bold hover:underline block" href="mailto:contacto@suenotravel.cl">contacto@suenotravel.cl</a>
                     </div>
                 </div>
                 <div class="lg:col-span-3 p-12">
@@ -464,8 +452,8 @@
                 <a href="https://wa.me/201110572308" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-base text-[#32291f] font-semibold hover:opacity-85">
                     <i class="fa-solid fa-phone text-[#14b8a6] w-[18px]"></i> +20 111 057 2308
                 </a>
-                <a href="mailto:info@sueno-travel.com" class="flex items-center gap-2 text-base text-[#32291f] font-semibold hover:opacity-85">
-                    <i class="fa-regular fa-envelope text-[#14b8a6] w-[18px]"></i> info@sueno-travel.com
+                <a href="mailto:contacto@suenotravel.cl" class="flex items-center gap-2 text-base text-[#32291f] font-semibold hover:opacity-85">
+                    <i class="fa-regular fa-envelope text-[#14b8a6] w-[18px]"></i> contacto@suenotravel.cl
                 </a>
             </div>
         </div>
@@ -526,23 +514,48 @@
         }
     }
 
-    // Form submission micro-interaction for both forms
+    // Form submission interaction with actual fetch
     const setupFormInteraction = (formId) => {
         const form = document.getElementById(formId);
         if (!form) return;
         
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
+            // Extract values
+            const nameInput = e.target.querySelector('input[type="text"]');
+            const emailInput = e.target.querySelector('input[type="email"]');
+            const msgInput = e.target.querySelector('textarea');
+            const checkboxes = e.target.querySelectorAll('input[name="destino"]:checked');
+            
+            const name = nameInput ? nameInput.value : '';
+            const email = emailInput ? emailInput.value : '';
+            const message = msgInput ? msgInput.value : '';
+            const destinations = Array.from(checkboxes).map(cb => cb.value);
+
             const btn = e.target.querySelector('button[type="submit"]') || e.target.querySelector('button');
             const originalContent = btn.innerHTML;
             btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Enviando...';
             btn.classList.add('opacity-70');
             btn.disabled = true;
 
-            setTimeout(() => {
+            try {
+                const response = await fetch('/api/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, message, destinations })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error al enviar la solicitud.');
+                }
+
                 btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> ¡Recibido!';
                 btn.classList.remove('bg-primary');
                 btn.classList.add('bg-green-600');
+                
                 setTimeout(() => {
                     btn.innerHTML = originalContent;
                     btn.classList.add('bg-primary');
@@ -550,7 +563,13 @@
                     btn.disabled = false;
                     e.target.reset();
                 }, 3000);
-            }, 1500);
+
+            } catch (err) {
+                alert('Ocurrió un error al enviar tu consulta. Por favor, intenta de nuevo o escríbenos directamente.');
+                btn.innerHTML = originalContent;
+                btn.classList.remove('opacity-70');
+                btn.disabled = false;
+            }
         });
     };
 
@@ -598,20 +617,6 @@
 
             // Filter active/published trips
             const activeTrips = trips.filter(t => !t.isDraft);
-
-            // Update header navigation links dynamically to point to the actual trip page
-            const navEgipto = document.getElementById('nav-egipto');
-            const navJordania = document.getElementById('nav-jordania');
-            const navGrecia = document.getElementById('nav-grecia');
-            const navTurquia = document.getElementById('nav-turquia');
-
-            activeTrips.forEach(trip => {
-                const lowerTitle = trip.title.toLowerCase();
-                if (navEgipto && lowerTitle.includes('egipto')) navEgipto.href = `viaje.html?id=${trip.id}`;
-                if (navJordania && lowerTitle.includes('jordania')) navJordania.href = `viaje.html?id=${trip.id}`;
-                if (navGrecia && lowerTitle.includes('grecia')) navGrecia.href = `viaje.html?id=${trip.id}`;
-                if (navTurquia && (lowerTitle.includes('turquia') || lowerTitle.includes('turquía'))) navTurquia.href = `viaje.html?id=${trip.id}`;
-            });
 
             if (activeTrips.length > 0) {
                 const grid = document.getElementById('destinations-grid');

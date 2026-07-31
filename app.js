@@ -61,34 +61,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 4. Form Submission Simulation (Egipto a Medida)
+  // 4. Form Submission Interaction (Egipto a Medida)
   const customTripForm = document.getElementById('customTripForm');
   if (customTripForm) {
-    customTripForm.addEventListener('submit', (e) => {
+    customTripForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Basic validation
       const name = document.getElementById('nombre')?.value;
       const email = document.getElementById('email')?.value;
+      const message = "Me interesa armar un viaje a medida a Egipto.";
       
       if (!name || !email) {
         alert('Por favor, rellena los campos requeridos (Nombre y Correo Electrónico).');
         return;
       }
 
-      // Visual feedback
-      const container = customTripForm.parentElement;
-      if (container) {
-        container.innerHTML = `
-          <div class="success-message" style="text-align: center; padding: 40px 20px; animation: fadeInUp 0.6s ease-out;">
-            <div style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;">✓</div>
-            <h2 style="font-family: var(--font-headings); font-size: 2rem; color: var(--text-dark); margin-bottom: 16px;">¡Solicitud Recibida!</h2>
-            <p style="color: var(--text-gray); font-size: 1.1rem; max-width: 500px; margin: 0 auto 30px auto;">
-              Gracias, <strong>${name}</strong>. Hemos recibido tu solicitud para armar tu viaje a medida a Egipto. Uno de nuestros expertos en destinos se pondrá en contacto contigo en las próximas 24 horas en <strong>${email}</strong>.
-            </p>
-            <a href="index.html" class="btn btn-primary">Volver al Inicio</a>
-          </div>
-        `;
+      const btn = customTripForm.querySelector('button[type="submit"]') || customTripForm.querySelector('button');
+      const originalBtnContent = btn ? btn.innerHTML : 'Enviar';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = 'Enviando...';
+      }
+
+      try {
+        const response = await fetch('/api/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message, destinations: ['Egipto'] })
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al enviar.');
+        }
+
+        const container = customTripForm.parentElement;
+        if (container) {
+          container.innerHTML = `
+            <div class="success-message" style="text-align: center; padding: 40px 20px; animation: fadeInUp 0.6s ease-out;">
+              <div style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;">✓</div>
+              <h2 style="font-family: var(--font-headings); font-size: 2rem; color: var(--text-dark); margin-bottom: 16px;">¡Solicitud Recibida!</h2>
+              <p style="color: var(--text-gray); font-size: 1.1rem; max-width: 500px; margin: 0 auto 30px auto;">
+                Gracias, <strong>${name}</strong>. Hemos recibido tu solicitud para armar tu viaje a medida a Egipto. Uno de nuestros expertos en destinos se pondrá en contacto contigo en las próximas 24 horas en <strong>${email}</strong>.
+              </p>
+              <a href="index.html" class="btn btn-primary">Volver al Inicio</a>
+            </div>
+          `;
+        }
+      } catch (err) {
+        alert('Ocurrió un error al enviar tu solicitud. Por favor, intenta de nuevo o escríbenos directamente.');
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalBtnContent;
+        }
       }
     });
   }

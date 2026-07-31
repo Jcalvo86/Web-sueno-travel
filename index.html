@@ -102,7 +102,7 @@
 
           <div class="alternative-contact">
             O si prefieres, escríbenos directamente a <a
-              href="mailto:info@sueno-travel.com?subject=Consulta%20de%20Viaje%20-%20Sueño%20Travel">info@sueno-travel.com</a>
+              href="mailto:contacto@suenotravel.cl?subject=Consulta%20de%20Viaje%20-%20Sueño%20Travel">contacto@suenotravel.cl</a>
           </div>
         </div>
       </div>
@@ -132,8 +132,8 @@
           <a href="https://wa.me/201110572308" target="_blank" rel="noopener noreferrer" class="contact-info-item">
             <i class="fa-solid fa-phone"></i> +20 111 057 2308
           </a>
-          <a href="mailto:info@sueno-travel.com" class="contact-info-item">
-            <i class="fa-regular fa-envelope"></i> info@sueno-travel.com
+          <a href="mailto:contacto@suenotravel.cl" class="contact-info-item">
+            <i class="fa-regular fa-envelope"></i> contacto@suenotravel.cl
           </a>
         </div>
       </div>
@@ -299,7 +299,7 @@
     checkDeviceMode();
     window.addEventListener('resize', checkDeviceMode);
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
 
       const name = document.getElementById('clientName').value;
@@ -308,24 +308,47 @@
 
       if (!name || !email || !message) return;
 
-      const card = document.getElementById('mainCard');
-      card.innerHTML = `
-      <div style="animation: fadeInUp 0.6s ease-out; padding: 30px 10px; text-align: center;">
-        <div style="width: 80px; height: 80px; background: rgba(15, 118, 110, 0.1); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 24px auto; border: 1px solid rgba(15, 118, 110, 0.2);">
-          <i class="fa-solid fa-circle-check"></i>
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnContent = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+      try {
+        const response = await fetch('/api/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message })
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al enviar la solicitud.');
+        }
+
+        const card = document.getElementById('mainCard');
+        card.innerHTML = `
+        <div style="animation: fadeInUp 0.6s ease-out; padding: 30px 10px; text-align: center;">
+          <div style="width: 80px; height: 80px; background: rgba(15, 118, 110, 0.1); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 24px auto; border: 1px solid rgba(15, 118, 110, 0.2);">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.25rem; color: var(--text-dark); margin-bottom: 16px;">¡Solicitud Recibida!</h2>
+          <p style="font-size: 1.15rem; color: #334155; max-width: 600px; margin: 0 auto 24px auto; line-height: 1.6; font-weight: 500;">
+            Gracias por contactarnos, <strong>${name}</strong>. Hemos registrado tu consulta.
+          </p>
+          <p style="font-size: 1rem; color: var(--text-gray); max-width: 500px; margin: 0 auto 36px auto; line-height: 1.6; font-weight: 500;">
+            Uno de nuestros asesores expertos revisará tus requerimientos y te contactará a la brevedad al correo <strong>${email}</strong>.
+          </p>
+          <a href="index.html" class="btn btn-primary" style="padding: 12px 32px; border-radius: 30px;">
+            <i class="fa-solid fa-arrow-rotate-left"></i> Volver a empezar
+          </a>
         </div>
-        <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.25rem; color: var(--text-dark); margin-bottom: 16px;">¡Solicitud Recibida!</h2>
-        <p style="font-size: 1.15rem; color: #334155; max-width: 600px; margin: 0 auto 24px auto; line-height: 1.6; font-weight: 500;">
-          Gracias por contactarnos, <strong>${name}</strong>. Hemos registrado tu consulta.
-        </p>
-        <p style="font-size: 1rem; color: var(--text-gray); max-width: 500px; margin: 0 auto 36px auto; line-height: 1.6; font-weight: 500;">
-          Uno de nuestros asesores expertos revisará tus requerimientos y te contactará a la brevedad al correo <strong>${email}</strong>.
-        </p>
-        <a href="index.html" class="btn btn-primary" style="padding: 12px 32px; border-radius: 30px;">
-          <i class="fa-solid fa-arrow-rotate-left"></i> Volver a empezar
-        </a>
-      </div>
-      `;
+        `;
+      } catch (err) {
+        alert('Ocurrió un error al enviar tu consulta. Por favor, intenta de nuevo o escríbenos directamente.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnContent;
+      }
     }
   </script>
 </body>

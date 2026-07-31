@@ -8,9 +8,9 @@
     <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -115,11 +115,11 @@
                     "unit": "8px"
             },
             "fontFamily": {
-                    "display-lg": ["Manrope"],
+                    "display-lg": ["BJ Cree", "Manrope"],
                     "body-lg": ["Plus Jakarta Sans"],
                     "body-md": ["Plus Jakarta Sans"],
-                    "headline-lg-mobile": ["Manrope"],
-                    "headline-lg": ["Manrope"],
+                    "headline-lg-mobile": ["BJ Cree", "Manrope"],
+                    "headline-lg": ["BJ Cree", "Manrope"],
                     "label-md": ["Manrope"]
             },
             "fontSize": {
@@ -141,25 +141,11 @@
     <script src="controlpanel/adapters/firebase-adapter.js"></script>
     <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>
+    <!-- Dynamic Header Component -->
+    <script src="global-header.js"></script>
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20">
-<!-- Top Navigation -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/80 backdrop-blur-xl shadow-sm">
-    <div class="flex items-center gap-3">
-        <a href="inicio.html" class="flex items-center gap-3">
-            <img alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
-            <span class="font-display-lg text-2xl text-primary font-black tracking-tight hidden sm:inline-block">Sueño Travel</span>
-        </a>
-    </div>
-    <nav class="hidden md:flex gap-8 items-center">
-        <a id="nav-egipto" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#egipto">Egipto</a>
-        <a id="nav-jordania" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#jordania">Jordania</a>
-        <a id="nav-grecia" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#grecia">Grecia</a>
-        <a id="nav-turquia" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="inicio.html#turquia">Turquía</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
-    </nav>
-    <a href="inicio.html#contacto" class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform">Contactar</a>
-</header>
+<div id="global-header"></div>
 
 <!-- Loader State -->
 <div id="loading-state" class="min-h-[80vh] flex flex-col items-center justify-center gap-4">
@@ -504,28 +490,7 @@
                 return;
             }
 
-            // Dynamically update the header links for Egipto, Jordania, Grecia, Turquía
-            try {
-                const travels = await window.DataSource.getItems('travel');
-                const products = await window.DataSource.getItems('cms_products');
-                const allItems = [...(travels || []), ...(products || [])];
-                
-                const navEgipto = document.getElementById('nav-egipto');
-                const navJordania = document.getElementById('nav-jordania');
-                const navGrecia = document.getElementById('nav-grecia');
-                const navTurquia = document.getElementById('nav-turquia');
 
-                allItems.forEach(item => {
-                    const title = (item.title || item.name || '').toLowerCase();
-                    const id = item.id;
-                    if (navEgipto && title.includes('egipto')) navEgipto.href = `viaje.html?id=${id}`;
-                    if (navJordania && title.includes('jordania')) navJordania.href = `viaje.html?id=${id}`;
-                    if (navGrecia && title.includes('grecia')) navGrecia.href = `viaje.html?id=${id}`;
-                    if (navTurquia && (title.includes('turquia') || title.includes('turquía'))) navTurquia.href = `viaje.html?id=${id}`;
-                });
-            } catch (navErr) {
-                console.warn("Could not bind dynamic navbar links:", navErr);
-            }
 
             renderTrip(trip);
         } catch (error) {
