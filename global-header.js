@@ -11,10 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>
         </div>
         <nav class="hidden md:flex gap-8 items-center">
-            <a id="nav-egipto" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="destino.html?id=egipto">Egipto</a>
-            <a id="nav-jordania" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="destino.html?id=jordania">Jordania</a>
-            <a id="nav-grecia" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="destino.html?id=grecia">Grecia</a>
-            <a id="nav-turquia" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="destino.html?id=turquia">Turquía</a>
+            <!-- Dropdown Destinos -->
+            <div class="relative group">
+                <button id="nav-destinos" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
+                    Destinos
+                    <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                </button>
+                <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 rounded-xl bg-white shadow-lg border border-outline-variant/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                    <a id="nav-egipto" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=egipto">Egipto</a>
+                    <a id="nav-jordania" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=jordania">Jordania</a>
+                    <a id="nav-grecia" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=grecia">Grecia</a>
+                    <a id="nav-turquia" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=turquia">Turquía</a>
+                </div>
+            </div>
             <a id="nav-nosotros" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
         </nav>
         <div class="flex items-center gap-4">
@@ -38,11 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
             </div>
             <nav class="flex flex-col gap-4">
-                <a id="mobile-nav-egipto" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-b border-outline-variant/5 pb-2" href="destino.html?id=egipto">Egipto</a>
-                <a id="mobile-nav-jordania" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-b border-outline-variant/5 pb-2" href="destino.html?id=jordania">Jordania</a>
-                <a id="mobile-nav-grecia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-b border-outline-variant/5 pb-2" href="destino.html?id=grecia">Grecia</a>
-                <a id="mobile-nav-turquia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-b border-outline-variant/5 pb-2" href="destino.html?id=turquia">Turquía</a>
-                <a id="mobile-nav-nosotros" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-b border-outline-variant/5 pb-2" href="sobre-nosotros.html">Sobre Nosotros</a>
+                <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant/60 font-semibold">Destinos</span>
+                <div class="flex flex-col gap-3 pl-3 border-l-2 border-outline-variant/10">
+                    <a id="mobile-nav-egipto" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=egipto">Egipto</a>
+                    <a id="mobile-nav-jordania" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=jordania">Jordania</a>
+                    <a id="mobile-nav-grecia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=grecia">Grecia</a>
+                    <a id="mobile-nav-turquia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=turquia">Turquía</a>
+                </div>
+                <a id="mobile-nav-nosotros" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-t border-outline-variant/10 pt-4" href="sobre-nosotros.html">Sobre Nosotros</a>
             </nav>
         </div>
     </div>
@@ -58,7 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (activeLink) {
             activeLink.classList.remove('text-on-surface-variant');
-            activeLink.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
+            activeLink.classList.add('text-primary', 'font-bold');
+            
+            // Highlight Destinos parent button
+            const destinosBtn = document.getElementById('nav-destinos');
+            if (destinosBtn) {
+                destinosBtn.classList.remove('text-on-surface-variant');
+                destinosBtn.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
+            }
         }
         if (mobileActiveLink) {
             mobileActiveLink.classList.remove('text-on-surface-variant');
@@ -67,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         const pathname = window.location.pathname;
         if (pathname.includes('sobre-nosotros.html')) {
-            const navNosotros = document.getElementById('nav-nosotros');
+            const navNosotros = document.getElementById('nav-nav-nosotros') || document.getElementById('nav-nosotros');
             const mobileNavNosotros = document.getElementById('mobile-nav-nosotros');
             if (navNosotros) {
                 navNosotros.classList.remove('text-on-surface-variant');

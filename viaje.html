@@ -407,6 +407,12 @@
 
             // Obtener el viaje (producto)
             let trip = null;
+            let locations = [];
+            try {
+                locations = await window.DataSource.getItems('location');
+            } catch (el) {
+                console.warn("Could not load locations", el);
+            }
             
             // Try fetching from travel collection first
             try {
@@ -415,28 +421,88 @@
                     const found = travels.find(t => t.id === tripId || t.sku === tripId);
                     if (found) {
                         // Normalize 'travel' module format to the format expected by renderTrip
+                        const destSum = found.destinationsSummary || found.destinations_summary;
+                        
+                        // Gather dynamic region maps
+                        const visitedLocationIds = new Set();
+                        if (found.itinerary) {
+                            found.itinerary.forEach(day => {
+                                if (day.locationId && day.locationId !== 'custom') {
+                                    visitedLocationIds.add(day.locationId);
+                                }
+                            });
+                        }
+                        if (found.servicesIncludedList) {
+                            found.servicesIncludedList.forEach(group => {
+                                if (group.locationId && group.locationId !== 'custom') {
+                                    visitedLocationIds.add(group.locationId);
+                                }
+                            });
+                        }
+                        
+                        const visitedLocations = (locations || []).filter(l => visitedLocationIds.has(l.id));
+                        const parentRegionIds = new Set();
+                        visitedLocations.forEach(loc => {
+                            const parentRegId = loc.parentRegionId || loc.parent_region_id;
+                            if (parentRegId) {
+                                parentRegionIds.add(parentRegId);
+                            }
+                        });
+                        
+                        const visitedRegions = (locations || []).filter(l => parentRegionIds.has(l.id) && (l.type === 'region' || l.type === undefined));
+                        const regionsWithMaps = visitedRegions.filter(reg => reg.mapUrl || reg.map_url);
+                        
+                        const regionMaps = regionsWithMaps.map(reg => {
+                            const pins = visitedLocations.filter(loc => {
+                                const parentRegId = loc.parentRegionId || loc.parent_region_id;
+                                if (parentRegId !== reg.id) return false;
+                                const posX = loc.mapPosX !== undefined ? loc.mapPosX : loc.map_pos_x;
+                                const posY = loc.mapPosY !== undefined ? loc.mapPosY : loc.map_pos_y;
+                                return posX !== undefined && posX !== null && posX !== '' &&
+                                       posY !== undefined && posY !== null && posY !== '';
+                            }).map(loc => {
+                                const posX = loc.mapPosX !== undefined ? loc.mapPosX : loc.map_pos_x;
+                                const posY = loc.mapPosY !== undefined ? loc.mapPosY : loc.map_pos_y;
+                                return {
+                                    id: loc.id,
+                                    name: loc.name,
+                                    description: loc.description || '',
+                                    posX,
+                                    posY
+                                };
+                            });
+                            return {
+                                id: reg.id,
+                                name: reg.name,
+                                mapUrl: reg.mapUrl || reg.map_url,
+                                pins
+                            };
+                        });
+
                         trip = {
                             id: found.id,
                             name: found.title,
-                            subtitle: found.destinationsSummary ? (Array.isArray(found.destinationsSummary) ? found.destinationsSummary.join(', ') : found.destinationsSummary) : found.title,
+                            subtitle: destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : found.title,
                             overview: found.description || '',
-                            imageUrl: found.imageUrl || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
-                            bestSeason: found.guideBestSeason || '',
+                            imageUrl: found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
+                            bestSeason: found.guideBestSeason || found.guide_best_season || '',
                             currency: found.currency || '',
                             visa: found.visa || '',
-                            mapUrl: found.mapUrl || '',
+                            mapUrl: found.mapUrl || found.map_url || '',
                             galleryUrls: found.galleryUrls || (found.itinerary ? found.itinerary.map(day => day.imageUrl).filter(Boolean) : []),
+                            regionMaps: regionMaps,
                             // Additional attributes
                             durationDays: found.durationDays || found.duration_days || found.duration || 10,
                             durationNights: found.durationNights || found.duration_nights || 9,
                             hotelTaxUSD: found.hotelTaxUSD !== undefined ? found.hotelTaxUSD : (found.pricing_and_notes?.hotelTaxUSD || 0),
                             visaCostUSD: found.visaCostUSD !== undefined ? found.visaCostUSD : (found.pricing_and_notes?.visaCostUSD || 0),
                             disclaimer: found.disclaimer || found.pricing_and_notes?.disclaimer || '',
-                            servicesIncludedList: found.servicesIncludedList || (found.services_included ? [
+                            servicesIncludedList: found.servicesIncludedList || found.services_included_list || (found.services_included ? [
                                 ...(found.services_included.egypt || []),
                                 ...(found.services_included.turkey || [])
                             ] : []),
-                            servicesExcludedList: found.servicesExcludedList || found.services_excluded || [],
+                            servicesExcludedList: found.servicesExcludedList || found.services_excluded_list || found.services_excluded || [],
+                            hotelsPlanned: found.hotelsPlanned || found.hotels_planned || [],
                             // Convert itinerary array to JSON string format expected by renderTrip
                             itineraryJson: found.itinerary ? JSON.stringify(found.itinerary.map(day => ({
                                 day: `Día ${String(day.dayNumber).padStart(2, '0')}`,
@@ -662,16 +728,51 @@
         }
 
         // Render Map
-        if (trip.mapUrl) {
-            document.getElementById('map-img').src = trip.mapUrl;
-            document.getElementById('map-overlay').innerHTML = `
-                <div class="bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-xl max-w-xs pointer-events-auto">
-                    <span class="text-secondary font-bold block mb-2">Ruta de Viaje</span>
-                    <p class="text-body-md text-on-surface-variant">Mapa de ruta interactivo y paradas exclusivas de tu experiencia.</p>
-                </div>
-            `;
-        } else {
-            document.getElementById('map').style.display = 'none';
+        const mapSection = document.getElementById('map');
+        if (mapSection) {
+            if (trip.regionMaps && trip.regionMaps.length > 0) {
+                mapSection.innerHTML = `
+                    <h2 class="font-display-lg text-headline-lg text-primary mb-12">Rutas y Mapas de Destinos</h2>
+                    <div class="space-y-16">
+                        ${trip.regionMaps.map(reg => `
+                            <div class="space-y-4">
+                                <h3 class="text-2xl font-bold text-primary text-left">${reg.name}</h3>
+                                <div class="relative w-full rounded-3xl overflow-hidden ambient-glow bg-tertiary-fixed/20 border border-outline-variant" style="aspect-ratio: 4/3; max-width: 800px; margin: 0 auto;">
+                                    <img class="w-full h-full object-cover select-none" alt="Mapa de ${reg.name}" src="${reg.mapUrl}"/>
+                                    <div class="absolute inset-0 pointer-events-auto">
+                                        ${reg.pins.map(pin => `
+                                            <div class="absolute group/pin -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                                                 style="left: ${pin.posX}%; top: ${pin.posY}%;"
+                                                 title="${pin.name}">
+                                                <!-- Pin Drop Icon -->
+                                                <span class="material-symbols-outlined text-red-600 text-3xl hover:scale-125 transition-transform" style="filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3)); font-variation-settings: 'FILL' 1;">
+                                                    pin_drop
+                                                </span>
+                                                <!-- Tooltip Popup -->
+                                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-white text-xs px-3 py-2 rounded-lg opacity-0 pointer-events-none group-hover/pin:opacity-100 group-hover/pin:pointer-events-auto transition-opacity duration-200 shadow-lg z-50 whitespace-nowrap min-w-[120px] text-center">
+                                                    <strong class="block border-b border-white/20 pb-1 mb-1">${pin.name}</strong>
+                                                    ${pin.description ? `<span class="block text-[10px] text-white/80 max-w-[200px] whitespace-normal line-clamp-2">${pin.description}</span>` : ''}
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (trip.mapUrl) {
+                mapSection.style.display = 'block';
+                document.getElementById('map-img').src = trip.mapUrl;
+                document.getElementById('map-overlay').innerHTML = `
+                    <div class="bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-xl max-w-xs pointer-events-auto">
+                        <span class="text-secondary font-bold block mb-2">Ruta de Viaje</span>
+                        <p class="text-body-md text-on-surface-variant">Mapa de ruta interactivo y paradas exclusivas de tu experiencia.</p>
+                    </div>
+                `;
+            } else {
+                mapSection.style.display = 'none';
+            }
         }
 
         // Render Gallery
@@ -723,14 +824,27 @@
             excludedUl.innerHTML = '';
 
             if (trip.servicesIncludedList && trip.servicesIncludedList.length > 0) {
-                trip.servicesIncludedList.forEach(item => {
-                    const li = document.createElement('li');
-                    li.className = 'flex items-start gap-3';
-                    li.innerHTML = `
-                        <span class="material-symbols-outlined text-green-600 mt-0.5" style="font-size: 20px;">check</span>
-                        <span>${item}</span>
-                    `;
-                    includedUl.appendChild(li);
+                trip.servicesIncludedList.forEach(group => {
+                    const items = group.items || [];
+                    const locationLabel = group.customLocationName || '';
+                    
+                    if (items.length > 0 && locationLabel) {
+                        const headerLi = document.createElement('li');
+                        headerLi.className = 'font-bold text-primary text-lg mt-6 first:mt-0 mb-3 list-none border-b border-outline-variant/30 pb-1';
+                        headerLi.innerHTML = `<span>${locationLabel}</span>`;
+                        includedUl.appendChild(headerLi);
+                    }
+
+                    items.forEach(bullet => {
+                        if (!bullet) return;
+                        const li = document.createElement('li');
+                        li.className = 'flex items-start gap-3';
+                        li.innerHTML = `
+                            <span class="material-symbols-outlined text-green-600 mt-0.5" style="font-size: 20px;">check</span>
+                            <span>${bullet}</span>
+                        `;
+                        includedUl.appendChild(li);
+                    });
                 });
             } else {
                 includedUl.innerHTML = '<li class="text-on-surface-variant/70 italic">Consultar servicios incluidos con su asesor.</li>';

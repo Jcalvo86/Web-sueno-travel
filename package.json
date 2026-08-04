@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "agentation": "^3.0.2"
+  },
+  "dependencies": {
+    "@uploadthing/react": "^7.3.3",
+    "uploadthing": "^7.7.4"
   }
 }

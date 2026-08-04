@@ -27,6 +27,7 @@
   --on-surface-variant: #7c6857;
   --surface: rgba(255, 255, 255, 0.7);
   --surface-container-high: rgba(0, 0, 0, 0.04);
+  --surface-container-low: #ebe3db;
   --surface-container-lowest: #ffffff;
 
   /* Bordes y Líneas de Guía */
@@ -51,6 +52,7 @@ html.dark {
   --on-surface-variant: #9ca3af;
   --surface: rgba(15, 23, 42, 0.6);
   --surface-container-high: rgba(255, 255, 255, 0.05);
+  --surface-container-low: #0f1422;
   --surface-container-lowest: #0b0f19;
 
   /* Bordes y Líneas de Guía */
@@ -128,10 +130,15 @@ body {
   left: 0;
   right: 0;
   z-index: 40;
-  background: rgba(8, 12, 20, 0.8);
+  background: rgba(244, 234, 225, 0.85);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-bottom: 1px solid var(--outline);
+  transition: var(--transition-smooth);
+}
+
+html.dark .nav-shell {
+  background: rgba(8, 12, 20, 0.85);
 }
 
 .container-main {
@@ -157,7 +164,7 @@ body {
 }
 
 .glass-card {
-  background: #0f1422;
+  background: var(--surface-container-lowest);
   border: 1px solid var(--outline-variant);
   border-radius: 24px;
   box-shadow: var(--shadow-lg);

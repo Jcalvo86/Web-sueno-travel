@@ -83,77 +83,107 @@
         </div>
     </header>
 
-    <!-- Info Cards Grid -->
-    <section class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <!-- Card 1: Mejor Época -->
-            <div class="bg-surface border border-outline-variant/50 p-8 rounded-3xl space-y-4 shadow-sm hover:shadow-md transition-shadow">
-                <div class="flex items-center gap-3 text-secondary">
-                    <span class="material-symbols-outlined text-3xl">calendar_month</span>
-                    <h3 class="text-xl font-bold text-primary">Mejor Época</h3>
-                </div>
-                <p id="info-best-season" class="text-on-surface-variant leading-relaxed"></p>
+    <!-- Main Content Container with sidebar index -->
+    <section class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col lg:flex-row gap-12">
+        <!-- Sidebar Navigation (Index) -->
+        <aside class="hidden lg:block w-1/4 shrink-0">
+            <div class="sticky top-28 space-y-6 bg-surface border border-outline-variant/50 p-6 rounded-3xl shadow-sm">
+                <h4 class="font-display-lg text-sm font-bold text-primary border-b border-outline-variant/60 pb-3 uppercase tracking-wider">En esta guía</h4>
+                <nav class="flex flex-col gap-4 text-xs font-semibold">
+                    <a href="#sec-overview" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-base">info</span> Resumen General
+                    </a>
+                    <a href="#sec-map" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-base">map</span> Ubicación y Mapa
+                    </a>
+                    <a id="toc-link-explore" href="#explore-section" class="toc-link hidden flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-base">explore</span> Qué Visitar
+                    </a>
+                    <a id="toc-link-itineraries" href="#itineraries-section" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-base">route</span> Itinerarios
+                    </a>
+                </nav>
             </div>
-            <!-- Card 2: Cómo Moverse -->
-            <div class="bg-surface border border-outline-variant/50 p-8 rounded-3xl space-y-4 shadow-sm hover:shadow-md transition-shadow">
-                <div class="flex items-center gap-3 text-secondary">
-                    <span class="material-symbols-outlined text-3xl">directions_bus</span>
-                    <h3 class="text-xl font-bold text-primary">Cómo Moverse</h3>
-                </div>
-                <p id="info-get-around" class="text-on-surface-variant leading-relaxed"></p>
-            </div>
-            <!-- Card 3: Duración Recomendada -->
-            <div class="bg-surface border border-outline-variant/50 p-8 rounded-3xl space-y-4 shadow-sm hover:shadow-md transition-shadow">
-                <div class="flex items-center gap-3 text-secondary">
-                    <span class="material-symbols-outlined text-3xl">schedule</span>
-                    <h3 class="text-xl font-bold text-primary">Estadía Sugerida</h3>
-                </div>
-                <p id="info-duration" class="text-on-surface-variant leading-relaxed"></p>
-            </div>
-        </div>
+        </aside>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-            <!-- Left Side: Map and Styles -->
-            <div class="space-y-6">
-                <h2 class="font-display-lg text-3xl font-bold text-primary">Estilo del Viaje</h2>
-                <div id="dest-tags" class="flex flex-wrap gap-2"></div>
-                
-                <h2 class="font-display-lg text-3xl font-bold text-primary pt-4">Ubicación y Territorio</h2>
-                <p class="text-on-surface-variant leading-relaxed">
-                    Visualiza la distribución geográfica y las rutas recomendadas por nuestros egiptólogos y expertos en destino para optimizar cada jornada de tu travesía.
-                </p>
-                <div class="p-6 bg-tertiary-fixed rounded-2xl border border-outline-variant/30 flex items-start gap-4">
-                    <span class="material-symbols-outlined text-secondary text-3xl mt-1">info</span>
-                    <div>
-                        <h4 class="font-bold text-primary">Consejo de Viajero</h4>
-                        <p class="text-sm text-on-surface-variant/95 mt-1 leading-relaxed">
-                            Puedes hacer clic directamente en la imagen del mapa de la derecha para abrir una versión en alta resolución y examinar en detalle cada parada.
-                        </p>
+        <!-- Right Side: Content Area -->
+        <div class="flex-1 space-y-16">
+            <!-- 1. Overview Section -->
+            <div id="sec-overview" class="scroll-mt-28 space-y-6">
+                <p id="dest-description" class="text-on-surface-variant leading-relaxed text-lg font-medium"></p>
+                <div class="space-y-3 border-l-4 border-secondary/40 pl-5 py-1 text-on-surface-variant leading-relaxed text-sm md:text-base">
+                    <p>
+                        <strong class="text-primary font-bold">Mejor Época:</strong> 
+                        <span id="info-best-season"></span>
+                    </p>
+                    <p>
+                        <strong class="text-primary font-bold">Cómo Moverse:</strong> 
+                        <span id="info-get-around"></span>
+                    </p>
+                    <p>
+                        <strong class="text-primary font-bold">Estadía Sugerida:</strong> 
+                        <span id="info-duration"></span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2. Map and Styles Section -->
+            <div id="sec-map" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-mt-28">
+                <!-- Left Side: Map and Styles -->
+                <div class="space-y-6">
+                    <h2 class="font-display-lg text-3xl font-bold text-primary">Estilo del Viaje</h2>
+                    <div id="dest-tags" class="flex flex-wrap gap-2"></div>
+                    
+                    <h2 class="font-display-lg text-3xl font-bold text-primary pt-4">Ubicación y Territorio</h2>
+                    <p class="text-on-surface-variant leading-relaxed">
+                        Visualiza la distribución geográfica y las rutas recomendadas por nuestros egiptólogos y expertos en destino para optimizar cada jornada de tu travesía.
+                    </p>
+                    <div class="p-6 bg-tertiary-fixed rounded-2xl border border-outline-variant/30 flex items-start gap-4">
+                        <span class="material-symbols-outlined text-secondary text-3xl mt-1">info</span>
+                        <div>
+                            <h4 class="font-bold text-primary">Consejo de Viajero</h4>
+                            <p class="text-sm text-on-surface-variant/95 mt-1 leading-relaxed">
+                                Puedes hacer clic directamente en la imagen del mapa de la derecha para abrir una versión en alta resolución y examinar en detalle cada parada.
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Right Side: Interactive Map Image -->
-            <div class="relative rounded-3xl overflow-hidden ambient-glow border border-outline-variant/30 cursor-zoom-in" id="map-container">
-                <div id="dest-map-img" class="w-full aspect-[4/3] bg-cover bg-center transition-transform duration-700 hover:scale-105"></div>
+                <!-- Right Side: Interactive Map Image -->
+                <div class="relative rounded-3xl overflow-hidden ambient-glow border border-outline-variant/30 cursor-zoom-in" id="map-container">
+                    <div id="dest-map-img" class="w-full aspect-[4/3] bg-cover bg-center transition-transform duration-700 hover:scale-105"></div>
+                </div>
             </div>
-        </div>
-
-        <!-- Suggested Itineraries Section -->
-        <div id="itineraries-section" class="border-t border-outline-variant/60 pt-16">
-            <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4">Itinerarios en este Destino</h2>
-            <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-12">Programas exclusivos diseñados por Sueño Travel para ofrecerte una inmersión completa y de alto estándar.</p>
             
-            <div id="itineraries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Dynamic itinerary cards go here -->
+            <!-- 3. Unified Explore Section -->
+            <div id="explore-section" class="border-t border-outline-variant/60 pt-16 hidden scroll-mt-28">
+                <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4">Qué Visitar</h2>
+                <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-6">Descubre todas las ciudades, áreas geográficas y atractivos de este destino.</p>
+                
+                <!-- Filter Tabs -->
+                <div id="explore-filter-container" class="flex flex-wrap justify-center gap-2 mb-10"></div>
+                
+                <div id="explore-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamic unified cards go here -->
+                </div>
+            </div>
+
+            <!-- 5. Suggested Itineraries Section -->
+            <div id="itineraries-section" class="border-t border-outline-variant/60 pt-16 scroll-mt-28">
+                <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4">Itinerarios en este Destino</h2>
+                <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-12">Programas exclusivos diseñados por Sueño Travel para ofrecerte una inmersión completa y de alto estándar.</p>
+                
+                <div id="itineraries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamic itinerary cards go here -->
+                </div>
             </div>
         </div>
     </section>
 </div>
 
 <!-- Modal Lightbox for Map -->
-<div id="map-lightbox" class="fixed inset-0 bg-black/90 z-[9999] hidden flex items-center justify-center p-4 cursor-zoom-out" onclick="closeMapLightbox()">
-    <img id="lightbox-img" class="max-w-full max-h-full rounded-lg shadow-2xl object-contain transition-transform duration-300" src="" alt="Mapa ampliado">
+<div id="map-lightbox" class="fixed inset-0 bg-black/90 z-[9999] opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4 cursor-zoom-out" onclick="closeMapLightbox()">
+    <img id="lightbox-img" class="max-w-full max-h-full rounded-xl shadow-2xl object-contain transform scale-90 transition-all duration-300 ease-out" src="" alt="Mapa ampliado">
     <button class="absolute top-6 right-6 text-white text-4xl font-bold cursor-pointer select-none">&times;</button>
 </div>
 
@@ -188,6 +218,125 @@
 </footer>
 
 <script>
+    const setupExploreFilter = (relatedCities, relatedAttractions, locations) => {
+        const filterContainer = document.getElementById('explore-filter-container');
+        if (!filterContainer) return;
+        filterContainer.innerHTML = '';
+        
+        if (relatedCities.length === 0 && relatedAttractions.length === 0) return;
+        
+        // "Todos" Tab
+        const allTab = document.createElement('button');
+        allTab.className = 'explore-filter-tab bg-primary text-white border border-primary px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer shadow-sm hover:scale-105';
+        allTab.textContent = 'Todos';
+        allTab.setAttribute('data-filter', 'all');
+        allTab.addEventListener('click', () => filterExplore('all'));
+        filterContainer.appendChild(allTab);
+        
+        // "Ciudades y Áreas" Tab
+        if (relatedCities.length > 0) {
+            const citiesTab = document.createElement('button');
+            citiesTab.className = 'explore-filter-tab bg-white text-on-surface-variant border border-outline-variant/60 hover:border-primary px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer shadow-sm hover:scale-105';
+            citiesTab.textContent = 'Ciudades y Áreas';
+            citiesTab.setAttribute('data-filter', 'type:city');
+            citiesTab.addEventListener('click', () => filterExplore('type:city'));
+            filterContainer.appendChild(citiesTab);
+        }
+        
+        // "Atractivos" Tab
+        if (relatedAttractions.length > 0) {
+            const attractionsTab = document.createElement('button');
+            attractionsTab.className = 'explore-filter-tab bg-white text-on-surface-variant border border-outline-variant/60 hover:border-primary px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer shadow-sm hover:scale-105';
+            attractionsTab.textContent = 'Atractivos';
+            attractionsTab.setAttribute('data-filter', 'type:attraction');
+            attractionsTab.addEventListener('click', () => filterExplore('type:attraction'));
+            filterContainer.appendChild(attractionsTab);
+        }
+        
+        // Sub-filters: Unique parent cities and categories
+        const citiesMap = new Map();
+        const categories = new Set();
+        
+        relatedAttractions.forEach(attr => {
+            // Category
+            const type = attr.locationType || attr.location_type || 'Atracción';
+            type.split(',').forEach(c => {
+                const trimmed = c.trim();
+                if (trimmed) categories.add(trimmed);
+            });
+            
+            // City
+            const cityId = attr.parent_city_id || attr.parentCityId;
+            if (cityId) {
+                const cityLoc = locations.find(l => l.id === cityId);
+                if (cityLoc) {
+                    citiesMap.set(cityId.toLowerCase(), cityLoc.name);
+                }
+            }
+        });
+        
+        // City Tabs
+        citiesMap.forEach((cityName, cityId) => {
+            const tab = document.createElement('button');
+            tab.className = 'explore-filter-tab bg-white text-on-surface-variant border border-outline-variant/60 hover:border-primary px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer shadow-sm hover:scale-105';
+            tab.textContent = cityName;
+            tab.setAttribute('data-filter', `city:${cityId}`);
+            tab.addEventListener('click', () => filterExplore(`city:${cityId}`));
+            filterContainer.appendChild(tab);
+        });
+        
+        // Category Tabs
+        categories.forEach(cat => {
+            const tab = document.createElement('button');
+            tab.className = 'explore-filter-tab bg-white text-on-surface-variant border border-outline-variant/60 hover:border-primary px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer shadow-sm hover:scale-105';
+            tab.textContent = cat;
+            tab.setAttribute('data-filter', `cat:${cat}`);
+            tab.addEventListener('click', () => filterExplore(`cat:${cat}`));
+            filterContainer.appendChild(tab);
+        });
+    };
+
+    window.filterExplore = (filterVal) => {
+        // Active tab styling
+        document.querySelectorAll('.explore-filter-tab').forEach(tab => {
+            if (tab.getAttribute('data-filter') === filterVal) {
+                tab.className = 'explore-filter-tab bg-primary text-white border border-primary px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer shadow-sm hover:scale-105';
+            } else {
+                tab.className = 'explore-filter-tab bg-white text-on-surface-variant border border-outline-variant/60 hover:border-primary px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer shadow-sm hover:scale-105';
+            }
+        });
+        
+        // Show/hide cards
+        document.querySelectorAll('.explore-card').forEach(card => {
+            const cardType = card.getAttribute('data-type');
+            if (filterVal === 'all') {
+                card.style.display = 'flex';
+            } else if (filterVal === 'type:city') {
+                card.style.display = cardType === 'city' ? 'flex' : 'none';
+            } else if (filterVal === 'type:attraction') {
+                card.style.display = cardType === 'attraction' ? 'flex' : 'none';
+            } else if (filterVal.startsWith('city:')) {
+                const targetCityId = filterVal.substring(5);
+                const cardCityId = (card.getAttribute('data-city-id') || '').toLowerCase();
+                const cardId = (card.getAttribute('data-id') || '').toLowerCase();
+                // Show if it is the city card itself OR an attraction card that belongs to that city
+                if (cardCityId === targetCityId || cardId === targetCityId) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            } else if (filterVal.startsWith('cat:')) {
+                const targetCat = filterVal.substring(4);
+                const cardCats = card.getAttribute('data-categories') || '';
+                if (cardCats.includes(targetCat)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    };
+
     const loadDestinationData = async () => {
         try {
             const params = new URLSearchParams(window.location.search);
@@ -205,20 +354,20 @@
                 return;
             }
 
-            // Fetch locations and find matching country
-            const locations = await window.DataSource.getItems('cms_locations');
-            const targetDest = locations.find(loc => 
-                loc.id === destId || 
-                loc.name.toLowerCase().includes(destId) ||
-                (loc.country && loc.country.toLowerCase().includes(destId))
+            // Fetch locations from dynamic DataSource
+            const locations = await window.DataSource.getItems('location');
+            const destIdLower = destId.toLowerCase();
+
+            const targetDest = (locations || []).find(loc => 
+                (loc.id && loc.id.toLowerCase() === destIdLower) || 
+                loc.name.toLowerCase().includes(destIdLower) ||
+                (loc.country && loc.country.toLowerCase().includes(destIdLower))
             );
 
             if (!targetDest) {
-                // If not found, load a beautiful dynamic fallback
-                const fallbackDest = getFallbackDestination(destId);
-                renderDestination(fallbackDest);
+                showError('El destino no se encuentra registrado en la base de datos del CRM.');
             } else {
-                renderDestination(targetDest);
+                renderDestination(targetDest, locations);
             }
         } catch (error) {
             console.error(error);
@@ -226,57 +375,20 @@
         }
     };
 
-    const getFallbackDestination = (id) => {
-        const fallbacks = {
-            egipto: {
-                name: 'Egipto',
-                subtitle: 'Cuna de faraones, templos milenarios y el mítico Río Nilo.',
-                guideBestSeason: 'De Octubre a Abril (evitando los meses de calor extremo).',
-                guideHowToGetAround: 'Vuelos internos, cruceros privados por el Nilo y traslados con guías expertos.',
-                guideRecommendedDuration: '10 a 14 días.',
-                mapUrl: 'Imagenes/MapaEgipto.jpg',
-                travelStyles: ['Arqueología', 'Historia Viva', 'Cruceros Fluviales', 'Lujo Histórico']
-            },
-            jordania: {
-                name: 'Jordania',
-                subtitle: 'El tesoro tallado de Petra, los cañones de Wadi Rum y el flotante Mar Muerto.',
-                guideBestSeason: 'Marzo a Mayo (Primavera) y Septiembre a Noviembre (Otoño).',
-                guideHowToGetAround: 'Chofer privado o tours guiados coordinados por nuestros asesores.',
-                guideRecommendedDuration: '7 a 10 días.',
-                mapUrl: 'https://images.unsplash.com/photo-1547989453-11e67ffb3885?q=80&w=800',
-                travelStyles: ['Aventura del Desierto', 'Cultura', 'Bienestar', 'Fotografía']
-            },
-            grecia: {
-                name: 'Grecia',
-                subtitle: 'La cuna de la civilización occidental, puestas de sol en el Egeo y templos eternos.',
-                guideBestSeason: 'De Mayo a Octubre (Verano y meses aledaños).',
-                guideHowToGetAround: 'Ferris de alta velocidad, vuelos de conexión rápida y traslados privados.',
-                guideRecommendedDuration: '9 a 12 días.',
-                mapUrl: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=800',
-                travelStyles: ['Playas Exclusivas', 'Mitología', 'Yates', 'Gastronomía Mediterránea']
-            },
-            turquia: {
-                name: 'Turquía',
-                subtitle: 'El puente entre dos continentes, bazares vibrantes y las chimeneas de Capadocia.',
-                guideBestSeason: 'Abril a Junio y Septiembre a Noviembre.',
-                guideHowToGetAround: 'Vuelos locales de conexión y traslados terrestres privados.',
-                guideRecommendedDuration: '10 a 14 días.',
-                mapUrl: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=800',
-                travelStyles: ['Capadocia en Globo', 'Historia Bizantina', 'Bazares', 'Playas Turquesas']
-            }
-        };
-        return fallbacks[id] || fallbacks['egipto'];
-    };
-
-    const renderDestination = async (dest) => {
+    const renderDestination = async (dest, locations = []) => {
         // --- Populate Details ---
         document.title = `${dest.name} | Sueño Travel`;
         document.getElementById('dest-name').textContent = dest.name;
         document.getElementById('dest-subtitle').textContent = dest.subtitle || '';
+        document.getElementById('dest-description').textContent = dest.description || '';
         document.getElementById('info-best-season').textContent = dest.guideBestSeason || 'Todo el año.';
         document.getElementById('info-get-around').textContent = dest.guideHowToGetAround || 'Traslados privados.';
         document.getElementById('info-duration').textContent = dest.guideRecommendedDuration || 'Consultar con asesores.';
         
+        // Hero background image
+        const heroBg = dest.imageUrl || dest.mapUrl || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1920';
+        document.getElementById('hero-bg').style.backgroundImage = `url('${heroBg}')`;
+
         // Tags
         const tagsContainer = document.getElementById('dest-tags');
         tagsContainer.innerHTML = '';
@@ -294,6 +406,160 @@
         mapDiv.style.backgroundImage = `url('${mapUrl}')`;
         document.getElementById('map-container').setAttribute('onclick', `openMapLightbox('${mapUrl}')`);
 
+        // --- Render Unified Explore Section (Cities, Areas & Attractions) ---
+        const isRegion = dest.type === 'region' || dest.type === undefined;
+        const exploreSection = document.getElementById('explore-section');
+        const exploreGrid = document.getElementById('explore-grid');
+        const tocExplore = document.getElementById('toc-link-explore');
+        
+        if (exploreSection && exploreGrid) {
+            exploreGrid.innerHTML = '';
+            
+            let relatedCities = [];
+            let relatedAttractions = [];
+            
+            if (isRegion) {
+                // Find region cities
+                relatedCities = locations.filter(loc => {
+                    const parentReg = loc.parent_region_id || loc.parentRegionId;
+                    return loc.type === 'city' && parentReg && (parentReg === dest.id || parentReg.toLowerCase() === dest.id.toLowerCase());
+                });
+                
+                // Find region attractions (direct or via parent city)
+                const regionCityIds = relatedCities.map(city => city.id.toLowerCase());
+                relatedAttractions = locations.filter(loc => {
+                    if (loc.type !== 'attraction' && loc.type !== 'location') return false;
+                    
+                    const parentReg = loc.parent_region_id || loc.parentRegionId;
+                    const parentCity = loc.parent_city_id || loc.parentCityId;
+                    
+                    const matchesDirect = parentReg && (parentReg === dest.id || parentReg.toLowerCase() === dest.id.toLowerCase());
+                    const matchesViaCity = parentCity && regionCityIds.includes(parentCity.toLowerCase());
+                    
+                    return matchesDirect || matchesViaCity;
+                });
+            } else if (dest.type === 'city') {
+                // Find related attractions for this city
+                relatedAttractions = locations.filter(loc => {
+                    const parentCity = loc.parent_city_id || loc.parentCityId;
+                    return (loc.type === 'attraction' || loc.type === 'location') && parentCity && (parentCity === dest.id || parentCity.toLowerCase() === dest.id.toLowerCase());
+                });
+            }
+            
+            const totalItemsCount = relatedCities.length + relatedAttractions.length;
+            
+            if (totalItemsCount > 0) {
+                exploreSection.classList.remove('hidden');
+                if (tocExplore) tocExplore.classList.remove('hidden');
+                
+                // Build filter tabs
+                setupExploreFilter(relatedCities, relatedAttractions, locations);
+                
+                // Render City Cards
+                relatedCities.forEach(city => {
+                    const card = document.createElement('div');
+                    card.className = 'explore-card bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between';
+                    
+                    const imgUrl = city.imageUrl || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800';
+                    const cityCategories = city.locationType || 'Ciudad';
+                    
+                    card.setAttribute('data-type', 'city');
+                    card.setAttribute('data-id', city.id);
+                    card.setAttribute('data-categories', cityCategories);
+                    
+                    card.innerHTML = `
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${city.name}">
+                                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-primary font-bold text-[10px] px-2.5 py-1 rounded-full shadow-sm uppercase tracking-wider">
+                                    ${cityCategories}
+                                </div>
+                            </div>
+                            <div class="p-6 space-y-2">
+                                <h3 class="font-display-lg text-lg font-bold text-primary group-hover:text-secondary transition-colors">${city.name}</h3>
+                                <p class="text-xs text-on-surface-variant line-clamp-2">${city.description || city.subtitle || 'Explora este maravilloso destino con Sueño Travel.'}</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="destino.html?id=${city.id}" class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-xs uppercase tracking-wider hover:bg-primary/95 text-center block w-full font-bold transition-all">
+                                Ver Ciudad o Área
+                            </a>
+                        </div>
+                    `;
+                    exploreGrid.appendChild(card);
+                });
+                
+                // Render Attraction Cards
+                relatedAttractions.forEach(attr => {
+                    const card = document.createElement('div');
+                    card.className = 'explore-card bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between';
+                    
+                    const imgUrl = attr.imageUrl || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
+                    const attrCategories = attr.locationType || 'Atracción';
+                    const cityId = attr.parent_city_id || attr.parentCityId || '';
+                    
+                    card.setAttribute('data-type', 'attraction');
+                    card.setAttribute('data-id', attr.id);
+                    card.setAttribute('data-categories', attrCategories);
+                    card.setAttribute('data-city-id', cityId);
+                    
+                    card.innerHTML = `
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${attr.name}">
+                                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-primary font-bold text-[10px] px-2.5 py-1 rounded-full shadow-sm uppercase tracking-wider">
+                                    ${attrCategories}
+                                </div>
+                            </div>
+                            <div class="p-6 space-y-2">
+                                <h3 class="font-display-lg text-lg font-bold text-primary group-hover:text-secondary transition-colors">${attr.name}</h3>
+                                <p class="text-xs text-on-surface-variant line-clamp-2">${attr.description || attr.subtitle || 'Descubre este increíble punto de interés histórico y cultural.'}</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="destino.html?id=${attr.id}" class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-xs uppercase tracking-wider hover:bg-primary/95 text-center block w-full font-bold transition-all">
+                                Ver Atracción
+                            </a>
+                        </div>
+                    `;
+                    exploreGrid.appendChild(card);
+                });
+            } else {
+                exploreSection.classList.add('hidden');
+                if (tocExplore) tocExplore.classList.add('hidden');
+            }
+        }
+
+        // Active TOC link highlighting scroll observer
+        window.addEventListener('scroll', () => {
+            const sections = [
+                document.getElementById('sec-overview'),
+                document.getElementById('sec-map'),
+                document.getElementById('explore-section'),
+                document.getElementById('itineraries-section')
+            ];
+            
+            let currentSecId = 'sec-overview';
+            const scrollPos = window.scrollY + 180;
+            
+            sections.forEach(sec => {
+                if (sec && !sec.classList.contains('hidden') && scrollPos >= sec.offsetTop) {
+                    currentSecId = sec.id;
+                }
+            });
+            
+            document.querySelectorAll('.toc-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === `#${currentSecId}`) {
+                    link.classList.remove('text-on-surface-variant');
+                    link.classList.add('text-secondary', 'font-bold');
+                } else {
+                    link.classList.remove('text-secondary', 'font-bold');
+                    link.classList.add('text-on-surface-variant');
+                }
+            });
+        });
+
         // Fetch and show Suggested Itineraries
         try {
             const travels = await window.DataSource.getItems('travel');
@@ -301,7 +567,8 @@
             const allTrips = [...(travels || []), ...(products || [])];
 
             const matchingTrips = allTrips.filter(t => {
-                if (t.isDraft || t.status === 'hidden') return false;
+                const isDraft = t.is_published !== undefined ? !t.is_published : (t.isPublished !== undefined ? !t.isPublished : (t.isDraft || false));
+                if (isDraft || t.status === 'hidden') return false;
                 const title = (t.title || t.name || '').toLowerCase();
                 const destName = dest.name.toLowerCase();
                 return title.includes(destName) || (t.destination && t.destination.toLowerCase().includes(destName));
@@ -314,10 +581,11 @@
                     const card = document.createElement('div');
                     card.className = 'bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group';
                     
-                    const imgUrl = trip.imageUrl || (trip.itinerary && trip.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
+                    const imgUrl = trip.imageUrl || trip.image_url || (trip.itinerary && trip.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
                     const tripTitle = trip.title || trip.name;
-                    const duration = trip.durationDays || trip.duration || '10 Días';
-                    const sub = trip.destinationsSummary || trip.subtitle || '';
+                    const duration = trip.durationDays || trip.duration_days || trip.duration || '10 Días';
+                    let sub = trip.destinationsSummary || trip.destinations_summary || trip.subtitle || '';
+                    if (Array.isArray(sub)) sub = sub.join(', ');
 
                     card.innerHTML = `
                         <div class="h-56 overflow-hidden relative">
@@ -367,15 +635,25 @@
         const img = document.getElementById('lightbox-img');
         if (lightbox && img) {
             img.src = src;
-            lightbox.classList.remove('hidden');
+            lightbox.classList.remove('pointer-events-none');
+            lightbox.classList.add('opacity-100', 'pointer-events-auto');
             document.body.classList.add('overflow-hidden');
+            
+            setTimeout(() => {
+                img.classList.remove('scale-90');
+                img.classList.add('scale-100');
+            }, 10);
         }
     };
 
     window.closeMapLightbox = () => {
         const lightbox = document.getElementById('map-lightbox');
-        if (lightbox) {
-            lightbox.classList.add('hidden');
+        const img = document.getElementById('lightbox-img');
+        if (lightbox && img) {
+            img.classList.remove('scale-100');
+            img.classList.add('scale-90');
+            lightbox.classList.remove('opacity-100', 'pointer-events-auto');
+            lightbox.classList.add('opacity-0', 'pointer-events-none');
             document.body.classList.remove('overflow-hidden');
         }
     };
