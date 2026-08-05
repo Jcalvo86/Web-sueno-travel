@@ -155,6 +155,28 @@
 
 <!-- Main Content (Hidden initially) -->
 <div id="content-state" class="hidden">
+    <!-- Sticky left index sidebar -->
+    <nav class="fixed left-6 top-1/3 z-40 hidden xl:flex flex-col gap-2.5 p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-outline-variant/30 shadow-lg w-[190px] transition-all duration-300">
+        <span class="text-[10px] font-bold text-secondary tracking-widest uppercase mb-1">Índice del Viaje</span>
+        <a href="#overview-title" class="text-xs font-semibold text-primary hover:text-secondary transition-all py-1.5 px-2.5 border-l-2 border-transparent hover:border-secondary flex items-center gap-2 rounded-r-lg">
+            <span class="material-symbols-outlined text-[16px]">info</span> Resumen
+        </a>
+        <a href="#itinerary" class="text-xs font-semibold text-primary hover:text-secondary transition-all py-1.5 px-2.5 border-l-2 border-transparent hover:border-secondary flex items-center gap-2 rounded-r-lg">
+            <span class="material-symbols-outlined text-[16px]">map</span> Itinerario
+        </a>
+        <a href="#services-section" class="text-xs font-semibold text-primary hover:text-secondary transition-all py-1.5 px-2.5 border-l-2 border-transparent hover:border-secondary flex items-center gap-2 rounded-r-lg">
+            <span class="material-symbols-outlined text-[16px]">task_alt</span> Servicios
+        </a>
+        <a href="#map" class="text-xs font-semibold text-primary hover:text-secondary transition-all py-1.5 px-2.5 border-l-2 border-transparent hover:border-secondary flex items-center gap-2 rounded-r-lg">
+            <span class="material-symbols-outlined text-[16px]">explore</span> Nuestra Ruta
+        </a>
+        <a href="#gallery-section" class="text-xs font-semibold text-primary hover:text-secondary transition-all py-1.5 px-2.5 border-l-2 border-transparent hover:border-secondary flex items-center gap-2 rounded-r-lg">
+            <span class="material-symbols-outlined text-[16px]">photo_library</span> Galería
+        </a>
+        <a href="#departures-section" class="text-xs font-semibold text-primary hover:text-secondary transition-all py-1.5 px-2.5 border-l-2 border-transparent hover:border-secondary flex items-center gap-2 rounded-r-lg">
+            <span class="material-symbols-outlined text-[16px]">calendar_today</span> Salidas
+        </a>
+    </nav>
     <!-- Hero Section -->
     <header class="relative h-[53vh] w-full flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
@@ -310,6 +332,20 @@
         </div>
     </section>
 
+    <!-- Departures Section -->
+    <section class="py-24 bg-surface-container-low" id="departures-section" style="display: none;">
+        <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-display-lg text-headline-lg text-primary mb-4">Salidas Programadas</h2>
+                <p class="text-on-surface-variant max-w-xl mx-auto">Selecciona una de nuestras próximas salidas grupales exclusivas con todo incluido, o solicita un viaje a la medida.</p>
+            </div>
+            
+            <div id="departures-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Se llenará dinámicamente -->
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="py-24 px-margin-mobile">
         <div class="max-w-4xl mx-auto rounded-[2rem] overflow-hidden relative ambient-glow bg-primary-container">
@@ -370,17 +406,6 @@
         });
     };
 
-    // Sticky header
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('h-16');
-            header.classList.remove('h-20');
-        } else {
-            header.classList.add('h-20');
-            header.classList.remove('h-16');
-        }
-    });
 
     // Load Data
     const loadTripData = async () => {
@@ -872,6 +897,137 @@
                 localStorage.setItem('selectedDestination', trip.name);
             });
         }
+
+        // Render Departures
+        const renderDepartures = async (tripId) => {
+            const grid = document.getElementById('departures-grid');
+            const section = document.getElementById('departures-section');
+            if (!grid || !section) return;
+
+            grid.innerHTML = '';
+            section.style.display = 'block';
+
+            let departures = [];
+            try {
+                departures = await window.DataSource.getItems('departure');
+            } catch (err) {
+                console.error("Error loading departures:", err);
+            }
+
+            const tripDeps = departures.filter(dep => 
+                (dep.travelId === tripId || dep.travel_id === tripId) && 
+                !dep.isDraft && 
+                !dep.is_draft &&
+                dep.status !== 'closed'
+            );
+
+            const formatDate = (dateStr) => {
+                if (!dateStr) return '';
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+            };
+
+            tripDeps.forEach(dep => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-outline-variant/30 rounded-3xl p-8 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden';
+                
+                const spotsLeft = Math.max(0, (dep.capacity || 10) - (dep.passengersCount || 0));
+                let statusLabel = 'Cupos disponibles';
+                let statusColor = 'text-green-700 bg-green-50 border-green-200';
+                if (spotsLeft === 0) {
+                    statusLabel = 'Agotado';
+                    statusColor = 'text-red-700 bg-red-50 border-red-200';
+                } else if (spotsLeft <= 3) {
+                    statusLabel = `¡Últimos ${spotsLeft} cupos!`;
+                    statusColor = 'text-orange-700 bg-orange-50 border-orange-200';
+                }
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-secondary text-3xl">calendar_today</span>
+                            <span class="text-xs font-bold px-3 py-1 rounded-full border ${statusColor}">
+                                ${statusLabel}
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">
+                            ${formatDate(dep.departureDate)}
+                            ${dep.endDate ? ` al <span class="text-sm font-medium text-on-surface-variant">${formatDate(dep.endDate)}</span>` : ''}
+                        </h3>
+                        <p class="text-sm text-on-surface-variant mb-6">
+                            Capacidad total: ${dep.capacity || 10} viajeros.
+                        </p>
+                        ${dep.priceOverride ? `
+                            <div class="mb-6">
+                                <span class="text-xs text-on-surface-variant block">Precio Especial Salida:</span>
+                                <span class="text-2xl font-extrabold text-primary">USD $${dep.priceOverride}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <button onclick="localStorage.setItem('selectedDeparture', '${dep.departureDate}'); window.location.href='inicio.html#contacto'" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-secondary transition-all mt-4 text-center">
+                        Reservar esta Salida
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Card custom trip
+            const customTripCard = document.createElement('div');
+            customTripCard.className = 'bg-gradient-to-br from-tertiary-fixed/40 to-secondary-fixed/20 border border-secondary/20 rounded-3xl p-8 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden';
+            customTripCard.innerHTML = `
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="material-symbols-outlined text-secondary text-3xl">explore_nearby</span>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full border border-secondary/20 bg-secondary/5 text-secondary">
+                            100% Personalizado
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Gestiona tu propio viaje</h3>
+                    <p class="text-sm text-on-surface-variant mb-6">
+                        ¿Ninguna de estas fechas se adapta a tus planes? Diseñamos este itinerario a tu medida en la fecha que prefieras.
+                    </p>
+                </div>
+                <a href="inicio.html#contacto" class="w-full bg-secondary text-on-secondary py-3 rounded-xl font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all mt-4 text-center block">
+                    Crear viaje a medida
+                </a>
+            `;
+            grid.appendChild(customTripCard);
+        };
+        renderDepartures(trip.id);
+
+        // Setup ScrollSpy for Left Index
+        const setupScrollSpy = () => {
+            const links = document.querySelectorAll('nav.fixed.left-6 a');
+            const sections = [
+                document.getElementById('overview-title'),
+                document.getElementById('itinerary'),
+                document.getElementById('services-section'),
+                document.getElementById('map'),
+                document.getElementById('gallery-section'),
+                document.getElementById('departures-section')
+            ];
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = window.scrollY + 200;
+
+                sections.forEach(sec => {
+                    if (sec && sec.offsetTop <= scrollPos) {
+                        current = sec.id;
+                    }
+                });
+
+                links.forEach(link => {
+                    link.classList.remove('border-secondary', 'text-secondary', 'bg-tertiary-fixed/30');
+                    link.classList.add('border-transparent', 'text-primary');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.remove('border-transparent', 'text-primary');
+                        link.classList.add('border-secondary', 'text-secondary', 'bg-tertiary-fixed/30');
+                    }
+                });
+            });
+        };
+        setupScrollSpy();
 
         // Switch layouts
         document.getElementById('loading-state').classList.add('hidden');
