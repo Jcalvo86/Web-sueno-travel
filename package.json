@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "npm install --prefix controlpanel && npm run build --prefix controlpanel && cp -r controlpanel/dist/assets . && cp controlpanel/dist/controlpanel/index.html controlpanel/index.html"
+    "build": "npm install --prefix controlpanel --legacy-peer-deps && npm run build --prefix controlpanel && cp -r controlpanel/dist/assets . && cp controlpanel/dist/controlpanel/index.html controlpanel/index.html"
   },
   "devDependencies": {
     "agentation": "^3.0.2"
