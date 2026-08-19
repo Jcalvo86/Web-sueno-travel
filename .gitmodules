@@ -1,3 +1,6 @@
 [submodule "controlpanel"]
 	path = controlpanel
 	url = https://github.com/Jcalvo86/crm-controlpanel.git
+[submodule ".agents"]
+	path = .agents
+	url = https://github.com/Jcalvo86/Agents

@@ -12,93 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "secondary-fixed": "#ffddb9",
-                    "background": "#fbf9f8",
-                    "secondary-fixed-dim": "#f3bc7d",
-                    "secondary": "#7f5621",
-                    "inverse-primary": "#bbc7db",
-                    "surface": "#fbf9f8",
-                    "on-secondary-container": "#7a511c",
-                    "on-primary": "#ffffff",
-                    "tertiary-fixed-dim": "#ccc6bc",
-                    "on-background": "#1b1c1c",
-                    "primary-fixed": "#d7e3f8",
-                    "tertiary-fixed": "#e8e2d8",
-                    "primary-fixed-dim": "#bbc7db",
-                    "on-error": "#ffffff",
-                    "outline-variant": "#c5c6cc",
-                    "tertiary-container": "#2c2923",
-                    "primary": "#091524",
-                    "on-tertiary-container": "#959087",
-                    "on-primary-fixed-variant": "#3c4858",
-                    "surface-container-low": "#f5f3f3",
-                    "surface-container-highest": "#e4e2e2",
-                    "on-primary-container": "#8591a4",
-                    "surface-container-high": "#eae8e7",
-                    "on-tertiary-fixed-variant": "#4a463f",
-                    "inverse-on-surface": "#f2f0f0",
-                    "surface-container": "#efeded",
-                    "surface-bright": "#fbf9f8",
-                    "on-tertiary": "#ffffff",
-                    "error": "#ba1a1a",
-                    "on-secondary-fixed": "#2b1700",
-                    "on-error-container": "#93000a",
-                    "on-secondary": "#ffffff",
-                    "on-surface-variant": "#44474c",
-                    "outline": "#75777d",
-                    "inverse-surface": "#303030",
-                    "surface-tint": "#535f70",
-                    "secondary-container": "#ffc788",
-                    "surface-variant": "#e4e2e2",
-                    "on-tertiary-fixed": "#1e1b15",
-                    "tertiary": "#17150f",
-                    "surface-container-lowest": "#ffffff",
-                    "on-primary-fixed": "#101c2b",
-                    "primary-container": "#1e2a39",
-                    "surface-dim": "#dbd9d9",
-                    "error-container": "#ffdad6",
-                    "on-surface": "#1b1c1c",
-                    "on-secondary-fixed-variant": "#643f0a"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "margin-desktop": "80px",
-                    "container-max": "1280px",
-                    "unit": "8px",
-                    "margin-mobile": "20px",
-                    "gutter": "24px"
-            },
-            "fontFamily": {
-                    "display-lg": ["BJ Cree", "Manrope"],
-                    "label-md": ["Manrope"],
-                    "headline-lg-mobile": ["BJ Cree", "Manrope"],
-                    "body-lg": ["Plus Jakarta Sans"],
-                    "headline-lg": ["BJ Cree", "Manrope"],
-                    "body-md": ["Plus Jakarta Sans"]
-            },
-            "fontSize": {
-                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
-                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
-            }
-          },
-        },
-      }
-    </script>
+    <script src="tailwind-config.js"></script>
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -129,11 +43,13 @@
            ========================================================================== */
         .hero-slider-container {
             position: absolute;
-            inset: 0;
+            top: -15%;
+            left: 0;
             width: 100%;
-            height: 100%;
+            height: 130%;
             overflow: hidden;
             z-index: 0;
+            will-change: transform;
         }
         .hero-slide {
             position: absolute;
@@ -180,14 +96,9 @@
         }
         .visitar-destinations-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             margin-bottom: 24px;
-        }
-        @media (max-width: 640px) {
-            .visitar-destinations-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
         .visitar-dest-card {
             background: rgba(255, 255, 255, 0.05);
@@ -246,6 +157,56 @@
             color: #ffffff;
             transition: color 0.3s ease;
         }
+        
+        /* Slider de fondo para "¿Qué visitar?" */
+        .visitar-slider-container {
+            position: absolute;
+            top: -20%;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            overflow: hidden;
+            z-index: 0;
+            will-change: transform;
+        }
+        .visitar-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            z-index: 1;
+        }
+        .visitar-slide.slide-active {
+            opacity: 1;
+            z-index: 2;
+        }
+        .visitar-slide-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px);
+            transform: scale(1.06);
+            transition: filter 1.2s ease-in-out, transform 1.2s ease-in-out;
+        }
+        .slide-active .visitar-slide-bg {
+            filter: blur(0);
+            transform: scale(1.01);
+        }
+
+        /* Tarjeta Glassmorphic Premium */
+        .visitar-glass-card {
+            background: rgba(9, 21, 36, 0.45); /* Azul noche profundo con opacidad */
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            border-radius: 24px;
+        }
     </style>
     <!-- CMS/Data Source Connection Scripts -->
     <script src="controlpanel/adapters/adapter-interface.js"></script>
@@ -266,7 +227,7 @@
         
         <div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col items-center text-center">
             <div class="text-on-primary space-y-6 max-w-3xl flex flex-col items-center">
-                <img alt="Sueño Travel Logo" class="h-20 w-auto mb-4 bg-white/10 backdrop-blur-md p-4 rounded-xl" src="Imagenes/logo_suenoTravel Chile.svg"/>
+                <img alt="Sueño Travel Logo" class="h-20 w-auto mb-4 bg-white/85 backdrop-blur-md p-4 rounded-xl shadow-lg" src="Imagenes/logo_suenoTravel Chile.svg"/>
                 <h1 class="font-display-lg text-[56px] leading-[64px] font-extrabold tracking-tight">
                     Tu Próximo Destino <br/>
                     <span class="text-secondary-fixed">Comienza Aquí</span>
@@ -300,57 +261,97 @@
     </section>
     
     <!-- Experience Section: ¿Qué visitar? -->
-    <section class="bg-primary py-24">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="order-2 lg:order-1 grid grid-cols-2 gap-4">
-                    <div class="space-y-4">
-                        <div class="rounded-2xl overflow-hidden h-64 bg-white/5">
-                            <img id="visitar-img-1" class="w-full h-full object-cover transition-all duration-700" alt="Hito destacado" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD87m4Wmfj6ZphEPwOt_VHZOPZD8FrFosUqNwgPfBp1hKT81O8_7UiuCaiXu9bMnN9RTyOvGbNl5hKRefef8iL3QfvDVD9HAbLvY2A5rr3QNSSsJKgk5drr2CmsUIlishUoNOyDR7wtwPJ7vGWu_MZ74rLSGFp50WZQVdaYqGY5UgM0_gvlWcbjP3aAhGW9jsYZz63nYm4mx56haC8H3e6-kMG0JmQV2OgNFE2_NXicQTGldH5D2kZ4"/>
-                        </div>
-                        <div class="rounded-2xl overflow-hidden h-48 bg-white/5">
-                            <img id="visitar-img-2" class="w-full h-full object-cover transition-all duration-700" alt="Hito destacado" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKpuOU-Z25k5Ovr6w9iB0i3dWZ7FWzzLtr4cyr586msvEPleUvT5MrN29Kb4TbLQ9LeAog6wr-P-NQS2qlEFdJSTBh5xCVNGcujIds27H0Np5ly7uGgHs16VNcgAdMsbCvBfsg-ohwY1Xx2R9TyxELBTgepMmJa8eCph5HrzPtVZ7DqTJY1YQgnoLm2wpL4fgvbdyAW_kZGWVieVr4YNuhGSkoQm2JpK1FTSwljtY_NJ-rbbYIC9g8"/>
-                        </div>
-                    </div>
-                    <div class="pt-8 space-y-4">
-                        <div class="rounded-2xl overflow-hidden h-48 bg-white/5">
-                            <img id="visitar-img-3" class="w-full h-full object-cover transition-all duration-700" alt="Hito destacado" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwdc1ko-NLsluSmskx1Bmf6ipIa1d--LMQLjDSBMycp5DstQUXDzi0pWZrgxF6O23rUcHKTfnA-pNLDTm4Pb3lFnaATkWfp6rZA1-_yfugX1POWmIXHeOM7GcsFj81cX6wrwO21xsHSSsEc9rHBpnenOTnsHozloXgtyQlOwY8E1FP1wUnei7IwzNvISidqZh1X0w7iRmkjVw1Xvb6RVVsjj7a8DhawgtAtD3UzX33ql-1II4a_vCe"/>
-                        </div>
-                        <div class="rounded-2xl overflow-hidden h-64 bg-white/5">
-                            <img id="visitar-img-4" class="w-full h-full object-cover transition-all duration-700" alt="Hito destacado" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu74geOeNWsQGhRD3PauI02I--clj6hlK7Pn7XmQYjNNKpCdecwkTi5vanefw8PIvx7LFvg48LqhcVXfEmfcV_XyM3bycgKg9DezNRz6mwlMWpz07OwEMnZ5S2jn7lCfGZpzTrIvoD52LTKlc5HoTRP8GfhZl48RXi8LNlHL6biXuPQXf6AIi2FEsVPO1HUPGikL9HljdZk9zS8l5Fc0ZZjui6Rsd4x5JiTmVT4Zm7TfGEBH4a9Yfe"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-1 lg:order-2 text-on-primary space-y-8">
-                    <h2 class="font-display-lg text-display-lg">¿Qué visitar?</h2>
-                    <p class="text-on-primary-container text-lg">No solo vendemos viajes, creamos legados. Estos son los hitos que transformarán tu visión del mundo.</p>
-                    
-                    <!-- Botonera -->
-                    <div class="visitar-destinations-grid">
-                        <div class="visitar-dest-card active" data-visitar="egipto" onclick="selectVisitarCountry('egipto')">
-                            <div class="dest-icon"><img src="Imagenes/Egipto.png" alt="Egipto"></div>
-                            <div class="dest-name">Egipto</div>
-                        </div>
-                        <div class="visitar-dest-card" data-visitar="jordania" onclick="selectVisitarCountry('jordania')">
-                            <div class="dest-icon"><img src="Imagenes/Jordania.png" alt="Jordania"></div>
-                            <div class="dest-name">Jordania</div>
-                        </div>
-                        <div class="visitar-dest-card" data-visitar="grecia" onclick="selectVisitarCountry('grecia')">
-                            <div class="dest-icon"><img src="Imagenes/Grecia.png" alt="Grecia"></div>
-                            <div class="dest-name">Grecia</div>
-                        </div>
-                        <div class="visitar-dest-card" data-visitar="turquia" onclick="selectVisitarCountry('turquia')">
-                            <div class="dest-icon"><img src="Imagenes/Turquia.png" alt="Turquía"></div>
-                            <div class="dest-name">Turquía</div>
-                        </div>
-                    </div>
-
-                    <div id="visitar-list-container" class="space-y-6">
-                        <!-- Content loaded dynamically -->
-                    </div>
-                </div>
+    <section id="que-visitar" class="relative overflow-hidden py-24 bg-[#091524] lg:py-0 lg:h-[850px] flex items-center">
+        <!-- Parallax Background Slider -->
+        <div id="visitar-parallax-bg" class="visitar-slider-container">
+            <div id="visitar-bg-1" class="visitar-slide slide-active">
+                <div class="visitar-slide-bg" style="background-image: url('Imagenes/egipto5.webp');"></div>
+            </div>
+            <div id="visitar-bg-2" class="visitar-slide">
+                <div class="visitar-slide-bg"></div>
             </div>
         </div>
+        <!-- Static overlay dark gradient to keep contrast high under the text sidebar -->
+        <div class="absolute inset-0 bg-gradient-to-l from-black/70 via-black/20 to-transparent pointer-events-none z-1"></div>
+
+        <!-- Glassmorphism Card (Mobile: standard rounded box / Desktop: absolute right-aligned sidebar) -->
+        <div class="visitar-glass-card p-6 md:p-10 lg:p-12 max-w-md w-full text-on-primary space-y-8 relative z-10 mx-auto lg:mx-0 lg:absolute lg:inset-y-0 lg:right-0 lg:w-[38%] lg:max-w-none lg:rounded-none lg:rounded-l-[32px] lg:border-y-0 lg:border-r-0 lg:flex lg:flex-col lg:justify-center lg:overflow-y-auto">
+            <h2 class="font-display-lg text-display-lg text-white">¿Qué visitar?</h2>
+            <p class="text-[#ffddb9] text-lg font-medium opacity-90">No solo vendemos viajes, creamos legados. Estos son los hitos que transformarán tu visión del mundo.</p>
+            
+            <!-- Botonera -->
+            <div class="visitar-destinations-grid">
+                <div class="visitar-dest-card active" data-visitar="egipto" onclick="selectVisitarCountry('egipto')">
+                    <div class="dest-icon"><img src="Imagenes/Egipto.png" alt="Egipto"></div>
+                    <div class="dest-name">Egipto</div>
+                </div>
+                <div class="visitar-dest-card" data-visitar="jordania" onclick="selectVisitarCountry('jordania')">
+                    <div class="dest-icon"><img src="Imagenes/Jordania.png" alt="Jordania"></div>
+                    <div class="dest-name">Jordania</div>
+                </div>
+                <div class="visitar-dest-card" data-visitar="grecia" onclick="selectVisitarCountry('grecia')">
+                    <div class="dest-icon"><img src="Imagenes/Grecia.png" alt="Grecia"></div>
+                    <div class="dest-name">Grecia</div>
+                </div>
+                <div class="visitar-dest-card" data-visitar="turquia" onclick="selectVisitarCountry('turquia')">
+                    <div class="dest-icon"><img src="Imagenes/Turquia.png" alt="Turquía"></div>
+                    <div class="dest-name">Turquía</div>
+                </div>
+            </div>
+
+            <div id="visitar-list-container" class="space-y-6">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Specialist Profile Section: Jessica Lagos -->
+    <section class="py-24 bg-[#FBF9F8] border-t border-[#CBC2B9]/20 relative overflow-hidden">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                
+                <!-- Columna Izquierda: Tarjeta de Presentación Visual -->
+                <div class="lg:col-span-5 flex justify-center lg:justify-end order-2 lg:order-1">
+                    <div class="relative w-full max-w-[380px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl group">
+                        <!-- Foto de Jessica -->
+                        <img src="Imagenes/JessicaLagos.jfif" alt="Jessica Lagos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+                        
+                        <!-- Etiqueta con el nombre (Superpuesta en la esquina inferior izquierda) -->
+                        <div class="absolute bottom-14 left-0 bg-white pr-12 pl-8 py-4 shadow-lg rounded-r-xl border-y border-r border-[#CBC2B9]/30">
+                            <span class="font-display-lg text-2xl font-bold text-[#7F5621] block">Jessica Lagos</span>
+                        </div>
+                        
+                        <!-- Botón Escríbeme -->
+                        <a href="mailto:contacto@suenotravel.cl" class="absolute bottom-0 left-0 bg-[#17150F] hover:bg-[#252219] text-[#FBF9F8] transition-colors py-4 px-8 pr-12 flex items-center gap-3 text-sm font-bold uppercase tracking-wider rounded-tr-xl border-t border-r border-white/10">
+                            <span class="material-symbols-outlined text-[#F3BC7D] text-lg">mail</span>
+                            Escríbeme
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Columna Derecha: Mensaje y Acciones -->
+                <div class="lg:col-span-7 space-y-6 order-1 lg:order-2 text-center lg:text-left">
+                    <span class="text-secondary text-sm font-bold tracking-[0.2em] uppercase block">Empieza a planear tu viaje</span>
+                    <h2 class="text-3xl md:text-5xl font-display-lg text-primary font-bold leading-tight">
+                        Habla con Jessica y <br class="hidden md:inline"/>diseña tu viaje soñado
+                    </h2>
+                    <p class="text-[#32291F]/80 text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        Nuestra experta en destinos está lista para ayudarte a diseñar el itinerario perfecto de acuerdo a tus preferencias, tiempos y presupuesto.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+                        <a href="#contacto" class="bg-[#7F5621] text-white hover:bg-[#ffddb9] hover:text-primary transition-all font-bold px-8 py-4 rounded-lg tracking-wider text-sm uppercase inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200">
+                            Realizar una consulta
+                        </a>
+                        <a href="conoceme.html" class="bg-[#17150F] text-white hover:bg-[#252219] transition-all font-bold px-8 py-4 rounded-lg tracking-wider text-sm uppercase inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200">
+                            Conoce a Jessica
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Abstract background shape -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
     </section>
     
     <!-- Inquiry Section: Interactive Form -->
@@ -501,10 +502,10 @@
     const VISITAR_DATA = {
         egipto: {
             images: [
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuD87m4Wmfj6ZphEPwOt_VHZOPZD8FrFosUqNwgPfBp1hKT81O8_7UiuCaiXu9bMnN9RTyOvGbNl5hKRefef8iL3QfvDVD9HAbLvY2A5rr3QNSSsJKgk5drr2CmsUIlishUoNOyDR7wtwPJ7vGWu_MZ74rLSGFp50WZQVdaYqGY5UgM0_gvlWcbjP3aAhGW9jsYZz63nYm4mx56haC8H3e6-kMG0JmQV2OgNFE2_NXicQTGldH5D2kZ4',
-                'https://images.unsplash.com/photo-1503177119275-0aa32b31d468?q=80&w=600',
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuCzJKKMVpsC8SuetoB85b3hzk6-9QJk4sNdXydKHDQzCyzsdMdQT6COq2zomuqlzkDGniahhdu5K0b6ErODW7p4lsrcM0YKDBAYbZnUT98ZtFVtC_Gz14XAd4Tb4Mzx7HCCkOx227Mn8R64XmoHFWVmU71tbzrtwY-LR7rfnKqYoZtO2SUVHBGAHu6t87QdhRhpi_b4no8-m8hnl7-TZOdXYf8V3-jh0ERJjGfXLni7f5Pd-qYUe3AL',
-                'https://images.unsplash.com/photo-1600577916048-804c9191e36c?q=80&w=600'
+                'Imagenes/egipto5.webp',
+                'Imagenes/egipto6.jpg',
+                'Imagenes/egipto7.webp',
+                'Imagenes/egipto8.jpg'
             ],
             locations: [
                 {
@@ -526,10 +527,10 @@
         },
         jordania: {
             images: [
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuARW6O-iYW0cCE6qywTlen-VnUlwIUb5izt7istCid-AL43a3K2iVhX-1iaWdiN9go_61I1HjP2wmx0ESzzU76cKCqu_NGztzUyHashzvY7yORPqLjSACCgyTe00Bv3SGaolY5usEnDlMA22mrWvyIH3qLiNCAND0fPv7sE7aHpcjejcS39u2EH1RSrxy7cWo384KDgmKOTuV1sFuWOQePMUmXENlA8p4n97TgP78Y_2rDr8TGlO95v',
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuAu74geOeNWsQGhRD3PauI02I--clj6hlK7Pn7XmQYjNNKpCdecwkTi5vanefw8PIvx7LFvg48LqhcVXfEmfcV_XyM3bycgKg9DezNRz6mwlMWpz07OwEMnZ5S2jn7lCfGZpzTrIvoD52LTKlc5HoTRP8GfhZl48RXi8LNlHL6biXuPQXf6AIi2FEsVPO1HUPGikL9HljdZk9zS8l5Fc0ZZjui6Rsd4x5JiTmVT4Zm7TfGEBH4a9Yfe',
-                'https://images.unsplash.com/photo-1546708770-5895441e17f8?q=80&w=600',
-                'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600'
+                'Imagenes/jordania-alex-vasey.webp',
+                'Imagenes/jordania-emile-guillemot.webp',
+                'Imagenes/jordania-hisham-zayadneh.webp',
+                'Imagenes/jordania-juli-kosolapova.webp'
             ],
             locations: [
                 {
@@ -553,8 +554,8 @@
             images: [
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuAwdc1ko-NLsluSmskx1Bmf6ipIa1d--LMQLjDSBMycp5DstQUXDzi0pWZrgxF6O23rUcHKTfnA-pNLDTm4Pb3lFnaATkWfp6rZA1-_yfugX1POWmIXHeOM7GcsFj81cX6wrwO21xsHSSsEc9rHBpnenOTnsHozloXgtyQlOwY8E1FP1wUnei7IwzNvISidqZh1X0w7iRmkjVw1Xvb6RVVsjj7a8DhawgtAtD3UzX33ql-1II4a_vCe',
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuBRPNyuNnsvszdmjNwdzlgJZch5nLMNYdygJFrwX6MkTGbQ1--zQZ3gtYkh9xhP3A_uIsRRw_XVrGg9xVelBtyqHkVQ0YlCZ2Icf3Gt8eHOC7xyzjCVimJZDYfl0cLgooVTtoQNP__K-b4Mb1GRvxOieqjqV5NIS1UOAsO1ikMYPYZU6shDczugSPq5VmF8ZyS_hYuICiRFLYam8KZSxLMOTk03DaQPdnen_6_FHl1LL89KVLDtWfSV',
-                'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=600',
-                'https://images.unsplash.com/photo-1601582589907-f92af5ed9db8?q=80&w=600'
+                'Imagenes/grecia-constantinos-kollias.webp',
+                'Imagenes/grecia-johnny-africa.webp'
             ],
             locations: [
                 {
@@ -578,7 +579,7 @@
             images: [
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKpuOU-Z25k5Ovr6w9iB0i3dWZ7FWzzLtr4cyr586msvEPleUvT5MrN29Kb4TbLQ9LeAog6wr-P-NQS2qlEFdJSTBh5xCVNGcujIds27H0Np5ly7uGgHs16VNcgAdMsbCvBfsg-ohwY1Xx2R9TyxELBTgepMmJa8eCph5HrzPtVZ7DqTJY1YQgnoLm2wpL4fgvbdyAW_kZGWVieVr4YNuhGSkoQm2JpK1FTSwljtY_NJ-rbbYIC9g8',
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB',
-                'https://images.unsplash.com/photo-1527838832700-50592524df7e?q=80&w=600',
+                'Imagenes/turquia-mar-cerdeira.webp',
                 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=600'
             ],
             locations: [
@@ -601,6 +602,50 @@
         }
     };
 
+    // Dynamic background cycle variables for "¿Qué visitar?"
+    let activeBgIndex = 1;
+    let currentCountry = 'egipto';
+    let currentPhotoIdx = 0;
+    let bgCycleInterval = null;
+
+    function transitionBackground(newImgUrl) {
+        const slide1 = document.getElementById('visitar-bg-1');
+        const slide2 = document.getElementById('visitar-bg-2');
+        if (!slide1 || !slide2) return;
+        
+        if (activeBgIndex === 1) {
+            const bg2 = slide2.querySelector('.visitar-slide-bg');
+            if (bg2) bg2.style.backgroundImage = `url('${newImgUrl}')`;
+            slide2.classList.add('slide-active');
+            slide1.classList.remove('slide-active');
+            activeBgIndex = 2;
+        } else {
+            const bg1 = slide1.querySelector('.visitar-slide-bg');
+            if (bg1) bg1.style.backgroundImage = `url('${newImgUrl}')`;
+            slide1.classList.add('slide-active');
+            slide2.classList.remove('slide-active');
+            activeBgIndex = 1;
+        }
+    }
+
+    function startBgCycle(country) {
+        if (bgCycleInterval) clearInterval(bgCycleInterval);
+        currentCountry = country;
+        currentPhotoIdx = 0;
+        
+        const data = VISITAR_DATA[country];
+        if (!data || !data.images || data.images.length === 0) return;
+        
+        // Transicionar a la primera imagen inmediatamente
+        transitionBackground(data.images[0]);
+        
+        // Rotar imágenes del destino activo cada 6 segundos
+        bgCycleInterval = setInterval(() => {
+            currentPhotoIdx = (currentPhotoIdx + 1) % data.images.length;
+            transitionBackground(data.images[currentPhotoIdx]);
+        }, 6000);
+    }
+
     function selectVisitarCountry(country) {
         document.querySelectorAll('.visitar-dest-card').forEach(card => {
             if (card.getAttribute('data-visitar') === country) {
@@ -613,16 +658,7 @@
         const data = VISITAR_DATA[country];
         if (!data) return;
 
-        for (let i = 0; i < 4; i++) {
-            const imgEl = document.getElementById(`visitar-img-${i + 1}`);
-            if (imgEl && data.images[i]) {
-                imgEl.style.opacity = '0.3';
-                setTimeout(() => {
-                    imgEl.src = data.images[i];
-                    imgEl.style.opacity = '1';
-                }, 200);
-            }
-        }
+        startBgCycle(country);
 
         const listContainer = document.getElementById('visitar-list-container');
         if (listContainer) {
@@ -640,9 +676,40 @@
         }
     }
 
-    // Initialize the default country (egipto) on load
+    // Inicializar el Parallax para "¿Qué visitar?"
+    const initQueVisitarParallax = () => {
+        const section = document.getElementById('que-visitar');
+        const bgContainer = document.getElementById('visitar-parallax-bg');
+        if (!section || !bgContainer) return;
+        
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const rect = section.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    if (rect.top < windowHeight && rect.bottom > 0) {
+                        const scrolledDistance = windowHeight - rect.top;
+                        const totalDistance = windowHeight + rect.height;
+                        const scrollPercent = scrolledDistance / totalDistance;
+                        
+                        const maxTranslateY = 20; // Rango de movimiento de -20% a 20%
+                        const translateY = (scrollPercent - 0.5) * maxTranslateY * 2;
+                        bgContainer.style.transform = `translate3d(0, ${translateY}%, 0)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    };
+
+    // Initialize the default country (egipto) on load and parallax
     document.addEventListener('DOMContentLoaded', () => {
         selectVisitarCountry('egipto');
+        initQueVisitarParallax();
     });
 
     // Helper functions for interactive forms
@@ -764,7 +831,7 @@
                             id: item.id,
                             title: item.title,
                             desc: item.description || (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : ''),
-                            imgUrl: item.imageUrl || item.image_url || (item.itinerary && item.itinerary[0]?.imageUrl) || '',
+                            imgUrl: item.headerImageUrl || item.header_image_url || item.imageUrl || item.image_url || (item.itinerary && item.itinerary[0]?.imageUrl) || '',
                             isDraft: isDraft
                         };
                     });
@@ -780,7 +847,7 @@
                     id: item.id,
                     title: item.name,
                     desc: item.subtitle || item.overview || '',
-                    imgUrl: item.imageUrl || '',
+                    imgUrl: item.headerImageUrl || item.header_image_url || item.imageUrl || '',
                     isDraft: item.isDraft || item.status === 'hidden'
                 }));
             }
@@ -864,7 +931,7 @@
     // ==========================================================================
     const HERO_SLIDES = [
         {
-            bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCzJKKMVpsC8SuetoB85b3hzk6-9QJk4sNdXydKHDQzCyzsdMdQT6COq2zomuqlzkDGniahhdu5K0b6ErODW7p4lsrcM0YKDBAYbZnUT98ZtFVtC_Gz14XAd4Tb4Mzx7HCCkOx227Mn8R64XmoHFWVmU71tbzrtwY-LR7rfnKqYoZtO2SUVHBGAHu6t87QdhRhpi_b4no8-m8hnl7-TZOdXYf8V3-jh0ERJjGfXLni7f5Pd-qYUe3AL' // Egipto (Giza)
+            bg: 'Imagenes/Egipto1.webp' // Egipto (Giza)
         },
         {
             bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARW6O-iYW0cCE6qywTlen-VnUlwIUb5izt7istCid-AL43a3K2iVhX-1iaWdiN9go_61I1HjP2wmx0ESzzU76cKCqu_NGztzUyHashzvY7yORPqLjSACCgyTe00Bv3SGaolY5usEnDlMA22mrWvyIH3qLiNCAND0fPv7sE7aHpcjejcS39u2EH1RSrxy7cWo384KDgmKOTuV1sFuWOQePMUmXENlA8p4n97TgP78Y_2rDr8TGlO95v' // Jordania (Petra)
@@ -873,7 +940,7 @@
             bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBRPNyuNnsvszdmjNwdzlgJZch5nLMNYdygJFrwX6MkTGbQ1--zQZ3gtYkh9xhP3A_uIsRRw_XVrGg9xVelBtyqHkVQ0YlCZ2Icf3Gt8eHOC7xyzjCVimJZDYfl0cLgooVTtoQNP__K-b4Mb1GRvxOieqjqV5NIS1UOAsO1ikMYPYZU6shDczugSPq5VmF8ZyS_hYuICiRFLYam8KZSxLMOTk03DaQPdnen_6_FHl1LL89KVLDtWfSV' // Grecia (Santorini)
         },
         {
-            bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB' // Turquía (Capadocia)
+            bg: 'Imagenes/Sueno-travel-4.webp' // Turquía (Capadocia)
         }
     ];
 
@@ -925,6 +992,28 @@
     };
 
     initHeroSlider();
+
+    // Parallax effect for the hero slider background
+    const initHeroParallax = () => {
+        const container = document.getElementById('hero-slider-container');
+        if (!container) return;
+        
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+                    if (scrolled < window.innerHeight) {
+                        container.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    };
+    initHeroParallax();
 </script>
 </body>
 </html>

@@ -10,35 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#0A1524",
-              "secondary": "#C59358",
-              "background": "#FAF8F5",
-              "surface": "#FFFFFF",
-              "on-surface": "#1F2937",
-              "on-surface-variant": "#4B5563",
-              "outline-variant": "#E5E7EB",
-              "secondary-fixed-dim": "#D6A973",
-              "tertiary-fixed": "#F3EFE9"
-            },
-            fontFamily: {
-              "display-lg": ["BJ Cree", "Manrope", "sans-serif"],
-              "body-md": ["Plus Jakarta Sans", "sans-serif"],
-              "label-md": ["Manrope", "sans-serif"]
-            },
-            spacing: {
-              "margin-desktop": "80px",
-              "margin-mobile": "20px",
-              "container-max": "1280px"
-            }
-          }
-        }
-      }
-    </script>
+    <script src="tailwind-config.js"></script>
     <style>
         .glass-panel {
             background: rgba(255, 255, 255, 0.85);
@@ -581,7 +553,7 @@
                     const card = document.createElement('div');
                     card.className = 'bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group';
                     
-                    const imgUrl = trip.imageUrl || trip.image_url || (trip.itinerary && trip.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
+                    const imgUrl = trip.headerImageUrl || trip.header_image_url || trip.imageUrl || trip.image_url || (trip.itinerary && trip.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
                     const tripTitle = trip.title || trip.name;
                     const duration = trip.durationDays || trip.duration_days || trip.duration || '10 Días';
                     let sub = trip.destinationsSummary || trip.destinations_summary || trip.subtitle || '';
@@ -625,7 +597,7 @@
             loader.innerHTML = `
                 <span class="material-symbols-outlined text-red-500 text-5xl">error</span>
                 <p class="text-on-surface font-semibold text-lg mt-2">${message}</p>
-                <a href="inicio.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg">Volver al inicio</a>
+                <a href="index.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg">Volver al inicio</a>
             `;
         }
     };

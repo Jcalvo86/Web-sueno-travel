@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     headerContainer.innerHTML = `
     <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-white/80 backdrop-blur-xl shadow-sm border-b border-outline-variant/10">
         <div class="flex items-center gap-3">
-            <a href="inicio.html" class="flex items-center gap-3">
+            <a href="index.html" class="flex items-center gap-3">
                 <img alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
             </a>
         </div>
@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <a id="nav-nosotros" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="sobre-nosotros.html">Sobre Nosotros</a>
+            <a id="nav-conoceme" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="conoceme.html">Conóceme</a>
         </nav>
         <div class="flex items-center gap-4">
-            <a href="inicio.html#contacto" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/95 text-xs md:text-sm font-bold">
+            <a href="index.html#contacto" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/95 text-xs md:text-sm font-bold">
                 Contactar
             </a>
             <!-- Mobile Menu Button -->
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a id="mobile-nav-turquia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=turquia">Turquía</a>
                 </div>
                 <a id="mobile-nav-nosotros" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-t border-outline-variant/10 pt-4" href="sobre-nosotros.html">Sobre Nosotros</a>
+                <a id="mobile-nav-conoceme" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-t border-outline-variant/10 pt-4" href="conoceme.html">Conóceme</a>
             </nav>
         </div>
     </div>
@@ -95,6 +97,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mobileNavNosotros) {
                 mobileNavNosotros.classList.remove('text-on-surface-variant');
                 mobileNavNosotros.classList.add('text-secondary', 'font-bold');
+            }
+        } else if (
+            pathname.includes('conoceme.html') || 
+            pathname.includes('egipto-magico.html') || 
+            pathname.includes('turquia.html') || 
+            pathname.includes('viajar-en-grupo.html')
+        ) {
+            const navConoceme = document.getElementById('nav-conoceme');
+            const mobileNavConoceme = document.getElementById('mobile-nav-conoceme');
+            if (navConoceme) {
+                navConoceme.classList.remove('text-on-surface-variant');
+                navConoceme.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
+            }
+            if (mobileNavConoceme) {
+                mobileNavConoceme.classList.remove('text-on-surface-variant');
+                mobileNavConoceme.classList.add('text-secondary', 'font-bold');
             }
         }
     }

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sueño Travel | En Construcción - Viajes a Egipto, Jordania, Grecia y Turquía</title>
+  <meta name="description"
+    content="Estamos preparando la nueva experiencia de viaje de Sueño Travel. Pronto podrás viajar a Egipto, Jordania, Grecia y Turquía desde Chile. Contáctanos mediante nuestro formulario.">
+  <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Urbanist:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="construction-page">
+
+  <!-- Background Overlays for smooth crossfade -->
+  <div id="bg-overlay-1" class="bg-overlay active"
+    style="background: linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed; background-size: cover;">
+  </div>
+  <div id="bg-overlay-2" class="bg-overlay"></div>
+
+  <main class="construction-container">
+    <!-- Columna Izquierda: Información de la marca -->
+    <div class="info-column">
+      <div class="logo-container">
+        <img src="Imagenes/logo_suenoTravel Chile.svg" alt="Sueño Travel Chile" class="logo-img">
+      </div>
+      <h1>Estamos Diseñando tu <span>Próximo Destino</span></h1>
+      <p class="subtitle">
+        Muy pronto podrás explorar las mejores experiencias y paquetes turísticos de forma personalizada hacia
+        <strong>Egipto, Jordania, Grecia y Turquía</strong> desde Chile.
+      </p>
+    </div>
+
+    <!-- Columna Derecha: Panel Interactivo Glassmorphic -->
+    <div class="panel-column">
+      <div class="main-card" id="mainCard">
+
+        <h2 class="contact-form-title">¿Planeas viajar pronto?</h2>
+
+        <!-- Destination Showcase -->
+        <div class="destinations-grid">
+          <div class="dest-card" data-country="egipto" onclick="selectCountry('egipto')">
+            <div class="dest-icon"><img src="Imagenes/Egipto.png" alt="Egipto"></div>
+            <div class="dest-name">Egipto</div>
+          </div>
+          <div class="dest-card" data-country="jordania" onclick="selectCountry('jordania')">
+            <div class="dest-icon"><img src="Imagenes/Jordania.png" alt="Jordania"></div>
+            <div class="dest-name">Jordania</div>
+          </div>
+          <div class="dest-card" data-country="grecia" onclick="selectCountry('grecia')">
+            <div class="dest-icon"><img src="Imagenes/Grecia.png" alt="Grecia"></div>
+            <div class="dest-name">Grecia</div>
+          </div>
+          <div class="dest-card" data-country="turquia" onclick="selectCountry('turquia')">
+            <div class="dest-icon"><img src="Imagenes/Turquia.png" alt="Turquía"></div>
+            <div class="dest-name">Turquía</div>
+          </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-form-section">
+
+          <p class="contact-form-subtitle">Déjanos tu contacto e indícanos qué te gustaría cotizar.</p>
+
+          <form id="constructionForm" onsubmit="handleSubmit(event)">
+            <!-- Name and Email in one line -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="clientName">Nombre Completo *</label>
+                <input type="text" id="clientName" class="form-control" placeholder="Ej: Juan Pérez" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="clientEmail">Correo Electrónico *</label>
+                <input type="email" id="clientEmail" class="form-control" placeholder="Ej: juan@example.com" required>
+              </div>
+            </div>
+
+            <!-- Text Area below it -->
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label class="form-label" for="clientMessage">¿Qué información te gustaría recibir? *</label>
+              <textarea id="clientMessage" class="form-control" rows="4"
+                placeholder="Quiero información de viajes a Egipto, Jordania, Grecia y Turquía desde Chile..."
+                required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit-btn">
+              <i class="fa-regular fa-paper-plane"></i> Enviar Solicitud de Información
+            </button>
+          </form>
+
+          <div class="alternative-contact">
+            O si prefieres, escríbenos directamente a <a
+              href="mailto:contacto@suenotravel.cl?subject=Consulta%20de%20Viaje%20-%20Sueño%20Travel">contacto@suenotravel.cl</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- Columna Izquierda: Brand -->
+      <div class="footer-brand">
+        <img src="Imagenes/logo_suenoTravel Chile.svg" alt="Sueño Travel Logo" class="footer-logo">
+        <p class="footer-description">
+          Sueño Travel es tu puerta a experiencias únicas alrededor del mundo. Con viajes a medida, atención personalizada y un equipo apasionado por el turismo, hacemos realidad el viaje de tus sueños, combinando confort, cultura y aventura en cada destino.
+        </p>
+      </div>
+
+      <!-- Columna Derecha: Síguenos y Contacto -->
+      <div class="footer-contact-column">
+        <h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/ofertasegipto/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="social-icon facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/travelegipto/" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.tripadvisor.com/Attraction_Review-g294205-d17582622-Reviews-Sueno_Travel-Luxor_Nile_River_Valley.html" target="_blank" rel="noopener noreferrer" class="social-icon tripadvisor" aria-label="Tripadvisor"><i class="fa-brands fa-tripadvisor"></i></a>
+        </div>
+        <div class="contact-info">
+          <a href="https://wa.me/201110572308" target="_blank" rel="noopener noreferrer" class="contact-info-item">
+            <i class="fa-solid fa-phone"></i> +20 111 057 2308
+          </a>
+          <a href="mailto:contacto@suenotravel.cl" class="contact-info-item">
+            <i class="fa-regular fa-envelope"></i> contacto@suenotravel.cl
+          </a>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="copyright">
+      Copyright &copy; 2025 Sueño Travel. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- Form Handler Script -->
+  <script>
+    // Configuración de fondos y placeholders para cada país
+    const countryData = {
+      egipto: {
+        background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop')",
+        placeholder: "Me gustaría recibir información para un viaje a Egipto: cotizar cruceros por el Nilo, visitas a las Pirámides y templos de Luxor..."
+      },
+      jordania: {
+        background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1589825274556-94746a018766?q=80&w=1920&auto=format&fit=crop')",
+        placeholder: "Me gustaría recibir información para viajar a Jordania: cotizar tours a Petra, el desierto de Wadi Rum y flotar en el Mar Muerto..."
+      },
+      grecia: {
+        background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1920&auto=format&fit=crop')",
+        placeholder: "Me gustaría recibir información para un viaje a Grecia: cotizar visitas a Atenas y las islas de Mykonos y Santorini..."
+      },
+      turquia: {
+        background: "linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=1920&auto=format&fit=crop')",
+        placeholder: "Me gustaría recibir información para viajar a Turquía: cotizar tours en Estambul, paseos en globo por Capadocia y las piscinas de Pamukkale..."
+      }
+    };
+
+    let selectedCountry = null;
+    let slideshowInterval = null;
+    let currentBgIndex = 0;
+    let typingInterval = null;
+
+    function changeBackground(newBg) {
+      const bg1 = document.getElementById('bg-overlay-1');
+      const bg2 = document.getElementById('bg-overlay-2');
+      if (!bg1 || !bg2) return;
+
+      const activeBg = bg1.classList.contains('active') ? bg1 : bg2;
+      const inactiveBg = activeBg === bg1 ? bg2 : bg1;
+
+      inactiveBg.style.background = newBg + " no-repeat center center fixed";
+      inactiveBg.style.backgroundSize = "cover";
+
+      inactiveBg.classList.add('active');
+      activeBg.classList.remove('active');
+    }
+
+    function startSlideshow() {
+      if (slideshowInterval) return;
+      slideshowInterval = setInterval(() => {
+        currentBgIndex = (currentBgIndex + 1) % backgroundsList.length;
+        changeBackground(backgroundsList[currentBgIndex]);
+      }, 5000);
+    }
+
+    function stopSlideshow() {
+      if (slideshowInterval) {
+        clearInterval(slideshowInterval);
+        slideshowInterval = null;
+      }
+    }
+
+    function typePlaceholder(textarea, targetText) {
+      if (!textarea) return;
+
+      if (typingInterval) {
+        clearInterval(typingInterval);
+      }
+
+      textarea.placeholder = "";
+      let index = 0;
+
+      typingInterval = setInterval(() => {
+        if (index < targetText.length) {
+          textarea.placeholder += targetText.charAt(index);
+          index++;
+        } else {
+          clearInterval(typingInterval);
+          typingInterval = null;
+        }
+      }, 15);
+    }
+
+    function checkDeviceMode() {
+      if (window.innerWidth <= 768) {
+        startSlideshow();
+      } else {
+        stopSlideshow();
+        if (selectedCountry === null) {
+          changeBackground(backgroundsList[0]);
+        } else {
+          const data = countryData[selectedCountry];
+          if (data) {
+            changeBackground(data.background);
+          }
+        }
+      }
+    }
+
+    function selectCountry(country) {
+      if (window.innerWidth <= 768) return;
+
+      const cards = document.querySelectorAll('.dest-card');
+      const textarea = document.getElementById('clientMessage');
+      const favicon = document.getElementById('dynamic-favicon');
+
+      // Si el país cliqueado ya está seleccionado, deseleccionar
+      if (selectedCountry === country) {
+        selectedCountry = null;
+        cards.forEach(card => card.classList.remove('active'));
+
+        changeBackground("linear-gradient(to bottom, rgba(55, 94, 119, 0.8) 0%, rgba(50, 41, 31, 0.5) 55%, rgba(30, 24, 18, 0.92) 100%), url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920&auto=format&fit=crop')");
+
+        typePlaceholder(textarea, "Quiero información de viajes a Egipto, Jordania, Grecia y Turquía desde Chile...");
+
+        if (favicon) {
+          favicon.setAttribute('href', 'Imagenes/Favicon.png');
+        }
+        return;
+      }
+
+      selectedCountry = country;
+
+      // Cambiar clases activas
+      cards.forEach(card => {
+        if (card.getAttribute('data-country') === country) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+
+      // Cambiar fondo de body y placeholder de textarea con efecto máquina de escribir
+      const data = countryData[country];
+      if (data) {
+        changeBackground(data.background);
+        typePlaceholder(textarea, data.placeholder);
+      }
+
+      // Cambiar favicon dinámicamente
+      if (favicon) {
+        const countryFavicons = {
+          egipto: 'Egipto.png',
+          jordania: 'Jordania.png',
+          grecia: 'Grecia.png',
+          turquia: 'Turquia.png'
+        };
+        const fileName = countryFavicons[country];
+        if (fileName) {
+          favicon.setAttribute('href', `Imagenes/${fileName}`);
+        } else {
+          favicon.setAttribute('href', 'Imagenes/Favicon.png');
+        }
+      }
+    }
+
+    // Iniciar control y eventos
+    checkDeviceMode();
+    window.addEventListener('resize', checkDeviceMode);
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('clientName').value;
+      const email = document.getElementById('clientEmail').value;
+      const message = document.getElementById('clientMessage').value;
+
+      if (!name || !email || !message) return;
+
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnContent = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+      try {
+        const response = await fetch('/api/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message })
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al enviar la solicitud.');
+        }
+
+        const card = document.getElementById('mainCard');
+        card.innerHTML = `
+        <div style="animation: fadeInUp 0.6s ease-out; padding: 30px 10px; text-align: center;">
+          <div style="width: 80px; height: 80px; background: rgba(15, 118, 110, 0.1); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 24px auto; border: 1px solid rgba(15, 118, 110, 0.2);">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.25rem; color: var(--text-dark); margin-bottom: 16px;">¡Solicitud Recibida!</h2>
+          <p style="font-size: 1.15rem; color: #334155; max-width: 600px; margin: 0 auto 24px auto; line-height: 1.6; font-weight: 500;">
+            Gracias por contactarnos, <strong>${name}</strong>. Hemos registrado tu consulta.
+          </p>
+          <p style="font-size: 1rem; color: var(--text-gray); max-width: 500px; margin: 0 auto 36px auto; line-height: 1.6; font-weight: 500;">
+            Uno de nuestros asesores expertos revisará tus requerimientos y te contactará a la brevedad al correo <strong>${email}</strong>.
+          </p>
+          <a href="index.html" class="btn btn-primary" style="padding: 12px 32px; border-radius: 30px;">
+            <i class="fa-solid fa-arrow-rotate-left"></i> Volver a empezar
+          </a>
+        </div>
+        `;
+      } catch (err) {
+        alert('Ocurrió un error al enviar tu consulta. Por favor, intenta de nuevo o escríbenos directamente.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnContent;
+      }
+    }
+  </script>
+</body>
+
+</html>

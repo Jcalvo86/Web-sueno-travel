@@ -47,93 +47,7 @@
             100% { background-position: -200% 0; }
         }
     </style>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "tertiary-fixed-dim": "#ccc6bc",
-                    "primary": "#091524",
-                    "outline-variant": "#c5c6cc",
-                    "error": "#ba1a1a",
-                    "surface-dim": "#dbd9d9",
-                    "error-container": "#ffdad6",
-                    "on-primary-fixed-variant": "#3c4858",
-                    "inverse-surface": "#303030",
-                    "surface-container": "#efeded",
-                    "on-tertiary-fixed": "#1e1b15",
-                    "surface-bright": "#fbf9f8",
-                    "on-secondary-container": "#7a511c",
-                    "inverse-on-surface": "#f2f0f0",
-                    "tertiary-fixed": "#e8e2d8",
-                    "surface-variant": "#e4e2e2",
-                    "on-secondary-fixed": "#2b1700",
-                    "on-primary": "#ffffff",
-                    "on-tertiary-container": "#959087",
-                    "on-primary-fixed": "#101c2b",
-                    "on-tertiary-fixed-variant": "#4a463f",
-                    "on-secondary-fixed-variant": "#643f0a",
-                    "surface": "#fbf9f8",
-                    "on-surface": "#1b1c1c",
-                    "on-background": "#1b1c1c",
-                    "on-primary-container": "#8591a4",
-                    "primary-container": "#1e2a39",
-                    "on-error-container": "#93000a",
-                    "surface-container-high": "#eae8e7",
-                    "primary-fixed": "#d7e3f8",
-                    "on-secondary": "#ffffff",
-                    "background": "#fbf9f8",
-                    "tertiary-container": "#2c2923",
-                    "secondary-fixed-dim": "#f3bc7d",
-                    "surface-tint": "#535f70",
-                    "surface-container-highest": "#e4e2e2",
-                    "on-surface-variant": "#44474c",
-                    "secondary": "#7f5621",
-                    "secondary-container": "#ffc788",
-                    "outline": "#75777d",
-                    "surface-container-low": "#f5f3f3",
-                    "on-error": "#ffffff",
-                    "secondary-fixed": "#ffddb9",
-                    "inverse-primary": "#bbc7db",
-                    "surface-container-lowest": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "primary-fixed-dim": "#bbc7db",
-                    "tertiary": "#17150f"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "margin-mobile": "20px",
-                    "container-max": "1280px",
-                    "margin-desktop": "80px",
-                    "gutter": "24px",
-                    "unit": "8px"
-            },
-            "fontFamily": {
-                    "display-lg": ["BJ Cree", "Manrope"],
-                    "body-lg": ["Plus Jakarta Sans"],
-                    "body-md": ["Plus Jakarta Sans"],
-                    "headline-lg-mobile": ["BJ Cree", "Manrope"],
-                    "headline-lg": ["BJ Cree", "Manrope"],
-                    "label-md": ["Manrope"]
-            },
-            "fontSize": {
-                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}]
-            }
-          }
-        }
-      }
-    </script>
+    <script src="tailwind-config.js"></script>
 
     <!-- CMS/Data Source Connection Scripts -->
     <script src="controlpanel/adapters/adapter-interface.js"></script>
@@ -353,7 +267,7 @@
                 <h2 class="font-display-lg text-display-lg text-white mb-6">¿Listo para escribir su propia historia en la arena?</h2>
                 <p class="text-white/80 text-body-lg mb-10">Nuestros especialistas en el destino están listos para personalizar cada detalle de su viaje.</p>
                 <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-                    <a id="cta-reserve" href="inicio.html#contacto" class="bg-secondary text-on-secondary px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-transform active:scale-95 shadow-xl block text-center">Reservar mi Experiencia</a>
+                    <a id="cta-reserve" href="index.html#contacto" class="bg-secondary text-on-secondary px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-transform active:scale-95 shadow-xl block text-center">Reservar mi Experiencia</a>
                     <a class="text-white font-bold flex items-center gap-2 hover:underline" href="https://wa.me/201110572308" target="_blank">
                         <span class="material-symbols-outlined">call</span> Hablar con un Asesor
                     </a>
@@ -375,9 +289,9 @@
     <div class="flex flex-wrap gap-x-12 gap-y-6">
         <div class="flex flex-col gap-3">
             <span class="font-bold text-secondary-fixed uppercase text-sm tracking-widest">Navegación</span>
-            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="inicio.html#destinos">Destinos</a>
+            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="index.html#destinos">Destinos</a>
             <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="#">Certificaciones</a>
-            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="inicio.html#contacto">Contacto</a>
+            <a class="text-on-primary/70 hover:text-secondary-fixed-dim underline transition-all" href="index.html#contacto">Contacto</a>
         </div>
         <div class="flex flex-col gap-3">
             <span class="font-bold text-secondary-fixed uppercase text-sm tracking-widest">Legal</span>
@@ -510,6 +424,7 @@
                             subtitle: destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : found.title,
                             overview: found.description || '',
                             imageUrl: found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
+                            headerImageUrl: found.headerImageUrl || found.header_image_url || found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
                             bestSeason: found.guideBestSeason || found.guide_best_season || '',
                             currency: found.currency || '',
                             visa: found.visa || '',
@@ -531,7 +446,7 @@
                             // Convert itinerary array to JSON string format expected by renderTrip
                             itineraryJson: found.itinerary ? JSON.stringify(found.itinerary.map(day => ({
                                 day: `Día ${String(day.dayNumber).padStart(2, '0')}`,
-                                title: day.customLocationName || 'Visita',
+                                title: day.dayTitle || day.customLocationName || 'Visita',
                                 desc: (day.activities || []).map(act => act.description).join('\n') || '',
                                 meals: day.accommodationType || '',
                                 info: '',
@@ -556,6 +471,7 @@
                         subtitle: found.subtitle || '',
                         overview: found.overview || '',
                         imageUrl: found.imageUrl || '',
+                        headerImageUrl: found.headerImageUrl || found.header_image_url || found.imageUrl || '',
                         bestSeason: found.bestSeason || '',
                         currency: found.currency || '',
                         visa: found.visa || '',
@@ -596,7 +512,7 @@
             loader.innerHTML = `
                 <span class="material-symbols-outlined text-red-500 text-5xl">error</span>
                 <p class="text-on-surface font-semibold text-lg mt-2">${message}</p>
-                <a href="inicio.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg">Volver al inicio</a>
+                <a href="index.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg">Volver al inicio</a>
             `;
         }
     };
@@ -613,7 +529,7 @@
         document.getElementById('hero-duration').textContent = `${trip.durationDays || '10'} Días | ${trip.durationNights || '9'} Noches`;
         document.getElementById('hero-title').textContent = trip.name;
         document.getElementById('hero-subtitle').textContent = trip.subtitle || '';
-        document.getElementById('hero-bg').style.backgroundImage = `url('${trip.imageUrl || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920'}')`;
+        document.getElementById('hero-bg').style.backgroundImage = `url('${trip.headerImageUrl || trip.imageUrl || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920'}')`;
         
         document.getElementById('overview-title').textContent = `La Magia de tu Destino`;
         
@@ -964,7 +880,7 @@
                             </div>
                         ` : ''}
                     </div>
-                    <button onclick="localStorage.setItem('selectedDeparture', '${dep.departureDate}'); window.location.href='inicio.html#contacto'" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-secondary transition-all mt-4 text-center">
+                    <button onclick="localStorage.setItem('selectedDeparture', '${dep.departureDate}'); window.location.href='index.html#contacto'" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-secondary transition-all mt-4 text-center">
                         Reservar esta Salida
                     </button>
                 `;
@@ -987,7 +903,7 @@
                         ¿Ninguna de estas fechas se adapta a tus planes? Diseñamos este itinerario a tu medida en la fecha que prefieras.
                     </p>
                 </div>
-                <a href="inicio.html#contacto" class="w-full bg-secondary text-on-secondary py-3 rounded-xl font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all mt-4 text-center block">
+                <a href="index.html#contacto" class="w-full bg-secondary text-on-secondary py-3 rounded-xl font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all mt-4 text-center block">
                     Crear viaje a medida
                 </a>
             `;

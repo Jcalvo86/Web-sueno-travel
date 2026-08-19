@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Conóceme | Sueño Travel Chile</title>
+    <meta name="description" content="Conoce a Jessica Lagos, operadora para Sueño Travel Chile. Diseñamos experiencias de lujo personalizadas a Egipto, Jordania, Grecia y Turquía." />
+    <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="tailwind-config.js"></script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .ambient-glow {
+            box-shadow: 0 20px 40px -15px rgba(9, 21, 36, 0.08);
+        }
+    </style>
+    <!-- Dynamic Header Component -->
+    <script src="global-header.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20">
+    <div id="global-header"></div>
+    
+    <main>
+        <!-- Hero Profile Banner -->
+        <section class="relative bg-primary text-white py-20 overflow-hidden">
+            <!-- Background Image Overlay with blur -->
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1920')] bg-cover bg-center opacity-15 blur-[2px]"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/80 to-primary"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
+                <h1 class="text-4xl md:text-6xl font-display-lg font-extrabold tracking-tight mb-4">Jessica Lagos</h1>
+                <p class="text-lg md:text-xl text-secondary-fixed opacity-90 max-w-2xl mx-auto font-medium font-semibold">Operadora para Sueño Travel Chile</p>
+            </div>
+        </section>
+        
+        <!-- About Jessica Section -->
+        <section class="py-16 md:py-24 max-w-7xl mx-auto px-6 md:px-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <!-- Biography Text (col-span-7) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary leading-tight font-display-lg">
+                        Viaja con quien conoce el camino
+                    </h2>
+                    <div class="w-20 h-1 bg-secondary rounded-full"></div>
+                    
+                    <p class="text-lg font-semibold text-primary leading-relaxed">
+                        Viajar es mucho más que llegar a un destino. Es descubrir culturas, crear recuerdos y vivir experiencias que permanecen para siempre.
+                    </p>
+                    
+                    <div class="space-y-4 text-on-surface-variant leading-relaxed text-[1.05rem]">
+                        <p>
+                            Mi pasión por conocer el mundo me ha llevado a recorrer numerosos países de forma independiente. Cada viaje ha sido una oportunidad para aprender, conectar con nuevas culturas y comprender qué transforma un viaje en una experiencia verdaderamente inolvidable.
+                        </p>
+                        <p>
+                            <strong>Egipto ocupa un lugar muy especial en mi historia.</strong> Desde hace más de nueve años lo visito cada año y se ha convertido en mi segundo hogar. En cada viaje aprovecho también la oportunidad de descubrir un nuevo destino, enriqueciendo constantemente mi experiencia como viajera y profesional del turismo.
+                        </p>
+                        <p>
+                            Esa experiencia, sumada a mi relación directa con un operador local de total confianza en Egipto, me permite diseñar viajes cuidadosamente planificados a <strong>Egipto, Jordania, Grecia y Turquía</strong>. Cada itinerario ha sido seleccionado con dedicación para ofrecer una experiencia auténtica, combinando los lugares imprescindibles con rincones especiales que solo se descubren con el conocimiento del destino.
+                        </p>
+                        <p>
+                            Mi compromiso va más allá de organizar un viaje. Te acompaño antes, durante y después de tu experiencia, compartiendo recomendaciones basadas en vivencias reales, asesorándote de forma personalizada y brindándote la tranquilidad de contar con alguien que conoce cada destino de primera mano.
+                        </p>
+                        <p class="text-secondary font-bold text-lg italic border-l-4 border-secondary pl-4 my-6">
+                            "Porque cuando viajas con quien ha recorrido el camino, cada detalle marca la diferencia."
+                        </p>
+                        <p>
+                            Mi mayor satisfacción es ayudarte a vivir un viaje auténtico, seguro e inolvidable, para que regreses con mucho más que fotografías: con recuerdos y experiencias que te acompañarán toda la vida.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Mosaic Photo Gallery Collage (col-span-5) -->
+                <div class="lg:col-span-5 space-y-6">
+                    <!-- Photo 1: Main Portrait (Full Width) -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-lg group aspect-[4/3] w-full">
+                        <img src="Imagenes/JessicaLagos.jfif" alt="Jessica Lagos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute bottom-6 left-6 right-6 glass-panel p-4 rounded-2xl border border-white/20 shadow-lg text-primary">
+                            <p class="font-bold text-sm">Jessica Lagos</p>
+                            <p class="text-xs text-secondary font-semibold">Operadora de Viajes Chile &bull; Asesoría Personalizada</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Secondary Photos Grid (3 Columns) -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- Photo 2: Travel Detail -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-md group aspect-square">
+                            <img src="Imagenes/Jessica2.jfif" alt="Vivencias de viaje" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <!-- Photo 3: Local Culture -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-md group aspect-square">
+                            <img src="Imagenes/Jessica3.jfif" alt="Experiencia cultural" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <!-- Photo 4: Historic Destination -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-md group aspect-square">
+                            <img src="Imagenes/Jessica4.jfif" alt="Destinos del mundo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <p class="text-xs text-center text-on-surface-variant/60 italic">Jessica Lagos en sus aventuras y vivencias por el mundo.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Blog Section -->
+        <section class="py-16 md:py-24 bg-white border-t border-outline-variant/10">
+            <div class="max-w-7xl mx-auto px-6 md:px-20">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-3xl md:text-5xl font-bold text-primary tracking-tight font-display-lg">Bitácora de Experiencias</h2>
+                    <p class="text-on-surface-variant">
+                        Historias, consejos de viaje y experiencias exclusivas compartidas por quienes viven los destinos en primera persona.
+                    </p>
+                    <div class="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+                </div>
+                
+                <!-- Blog Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Blog Card 1 -->
+                    <article class="bg-background rounded-3xl overflow-hidden border border-outline-variant/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1">
+                        <div class="relative aspect-[16/10] overflow-hidden">
+                            <img src="Imagenes/Egipto3.webp" alt="Egipto Mágico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-secondary text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md">Egipto</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow space-y-4">
+                            <h3 class="text-xl font-bold text-primary group-hover:text-secondary transition-colors line-clamp-2">
+                                Egipto Mágico: El Legado de los Faraones
+                            </h3>
+                            <p class="text-on-surface-variant text-sm line-clamp-3">
+                                Descubre por qué Egipto sigue siendo uno de los destinos más fascinantes del planeta. Acompáñame a explorar su historia, templos colosales y la magia del río Nilo.
+                            </p>
+                            <div class="pt-4 mt-auto border-t border-outline-variant/20 flex justify-between items-center">
+                                <span class="text-xs text-on-surface-variant/70 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">calendar_month</span> Hace unos días
+                                </span>
+                                <a href="egipto-magico.html" class="text-secondary font-bold text-sm hover:text-primary transition-colors flex items-center gap-1">
+                                    Leer Post <span class="material-symbols-outlined text-base">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Card 2 -->
+                    <article class="bg-background rounded-3xl overflow-hidden border border-outline-variant/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1">
+                        <div class="relative aspect-[16/10] overflow-hidden">
+                            <img src="Imagenes/turquia-mar-cerdeira.webp" alt="Turquía" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-secondary text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md">Turquía</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow space-y-4">
+                            <h3 class="text-xl font-bold text-primary group-hover:text-secondary transition-colors line-clamp-2">
+                                Turquía: Un Puente de Culturas y Colores
+                            </h3>
+                            <p class="text-on-surface-variant text-sm line-clamp-3">
+                                Desde el bullicio de los bazares de Istambul hasta los valles lunares de Capadocia. Un viaje visual y sensorial a través de tierras de leyendas.
+                            </p>
+                            <div class="pt-4 mt-auto border-t border-outline-variant/20 flex justify-between items-center">
+                                <span class="text-xs text-on-surface-variant/70 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">calendar_month</span> Hace unos días
+                                </span>
+                                <a href="turquia.html" class="text-secondary font-bold text-sm hover:text-primary transition-colors flex items-center gap-1">
+                                    Leer Post <span class="material-symbols-outlined text-base">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Card 3 -->
+                    <article class="bg-background rounded-3xl overflow-hidden border border-outline-variant/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1">
+                        <div class="relative aspect-[16/10] overflow-hidden">
+                            <img src="Imagenes/ParejaEgipto.webp" alt="Viajar en grupo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-secondary text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md">Grupos</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow space-y-4">
+                            <h3 class="text-xl font-bold text-primary group-hover:text-secondary transition-colors line-clamp-2">
+                                Descubre el mundo en buena compañía
+                            </h3>
+                            <p class="text-on-surface-variant text-sm line-clamp-3">
+                                Viajar en grupo es mucho más que compartir un itinerario. Es crear amistades, descubrir nuevas culturas y vivir momentos inolvidables con la total tranquilidad de contar con guía experto.
+                            </p>
+                            <div class="pt-4 mt-auto border-t border-outline-variant/20 flex justify-between items-center">
+                                <span class="text-xs text-on-surface-variant/70 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">calendar_month</span> Hace unos días
+                                </span>
+                                <a href="viajar-en-grupo.html" class="text-secondary font-bold text-sm hover:text-primary transition-colors flex items-center gap-1">
+                                    Leer Post <span class="material-symbols-outlined text-base">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer identical to index.html -->
+    <footer class="w-full bg-[#efdfd1] text-[#32291f] py-12 px-margin-mobile md:px-margin-desktop font-body-md">
+        <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row justify-between gap-8">
+            <!-- Columna Izquierda: Brand -->
+            <div class="flex flex-col gap-4 md:max-w-[60%]">
+                <img src="Imagenes/logo_suenoTravel Chile.svg" alt="Sueño Travel Logo" class="h-14 w-auto self-start">
+                <p class="text-sm md:text-[0.95rem] leading-relaxed text-[#32291f] opacity-85">
+                    Sueño Travel es tu puerta a experiencias únicas alrededor del mundo. Con viajes a medida, atención personalizada y un equipo apasionado por el turismo, hacemos realidad el viaje de tus sueños, combinando confort, cultura y aventura en cada destino.
+                </p>
+            </div>
+    
+            <!-- Columna Derecha: Síguenos y Contacto -->
+            <div class="flex flex-col gap-4 md:max-w-[35%]">
+                <h4 class="font-bold text-[1.15rem]">Síguenos</h4>
+                <div class="flex gap-3">
+                    <a href="https://www.facebook.com/ofertasegipto/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full flex items-center justify-center text-white bg-[#3b5998] hover:-translate-y-0.5 transition-transform" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/travelegipto/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full flex items-center justify-center text-white bg-[#c13584] hover:-translate-y-0.5 transition-transform" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tripadvisor.com/Attraction_Review-g294205-d17582622-Reviews-Sueno_Travel-Luxor_Nile_River_Valley.html" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full flex items-center justify-center text-white bg-[#4b9a67] hover:-translate-y-0.5 transition-transform" aria-label="Tripadvisor"><i class="fa-brands fa-tripadvisor"></i></a>
+                </div>
+                <div class="flex flex-col gap-3 mt-1">
+                    <a href="https://wa.me/201110572308" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-base text-[#32291f] font-semibold hover:opacity-85">
+                        <i class="fa-solid fa-phone text-[#14b8a6] w-[18px]"></i> +20 111 057 2308
+                    </a>
+                    <a href="mailto:contacto@suenotravel.cl" class="flex items-center gap-2 text-base text-[#32291f] font-semibold hover:opacity-85">
+                        <i class="fa-regular fa-envelope text-[#14b8a6] w-[18px]"></i> contacto@suenotravel.cl
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr class="border-0 border-t border-[#32291f]/15 my-6 max-w-[1100px] mx-auto w-full">
+        <div class="text-center text-xs md:text-[0.85rem] text-[#32291f] opacity-80 font-semibold">
+            Copyright &copy; 2025 Sueño Travel. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>
