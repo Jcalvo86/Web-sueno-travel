@@ -1,0 +1,60 @@
+{
+  "pageTitle": "About Us | Sueño Travel Chile",
+  "metaDescription": "Discover Sueño Travel Chile. We design personalized luxury experiences to Egypt, Jordan, Greece and Turkey.",
+  "hero": {
+    "title": "About Us",
+    "subtitle": "Our passion for discovering the world"
+  },
+  "about": {
+    "title": "Travel with those who know the way",
+    "p1lead": "Travelling is much more than reaching a destination. It's discovering cultures, creating memories and living experiences that last forever.",
+    "p1": "Our passion for exploring the world has taken us to countless countries. Every trip has been an opportunity to learn, connect with new cultures and understand what transforms a journey into a truly unforgettable experience.",
+    "p2Start": "Egypt holds a very special place in our story.",
+    "p2Rest": " For over nine years we have visited it annually and it has become our second home. On every adventure, we also take the opportunity to discover a new destination, constantly enriching our experience as travel professionals.",
+    "p3": "This journey, combined with our direct relationship with a fully trusted local operator in Egypt, allows us to design carefully planned trips to ",
+    "p3Dests": "Egypt, Jordan, Greece and Turkey",
+    "p3End": ". Each itinerary has been selected with dedication to offer an authentic experience, combining must-see places with hidden gems that can only be discovered through deep knowledge of the destination.",
+    "p4": "Our commitment goes beyond organising a trip. We accompany you before, during and after your experience, sharing recommendations based on real experiences, providing personalised guidance and giving you the peace of mind of having a team that knows every destination first-hand.",
+    "quote": "\"Because when you travel with those who have walked the path, every detail makes a difference.\"",
+    "p5": "Our greatest satisfaction is helping you live an authentic, safe and unforgettable trip, so you return with much more than photographs: with memories and experiences that will stay with you for life.",
+    "jessicaAlt": "Jessica Lagos",
+    "jessicaRole": "Founder and Principal Operator",
+    "jessicaBio": "Jessica is the creative mind and principal operator behind Sueño Travel Chile. With over nine years of experience travelling to Egypt annually and a close relationship with local operators, Jessica personally designs every itinerary and supports our travellers with expert, first-hand guidance.",
+    "mainImgAlt": "Sueño Travel",
+    "mainImgTag": "Sueño Travel",
+    "mainImgSub": "Unforgettable Travel Experiences • Tailor-Made Designs",
+    "photo2Alt": "Travel experiences",
+    "photo3Alt": "Cultural experience",
+    "photo4Alt": "World destinations",
+    "photosCaption": "Our adventures and experiences exploring the world."
+  },
+  "blog": {
+    "title": "Experience Journal",
+    "subtitle": "Stories, travel tips and exclusive experiences shared by those who live the destinations first-hand.",
+    "card1Title": "Magical Egypt: The Legacy of the Pharaohs",
+    "card1Desc": "Discover why Egypt remains one of the most fascinating destinations on the planet. Join me to explore its history, colossal temples and the magic of the Nile river.",
+    "card1Tag": "Egypt",
+    "card1Img": "Magical Egypt",
+    "card1Date": "A few days ago",
+    "card2Title": "Turkey: A Bridge of Cultures and Colours",
+    "card2Desc": "From the bustle of Istanbul's bazaars to the lunar valleys of Cappadocia. A visual and sensory journey through lands of legends.",
+    "card2Tag": "Turkey",
+    "card2Img": "Turkey",
+    "card2Date": "A few days ago",
+    "card3Title": "Discover the world in good company",
+    "card3Desc": "Travelling in a group is much more than sharing an itinerary. It's making friendships, discovering new cultures and living unforgettable moments with the complete peace of mind of having an expert guide.",
+    "card3Tag": "Groups",
+    "card3Img": "Group travel",
+    "card3Date": "A few days ago",
+    "leerPost": "Read Post"
+  },
+  "footer": {
+    "descripcion": "Sueño Travel is your gateway to unique experiences around the world. With tailor-made trips, personalized service and a team passionate about tourism, we make your dream trip a reality, combining comfort, culture and adventure at every destination.",
+    "siguenos": "Follow Us",
+    "derechos": "Copyright © 2025 Sueño Travel. All rights reserved.",
+    "logoAlt": "Sueño Travel Logo",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tripadvisor": "Tripadvisor"
+  }
+}

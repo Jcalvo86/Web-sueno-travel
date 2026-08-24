@@ -7,31 +7,36 @@ document.addEventListener('DOMContentLoaded', () => {
     <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-white/80 backdrop-blur-xl shadow-sm border-b border-outline-variant/10">
         <div class="flex items-center gap-3">
             <a href="index.html" class="flex items-center gap-3">
-                <img alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
+                <img data-i18n-alt="logoAlt" data-i18n-ns="header" alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
             </a>
         </div>
         <nav class="hidden md:flex gap-8 items-center">
             <!-- Dropdown Destinos -->
             <div class="relative group">
                 <button id="nav-destinos" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
-                    Destinos
+                    <span data-i18n="destinos" data-i18n-ns="header">Destinos</span>
                     <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
                 </button>
                 <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 rounded-xl bg-white shadow-lg border border-outline-variant/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
-                    <a id="nav-egipto" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=egipto">Egipto</a>
-                    <a id="nav-jordania" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=jordania">Jordania</a>
-                    <a id="nav-grecia" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=grecia">Grecia</a>
-                    <a id="nav-turquia" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=turquia">Turquía</a>
+                    <a id="nav-egipto" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=egipto" data-i18n="egipto" data-i18n-ns="header">Egipto</a>
+                    <a id="nav-jordania" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=jordania" data-i18n="jordania" data-i18n-ns="header">Jordania</a>
+                    <a id="nav-grecia" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=grecia" data-i18n="grecia" data-i18n-ns="header">Grecia</a>
+                    <a id="nav-turquia" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=turquia" data-i18n="turquia" data-i18n-ns="header">Turquía</a>
                 </div>
             </div>
-            <a id="nav-nosotros" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="conocenos.html">Conócenos</a>
+            <a id="nav-nosotros" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="conocenos.html" data-i18n="conocenos" data-i18n-ns="header">Conócenos</a>
         </nav>
         <div class="flex items-center gap-4">
-            <a href="index.html#contacto" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/95 text-xs md:text-sm font-bold">
+            <a href="index.html#contacto" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/95 text-xs md:text-sm font-bold" data-i18n="contactar" data-i18n-ns="header">
                 Contactar
             </a>
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-primary p-2 focus:outline-none" aria-label="Abrir Menú">
+            <!-- Language Toggle -->
+            <div class="flex items-center gap-1 border border-outline-variant/30 rounded-lg overflow-hidden text-xs font-bold">
+                <button id="lang-es" class="px-2.5 py-1.5 transition-all hover:bg-primary/10" data-i18n-aria="cambiarEs" data-i18n-ns="header" aria-label="Cambiar a Español">ES</button>
+                <span class="text-outline-variant/40">|</span>
+                <button id="lang-en" class="px-2.5 py-1.5 transition-all hover:bg-primary/10 opacity-50" data-i18n-aria="switchEn" data-i18n-ns="header" aria-label="Switch to English">EN</button>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-primary p-2 focus:outline-none" data-i18n-aria="abrirMenu" data-i18n-ns="header" aria-label="Abrir Menú">
                 <span class="material-symbols-outlined text-3xl">menu</span>
             </button>
         </div>
@@ -41,26 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
     <div id="mobile-drawer" class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-[999] hidden transition-opacity duration-300">
         <div class="fixed top-0 right-0 w-64 h-full bg-white shadow-2xl p-8 flex flex-col gap-6 transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-drawer-content">
             <div class="flex justify-between items-center border-b border-outline-variant/10 pb-4">
-                <span class="font-display-lg text-lg font-black text-primary">Navegación</span>
+                <span class="font-display-lg text-lg font-black text-primary" data-i18n="navegacion" data-i18n-ns="header">Navegación</span>
                 <button id="close-drawer-btn" class="text-primary p-1 focus:outline-none">
                     <span class="material-symbols-outlined text-2xl">close</span>
                 </button>
             </div>
             <nav class="flex flex-col gap-4">
-                <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant/60 font-semibold">Destinos</span>
+                <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant/60 font-semibold" data-i18n="destinos" data-i18n-ns="header">Destinos</span>
                 <div class="flex flex-col gap-3 pl-3 border-l-2 border-outline-variant/10">
-                    <a id="mobile-nav-egipto" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=egipto">Egipto</a>
-                    <a id="mobile-nav-jordania" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=jordania">Jordania</a>
-                    <a id="mobile-nav-grecia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=grecia">Grecia</a>
-                    <a id="mobile-nav-turquia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=turquia">Turquía</a>
+                    <a id="mobile-nav-egipto" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=egipto" data-i18n="egipto" data-i18n-ns="header">Egipto</a>
+                    <a id="mobile-nav-jordania" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=jordania" data-i18n="jordania" data-i18n-ns="header">Jordania</a>
+                    <a id="mobile-nav-grecia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=grecia" data-i18n="grecia" data-i18n-ns="header">Grecia</a>
+                    <a id="mobile-nav-turquia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=turquia" data-i18n="turquia" data-i18n-ns="header">Turquía</a>
                 </div>
-                <a id="mobile-nav-nosotros" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-t border-outline-variant/10 pt-4" href="conocenos.html">Conócenos</a>
+                <a id="mobile-nav-nosotros" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-t border-outline-variant/10 pt-4" href="conocenos.html" data-i18n="conocenos" data-i18n-ns="header">Conócenos</a>
             </nav>
         </div>
     </div>
     `;
 
-    // Highlight Active Link
+    // ── Active link highlight ──────────────────────────────────────────────────
     const params = new URLSearchParams(window.location.search);
     const destId = params.get('id');
     if (destId) {
@@ -72,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
             activeLink.classList.remove('text-on-surface-variant');
             activeLink.classList.add('text-primary', 'font-bold');
             
-            // Highlight Destinos parent button
             const destinosBtn = document.getElementById('nav-destinos');
             if (destinosBtn) {
                 destinosBtn.classList.remove('text-on-surface-variant');
@@ -106,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Mobile Drawer Interactions
+    // ── Mobile Drawer ────────────────────────────────────────────────────────
     const menuBtn = document.getElementById('mobile-menu-btn');
     const closeBtn = document.getElementById('close-drawer-btn');
     const drawer = document.getElementById('mobile-drawer');
@@ -135,4 +139,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === drawer) closeDrawer();
         });
     }
+
+    // ── Language toggle buttons ───────────────────────────────────────────────
+    // Use a slight delay to allow i18n to initialize first
+    function wireLanguageButtons() {
+        const btnEs = document.getElementById('lang-es');
+        const btnEn = document.getElementById('lang-en');
+        if (!btnEs || !btnEn) return;
+
+        // Determine page namespace from body data attribute (set per-page)
+        const getPageNs = () => document.body.getAttribute('data-page-ns') || 'home';
+
+        btnEs.addEventListener('click', () => {
+            if (window.i18n) window.i18n.setLanguage('es', getPageNs());
+        });
+        btnEn.addEventListener('click', () => {
+            if (window.i18n) window.i18n.setLanguage('en', getPageNs());
+        });
+    }
+
+    wireLanguageButtons();
 });
+

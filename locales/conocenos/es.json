@@ -1,0 +1,60 @@
+{
+  "pageTitle": "Conócenos | Sueño Travel Chile",
+  "metaDescription": "Conoce Sueño Travel Chile. Diseñamos experiencias de lujo personalizadas a Egipto, Jordania, Grecia y Turquía.",
+  "hero": {
+    "title": "Conócenos",
+    "subtitle": "Nuestra pasión por descubrir el mundo"
+  },
+  "about": {
+    "title": "Viaja con quienes conocen el camino",
+    "p1lead": "Viajar es mucho más que llegar a un destino. Es descubrir culturas, crear recuerdos y vivir experiencias que permanecen para siempre.",
+    "p1": "Nuestra pasión por conocer el mundo nos ha llevado a recorrer numerosos países. Cada viaje ha sido una oportunidad para aprender, conectar con nuevas culturas y comprender qué transforma un viaje en una experiencia verdaderamente inolvidable.",
+    "p2Start": "Egipto ocupa un lugar muy especial en nuestra historia.",
+    "p2Rest": " Desde hace más de nueve años lo visitamos anualmente y se ha convertido en nuestro segundo hogar. En cada aventura, aprovechamos también la oportunidad de descubrir un nuevo destino, enriqueciendo constantemente nuestra experiencia como profesionales del turismo.",
+    "p3": "Esta trayectoria, sumada a nuestra relación directa con un operador local de total confianza en Egipto, nos permite diseñar viajes cuidadosamente planificados a ",
+    "p3Dests": "Egipto, Jordania, Grecia y Turquía",
+    "p3End": ". Cada itinerario ha sido seleccionado con dedicación para ofrecer una experiencia auténtica, combinando los lugares imprescindibles con rincones especiales que solo se descubren con el conocimiento profundo del destino.",
+    "p4": "Nuestro compromiso va más allá de organizar un viaje. Te acompañamos antes, durante y después de tu experiencia, compartiendo recomendaciones basadas en vivencias reales, asesorándote de forma personalizada y brindándote la tranquilidad de contar con un equipo que conoce cada destino de primera mano.",
+    "quote": "\"Porque cuando viajas con quienes han recorrido el camino, cada detalle marca la diferencia.\"",
+    "p5": "Nuestra mayor satisfacción es ayudarte a vivir un viaje auténtico, seguro e inolvidable, para que regreses con mucho más que fotografías: con recuerdos y experiencias que te acompañarán toda la vida.",
+    "jessicaAlt": "Jessica Lagos",
+    "jessicaRole": "Fundadora y Operadora Principal",
+    "jessicaBio": "Jessica es la mente creadora y operadora principal detrás de Sueño Travel Chile. Con más de nueve años de experiencia recorriendo Egipto de manera anual y un estrecho vínculo con los operadores locales, Jessica diseña personalmente cada itinerario y acompaña a nuestros viajeros con asesoría experta y de primera mano.",
+    "mainImgAlt": "Sueño Travel",
+    "mainImgTag": "Sueño Travel",
+    "mainImgSub": "Experiencias de Viaje Inolvidables • Diseños a Medida",
+    "photo2Alt": "Vivencias de viaje",
+    "photo3Alt": "Experiencia cultural",
+    "photo4Alt": "Destinos del mundo",
+    "photosCaption": "Nuestras aventuras y vivencias explorando el mundo."
+  },
+  "blog": {
+    "title": "Bitácora de Experiencias",
+    "subtitle": "Historias, consejos de viaje y experiencias exclusivas compartidas por quienes viven los destinos en primera persona.",
+    "card1Title": "Egipto Mágico: El Legado de los Faraones",
+    "card1Desc": "Descubre por qué Egipto sigue siendo uno de los destinos más fascinantes del planeta. Acompáñame a explorar su historia, templos colosales y la magia del río Nilo.",
+    "card1Tag": "Egipto",
+    "card1Img": "Egipto Mágico",
+    "card1Date": "Hace unos días",
+    "card2Title": "Turquía: Un Puente de Culturas y Colores",
+    "card2Desc": "Desde el bullicio de los bazares de Istambul hasta los valles lunares de Capadocia. Un viaje visual y sensorial a través de tierras de leyendas.",
+    "card2Tag": "Turquía",
+    "card2Img": "Turquía",
+    "card2Date": "Hace unos días",
+    "card3Title": "Descubre el mundo en buena compañía",
+    "card3Desc": "Viajar en grupo es mucho más que compartir un itinerario. Es crear amistades, descubrir nuevas culturas y vivir momentos inolvidables con la total tranquilidad de contar con guía experto.",
+    "card3Tag": "Grupos",
+    "card3Img": "Viajar en grupo",
+    "card3Date": "Hace unos días",
+    "leerPost": "Leer Post"
+  },
+  "footer": {
+    "descripcion": "Sueño Travel es tu puerta a experiencias únicas alrededor del mundo. Con viajes a medida, atención personalizada y un equipo apasionado por el turismo, hacemos realidad el viaje de tus sueños, combinando confort, cultura y aventura en cada destino.",
+    "siguenos": "Síguenos",
+    "derechos": "Copyright © 2025 Sueño Travel. Todos los derechos reservados.",
+    "logoAlt": "Sueño Travel Logo",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tripadvisor": "Tripadvisor"
+  }
+}

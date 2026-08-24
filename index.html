@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Sueño Travel | Venta de Experiencias de Lujo</title>
-    <meta name="description"
+    <title data-i18n-title-tag="home:pageTitle">Sueño Travel | Venta de Experiencias de Lujo</title>
+    <meta name="description" id="meta-description"
         content="Diseñamos experiencias de lujo personalizadas para exploradores cultos. Viajes a Egipto, Jordania, Grecia y Turquía." />
     <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
 
@@ -278,12 +278,16 @@
     <script src="controlpanel/adapters/firebase-adapter.js"></script>
     <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>
+    <!-- i18n Module -->
+    <script src="src/js/i18n.js"></script>
     <!-- Dynamic Header Component -->
     <script src="global-header.js"></script>
+    <script src="app.js"></script>
 </head>
 
 <body
-    class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+    class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container"
+    data-page-ns="home">
     <div id="global-header"></div>
     <main class="pt-0">
         <!-- Hero Section -->
@@ -298,17 +302,17 @@
                         class="h-20 w-auto mb-4 bg-white/85 backdrop-blur-md p-4 rounded-xl shadow-lg"
                         src="Imagenes/logo_suenoTravel Chile.svg" />
                     <h1 class="font-display-lg text-[56px] leading-[64px] font-extrabold tracking-tight">
-                        Tu Próximo Destino <br />
-                        <span class="text-secondary-fixed">Comienza Aquí</span>
+                        <span data-i18n="hero.line1" data-i18n-ns="home">Tu Próximo Destino</span> <br />
+                        <span class="text-secondary-fixed" data-i18n="hero.line2" data-i18n-ns="home">Comienza Aquí</span>
                     </h1>
-                    <p class="font-body-lg text-body-lg max-w-2xl opacity-90">
+                    <p class="font-body-lg text-body-lg max-w-2xl opacity-90" data-i18n="hero.subtitle" data-i18n-ns="home">
                         Diseñamos experiencias de lujo personalizadas para exploradores cultos. Desde los susurros del
                         desierto en Jordania hasta los mármoles eternos de Grecia.
                     </p>
                     <div class="flex flex-wrap gap-4 pt-4 justify-center">
                         <a class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-lg font-bold text-lg hover:bg-secondary-fixed-dim transition-all shadow-lg flex items-center gap-2"
                             href="#destinos">
-                            Explorar Destinos
+                            <span data-i18n="hero.cta" data-i18n-ns="home">Explorar Destinos</span>
                             <span class="material-symbols-outlined">explore</span>
                         </a>
                     </div>
@@ -319,8 +323,8 @@
         <!-- Destinations Bento Grid -->
         <section class="py-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop" id="destinos">
             <div class="text-center mb-16 space-y-4">
-                <h2 class="font-display-lg text-display-lg text-primary">Destinos que Inspiran</h2>
-                <p class="text-on-surface-variant max-w-2xl mx-auto text-lg">Seleccionamos cuidadosamente cada ruta para
+                <h2 class="font-display-lg text-display-lg text-primary" data-i18n="destinos.title" data-i18n-ns="home">Destinos que Inspiran</h2>
+                <p class="text-on-surface-variant max-w-2xl mx-auto text-lg" data-i18n="destinos.subtitle" data-i18n-ns="home">Seleccionamos cuidadosamente cada ruta para
                     ofrecer el equilibrio perfecto entre historia milenaria y confort contemporáneo.</p>
             </div>
             <div id="destinations-grid" class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
@@ -352,8 +356,8 @@
             <!-- Glassmorphism Card (Mobile: standard rounded box / Desktop: absolute right-aligned sidebar) -->
             <div
                 class="visitar-glass-card p-6 md:p-10 lg:p-12 max-w-md w-full text-on-primary space-y-8 relative z-10 mx-auto lg:mx-0 lg:absolute lg:inset-y-0 lg:right-0 lg:w-[38%] lg:max-w-none lg:rounded-none lg:rounded-l-[32px] lg:border-y-0 lg:border-r-0 lg:flex lg:flex-col lg:justify-center lg:overflow-y-auto">
-                <h2 class="font-display-lg text-display-lg text-white">¿Qué visitar?</h2>
-                <p class="text-[#ffddb9] text-lg font-medium opacity-90">No solo vendemos viajes, creamos legados. Estos
+                <h2 class="font-display-lg text-display-lg text-white" data-i18n="queVisitar.title" data-i18n-ns="home">¿Qué visitar?</h2>
+                <p class="text-[#ffddb9] text-lg font-medium opacity-90" data-i18n="queVisitar.subtitle" data-i18n-ns="home">No solo vendemos viajes, creamos legados. Estos
                     son los hitos que transformarán tu visión del mundo.</p>
 
                 <!-- Botonera -->
@@ -390,9 +394,9 @@
             aria-labelledby="testimonios-title">
             <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
                 <div class="text-center mb-16 space-y-4">
-                    <span class="text-secondary text-sm font-bold tracking-[0.2em] uppercase block">Viajes que se
-                        recuerdan</span>
-                    <p class="text-[#32291F]/80 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">Historias reales
+                    <h3 class="font-display-lg text-2xl md:text-3xl text-[#7F5621]" data-i18n="testimonios.title" data-i18n-ns="home">Viajes que se
+                        recuerdan</h3>
+                    <p class="text-[#32291F]/80 text-base md:text-lg leading-relaxed max-w-2xl mx-auto" data-i18n="testimonios.subtitle" data-i18n-ns="home">Historias reales
                         de viajeros que confiaron en nosotros para diseñar su experiencia.</p>
                 </div>
 
@@ -456,24 +460,25 @@
                                 <div class="grid grid-cols-3 gap-2 md:gap-4 mb-8">
                                     <div class="aspect-[3/4] rounded-2xl overflow-hidden"><img
                                             class="testimonial-photo w-full h-full"
-                                            src="Imagenes/testimonios/egipto-luxor-01.jpeg"
-                                            alt="Elena entre las columnas de Karnak"></div>
+                                            src="Imagenes/testimonios/morin_egipto_01.jpeg"
+                                            alt="Morin entre las columnas de Karnak"></div>
                                     <div class="aspect-[3/4] rounded-2xl overflow-hidden"><img
                                             class="testimonial-photo w-full h-full"
-                                            src="Imagenes/testimonios/egipto-luxor-02.jpeg"
-                                            alt="Elena en los templos de Luxor"></div>
+                                            src="Imagenes/testimonios/morin_egipto_02.jpeg"
+                                            alt="Morin en los templos de Luxor"></div>
                                     <div class="aspect-[3/4] rounded-2xl overflow-hidden"><img
                                             class="testimonial-photo w-full h-full"
-                                            src="Imagenes/testimonios/egipto-luxor-03.jpeg"
-                                            alt="Elena frente a jeroglíficos en Luxor"></div>
+                                            src="Imagenes/testimonios/morni_grecia_02.jpeg"
+                                            alt="Morin frente a jeroglíficos en Luxor"></div>
                                 </div>
                                 <div class="text-center max-w-3xl mx-auto space-y-3">
-                                    <h3 class="font-display-lg text-2xl md:text-3xl text-[#7F5621]">Elena M.</h3>
+                                    <h3 class="font-display-lg text-2xl md:text-3xl text-[#7F5621]">Morin M.</h3>
                                     <p class="text-sm font-bold tracking-[0.16em] uppercase text-[#32291F]/60">Luxor,
                                         Egipto</p>
                                     <p class="text-[#32291F]/80 text-base md:text-lg leading-relaxed pt-2">Caminar por
                                         Karnak con un guía que explica sin prisa cambia por completo la visita. El
-                                        hotel, los horarios y el cruce del Nilo estuvieron impecables. Volvería a viajar
+                                        hotel, los horarios y el cruce del Nilo estuvieron maravillosos. Volvería a
+                                        viajar
                                         así, con alguien que conoce el destino de verdad.</p>
                                 </div>
                             </div>
@@ -538,14 +543,14 @@
                     <div class="flex items-center justify-center gap-4 mt-10">
                         <button type="button" id="testimonial-prev"
                             class="testimonial-nav rounded-full border border-[#17150F] bg-white text-[#17150F] hover:bg-[#17150F] hover:text-white transition-colors duration-200 inline-flex items-center justify-center"
-                            aria-label="Testimonio anterior">
+                            data-i18n-aria="testimonios.prev" data-i18n-ns="home" aria-label="Testimonio anterior">
                             <span class="material-symbols-outlined text-xl">chevron_left</span>
                         </button>
                         <div id="testimonial-dots" class="flex items-center gap-2" role="tablist"
-                            aria-label="Testimonios"></div>
+                            data-i18n-aria="testimonios.testimonialDots" data-i18n-ns="home" aria-label="Testimonios"></div>
                         <button type="button" id="testimonial-next"
                             class="testimonial-nav rounded-full border border-[#17150F] bg-[#17150F] text-white hover:bg-[#252219] transition-colors duration-200 inline-flex items-center justify-center"
-                            aria-label="Testimonio siguiente">
+                            data-i18n-aria="testimonios.next" data-i18n-ns="home" aria-label="Testimonio siguiente">
                             <span class="material-symbols-outlined text-xl">chevron_right</span>
                         </button>
                     </div>
@@ -580,22 +585,26 @@
 
                     <!-- Columna Derecha: Mensaje y Acciones -->
                     <div class="lg:col-span-7 space-y-6 order-1 lg:order-2 text-center lg:text-left">
-                        <span class="text-primary text-sm font-bold tracking-[0.2em] uppercase block">Conócenos</span>
+                        <span class="text-primary text-sm font-bold tracking-[0.2em] uppercase block" data-i18n="conocenos.label" data-i18n-ns="home">Conócenos</span>
                         <h2
-                            class="text-3xl md:text-5xl font-display-lg text-white font-bold leading-tight font-headings">
+                            class="text-3xl md:text-5xl font-display-lg text-white font-bold leading-tight font-headings"
+                            data-i18n="conocenos.title" data-i18n-ns="home">
                             Conoce quién está detrás de tus viajes soñados
                         </h2>
-                        <p class="text-white text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 font-body">
+                        <p class="text-white text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 font-body"
+                            data-i18n="conocenos.subtitle" data-i18n-ns="home">
                             En Sueño Travel, nuestro equipo de expertos está listo para crear experiencias inolvidables
                             adaptadas a tus deseos y presupuesto.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
                             <a href="#contacto"
-                                class="bg-[#7F5621] text-white hover:bg-[#ffddb9] hover:text-primary transition-all font-bold px-8 py-4 rounded-lg tracking-wider text-sm uppercase inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200">
+                                class="bg-[#7F5621] text-white hover:bg-[#ffddb9] hover:text-primary transition-all font-bold px-8 py-4 rounded-lg tracking-wider text-sm uppercase inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200"
+                                data-i18n="conocenos.ctaConsulta" data-i18n-ns="home">
                                 Realizar una consulta
                             </a>
                             <a href="conocenos.html"
-                                class="bg-[#17150F] text-white hover:bg-[#252219] transition-all font-bold px-8 py-4 rounded-lg tracking-wider text-sm uppercase inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200">
+                                class="bg-[#17150F] text-white hover:bg-[#252219] transition-all font-bold px-8 py-4 rounded-lg tracking-wider text-sm uppercase inline-flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200"
+                                data-i18n="conocenos.ctaConocenos" data-i18n-ns="home">
                                 Conócenos
                             </a>
                         </div>
@@ -613,26 +622,26 @@
                 <div class="bg-white rounded-[40px] shadow-2xl overflow-hidden grid lg:grid-cols-5">
                     <div class="lg:col-span-2 bg-secondary p-12 text-on-primary flex flex-col justify-between">
                         <div>
-                            <h2 class="text-4xl font-bold mb-6">Empecemos a planear</h2>
-                            <p class="opacity-90 mb-8">Nuestros asesores expertos están listos para diseñar tu
+                            <h2 class="text-4xl font-bold mb-6" data-i18n="contacto.title" data-i18n-ns="home">Empecemos a planear</h2>
+                            <p class="opacity-90 mb-8" data-i18n="contacto.subtitle" data-i18n-ns="home">Nuestros asesores expertos están listos para diseñar tu
                                 itinerario a medida. Respuesta garantizada en menos de 24 horas.</p>
                             <ul class="space-y-4">
                                 <li class="flex items-center gap-3">
                                     <span class="material-symbols-outlined">check_circle</span>
-                                    <span>Hoteles de Gran Lujo</span>
+                                    <span data-i18n="contacto.lujo" data-i18n-ns="home">Hoteles de Gran Lujo</span>
                                 </li>
                                 <li class="flex items-center gap-3">
                                     <span class="material-symbols-outlined">check_circle</span>
-                                    <span>Guías Privados Certificados</span>
+                                    <span data-i18n="contacto.guias" data-i18n-ns="home">Guías Privados Certificados</span>
                                 </li>
                                 <li class="flex items-center gap-3">
                                     <span class="material-symbols-outlined">check_circle</span>
-                                    <span>Traslados VIP Exclusivos</span>
+                                    <span data-i18n="contacto.traslados" data-i18n-ns="home">Traslados VIP Exclusivos</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="pt-8 border-t border-white/20">
-                            <p class="text-sm mb-2 opacity-80 uppercase tracking-widest">Escríbenos directamente</p>
+                            <p class="text-sm mb-2 opacity-80 uppercase tracking-widest" data-i18n="contacto.escribe" data-i18n-ns="home">Escríbenos directamente</p>
                             <a class="text-xl font-bold hover:underline block"
                                 href="mailto:contacto@suenotravel.cl">contacto@suenotravel.cl</a>
                         </div>
@@ -641,20 +650,22 @@
                         <form class="space-y-8" id="contactFormMain">
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="space-y-2">
-                                    <label class="font-label-md text-primary">Nombre Completo *</label>
+                                    <label class="font-label-md text-primary" data-i18n="contacto.nombre" data-i18n-ns="home">Nombre Completo *</label>
                                     <input
                                         class="w-full border-b border-outline-variant focus:border-secondary outline-none py-2 transition-colors bg-transparent"
+                                        data-i18n-placeholder="contacto.nombrePlaceholder" data-i18n-ns="home"
                                         placeholder="Tu nombre..." type="text" required />
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="font-label-md text-primary">Correo Electrónico *</label>
+                                    <label class="font-label-md text-primary" data-i18n="contacto.correo" data-i18n-ns="home">Correo Electrónico *</label>
                                     <input
                                         class="w-full border-b border-outline-variant focus:border-secondary outline-none py-2 transition-colors bg-transparent"
+                                        data-i18n-placeholder="contacto.correoPlaceholder" data-i18n-ns="home"
                                         placeholder="ejemplo@email.com" type="email" required />
                                 </div>
                             </div>
                             <div class="space-y-4">
-                                <label class="font-label-md text-primary">Destino de interés</label>
+                                <label class="font-label-md text-primary" data-i18n="contacto.destinoInteres" data-i18n-ns="home">Destino de interés</label>
                                 <div class="flex flex-wrap gap-3">
                                     <label class="cursor-pointer">
                                         <input class="hidden peer" type="checkbox" name="destino" value="Egipto" />
@@ -683,16 +694,17 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label class="font-label-md text-primary">Mensaje o Detalles Adicionales</label>
+                                <label class="font-label-md text-primary" data-i18n="contacto.mensaje" data-i18n-ns="home">Mensaje o Detalles Adicionales</label>
                                 <textarea
                                     class="w-full border border-outline-variant rounded-xl p-4 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
+                                    data-i18n-placeholder="contacto.mensajePlaceholder" data-i18n-ns="home"
                                     placeholder="Cuéntanos más sobre tus fechas ideales y preferencias..."
                                     rows="4"></textarea>
                             </div>
                             <button
                                 class="w-full bg-primary text-on-primary py-5 rounded-2xl font-bold text-xl flex items-center justify-center gap-3 hover:bg-primary-container transition-all shadow-xl group"
                                 type="submit">
-                                Enviar Solicitud
+                                <span data-i18n="contacto.enviar" data-i18n-ns="home">Enviar Solicitud</span>
                                 <span
                                     class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </button>
@@ -710,7 +722,7 @@
             <!-- Columna Izquierda: Brand -->
             <div class="flex flex-col gap-4 md:max-w-[60%]">
                 <img src="Imagenes/logo_suenoTravel Chile.svg" alt="Sueño Travel Logo" class="h-14 w-auto self-start">
-                <p class="text-sm md:text-[0.95rem] leading-relaxed text-[#32291f] opacity-85">
+                <p class="text-sm md:text-[0.95rem] leading-relaxed text-[#32291f] opacity-85" data-i18n="footer.descripcion" data-i18n-ns="home">
                     Sueño Travel es tu puerta a experiencias únicas alrededor del mundo. Con viajes a medida, atención
                     personalizada y un equipo apasionado por el turismo, hacemos realidad el viaje de tus sueños,
                     combinando confort, cultura y aventura en cada destino.
@@ -719,7 +731,7 @@
 
             <!-- Columna Derecha: Síguenos y Contacto -->
             <div class="flex flex-col gap-4 md:max-w-[35%]">
-                <h4 class="font-bold text-[1.15rem]">Síguenos</h4>
+                <h4 class="font-bold text-[1.15rem]" data-i18n="footer.siguenos" data-i18n-ns="home">Síguenos</h4>
                 <div class="flex gap-3">
                     <a href="https://www.facebook.com/ofertasegipto/?locale=es_LA" target="_blank"
                         rel="noopener noreferrer"
@@ -746,7 +758,7 @@
             </div>
         </div>
         <hr class="border-0 border-t border-[#32291f]/15 my-6 max-w-[1100px] mx-auto w-full">
-        <div class="text-center text-xs md:text-[0.85rem] text-[#32291f] opacity-80 font-semibold">
+        <div class="text-center text-xs md:text-[0.85rem] text-[#32291f] opacity-80 font-semibold" data-i18n="footer.derechos" data-i18n-ns="home">
             Copyright &copy; 2025 Sueño Travel. Todos los derechos reservados.
         </div>
     </footer>

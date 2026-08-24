@@ -1,0 +1,59 @@
+{
+  "pageTitle": "Sueño Travel | Luxury Experience Sales",
+  "metaDescription": "We design personalized luxury experiences for cultured explorers. Trips to Egypt, Jordan, Greece and Turkey.",
+  "hero": {
+    "line1": "Your Next Destination",
+    "line2": "Starts Here",
+    "subtitle": "We design personalized luxury experiences for cultured explorers. From the whispers of the desert in Jordan to the eternal marbles of Greece.",
+    "cta": "Explore Destinations",
+    "logoAlt": "Sueño Travel Logo"
+  },
+  "destinos": {
+    "title": "Destinations that Inspire",
+    "subtitle": "We carefully select each route to offer the perfect balance between ancient history and contemporary comfort."
+  },
+  "queVisitar": {
+    "title": "What to visit?",
+    "subtitle": "We don't just sell trips, we create legacies. These are the landmarks that will transform your worldview."
+  },
+  "testimonios": {
+    "title": "Trips to remember",
+    "subtitle": "Real stories from travellers who trusted us to design their experience.",
+    "prev": "Previous testimonial",
+    "next": "Next testimonial",
+    "testimonialDots": "Testimonials"
+  },
+  "conocenos": {
+    "label": "About Us",
+    "title": "Meet the team behind your dream travels",
+    "subtitle": "At Sueño Travel, our team of experts is ready to create unforgettable experiences tailored to your desires and budget.",
+    "ctaConsulta": "Make an inquiry",
+    "ctaConocenos": "About Us",
+    "equipoAlt": "Sueño Travel Team"
+  },
+  "contacto": {
+    "title": "Let's start planning",
+    "subtitle": "Our expert advisors are ready to design your tailor-made itinerary. Response guaranteed within 24 hours.",
+    "lujo": "Grand Luxury Hotels",
+    "guias": "Certified Private Guides",
+    "traslados": "Exclusive VIP Transfers",
+    "escribe": "Write to us directly",
+    "nombre": "Full Name *",
+    "nombrePlaceholder": "Your name...",
+    "correo": "Email Address *",
+    "correoPlaceholder": "example@email.com",
+    "destinoInteres": "Destination of interest",
+    "mensaje": "Message or Additional Details",
+    "mensajePlaceholder": "Tell us more about your ideal dates and preferences...",
+    "enviar": "Send Request"
+  },
+  "footer": {
+    "descripcion": "Sueño Travel is your gateway to unique experiences around the world. With tailor-made trips, personalized service and a team passionate about tourism, we make your dream trip a reality, combining comfort, culture and adventure at every destination.",
+    "siguenos": "Follow Us",
+    "derechos": "Copyright © 2025 Sueño Travel. All rights reserved.",
+    "logoAlt": "Sueño Travel Logo",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tripadvisor": "Tripadvisor"
+  }
+}

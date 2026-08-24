@@ -1,0 +1,59 @@
+{
+  "pageTitle": "Sueño Travel | Venta de Experiencias de Lujo",
+  "metaDescription": "Diseñamos experiencias de lujo personalizadas para exploradores cultos. Viajes a Egipto, Jordania, Grecia y Turquía.",
+  "hero": {
+    "line1": "Tu Próximo Destino",
+    "line2": "Comienza Aquí",
+    "subtitle": "Diseñamos experiencias de lujo personalizadas para exploradores cultos. Desde los susurros del desierto en Jordania hasta los mármoles eternos de Grecia.",
+    "cta": "Explorar Destinos",
+    "logoAlt": "Sueño Travel Logo"
+  },
+  "destinos": {
+    "title": "Destinos que Inspiran",
+    "subtitle": "Seleccionamos cuidadosamente cada ruta para ofrecer el equilibrio perfecto entre historia milenaria y confort contemporáneo."
+  },
+  "queVisitar": {
+    "title": "¿Qué visitar?",
+    "subtitle": "No solo vendemos viajes, creamos legados. Estos son los hitos que transformarán tu visión del mundo."
+  },
+  "testimonios": {
+    "title": "Viajes que se recuerdan",
+    "subtitle": "Historias reales de viajeros que confiaron en nosotros para diseñar su experiencia.",
+    "prev": "Testimonio anterior",
+    "next": "Testimonio siguiente",
+    "testimonialDots": "Testimonios"
+  },
+  "conocenos": {
+    "label": "Conócenos",
+    "title": "Conoce quién está detrás de tus viajes soñados",
+    "subtitle": "En Sueño Travel, nuestro equipo de expertos está listo para crear experiencias inolvidables adaptadas a tus deseos y presupuesto.",
+    "ctaConsulta": "Realizar una consulta",
+    "ctaConocenos": "Conócenos",
+    "equipoAlt": "Equipo Sueño Travel"
+  },
+  "contacto": {
+    "title": "Empecemos a planear",
+    "subtitle": "Nuestros asesores expertos están listos para diseñar tu itinerario a medida. Respuesta garantizada en menos de 24 horas.",
+    "lujo": "Hoteles de Gran Lujo",
+    "guias": "Guías Privados Certificados",
+    "traslados": "Traslados VIP Exclusivos",
+    "escribe": "Escríbenos directamente",
+    "nombre": "Nombre Completo *",
+    "nombrePlaceholder": "Tu nombre...",
+    "correo": "Correo Electrónico *",
+    "correoPlaceholder": "ejemplo@email.com",
+    "destinoInteres": "Destino de interés",
+    "mensaje": "Mensaje o Detalles Adicionales",
+    "mensajePlaceholder": "Cuéntanos más sobre tus fechas ideales y preferencias...",
+    "enviar": "Enviar Solicitud"
+  },
+  "footer": {
+    "descripcion": "Sueño Travel es tu puerta a experiencias únicas alrededor del mundo. Con viajes a medida, atención personalizada y un equipo apasionado por el turismo, hacemos realidad el viaje de tus sueños, combinando confort, cultura y aventura en cada destino.",
+    "siguenos": "Síguenos",
+    "derechos": "Copyright © 2025 Sueño Travel. Todos los derechos reservados.",
+    "logoAlt": "Sueño Travel Logo",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tripadvisor": "Tripadvisor"
+  }
+}
