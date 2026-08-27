@@ -80,50 +80,64 @@
 
         <!-- Right Side: Content Area -->
         <div class="flex-1 space-y-16">
-            <!-- 1. Overview Section -->
-            <div id="sec-overview" class="scroll-mt-28 space-y-6">
-                <p id="dest-description" class="text-on-surface-variant leading-relaxed text-lg font-medium"></p>
-                <div class="space-y-3 border-l-4 border-secondary/40 pl-5 py-1 text-on-surface-variant leading-relaxed text-sm md:text-base">
-                    <p>
-                        <strong class="text-primary font-bold">Mejor Época:</strong> 
-                        <span id="info-best-season"></span>
-                    </p>
-                    <p>
-                        <strong class="text-primary font-bold">Cómo Moverse:</strong> 
-                        <span id="info-get-around"></span>
-                    </p>
-                    <p>
-                        <strong class="text-primary font-bold">Estadía Sugerida:</strong> 
-                        <span id="info-duration"></span>
-                    </p>
-                </div>
-            </div>
-
-            <!-- 2. Map and Styles Section -->
-            <div id="sec-map" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-mt-28">
-                <!-- Left Side: Map and Styles -->
-                <div class="space-y-6">
-                    <h2 class="font-display-lg text-3xl font-bold text-primary">Estilo del Viaje</h2>
-                    <div id="dest-tags" class="flex flex-wrap gap-2"></div>
+            <!-- 1 & 2. Overview and Map Section -->
+            <div id="sec-overview" class="grid grid-cols-1 lg:grid-cols-2 gap-12 scroll-mt-28">
+                <!-- Left/Center Column -->
+                <div class="space-y-8">
+                    <!-- Description -->
+                    <p id="dest-description" class="text-on-surface-variant leading-relaxed text-lg font-medium"></p>
                     
-                    <h2 class="font-display-lg text-3xl font-bold text-primary pt-4">Ubicación y Territorio</h2>
-                    <p class="text-on-surface-variant leading-relaxed">
-                        Visualiza la distribución geográfica y las rutas recomendadas por nuestros egiptólogos y expertos en destino para optimizar cada jornada de tu travesía.
-                    </p>
-                    <div class="p-6 bg-tertiary-fixed rounded-2xl border border-outline-variant/30 flex items-start gap-4">
-                        <span class="material-symbols-outlined text-secondary text-3xl mt-1">info</span>
-                        <div>
-                            <h4 class="font-bold text-primary">Consejo de Viajero</h4>
-                            <p class="text-sm text-on-surface-variant/95 mt-1 leading-relaxed">
-                                Puedes hacer clic directamente en la imagen del mapa de la derecha para abrir una versión en alta resolución y examinar en detalle cada parada.
-                            </p>
+                    <!-- Estilo del Viaje -->
+                    <div class="space-y-4">
+                        <h2 class="font-display-lg text-3xl font-bold text-primary">Estilo del Viaje</h2>
+                        <div id="dest-tags" class="flex flex-wrap gap-2"></div>
+                    </div>
+                    
+                    <!-- Ubicación y Territorio -->
+                    <div class="space-y-4" id="sec-map">
+                        <h2 class="font-display-lg text-3xl font-bold text-primary pt-2">Ubicación y Territorio</h2>
+                        <p class="text-on-surface-variant leading-relaxed">
+                            Visualiza la distribución geográfica y las rutas recomendadas por nuestros egiptólogos y expertos en destino para optimizar cada jornada de tu travesía.
+                        </p>
+                        <div class="p-6 bg-tertiary-fixed rounded-2xl border border-outline-variant/30 flex items-start gap-4">
+                            <span class="material-symbols-outlined text-secondary text-3xl mt-1">info</span>
+                            <div>
+                                <h4 class="font-bold text-primary">Consejo de Viajero</h4>
+                                <p class="text-sm text-on-surface-variant/95 mt-1 leading-relaxed">
+                                    Puedes hacer clic directamente en la imagen del mapa de la derecha para abrir una versión en alta resolución y examinar en detalle cada parada.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Side: Interactive Map Image -->
-                <div class="relative rounded-3xl overflow-hidden ambient-glow border border-outline-variant/30 cursor-zoom-in" id="map-container">
-                    <div id="dest-map-img" class="w-full aspect-[4/3] bg-cover bg-center transition-transform duration-700 hover:scale-105"></div>
+                <!-- Right Column -->
+                <div class="space-y-6">
+                    <!-- Map Image Container -->
+                    <div class="relative rounded-3xl overflow-hidden ambient-glow border border-outline-variant/30 cursor-zoom-in group" id="map-container">
+                        <img id="dest-map-img" src="" alt="Mapa" class="w-full h-auto aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <!-- Marker -->
+                        <div id="map-marker-container" class="absolute hidden items-center justify-center -translate-x-1/2 -translate-y-1/2 select-none" style="width: 32px; height: 32px; pointer-events: none;">
+                            <img id="map-marker-icon" src="" alt="Marcador" class="w-full h-full object-contain hidden" style="filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5))" />
+                            <span id="map-marker-default" class="material-symbols-outlined text-[var(--error)] text-3xl hidden" style="filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.4))">pin_drop</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Info Box -->
+                    <div class="bg-surface p-6 rounded-2xl border border-outline-variant/50 shadow-sm space-y-3 text-on-surface-variant leading-relaxed text-sm md:text-base">
+                        <p>
+                            <strong class="text-primary font-bold">Mejor Época:</strong> 
+                            <span id="info-best-season"></span>
+                        </p>
+                        <p>
+                            <strong class="text-primary font-bold">Cómo Moverse:</strong> 
+                            <span id="info-get-around"></span>
+                        </p>
+                        <p>
+                            <strong class="text-primary font-bold">Estadía Sugerida:</strong> 
+                            <span id="info-duration"></span>
+                        </p>
+                    </div>
                 </div>
             </div>
             
@@ -358,7 +372,7 @@
         document.getElementById('info-duration').textContent = dest.guideRecommendedDuration || 'Consultar con asesores.';
         
         // Hero background image
-        const heroBg = dest.imageUrl || dest.mapUrl || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1920';
+        const heroBg = dest.imageUrl || dest.image_url || dest.headerImageUrl || dest.header_image_url || dest.mapUrl || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1920';
         document.getElementById('hero-bg').style.backgroundImage = `url('${heroBg}')`;
 
         // Tags
@@ -373,10 +387,50 @@
         });
 
         // Map setup
-        const mapUrl = dest.mapUrl || 'Imagenes/MapaEgipto.jpg';
-        const mapDiv = document.getElementById('dest-map-img');
-        mapDiv.style.backgroundImage = `url('${mapUrl}')`;
+        let mapUrl = dest.mapUrl || 'Imagenes/MapaEgipto.jpg';
+        
+        // Si no es una región, intentamos buscar el mapa de la región padre
+        if (dest.type !== 'region' && dest.type !== undefined) {
+            const parentRegId = dest.parent_region_id || dest.parentRegionId;
+            if (parentRegId) {
+                const parentReg = locations.find(l => l.id === parentRegId);
+                if (parentReg && (parentReg.mapUrl || parentReg.map_url)) {
+                    mapUrl = parentReg.mapUrl || parentReg.map_url;
+                }
+            }
+        }
+
+        const mapImg = document.getElementById('dest-map-img');
+        mapImg.src = mapUrl;
         document.getElementById('map-container').setAttribute('onclick', `openMapLightbox('${mapUrl}')`);
+
+        // Map Marker logic
+        const markerContainer = document.getElementById('map-marker-container');
+        const markerIcon = document.getElementById('map-marker-icon');
+        const markerDefault = document.getElementById('map-marker-default');
+
+        const mapPosX = dest.mapPosX ?? dest.map_pos_x;
+        const mapPosY = dest.mapPosY ?? dest.map_pos_y;
+        const mapIconUrl = dest.mapIcon ?? dest.map_icon;
+
+        if (mapPosX !== undefined && mapPosY !== undefined && mapPosX !== '' && mapPosY !== '') {
+            markerContainer.style.left = `${mapPosX}%`;
+            markerContainer.style.top = `${mapPosY}%`;
+            markerContainer.classList.remove('hidden');
+            markerContainer.classList.add('flex');
+
+            if (mapIconUrl) {
+                markerIcon.src = mapIconUrl;
+                markerIcon.classList.remove('hidden');
+                markerDefault.classList.add('hidden');
+            } else {
+                markerIcon.classList.add('hidden');
+                markerDefault.classList.remove('hidden');
+            }
+        } else {
+            markerContainer.classList.add('hidden');
+            markerContainer.classList.remove('flex');
+        }
 
         // --- Render Unified Explore Section (Cities, Areas & Attractions) ---
         const isRegion = dest.type === 'region' || dest.type === undefined;
@@ -432,7 +486,7 @@
                     const card = document.createElement('div');
                     card.className = 'explore-card bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between';
                     
-                    const imgUrl = city.imageUrl || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800';
+                    const imgUrl = city.imageUrl || city.image_url || city.headerImageUrl || city.header_image_url || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800';
                     const cityCategories = city.locationType || 'Ciudad';
                     
                     card.setAttribute('data-type', 'city');
@@ -466,7 +520,7 @@
                     const card = document.createElement('div');
                     card.className = 'explore-card bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between';
                     
-                    const imgUrl = attr.imageUrl || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
+                    const imgUrl = attr.imageUrl || attr.image_url || attr.headerImageUrl || attr.header_image_url || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
                     const attrCategories = attr.locationType || 'Atracción';
                     const cityId = attr.parent_city_id || attr.parentCityId || '';
                     
