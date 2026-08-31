@@ -1,0 +1,30 @@
+    <!-- Services Included & Excluded Section -->
+    <section class="border-t border-outline-variant/60 pt-16 scroll-mt-28" id="services-section">
+        <h2 class="font-display-lg text-headline-lg text-primary text-center mb-12">Servicios y Coberturas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <!-- Incluidos -->
+            <details class="bg-[#F4F9F5] border border-[#E1EFE5] p-6 md:p-10 rounded-3xl group">
+                <summary class="flex items-center gap-3 text-green-700 cursor-pointer select-none outline-none list-none marker:hidden">
+                    <span class="material-symbols-outlined text-3xl">check_circle</span>
+                    <h3 class="text-2xl font-bold text-primary flex-1">Servicios Incluidos</h3>
+                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                </summary>
+                <div class="mt-6">
+                    <ul id="services-included-list" class="space-y-4 text-on-surface-variant text-[0.95rem] font-medium">
+                    </ul>
+                </div>
+            </details>
+            <!-- No Incluidos -->
+            <details class="bg-[#FDF5F5] border border-[#FEE2E2] p-6 md:p-10 rounded-3xl group">
+                <summary class="flex items-center gap-3 text-red-700 cursor-pointer select-none outline-none list-none marker:hidden">
+                    <span class="material-symbols-outlined text-3xl">cancel</span>
+                    <h3 class="text-2xl font-bold text-primary flex-1">No Incluido</h3>
+                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                </summary>
+                <div class="mt-6">
+                    <ul id="services-excluded-list" class="space-y-4 text-on-surface-variant text-[0.95rem] font-medium">
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </section>

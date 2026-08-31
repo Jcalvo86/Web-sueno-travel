@@ -520,7 +520,7 @@ export function renderTripCards(trips) {
         if (!tag && trip.desc) tag = 'Experiencia';
 
         let hoverInfo = [];
-        if (trip.date) hoverInfo.push(`<span class="font-semibold block mb-1">📅 ${trip.date}</span>`);
+        if (trip.date) hoverInfo.push(`<span class="font-semibold block mb-1">📅 Próximo viaje en grupo: ${trip.date}</span>`);
         if (trip.days) {
             let duration = `${trip.days} Días`;
             if (trip.nights) duration += ` / ${trip.nights} Noches`;
@@ -555,7 +555,7 @@ export function renderTripCards(trips) {
 
         const linkBtn = node.querySelector('.trip-link-btn');
         if (linkBtn) {
-            linkBtn.href = `viaje.html?id=${trip.id}`;
+            linkBtn.href = `viaje.html?nombre=${window.generateSlug(trip.title)}`;
             linkBtn.className = `bg-primary text-on-primary ${isWide ? 'px-6' : 'px-4'} py-2.5 rounded-lg hover:bg-primary-fixed-dim transition-all font-label-md trip-link-btn ${isWide ? '' : 'text-sm'}`;
         }
         
@@ -632,7 +632,7 @@ export function initHeroParallax() {
 // ==========================================
 // BOOTSTRAP
 // ==========================================
-document.addEventListener('DOMContentLoaded', async () => {
+const initHome = async () => {
     initScrollBehavior();
     selectVisitarCountry('egipto');
     initQueVisitarParallax();
@@ -645,4 +645,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(trips && trips.length > 0) {
         renderTripCards(trips);
     }
-});
+};
+
+if (document.getElementById('destinations-grid')) {
+    initHome();
+} else {
+    window.addEventListener('componentsLoaded', initHome);
+}

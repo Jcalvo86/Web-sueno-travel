@@ -55,6 +55,15 @@
         </div>
     </header>
 
+    <!-- Breadcrumb -->
+    <div class="w-full bg-surface-container-lowest border-b border-outline-variant/30">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-3">
+            <nav id="breadcrumb-container" class="flex flex-wrap items-center gap-2 text-xs md:text-sm font-medium text-on-surface-variant" aria-label="Breadcrumb">
+                <!-- Breadcrumbs dynamic inject -->
+            </nav>
+        </div>
+    </div>
+
     <!-- Main Content Container with sidebar index -->
     <section class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col lg:flex-row gap-12">
         <!-- Sidebar Navigation (Index) -->
@@ -365,6 +374,37 @@
         // --- Populate Details ---
         document.title = `${dest.name} | Sueño Travel`;
         document.getElementById('dest-name').textContent = dest.name;
+        
+        // Render Breadcrumb
+        const breadcrumbContainer = document.getElementById('breadcrumb-container');
+        if (breadcrumbContainer) {
+            let breadcrumbHtml = `<a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-sm">home</span> Inicio</a>`;
+            breadcrumbHtml += `<span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>`;
+            breadcrumbHtml += `<a href="index.html#destinos" class="hover:text-primary transition-colors opacity-70">Destinos</a>`;
+            
+            let parentRegId = dest.parent_region_id || dest.parentRegionId;
+            let parentCityId = dest.parent_city_id || dest.parentCityId;
+            
+            if (parentRegId) {
+                const parentReg = locations.find(l => l.id === parentRegId);
+                if (parentReg) {
+                    breadcrumbHtml += `<span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>`;
+                    breadcrumbHtml += `<a href="destino.html?id=${parentReg.id}" class="hover:text-primary transition-colors">${parentReg.name}</a>`;
+                }
+            }
+            if (parentCityId && dest.type === 'attraction') {
+                const parentCity = locations.find(l => l.id === parentCityId);
+                if (parentCity) {
+                    breadcrumbHtml += `<span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>`;
+                    breadcrumbHtml += `<a href="destino.html?id=${parentCity.id}" class="hover:text-primary transition-colors">${parentCity.name}</a>`;
+                }
+            }
+            
+            breadcrumbHtml += `<span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>`;
+            breadcrumbHtml += `<span class="text-primary font-bold cursor-default">${dest.name}</span>`;
+            
+            breadcrumbContainer.innerHTML = breadcrumbHtml;
+        }
         document.getElementById('dest-subtitle').textContent = dest.subtitle || '';
         document.getElementById('dest-description').textContent = dest.description || '';
         document.getElementById('info-best-season').textContent = dest.guideBestSeason || 'Todo el año.';
@@ -387,7 +427,7 @@
         });
 
         // Map setup
-        let mapUrl = dest.mapUrl || 'Imagenes/MapaEgipto.jpg';
+        let mapUrl = dest.mapUrl || dest.map_url || 'Imagenes/MapaEgipto.jpg';
         
         // Si no es una región, intentamos buscar el mapa de la región padre
         if (dest.type !== 'region' && dest.type !== undefined) {
@@ -624,7 +664,7 @@
                             <h3 class="font-display-lg text-xl font-bold text-primary group-hover:text-secondary transition-colors line-clamp-1">${tripTitle}</h3>
                             <p class="text-sm text-on-surface-variant line-clamp-2">${sub}</p>
                             <div class="pt-4 flex justify-between items-center border-t border-outline-variant/40">
-                                <a href="viaje.html?id=${trip.id}" class="text-secondary font-bold hover:underline flex items-center gap-1 text-sm">
+                                <a href="viaje.html?nombre=${window.generateSlug(tripTitle)}" class="text-secondary font-bold hover:underline flex items-center gap-1 text-sm">
                                     Explorar Itinerario
                                     <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </a>

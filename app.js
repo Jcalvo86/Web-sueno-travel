@@ -1,3 +1,15 @@
+// Funciones Globales
+window.generateSlug = (text) => {
+    if (!text) return '';
+    return text.toString().toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remover acentos
+        .replace(/[^a-z0-9 -]/g, '') // remover caracteres inválidos
+        .replace(/\s+/g, '-') // colapsar espacios a guiones
+        .replace(/-+/g, '-') // colapsar guiones múltiples
+        .replace(/^-+/, '') // recortar del inicio
+        .replace(/-+$/, ''); // recortar del final
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Mobile Menu Toggle
   const menuToggle = document.getElementById('menuToggle');

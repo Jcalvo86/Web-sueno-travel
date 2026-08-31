@@ -1,0 +1,17 @@
+    <!-- Gallery Bento Grid -->
+    <section class="border-t border-outline-variant/60 pt-16 scroll-mt-28 relative" id="gallery-section">
+        <div class="flex items-center justify-between mb-12">
+            <h2 class="font-display-lg text-headline-lg text-primary">Capturando la Eternidad</h2>
+            <div class="flex gap-2">
+                <button id="gallery-prev" class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button id="gallery-next" class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </div>
+        <div id="gallery-grid" class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 h-[400px] md:h-[500px] scroll-smooth" style="scrollbar-width: none;">
+            <style>#gallery-grid::-webkit-scrollbar { display: none; }</style>
+        </div>
+    </section>

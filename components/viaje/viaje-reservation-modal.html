@@ -1,0 +1,135 @@
+<!-- Reservation Modal -->
+<div id="reservation-modal" class="fixed inset-0 bg-black/70 z-[9999] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="if(event.target === this) closeReservationModal()">
+    <div class="bg-white rounded-3xl overflow-hidden shadow-2xl w-full max-w-lg transform scale-95 transition-transform duration-300 relative">
+        <button class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors z-10 w-8 h-8 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high" onclick="closeReservationModal()">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        
+        <div class="p-8 md:p-10">
+            <h3 id="reservation-modal-title" class="text-2xl font-bold text-primary mb-2">Reservar Salida</h3>
+            <p id="reservation-modal-desc" class="text-on-surface-variant mb-6 text-sm">Completa el formulario y un asesor se pondrá en contacto contigo a la brevedad.</p>
+            
+            <form id="reservationForm" class="space-y-4">
+                <input type="hidden" id="reservation-trip-id" name="tripId" />
+                <input type="hidden" id="reservation-trip-name" name="tripName" />
+                <input type="hidden" id="reservation-type" name="type" />
+                <input type="hidden" id="reservation-date" name="date" />
+
+                <div>
+                    <label class="block text-sm font-bold text-on-surface mb-1">Nombre Completo</label>
+                    <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-outline-variant focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" placeholder="Ej. Juan Pérez">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold text-on-surface mb-1">Correo Electrónico</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-outline-variant focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" placeholder="juan@ejemplo.com">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold text-on-surface mb-1">Comentarios / Preguntas</label>
+                    <textarea name="message" rows="3" class="w-full px-4 py-3 rounded-xl border border-outline-variant focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" placeholder="¿Tienes alguna pregunta o requerimiento especial?"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-bold hover:bg-secondary transition-colors flex items-center justify-center gap-2 mt-2">
+                    <span>Enviar Solicitud</span>
+                    <span class="material-symbols-outlined text-[20px]">send</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.openReservationModal = function(type, tripName, date = null, tripId = null) {
+        const modal = document.getElementById('reservation-modal');
+        const title = document.getElementById('reservation-modal-title');
+        const desc = document.getElementById('reservation-modal-desc');
+        
+        document.getElementById('reservation-trip-id').value = tripId || '';
+        document.getElementById('reservation-trip-name').value = tripName || '';
+        document.getElementById('reservation-type').value = type;
+        document.getElementById('reservation-date').value = date || '';
+        
+        if (type === 'group') {
+            title.textContent = 'Reservar Salida Grupal';
+            desc.innerHTML = `Viaje: <strong>${tripName}</strong><br/>Fecha: <strong>${date}</strong>`;
+        } else {
+            title.textContent = 'Solicitar Viaje a Medida';
+            desc.innerHTML = `Viaje: <strong>${tripName}</strong><br/>Diseñaremos este itinerario para ti en la fecha que elijas.`;
+        }
+        
+        modal.classList.remove('hidden');
+        // trigger reflow
+        void modal.offsetWidth;
+        modal.classList.remove('opacity-0');
+        modal.querySelector('div').classList.remove('scale-95');
+        modal.querySelector('div').classList.add('scale-100');
+    };
+    
+    window.closeReservationModal = function() {
+        const modal = document.getElementById('reservation-modal');
+        modal.classList.add('opacity-0');
+        modal.querySelector('div').classList.remove('scale-100');
+        modal.querySelector('div').classList.add('scale-95');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.getElementById('reservationForm').reset();
+        }, 300);
+    };
+
+    document.getElementById('reservationForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const form = e.target;
+        const btn = form.querySelector('button[type="submit"]');
+        const originalBtnHtml = btn.innerHTML;
+        
+        const name = form.name.value;
+        const email = form.email.value;
+        const message = form.message.value;
+        const tripName = form.tripName.value;
+        const type = form.type.value;
+        const date = form.date.value;
+        
+        const destinations = [tripName];
+        let finalMessage = type === 'group' 
+            ? `Solicitud de reserva para salida grupal: ${date}.\n\nMensaje del cliente:\n${message}`
+            : `Solicitud de viaje a medida.\n\nMensaje del cliente:\n${message}`;
+        
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Enviando...';
+        btn.disabled = true;
+        btn.classList.add('opacity-70');
+        
+        try {
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, message: finalMessage, destinations })
+            });
+            
+            if (!response.ok) throw new Error('Error en el servidor');
+            
+            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Solicitud Enviada';
+            btn.classList.remove('bg-primary');
+            btn.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+                closeReservationModal();
+                setTimeout(() => {
+                    btn.innerHTML = originalBtnHtml;
+                    btn.classList.remove('bg-green-600', 'opacity-70');
+                    btn.classList.add('bg-primary');
+                    btn.disabled = false;
+                }, 300);
+            }, 2500);
+            
+        } catch (err) {
+            console.error('Error enviando reserva:', err);
+            alert('Ocurrió un error al enviar tu solicitud. Por favor intenta de nuevo.');
+            btn.innerHTML = originalBtnHtml;
+            btn.classList.remove('opacity-70');
+            btn.disabled = false;
+        }
+    });
+</script>

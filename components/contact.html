@@ -1,0 +1,108 @@
+        <!-- Inquiry Section: Interactive Form -->
+        <section class="py-24 bg-surface-container-low relative overflow-hidden" id="contacto">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+                <div class="bg-white rounded-[40px] shadow-2xl overflow-hidden grid lg:grid-cols-5">
+                    <div class="lg:col-span-2 bg-secondary p-12 text-on-primary flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-4xl font-bold mb-6" data-i18n="contacto.title" data-i18n-ns="home">Empecemos
+                                a planear</h2>
+                            <p class="opacity-90 mb-8" data-i18n="contacto.subtitle" data-i18n-ns="home">Nuestros
+                                asesores expertos están listos para diseñar tu
+                                itinerario a medida. Respuesta garantizada en menos de 24 horas.</p>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                    <span data-i18n="contacto.lujo" data-i18n-ns="home">Hoteles de Gran Lujo</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                    <span data-i18n="contacto.guias" data-i18n-ns="home">Guías Privados
+                                        Certificados</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                    <span data-i18n="contacto.traslados" data-i18n-ns="home">Traslados VIP
+                                        Exclusivos</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pt-8 border-t border-white/20">
+                            <p class="text-sm mb-2 opacity-80 uppercase tracking-widest" data-i18n="contacto.escribe"
+                                data-i18n-ns="home">Escríbenos directamente</p>
+                            <a class="text-xl font-bold hover:underline block"
+                                href="mailto:contacto@suenotravel.cl">contacto@suenotravel.cl</a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3 p-12">
+                        <form class="space-y-8" id="contactFormMain">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="font-label-md text-primary" data-i18n="contacto.nombre"
+                                        data-i18n-ns="home">Nombre Completo *</label>
+                                    <input
+                                        class="w-full border-b border-outline-variant focus:border-secondary outline-none py-2 transition-colors bg-transparent"
+                                        data-i18n-placeholder="contacto.nombrePlaceholder" data-i18n-ns="home"
+                                        placeholder="Tu nombre..." type="text" required />
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="font-label-md text-primary" data-i18n="contacto.correo"
+                                        data-i18n-ns="home">Correo Electrónico *</label>
+                                    <input
+                                        class="w-full border-b border-outline-variant focus:border-secondary outline-none py-2 transition-colors bg-transparent"
+                                        data-i18n-placeholder="contacto.correoPlaceholder" data-i18n-ns="home"
+                                        placeholder="ejemplo@email.com" type="email" required />
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <label class="font-label-md text-primary" data-i18n="contacto.destinoInteres"
+                                    data-i18n-ns="home">Destino de interés</label>
+                                <div class="flex flex-wrap gap-3">
+                                    <label class="cursor-pointer">
+                                        <input class="hidden peer" type="checkbox" name="destino" value="Egipto" />
+                                        <div
+                                            class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">
+                                            Egipto</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="hidden peer" type="checkbox" name="destino" value="Jordania" />
+                                        <div
+                                            class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">
+                                            Jordania</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="hidden peer" type="checkbox" name="destino" value="Grecia" />
+                                        <div
+                                            class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">
+                                            Grecia</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="hidden peer" type="checkbox" name="destino" value="Turquía" />
+                                        <div
+                                            class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">
+                                            Turquía</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-md text-primary" data-i18n="contacto.mensaje"
+                                    data-i18n-ns="home">Mensaje o Detalles Adicionales</label>
+                                <textarea
+                                    class="w-full border border-outline-variant rounded-xl p-4 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
+                                    data-i18n-placeholder="contacto.mensajePlaceholder" data-i18n-ns="home"
+                                    placeholder="Cuéntanos más sobre tus fechas ideales y preferencias..."
+                                    rows="4"></textarea>
+                            </div>
+                            <button
+                                class="w-full bg-primary text-on-primary py-5 rounded-2xl font-bold text-xl flex items-center justify-center gap-3 hover:bg-primary-container transition-all shadow-xl group"
+                                type="submit">
+                                <span data-i18n="contacto.enviar" data-i18n-ns="home">Enviar Solicitud</span>
+                                <span
+                                    class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Abstract background shape -->
+            <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+        </section>

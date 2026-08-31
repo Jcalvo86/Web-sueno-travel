@@ -1,0 +1,52 @@
+        <!-- Experience Section: ¿Qué visitar? -->
+        <section id="que-visitar"
+            class="relative overflow-hidden py-24 bg-[#091524] lg:py-0 lg:h-[850px] flex items-center">
+            <!-- Parallax Background Slider -->
+            <div id="visitar-parallax-bg" class="visitar-slider-container">
+                <div id="visitar-bg-1" class="visitar-slide slide-active">
+                    <div class="visitar-slide-bg" style="background-image: url('Imagenes/egipto5.webp');"></div>
+                </div>
+                <div id="visitar-bg-2" class="visitar-slide">
+                    <div class="visitar-slide-bg"></div>
+                </div>
+            </div>
+            <!-- Static overlay dark gradient to keep contrast high under the text sidebar -->
+            <div
+                class="absolute inset-0 bg-gradient-to-l from-black/70 via-black/20 to-transparent pointer-events-none z-1">
+            </div>
+
+            <!-- Glassmorphism Card (Mobile: standard rounded box / Desktop: absolute right-aligned sidebar) -->
+            <div
+                class="visitar-glass-card p-6 md:p-10 lg:p-12 max-w-md w-full text-on-primary space-y-8 relative z-10 mx-auto lg:mx-0 lg:absolute lg:inset-y-0 lg:right-0 lg:w-[38%] lg:max-w-none lg:rounded-none lg:rounded-l-[32px] lg:border-y-0 lg:border-r-0 lg:flex lg:flex-col lg:justify-center lg:overflow-y-auto">
+                <h2 class="font-display-lg text-display-lg text-white" data-i18n="queVisitar.title" data-i18n-ns="home">
+                    ¿Qué visitar?</h2>
+                <p class="text-[#ffddb9] text-lg font-medium opacity-90" data-i18n="queVisitar.subtitle"
+                    data-i18n-ns="home">No solo vendemos viajes, creamos legados. Estos
+                    son los hitos que transformarán tu visión del mundo.</p>
+
+                <!-- Botonera -->
+                <div class="visitar-destinations-grid">
+                    <div class="visitar-dest-card active" data-visitar="egipto"
+                        onclick="selectVisitarCountry('egipto')">
+                        <div class="dest-icon"><img src="Imagenes/Egipto.png" alt="Egipto"></div>
+                        <div class="dest-name">Egipto</div>
+                    </div>
+                    <div class="visitar-dest-card" data-visitar="jordania" onclick="selectVisitarCountry('jordania')">
+                        <div class="dest-icon"><img src="Imagenes/Jordania.png" alt="Jordania"></div>
+                        <div class="dest-name">Jordania</div>
+                    </div>
+                    <div class="visitar-dest-card" data-visitar="grecia" onclick="selectVisitarCountry('grecia')">
+                        <div class="dest-icon"><img src="Imagenes/Grecia.png" alt="Grecia"></div>
+                        <div class="dest-name">Grecia</div>
+                    </div>
+                    <div class="visitar-dest-card" data-visitar="turquia" onclick="selectVisitarCountry('turquia')">
+                        <div class="dest-icon"><img src="Imagenes/Turquia.png" alt="Turquía"></div>
+                        <div class="dest-name">Turquía</div>
+                    </div>
+                </div>
+
+                <div id="visitar-list-container" class="space-y-6">
+                    <!-- Content loaded dynamically -->
+                </div>
+            </div>
+        </section>

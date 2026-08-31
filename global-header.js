@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>
         </div>
         <nav class="hidden md:flex gap-8 items-center">
+            <a id="nav-viajes" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="index.html#destinos" data-i18n="viajes" data-i18n-ns="header">Viajes</a>
             <!-- Dropdown Destinos -->
             <div class="relative group">
                 <button id="nav-destinos" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
             </div>
             <nav class="flex flex-col gap-4">
+                <a id="mobile-nav-viajes" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="index.html#destinos" data-i18n="viajes" data-i18n-ns="header">Viajes</a>
                 <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant/60 font-semibold" data-i18n="destinos" data-i18n-ns="header">Destinos</span>
                 <div class="flex flex-col gap-3 pl-3 border-l-2 border-outline-variant/10">
                     <a id="mobile-nav-egipto" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=egipto" data-i18n="egipto" data-i18n-ns="header">Egipto</a>
