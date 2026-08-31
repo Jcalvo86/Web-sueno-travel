@@ -149,6 +149,7 @@
     </div>
     
     <div id="section-reservation-modal"></div>
+    <div id="contact-modal-container"></div>
 
     <script type="module">
         import { loadTripData } from './src/js/viaje.js';
@@ -180,7 +181,8 @@
                 loadSection('section-gallery', 'components/viaje/viaje-gallery.html'),
                 loadSection('section-cta', 'components/viaje/viaje-cta.html'),
                 loadSection('section-footer', 'components/footer.html'),
-                loadSection('section-reservation-modal', 'components/viaje/viaje-reservation-modal.html')
+                loadSection('section-reservation-modal', 'components/viaje/viaje-reservation-modal.html'),
+                loadSection('contact-modal-container', 'components/contact-modal.html')
             ]);
 
             // Ejecutamos la lógica de cargar viaje de forma segura una única vez

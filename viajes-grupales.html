@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viajes Grupales | Sueño Travel</title>
+    <meta name="description" content="Descubre nuestros viajes grupales y vive una experiencia única en buena compañía.">
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind-config.js"></script>
+    <!-- CMS Adapters -->
+    <script src="controlpanel/adapters/adapter-interface.js"></script>
+    <script src="controlpanel/adapters/supabase-adapter.js"></script>
+    <script src="controlpanel/adapters/firebase-adapter.js"></script>
+    <script src="crm-config.js"></script>
+    <script src="controlpanel/data-source-config.js"></script>
+    <!-- Dynamic Header Component -->
+    <script src="global-header.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20">
+<div id="global-header"></div>
+
+<!-- Hero Section -->
+<header class="relative h-[45vh] w-full flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <div class="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105" style="background-image: url('Imagenes/ParejaEgipto.webp')">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60"></div>
+    </div>
+    <div class="relative z-10 text-center px-margin-mobile max-w-4xl">
+        <h1 class="font-display-lg text-4xl md:text-6xl text-white mb-3 font-extrabold tracking-tight">Viajes Grupales</h1>
+        <p class="text-white/90 text-body-lg max-w-2xl mx-auto">Únete a nuestros grupos y descubre el mundo en la mejor compañía, con el respaldo de nuestros expertos.</p>
+    </div>
+</header>
+
+<main class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4">Nuestras Próximas Salidas</h2>
+    <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-12">Las plazas son limitadas para garantizar la mejor experiencia. Elige tu próximo viaje.</p>
+    
+    <div id="itineraries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Dynamic itinerary cards will go here via JS, or placeholder -->
+<script>
+    // Logic to fetch departures and itineraries from DataSource
+    const loadGroupTrips = async () => {
+        try {
+            // Wait for DataSource definition
+            let checks = 0;
+            while (!window.DataSource && checks < 20) {
+                await new Promise(r => setTimeout(r, 100));
+                checks++;
+            }
+
+            if (!window.DataSource) {
+                return;
+            }
+
+            // Fetch departures and travels
+            const departures = await window.DataSource.getItems('departure') || [];
+            const travels = await window.DataSource.getItems('travel') || [];
+            const products = await window.DataSource.getItems('cms_products') || [];
+            const allTrips = [...travels, ...products];
+
+            // Filter active departures
+            const activeDeps = departures.filter(dep => {
+                const isDraft = dep.is_draft !== undefined ? dep.is_draft : (dep.isDraft || false);
+                return !isDraft && dep.status !== 'cancelled';
+            });
+
+            // Sort by departure date (closest first)
+            activeDeps.sort((a, b) => {
+                const dateA = new Date(a.departureDate || a.departure_date || '9999-12-31');
+                const dateB = new Date(b.departureDate || b.departure_date || '9999-12-31');
+                return dateA - dateB;
+            });
+
+            const formatDate = (dateStr) => {
+                if (!dateStr) return '';
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+            };
+
+            const grid = document.getElementById('itineraries-grid');
+            grid.innerHTML = '';
+            
+            if (activeDeps.length > 0) {
+                activeDeps.forEach(dep => {
+                    // Find associated trip
+                    const tripId = dep.travelId || dep.travel_id;
+                    const trip = allTrips.find(t => t.id === tripId) || {};
+                    
+                    const card = document.createElement('div');
+                    card.className = 'bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col';
+                    
+                    const imgUrl = dep.imageUrl || dep.image_url || trip.headerImageUrl || trip.header_image_url || trip.imageUrl || trip.image_url || 'Imagenes/group_departure_default.jpg';
+                    const tripTitle = dep.title || dep.name || trip.title || trip.name || 'Salida Grupal';
+                    const duration = trip.durationDays || trip.duration_days || trip.duration || 'Consultar';
+                    
+                    const isClosed = dep.status === 'closed';
+                    const spotsLeft = isClosed ? 0 : Math.max(0, (dep.capacity || 10) - (dep.passengersCount || 0));
+                    let statusLabel = 'Cupos disponibles';
+                    let statusColor = 'bg-green-100 text-green-800 border-green-200';
+                    if (spotsLeft === 0) {
+                        statusLabel = 'Agotado';
+                        statusColor = 'bg-red-100 text-red-800 border-red-200';
+                    } else if (spotsLeft <= 3) {
+                        statusLabel = `¡Últimos ${spotsLeft} cupos!`;
+                        statusColor = 'bg-orange-100 text-orange-800 border-orange-200';
+                    }
+
+                    let sub = trip.destinationsSummary || trip.destinations_summary || trip.subtitle || '';
+                    if (Array.isArray(sub)) sub = sub.join(', ');
+
+                    card.innerHTML = `
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${tripTitle}">
+                            <div class="absolute top-4 right-4 bg-primary text-white font-bold text-xs px-3 py-1.5 rounded-full shadow-md uppercase tracking-wider">
+                                ${duration} ${typeof duration === 'number' ? 'Días' : ''}
+                            </div>
+                            <div class="absolute top-4 left-4 ${statusColor} font-bold text-[10px] px-2.5 py-1 rounded-full shadow-sm uppercase tracking-wider border">
+                                ${statusLabel}
+                            </div>
+                        </div>
+                        <div class="p-8 space-y-3 flex-1 flex flex-col">
+                            <h3 class="font-display-lg text-xl font-bold text-primary group-hover:text-secondary transition-colors line-clamp-2">${tripTitle}</h3>
+                            <h4 class="text-lg font-bold text-secondary mb-2">
+                                ${formatDate(dep.departureDate || dep.departure_date)}
+                                ${(dep.endDate || dep.end_date) ? ` al <span class="text-sm font-medium text-on-surface-variant">${formatDate(dep.endDate || dep.end_date)}</span>` : ''}
+                            </h4>
+                            <p class="text-sm text-on-surface-variant line-clamp-2 flex-1">${sub}</p>
+                            
+                            ${dep.priceOverride ? `
+                                <div class="mt-4 mb-2">
+                                    <span class="text-xs text-on-surface-variant block">Precio Especial:</span>
+                                    <span class="text-2xl font-extrabold text-primary">USD $${dep.priceOverride}</span>
+                                </div>
+                            ` : ''}
+                            
+                            <div class="pt-4 flex justify-between items-center border-t border-outline-variant/40 mt-auto">
+                                ${trip.id ? `
+                                <a href="viaje.html?nombre=${window.generateSlug ? window.generateSlug(trip.title || trip.name) : encodeURIComponent(trip.title || trip.name)}" class="text-secondary font-bold hover:underline flex items-center gap-1 text-sm">
+                                    Ver Itinerario
+                                </a>
+                                ` : '<span></span>'}
+                                ${spotsLeft > 0 ? `
+                                <button onclick="if(window.openContactModal) window.openContactModal('group', '${tripTitle.replace(/'/g, "\\'")}', '${formatDate(dep.departureDate || dep.departure_date)}')" class="bg-primary text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-secondary transition-all shadow-sm">
+                                    Reservar Cupo
+                                </button>
+                                ` : `
+                                <button class="bg-surface-variant text-on-surface-variant/50 px-4 py-2 rounded-lg font-bold text-xs shadow-sm cursor-not-allowed" disabled>
+                                    Agotado
+                                </button>
+                                `}
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } else {
+                grid.innerHTML = `
+                    <div class="text-center col-span-full py-12">
+                        <span class="material-symbols-outlined text-4xl text-on-surface-variant/50 mb-2">flight_takeoff</span>
+                        <p class="text-on-surface-variant text-lg">Pronto publicaremos nuestros nuevos viajes grupales. ¡Mantente atento!</p>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            console.error('Error loading group trips:', error);
+            const grid = document.getElementById('itineraries-grid');
+            if (grid) {
+                grid.innerHTML = `
+                    <div class="text-center col-span-full py-12">
+                        <span class="material-symbols-outlined text-4xl text-on-surface-variant/50 mb-2">error</span>
+                        <p class="text-on-surface-variant text-lg">Ocurrió un error al cargar los viajes grupales.</p>
+                    </div>
+                `;
+            }
+        }
+    };
+    
+    // Create a fallback generateSlug function if it doesn't exist
+    if (!window.generateSlug) {
+        window.generateSlug = (text) => {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
+        };
+    }
+
+    window.addEventListener('DOMContentLoaded', loadGroupTrips);
+</script>
+
+<!-- Footer Integration -->
+<div id="section-footer"></div>
+<script>
+    // Load footer
+    fetch('components/footer.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('section-footer').innerHTML = html;
+        });
+</script>
+</body>
+</html>

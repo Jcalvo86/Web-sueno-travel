@@ -691,7 +691,7 @@
         if (ctaBtn) {
             ctaBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                window.openReservationModal('custom', document.title.replace(/'/g, "\\'"), null, trip.id);
+                if(window.openContactModal) window.openContactModal('custom', document.title.replace(/'/g, "\\'"));
             });
         }
 
@@ -764,7 +764,7 @@
                                 </div>
                             ` : ''}
                         </div>
-                        <button onclick="window.openReservationModal('group', document.title.replace(/'/g, '\\''), '${formatDate(dep.departureDate || dep.departure_date)}', '${tripId}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-secondary transition-all mt-4 text-center">
+                        <button onclick="if(window.openContactModal) window.openContactModal('group', document.title.replace(/'/g, '\\''), '${formatDate(dep.departureDate || dep.departure_date)}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-secondary transition-all mt-4 text-center">
                             Reservar esta Salida
                         </button>
                     </div>
@@ -788,7 +788,7 @@
                         ¿Ninguna de estas fechas se adapta a tus planes? Diseñamos este itinerario a tu medida en la fecha que prefieras.
                     </p>
                 </div>
-                <button onclick="window.openReservationModal('custom', document.title.replace(/'/g, '\\''), null, '${tripId}')" class="w-full bg-secondary text-on-secondary py-3 rounded-xl font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all mt-4 text-center block">
+                <button onclick="if(window.openContactModal) window.openContactModal('custom', document.title.replace(/'/g, '\\''))" class="w-full bg-secondary text-on-secondary py-3 rounded-xl font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all mt-4 text-center block">
                     Crear viaje a medida
                 </button>
             `;

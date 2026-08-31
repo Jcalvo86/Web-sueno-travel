@@ -11,7 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>
         </div>
         <nav class="hidden md:flex gap-8 items-center">
-            <a id="nav-viajes" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="index.html#destinos" data-i18n="viajes" data-i18n-ns="header">Viajes</a>
+            <div class="relative group">
+                <button id="nav-viajes-dropdown" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
+                    <span data-i18n="viajes" data-i18n-ns="header">Viajes</span>
+                    <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                </button>
+                <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 rounded-xl bg-white shadow-lg border border-outline-variant/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                    <a id="nav-viajes-grupales" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="viajes-grupales.html" data-i18n="viajesGrupales" data-i18n-ns="header">Viajes Grupales</a>
+                    <a id="nav-itinerarios" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="itinerarios.html" data-i18n="itinerarios" data-i18n-ns="header">Itinerarios</a>
+                </div>
+            </div>
             <!-- Dropdown Destinos -->
             <div class="relative group">
                 <button id="nav-destinos" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
@@ -28,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <a id="nav-nosotros" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="conocenos.html" data-i18n="conocenos" data-i18n-ns="header">Conócenos</a>
         </nav>
         <div class="flex items-center gap-4">
-            <a href="index.html#contacto" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/95 text-xs md:text-sm font-bold" data-i18n="contactar" data-i18n-ns="header">
+            <button onclick="if(window.openContactModal) window.openContactModal();" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/95 text-xs md:text-sm font-bold" data-i18n="contactar" data-i18n-ns="header">
                 Contactar
-            </a>
+            </button>
             <!-- Language Toggle -->
             <div class="flex items-center gap-1 border border-outline-variant/30 rounded-lg overflow-hidden text-xs font-bold">
                 <button id="lang-es" class="px-2.5 py-1.5 transition-all hover:bg-primary/10" data-i18n-aria="cambiarEs" data-i18n-ns="header" aria-label="Cambiar a Español">ES</button>
@@ -53,7 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
             </div>
             <nav class="flex flex-col gap-4">
-                <a id="mobile-nav-viajes" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="index.html#destinos" data-i18n="viajes" data-i18n-ns="header">Viajes</a>
+                <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant/60 font-semibold" data-i18n="viajes" data-i18n-ns="header">Viajes</span>
+                <div class="flex flex-col gap-3 pl-3 border-l-2 border-outline-variant/10 pb-4">
+                    <a id="mobile-nav-viajes-grupales" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="viajes-grupales.html" data-i18n="viajesGrupales" data-i18n-ns="header">Viajes Grupales</a>
+                    <a id="mobile-nav-itinerarios" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="itinerarios.html" data-i18n="itinerarios" data-i18n-ns="header">Itinerarios</a>
+                </div>
                 <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant/60 font-semibold" data-i18n="destinos" data-i18n-ns="header">Destinos</span>
                 <div class="flex flex-col gap-3 pl-3 border-l-2 border-outline-variant/10">
                     <a id="mobile-nav-egipto" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=egipto" data-i18n="egipto" data-i18n-ns="header">Egipto</a>
@@ -163,3 +176,127 @@ document.addEventListener('DOMContentLoaded', () => {
     wireLanguageButtons();
 });
 
+// Modal Global Logic
+// Modal Global Logic
+window.openContactModal = function(tripType = null, tripTitle = null, date = null) {
+    const modal = document.getElementById('contact-modal');
+    if (!modal) return;
+
+    // Lógica para predefinir destinos basados en la URL o contexto
+    const urlParams = new URLSearchParams(window.location.search);
+    const destId = urlParams.get('id');
+    const path = window.location.pathname.toLowerCase();
+    
+    const checkboxes = modal.querySelectorAll('input[name="destino"]');
+    if (checkboxes.length > 0) {
+        checkboxes.forEach(cb => cb.checked = false); // Reset all first
+        
+        const titleText = tripTitle || document.title;
+        const textToSearch = [
+            destId,
+            path,
+            titleText
+        ].filter(Boolean).map(s => s.toLowerCase()).join(' ');
+
+        checkboxes.forEach(cb => {
+            const val = cb.value.toLowerCase();
+            // Para 'Turquía', ignorar tildes al comparar
+            const valNorm = val.replace('í', 'i');
+            if (textToSearch.includes(val) || textToSearch.includes(valNorm)) {
+                cb.checked = true;
+            }
+        });
+        
+        // Llenado inteligente del mensaje según el contexto
+        const msgField = modal.querySelector('textarea[name="message"]');
+        if (msgField) {
+            let msg = '';
+            const finalTitle = tripTitle || (document.querySelector('h1') ? document.querySelector('h1').textContent.trim() : null);
+            
+            if (tripType === 'group' && finalTitle) {
+                msg = `Hola, quiero reservar mi cupo para la salida grupal de ${finalTitle} en la fecha: ${date || 'pronto'}.\n\nPor favor contáctenme para continuar con la reserva.`;
+            } else if (tripType === 'custom' && finalTitle) {
+                msg = `Hola, me interesa armar mi viaje a medida basado en el itinerario: ${finalTitle}.\n\nMis fechas ideales son: \n\nQuedo a la espera de su respuesta.`;
+            } else if (path.includes('viaje.html') && finalTitle) {
+                msg = `Hola, estoy interesado en el itinerario: ${finalTitle}.\n\nMe gustaría recibir más información.`;
+            }
+            if (msg) msgField.value = msg;
+        }
+    }
+
+    modal.classList.remove('hidden');
+    // trigger reflow
+    void modal.offsetWidth;
+    modal.classList.remove('opacity-0');
+    modal.querySelector('div').classList.remove('scale-95');
+    modal.querySelector('div').classList.add('scale-100');
+};
+
+window.closeContactModal = function() {
+    const modal = document.getElementById('contact-modal');
+    if (!modal) return;
+    modal.classList.add('opacity-0');
+    modal.querySelector('div').classList.remove('scale-100');
+    modal.querySelector('div').classList.add('scale-95');
+    
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        const form = document.getElementById('modalContactForm');
+        if (form) form.reset();
+    }, 300);
+};
+
+// Event delegation for the dynamically loaded form
+document.addEventListener('submit', async (e) => {
+    if (e.target && e.target.id === 'modalContactForm') {
+        e.preventDefault();
+        
+        const form = e.target;
+        const btn = form.querySelector('button[type="submit"]');
+        const originalBtnHtml = btn.innerHTML;
+        
+        const name = form.name.value;
+        const email = form.email.value;
+        const message = form.message.value;
+        
+        const checkedDestinations = Array.from(form.querySelectorAll('input[name="destino"]:checked')).map(cb => cb.value);
+        const destinationsStr = checkedDestinations.length > 0 ? checkedDestinations.join(', ') : 'No especificado';
+        
+        const finalMessage = `Mensaje del cliente:\n${message}\n\nDestinos de interés: ${destinationsStr}`;
+        
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Enviando...';
+        btn.disabled = true;
+        btn.classList.add('opacity-70');
+        
+        try {
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, message: finalMessage, destinations: checkedDestinations })
+            });
+            
+            if (!response.ok) throw new Error('Error en el servidor');
+            
+            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Solicitud Enviada';
+            btn.classList.remove('bg-primary');
+            btn.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+                closeContactModal();
+                setTimeout(() => {
+                    btn.innerHTML = originalBtnHtml;
+                    btn.classList.remove('bg-green-600', 'opacity-70');
+                    btn.classList.add('bg-primary');
+                    btn.disabled = false;
+                }, 300);
+            }, 2500);
+            
+        } catch (err) {
+            console.error('Error enviando contacto:', err);
+            alert('Ocurrió un error al enviar tu solicitud. Por favor intenta de nuevo.');
+            btn.innerHTML = originalBtnHtml;
+            btn.classList.remove('opacity-70');
+            btn.disabled = false;
+        }
+    }
+});

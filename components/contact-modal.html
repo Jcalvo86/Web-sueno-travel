@@ -1,0 +1,60 @@
+<!-- Contact Modal -->
+<div id="contact-modal" class="fixed inset-0 bg-black/70 z-[9999] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="if(event.target === this) closeContactModal()">
+    <div class="bg-white rounded-3xl overflow-hidden shadow-2xl w-full max-w-2xl transform scale-95 transition-transform duration-300 relative flex flex-col max-h-[90vh]">
+        <button class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors z-10 w-8 h-8 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high" onclick="closeContactModal()">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        
+        <div class="p-8 md:p-10 overflow-y-auto">
+            <h3 id="contact-modal-title" class="text-3xl font-bold text-primary mb-2" data-i18n="contacto.title" data-i18n-ns="home">Empecemos a planear</h3>
+            <p id="contact-modal-desc" class="text-on-surface-variant mb-6 text-sm" data-i18n="contacto.subtitle" data-i18n-ns="home">Nuestros asesores expertos están listos para diseñar tu itinerario a medida. Respuesta garantizada en menos de 24 horas.</p>
+            
+            <form id="modalContactForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="font-label-md text-primary font-bold block mb-1" data-i18n="contacto.nombre" data-i18n-ns="home">Nombre Completo *</label>
+                        <input class="w-full px-4 py-3 rounded-xl border border-outline-variant focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" data-i18n-placeholder="contacto.nombrePlaceholder" data-i18n-ns="home" placeholder="Tu nombre..." name="name" type="text" required />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="font-label-md text-primary font-bold block mb-1" data-i18n="contacto.correo" data-i18n-ns="home">Correo Electrónico *</label>
+                        <input class="w-full px-4 py-3 rounded-xl border border-outline-variant focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" data-i18n-placeholder="contacto.correoPlaceholder" data-i18n-ns="home" placeholder="ejemplo@email.com" name="email" type="email" required />
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <label class="font-label-md text-primary font-bold block" data-i18n="contacto.destinoInteres" data-i18n-ns="home">Destino de interés</label>
+                    <div class="flex flex-wrap gap-3">
+                        <label class="cursor-pointer">
+                            <input class="hidden peer" type="checkbox" name="destino" value="Egipto" />
+                            <div class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">Egipto</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input class="hidden peer" type="checkbox" name="destino" value="Jordania" />
+                            <div class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">Jordania</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input class="hidden peer" type="checkbox" name="destino" value="Grecia" />
+                            <div class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">Grecia</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input class="hidden peer" type="checkbox" name="destino" value="Turquía" />
+                            <div class="px-6 py-2 rounded-full border border-outline-variant peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary transition-all">Turquía</div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="font-label-md text-primary font-bold block mb-1" data-i18n="contacto.mensaje" data-i18n-ns="home">Mensaje o Detalles Adicionales</label>
+                    <textarea class="w-full px-4 py-3 rounded-xl border border-outline-variant focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" data-i18n-placeholder="contacto.mensajePlaceholder" data-i18n-ns="home" placeholder="Cuéntanos más sobre tus fechas ideales y preferencias..." name="message" rows="4"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-on-primary py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-primary-container transition-all shadow-md mt-4">
+                    <span data-i18n="contacto.enviar" data-i18n-ns="home">Enviar Solicitud</span>
+                    <span class="material-symbols-outlined text-[20px]">send</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

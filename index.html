@@ -58,8 +58,7 @@
                     </h1>
                     <p class="font-body-lg text-body-lg max-w-2xl opacity-90" data-i18n="hero.subtitle"
                         data-i18n-ns="home">
-                        Diseñamos experiencias de lujo personalizadas para exploradores cultos. Desde los susurros del
-                        desierto en Jordania hasta los mármoles eternos de Grecia.
+                        Diseñamos experiencias únicas y personalizadas para viajeros que buscan descubrir el mundo de una manera diferente. Desde los susurros del desierto en Jordania hasta los mármoles eternos de Grecia.
                     </p>
                     <div class="flex flex-wrap gap-4 pt-4 justify-center">
                         <a class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-lg font-bold text-lg hover:bg-secondary-fixed-dim transition-all shadow-lg flex items-center gap-2"
@@ -73,12 +72,13 @@
         </section>
 
         <div id="section-destinations"></div>
-        <div id="section-que-visitar"></div>
         <div id="section-testimonials"></div>
+        <div id="section-que-visitar"></div>
         <div id="section-about-us"></div>
         <div id="section-contact"></div>
     </main>
     <div id="section-footer"></div>
+    <div id="contact-modal-container"></div>
     <div id="templates" style="display: none;"></div>
         <!-- trip-card-template was moved to components/trip-card-template.html -->
 
@@ -104,11 +104,12 @@
             // Cargamos todas las secciones en paralelo
             await Promise.all([
                 loadSection('section-destinations', 'components/destinations.html'),
-                loadSection('section-que-visitar', 'components/que-visitar.html'),
                 loadSection('section-testimonials', 'components/testimonials.html'),
+                loadSection('section-que-visitar', 'components/que-visitar.html'),
                 loadSection('section-about-us', 'components/about-us.html'),
                 loadSection('section-contact', 'components/contact.html'),
                 loadSection('section-footer', 'components/footer.html'),
+                loadSection('contact-modal-container', 'components/contact-modal.html'),
                 loadSection('templates', 'components/trip-card-template.html')
             ]);
             
