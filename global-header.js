@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pathname = window.location.pathname;
         if (
             pathname.includes('conocenos.html') || 
-            pathname.includes('sobre-nosotros.html') ||
+            pathname.includes('conocenos.html') ||
             pathname.includes('conoceme.html') || 
             pathname.includes('egipto-magico.html') || 
             pathname.includes('turquia.html') || 

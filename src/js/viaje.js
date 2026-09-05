@@ -176,7 +176,7 @@
                         trip = {
                             id: found.id,
                             name: found.title,
-                            subtitle: destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : found.title,
+                            subtitle: destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : found.title,
                             overview: found.description || '',
                             imageUrl: found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
                             headerImageUrl: found.headerImageUrl || found.header_image_url || found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',

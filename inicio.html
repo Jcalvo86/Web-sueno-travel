@@ -830,7 +830,7 @@
                         return {
                             id: item.id,
                             title: item.title,
-                            desc: item.description || (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : ''),
+                            desc: item.description || (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : ''),
                             imgUrl: item.headerImageUrl || item.header_image_url || item.imageUrl || item.image_url || (item.itinerary && item.itinerary[0]?.imageUrl) || '',
                             isDraft: isDraft
                         };

@@ -93,6 +93,7 @@
                     const duration = trip.durationDays || trip.duration_days || trip.duration || 'Consultar';
                     let sub = trip.destinationsSummary || trip.destinations_summary || trip.subtitle || '';
                     if (Array.isArray(sub)) sub = sub.join(', ');
+                    sub = sub.replace(/\s*\([^)]*\)/g, '');
 
                     card.innerHTML = `
                         <div class="h-56 overflow-hidden relative">

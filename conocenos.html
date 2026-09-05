@@ -41,7 +41,7 @@
         <section class="relative bg-primary text-white py-20 overflow-hidden">
             <!-- Background Image Overlay with blur -->
             <div
-                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1920')] bg-cover bg-center opacity-15 blur-[2px]">
+                class="absolute inset-0 bg-[url('Imagenes/Sueno-travel-1.webp')] bg-cover bg-center opacity-15 blur-[2px]">
             </div>
             <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/80 to-primary"></div>
 
@@ -56,108 +56,84 @@
 
         <!-- About Us Section -->
         <section class="py-16 md:py-24 max-w-7xl mx-auto px-6 md:px-20">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                <!-- Biography/Corporate Text (col-span-7) -->
-                <div class="lg:col-span-7 space-y-6">
+            <!-- Block 1: Text Left, Image Right -->
+            <div class="flex flex-col lg:flex-row gap-12 items-center mb-24">
+                <div class="lg:w-1/2 space-y-6">
                     <h2 class="text-3xl md:text-4xl font-bold text-primary leading-tight font-display-lg"
                         data-i18n="about.title" data-i18n-ns="conocenos">
-                        Viaja con quienes conocen el camino
+                        Quiénes Somos
                     </h2>
                     <div class="w-20 h-1 bg-secondary rounded-full"></div>
 
-                    <p class="text-lg font-semibold text-primary leading-relaxed" data-i18n="about.p1lead" data-i18n-ns="conocenos">
-                        Viajar es mucho más que llegar a un destino. Es descubrir culturas, crear recuerdos y vivir
-                        experiencias que permanecen para siempre.
-                    </p>
+                    <div class="space-y-4 text-on-surface-variant leading-relaxed text-lg">
+                        <p>
+                            Viajar es mi pasión. Durante años he recorrido distintos destinos, conocido nuevas culturas y descubierto esos pequeños detalles que transforman un viaje en una experiencia inolvidable.
+                        </p>
+                        <p>
+                            Egipto ocupa un lugar especial en mi historia; Lo visito hace más de 9 años y se ha convertido en mi segundo hogar. Esta pasión también me llevó a conocer otros destinos de la región, como Jordania, Tierra Santa, Grecia y Turquía.
+                        </p>
+                        <p>
+                            Hoy soy la representante oficial en Chile de “Sueño Travel Egipto”, operador con sede en Egipto, con quien he construido una relación de confianza durante años. Esa alianza dio origen a “Sueño Travel Chile”, un proyecto donde pongo mi experiencia, mis contactos y esta representación al servicio de quienes sueñan con vivir estos destinos de forma cercana, auténtica y bien organizada.
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3] w-full group">
+                        <img src="Imagenes/Sueno-travel-2.webp" alt="Sueño Travel Chile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
 
-                    <div class="space-y-4 text-on-surface-variant leading-relaxed text-[1.0                        <p data-i18n="about.p1" data-i18n-ns="conocenos">
-                            Nuestra pasión por conocer el mundo nos ha llevado a recorrer numerosos países. Cada viaje
-                            ha sido una oportunidad para aprender, conectar con nuevas culturas y comprender qué
-                            transforma un viaje en una experiencia verdaderamente inolvidable.
-                        </p>
+            <!-- Block 2: Image Left, Text Right -->
+            <div class="flex flex-col lg:flex-row-reverse gap-12 items-center mb-24">
+                <div class="lg:w-1/2 space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-bold text-primary leading-tight font-display-lg">
+                        ¿Por qué viajar con Sueño Travel Chile?
+                    </h3>
+                    <ul class="space-y-4 text-on-surface-variant leading-relaxed text-lg list-disc pl-6">
+                        <li><strong class="text-primary">Representación oficial, sin intermediarios:</strong> Al ser representante directa de Sueño Travel Egipto, tu viaje se coordina directamente conmigo y el equipo en destino, garantizando mejores precios, respuestas más rápidas y mayor seguridad en cada etapa.</li>
+                        <li><strong class="text-primary">Experiencia real:</strong> Conozco cada destino, su cultura y su esencia, y pongo ese conocimiento a tu servicio.</li>
+                        <li><strong class="text-primary">Atención personalizada desde Chile:</strong> Te asesoro y acompaño en cada etapa de la planificación.</li>
+                        <li><strong class="text-primary">Contacto directo con el equipo en destino:</strong> Coordinación ágil y respuestas rápidas ante cualquier imprevisto.</li>
+                        <li><strong class="text-primary">Respaldo en destino:</strong> No viajarás solo, contarás con un equipo local pendiente de ti.</li>
+                        <li><strong class="text-primary">Alianzas de confianza:</strong> Guías, hoteles y transporte seleccionados para garantizar calidad en todo el recorrido.</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3] w-full group">
+                        <img src="Imagenes/Egipto3.webp" alt="Egipto Mágico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 3: Text Left, Image Right -->
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2 space-y-6">
+                    <div class="space-y-4 text-on-surface-variant leading-relaxed text-lg">
                         <p>
-                            <strong data-i18n="about.p2Start" data-i18n-ns="conocenos">Egipto ocupa un lugar muy especial en nuestra historia.</strong><span data-i18n="about.p2Rest" data-i18n-ns="conocenos"> Desde hace más de
-                            nueve años lo visitamos anualmente y se ha convertido en nuestro segundo hogar. En cada
-                            aventura, aprovechamos también la oportunidad de descubrir un nuevo destino, enriqueciendo
-                            constantemente nuestra experiencia como profesionales del turismo.</span>
+                            Detrás de Sueño Travel Chile estoy yo, una persona que ama viajar, que conoce estos destinos de primera mano y quiere ayudarte a vivir una experiencia realmente especial.
                         </p>
-                        <p>
-                            <span data-i18n="about.p3" data-i18n-ns="conocenos">Esta trayectoria, sumada a nuestra relación directa con un operador local de total confianza
-                            en Egipto, nos permite diseñar viajes cuidadosamente planificados a</span> <strong data-i18n="about.p3Dests" data-i18n-ns="conocenos">Egipto,
-                                Jordania, Grecia y Turquía</strong><span data-i18n="about.p3End" data-i18n-ns="conocenos">. Cada itinerario ha sido seleccionado con dedicación
-                            para ofrecer una experiencia auténtica, combinando los lugares imprescindibles con rincones
-                            especiales que solo se descubren con el conocimiento profundo del destino.</span>
+                        <p class="text-secondary font-bold text-2xl mt-6 mb-2">
+                            ¡Viaja con quien conoce el camino!
                         </p>
-                        <p data-i18n="about.p4" data-i18n-ns="conocenos">
-                            Nuestro compromiso va más allá de organizar un viaje. Te acompañamos antes, durante y
-                            después de tu experiencia, compartiendo recomendaciones basadas en vivencias reales,
-                            asesorándote de forma personalizada y brinдándote la tranquilidad de contar con un equipo
-                            que conoce cada destino de primera mano.
-                        </p>
-                        <p class="text-secondary font-bold text-lg italic border-l-4 border-secondary pl-4 my-6" data-i18n="about.quote" data-i18n-ns="conocenos">
-                            "Porque cuando viajas con quienes han recorrido el camino, cada detalle marca la
-                            diferencia."
-                        </p>
-                        <p data-i18n="about.p5" data-i18n-ns="conocenos">
-                            Nuestra mayor satisfacción es ayudarte a vivir un viaje auténtico, seguro e inolvidable,
-                            para que regreses con mucho más que fotografías: con recuerdos y experiencias que te
-                            acompañarán toda la vida.
+                        <p class="italic border-l-4 border-secondary pl-4 mt-4 text-on-surface-variant font-semibold">
+                            Porque cuando viajas con alguien que ya lo ha recorrido, cada detalle marca la diferencia.
                         </p>
                     </div>
 
                     <!-- Jessica Profile Card -->
-                    <div
-                        class="mt-12 p-6 rounded-2xl bg-surface-container-low border border-outline-variant/30 flex flex-col sm:flex-row gap-6 items-center ambient-glow">
-                        <img src="Imagenes/Jessica.jpeg" alt="Jessica Lagos"
-                            class="w-24 h-24 rounded-full object-cover shadow-md shrink-0">
+                    <div class="mt-8 p-6 rounded-2xl bg-surface-container-low border border-outline-variant/30 flex flex-col sm:flex-row gap-6 items-center ambient-glow">
+                        <img src="Imagenes/Jessica.jpeg" alt="Jessica Lagos" class="w-20 h-20 rounded-full object-cover shadow-md shrink-0">
                         <div class="space-y-2 text-center sm:text-left">
-                            <h3 class="text-xl font-bold text-primary font-display-lg">Jessica Lagos</h3>
-                            <p class="text-xs text-secondary font-semibold uppercase tracking-wider" data-i18n="about.jessicaRole" data-i18n-ns="conocenos">Fundadora y
-                                Operadora Principal</p>
-                            <p class="text-sm text-on-surface-variant leading-relaxed" data-i18n="about.jessicaBio" data-i18n-ns="conocenos">
-                                Jessica es la mente creadora y operadora principal detrás de Sueño Travel Chile. Con más
-                                de nueve años de experiencia recorriendo Egipto de manera anual y un estrecho vínculo
-                                con los operadores locales, Jessica diseña personalmente cada itinerario y acompaña a
-                                nuestros viajeros con asesoría experta y de primera mano.
-                            </p>
+                            <h4 class="text-xl font-bold text-primary font-display-lg">Jessica Lagos</h4>
+                            <p class="text-xs text-secondary font-semibold uppercase tracking-wider">Fundadora y Operadora Principal</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Mosaic Photo Gallery Collage (col-span-5) -->
-                <div class="lg:col-span-5 space-y-6">
-                    <!-- Photo 1: Main Portrait (Full Width) -->
-                    <div class="relative rounded-3xl overflow-hidden shadow-lg group aspect-[4/3] w-full">
-                        <img src="Imagenes/Sueno-travel-2.webp" alt="Sueño Travel"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div
-                            class="absolute bottom-6 left-6 right-6 glass-panel p-4 rounded-2xl border border-white/20 shadow-lg text-primary">
-                            <p class="font-bold text-sm" data-i18n="about.mainImgTag" data-i18n-ns="conocenos">Sueño Travel</p>
-                            <p class="text-xs text-secondary font-semibold" data-i18n="about.mainImgSub" data-i18n-ns="conocenos">Experiencias de Viaje Inolvidables &bull;
-                                Diseños a Medida</p>
-                        </div>
+                <div class="lg:w-1/2">
+                    <div class="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] w-full lg:w-4/5 mx-auto group">
+                        <img src="Imagenes/Jessica2.jfif" alt="Jessica viajando" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-
-                    <!-- Secondary Photos Grid (3 Columns) -->
-                    <div class="grid grid-cols-3 gap-4">
-                        <!-- Photo 2: Travel Detail -->
-                        <div class="relative rounded-2xl overflow-hidden shadow-md group aspect-square">
-                            <img src="Imagenes/Jessica2.jfif" data-i18n-alt="about.photo2Alt" data-i18n-ns="conocenos" alt="Vivencias de viaje"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <!-- Photo 3: Local Culture -->
-                        <div class="relative rounded-2xl overflow-hidden shadow-md group aspect-square">
-                            <img src="Imagenes/Jessica3.jfif" data-i18n-alt="about.photo3Alt" data-i18n-ns="conocenos" alt="Experiencia cultural"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <!-- Photo 4: Historic Destination -->
-                        <div class="relative rounded-2xl overflow-hidden shadow-md group aspect-square">
-                            <img src="Imagenes/Jessica4.jfif" data-i18n-alt="about.photo4Alt" data-i18n-ns="conocenos" alt="Destinos del mundo"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                    </div>
-                    <p class="text-xs text-center text-on-surface-variant/60 italic" data-i18n="about.photosCaption" data-i18n-ns="conocenos">Nuestras aventuras y vivencias
-                        explorando el mundo.</p>
                 </div>
             </div>
         </section>
@@ -280,7 +256,7 @@
         <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row justify-between gap-8">
             <!-- Columna Izquierda: Brand -->
             <div class="flex flex-col gap-4 md:max-w-[60%]">
-                <img src="Imagenes/logo_suenoTravel Chile.svg" alt="Sueño Travel Logo" class="h-14 w-auto self-start">
+                <img src="Imagenes/logo_suenoTravel%20Chile.svg" alt="Sueño Travel Logo" class="h-14 w-auto self-start">
                 <p class="text-sm md:text-[0.95rem] leading-relaxed text-[#32291f] opacity-85">
                     En Sueño Travel creemos que cada viaje debería contarse como una buena historia. Por eso escuchamos primero y luego diseñamos tu sueño con la tranquilidad de un equipo presente en cada etapa del camino. Aventura, cultura y confort, en la dosis exacta que buscas para tu próximo destino
                 </p>

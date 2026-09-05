@@ -456,7 +456,7 @@ export async function fetchActiveTrips() {
                     flavorText: item.flavorText || item.flavor_text || item.agency || '',
                     days: item.durationDays || item.duration_days || '',
                     nights: item.durationNights || item.duration_nights || '',
-                    locations: destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : '',
+                    locations: destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : '',
                     date: dateStr
                 };
             });
