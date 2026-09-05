@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inject Navigation Header HTML
     headerContainer.innerHTML = `
-    <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-white/80 backdrop-blur-xl shadow-sm border-b border-outline-variant/10">
+    <header id="main-header-nav" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 transition-all duration-300 bg-transparent border-transparent">
         <div class="flex items-center gap-3">
             <a href="index.html" class="flex items-center gap-3">
-                <img data-i18n-alt="logoAlt" data-i18n-ns="header" alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel Chile.svg"/>
+                <img data-i18n-alt="logoAlt" data-i18n-ns="header" alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel%20Chile.svg"/>
             </a>
         </div>
         <nav class="hidden md:flex gap-8 items-center">
@@ -174,9 +174,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     wireLanguageButtons();
+
+    // ── Header Scroll Behavior ───────────────────────────────────────────────
+    const mainHeaderNav = document.getElementById('main-header-nav');
+    if (mainHeaderNav) {
+        const handleScroll = () => {
+            if (window.scrollY > 20) {
+                mainHeaderNav.classList.remove('bg-transparent', 'border-transparent');
+                mainHeaderNav.classList.add('bg-white/90', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-outline-variant/10');
+            } else {
+                mainHeaderNav.classList.add('bg-transparent', 'border-transparent');
+                mainHeaderNav.classList.remove('bg-white/90', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-outline-variant/10');
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Check initial scroll position
+    }
 });
 
-// Modal Global Logic
 // Modal Global Logic
 window.openContactModal = function(tripType = null, tripTitle = null, date = null) {
     const modal = document.getElementById('contact-modal');

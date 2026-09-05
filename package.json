@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@uploadthing/react": "^7.3.3",
+    "@vercel/speed-insights": "^2.0.0",
     "uploadthing": "^7.7.4"
   },
   "_i18n_note": "i18n uses a custom vanilla JS fetch-based loader (src/js/i18n.js). No npm packages required. Locale files live in locales/{module}/{lang}.json"
