@@ -1,0 +1,96 @@
+{
+  "pageTitle": "Trip Itinerary | Sueño Travel",
+  "hero": {
+    "days": "Days",
+    "nights": "Nights",
+    "exploreBtn": "Explore Itinerary",
+    "viewMapBtn": "View Route Map"
+  },
+  "sidebar": {
+    "title": "Trip Index",
+    "overview": "Our Route",
+    "departures": "Departures",
+    "itinerary": "Itinerary",
+    "gallery": "Gallery",
+    "services": "Services",
+    "summary": "Summary"
+  },
+  "overview": {
+    "title": "The Magic of your Destination",
+    "noDesc": "No description available.",
+    "features": {
+        "culture": "Living Culture",
+        "luxury": "Superior Luxury",
+        "guide": "Private Guide"
+    }
+  },
+  "map": {
+    "title": "Our Route"
+  },
+  "departures": {
+    "title": "Scheduled Departures",
+    "subtitle": "Select one of our upcoming exclusive all-inclusive group departures, or request a tailor-made trip.",
+    "card": {
+      "to": "To",
+      "capacity": "Available Spots",
+      "reserveBtn": "Book",
+      "title": "Special Departure"
+    },
+    "custom": {
+      "badge": "Tailor-made",
+      "title": "Private Trip",
+      "desc": "Choose your own dates and travel with your group.",
+      "btn": "Request Tailor-made"
+    },
+    "available": "Available"
+  },
+  "itinerary": {
+    "title": "Day by Day Itinerary",
+    "subtitle": "A timeline of wonders designed to balance archaeological discovery with restful relaxation.",
+    "dayPrefix": "Day"
+  },
+  "gallery": {
+    "title": "Capturing Eternity"
+  },
+  "services": {
+    "title": "Services and Coverage",
+    "included": "Included Services",
+    "excluded": "Not Included",
+    "consultExcluded": "Check exclusions with your advisor."
+  },
+  "info": {
+    "summary": "Summary",
+    "bestSeason": "Best Season",
+    "currencyVisa": "Currency & Visa",
+    "costs": "Costs and Notes",
+    "defaultBestSeason": "October to April",
+    "defaultCurrency": "International and local currency",
+    "visaPrefix": "Visa",
+    "consult": "Consult",
+    "hotelTaxPrefix": "Hotel Tax",
+    "visaCostPrefix": "Approx Visa Cost",
+    "defaultDisclaimer": "* Reference prices subject to change."
+  },
+  "reservation": {
+    "title": "Book Departure",
+    "desc": "Fill out the form and an advisor will contact you shortly.",
+    "name": "Full Name",
+    "email": "Email Address",
+    "comments": "Comments / Questions",
+    "sendBtn": "Send Request"
+  },
+  "cta": {
+    "title": "Ready to write your own story in the sand?",
+    "subtitle": "Our destination specialists are ready to customize every detail of your trip.",
+    "btnReserve": "Book my Experience",
+    "btnContact": "Speak with an Advisor"
+  },
+  "error": {
+    "notFound": "The requested trip does not exist or is not available.",
+    "backHome": "Back to Home",
+    "noTripId": "No trip ID specified in URL.",
+    "dbConnection": "Error connecting to content database.",
+    "general": "An error occurred while loading the trip data."
+  },
+  "loading": "Loading trip itinerary..."
+}

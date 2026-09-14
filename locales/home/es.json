@@ -21,7 +21,27 @@
     "subtitle": "Historias reales de viajeros que confiaron en nosotros para diseñar su experiencia.",
     "prev": "Testimonio anterior",
     "next": "Testimonio siguiente",
-    "testimonialDots": "Testimonios"
+    "testimonialDots": "Testimonios",
+    "camila": {
+      "title": "Camila y Juane",
+      "location": "Atenas y Santorini, Grecia",
+      "text": "Un itinerario pausado, con tiempo para la Acrópolis y las callejuelas de Santorini. Cada traslado y reserva estuvo resuelto; viajamos sin prisa y con la sensación de que todo estaba cuidado."
+    },
+    "daniela": {
+      "title": "Viaje Grupal Turquía",
+      "location": "Capadocia, Éfeso y Pamukkale, Turquía",
+      "text": "Tres paisajes distintos en un mismo viaje: las cuevas de Capadocia, el teatro de Éfeso y las terrazas blancas de Pamukkale. Lo pasamos muy bien, gracias."
+    },
+    "morin": {
+      "title": "Morin M.",
+      "location": "Luxor, Egipto",
+      "text": "Caminar por Karnak con un guía que explica sin prisa cambia por completo la visita. El hotel, los horarios y el cruce del Nilo estuvieron maravillosos. Volvería a viajar así, con alguien que conoce el destino de verdad."
+    },
+    "javiera": {
+      "title": "Javiera T.",
+      "location": "Egipto, Jordania, Turquía",
+      "text": "Todo el viaje fue maravilloso, me recomendaron lugares que no tenía previsto y creo que fue lo mejor."
+    }
   },
   "conocenos": {
     "label": "Conócenos",
@@ -55,5 +75,9 @@
     "facebook": "Facebook",
     "instagram": "Instagram",
     "tripadvisor": "Tripadvisor"
-  }
+  },
+  "nextTrip": "Próximo viaje en grupo:",
+  "days": "Días",
+  "nights": "Noches",
+  "verItinerario": "Ver Itinerario"
 }

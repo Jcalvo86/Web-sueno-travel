@@ -921,12 +921,23 @@
                         `;
                     }).join('');
                 }
+            } else {
+                const grid = document.getElementById('destinations-grid');
+                if (grid) {
+                    grid.innerHTML = '<div class="col-span-full text-center py-10 text-on-surface-variant">Pronto publicaremos nuevos viajes. ¡Mantente atento!</div>';
+                    grid.className = 'grid grid-cols-1 gap-6 h-auto'; // Remove fixed height
+                }
             }
         } catch (e) {
             console.warn('Error fetching dynamic trip links:', e);
+            const grid = document.getElementById('destinations-grid');
+            if (grid) {
+                grid.innerHTML = '<div class="col-span-full text-center py-10 text-on-surface-variant">Error al cargar los viajes.</div>';
+            }
         }
     };
     updateDynamicLinks();
+    window.addEventListener('languageChanged', updateDynamicLinks);
 
     // ==========================================================================
     // HERO MULTILAYER SLIDER LOGIC

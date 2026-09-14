@@ -23,7 +23,7 @@
         const tripId = params.get('nombre') || params.get('id');
 
         if (!tripId) {
-            showError('No se especificó un identificador de viaje en la URL.');
+            showError(window.i18n?.t('error.noTripId', 'trip') || 'No se especificó un identificador de viaje en la URL.');
             return;
         }
 
@@ -36,7 +36,7 @@
             }
 
             if (!window.DataSource) {
-                showError('Error al conectar con la base de datos de contenidos.');
+                showError(window.i18n?.t('error.dbConnection', 'trip') || 'Error al conectar con la base de datos de contenidos.');
                 return;
             }
 
@@ -54,7 +54,17 @@
                 const travels = await window.DataSource.getItems('travel');
                 if (travels && travels.length > 0) {
                     const slugify = (text) => text ? text.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '') : '';
-                    const found = travels.find(t => t.id === tripId || t.sku === tripId || t.slug === tripId || slugify(t.title) === tripId || slugify(t.name) === tripId);
+                    const found = travels.find(t => 
+                        t.id === tripId || 
+                        t.sku === tripId || 
+                        t.slug === tripId || 
+                        slugify(t.title) === tripId || 
+                        slugify(t.name) === tripId ||
+                        slugify(t.title_en) === tripId ||
+                        slugify(t.titleEn) === tripId ||
+                        slugify(t.name_en) === tripId ||
+                        slugify(t.nameEn) === tripId
+                    );
                     if (found) {
                         // Normalize 'travel' module format to the format expected by renderTrip
                         const destSum = found.destinationsSummary || found.destinations_summary;
@@ -173,11 +183,12 @@
                         
                         console.log('DEBUG MAP: 6. Final regionMaps array mapped', regionMaps);
 
+                        const lang = window.i18n && typeof window.i18n.getCurrentLang === 'function' ? window.i18n.getCurrentLang() : 'es';
                         trip = {
                             id: found.id,
-                            name: found.title,
-                            subtitle: destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : found.title,
-                            overview: found.description || '',
+                            name: lang === 'en' && found.title_en ? found.title_en : found.title,
+                            subtitle: lang === 'en' && found.destination_en ? found.destination_en : (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : found.title),
+                            overview: lang === 'en' && found.description_en ? found.description_en : (found.description || ''),
                             imageUrl: found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
                             headerImageUrl: found.headerImageUrl || found.header_image_url || found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
                             bestSeason: found.guideBestSeason || found.guide_best_season || '',
@@ -211,16 +222,25 @@
                             })(),
                             regionMaps: regionMaps,
                             // Additional attributes
-                            durationDays: found.durationDays || found.duration_days || found.duration || 10,
-                            durationNights: found.durationNights || found.duration_nights || 9,
+                            durationDays: found.duration_days || found.durationDays || found.duration || 10,
+                            durationNights: found.duration_nights || found.durationNights || 9,
                             hotelTaxUSD: found.hotelTaxUSD !== undefined ? found.hotelTaxUSD : (found.pricing_and_notes?.hotelTaxUSD || 0),
                             visaCostUSD: found.visaCostUSD !== undefined ? found.visaCostUSD : (found.pricing_and_notes?.visaCostUSD || 0),
                             disclaimer: found.disclaimer || found.pricing_and_notes?.disclaimer || '',
-                            servicesIncludedList: found.servicesIncludedList || found.services_included_list || (found.services_included ? [
+                            servicesIncludedList: (found.servicesIncludedList || found.services_included_list || (found.services_included ? [
                                 ...(found.services_included.egypt || []),
                                 ...(found.services_included.turkey || [])
-                            ] : []),
-                            servicesExcludedList: found.servicesExcludedList || found.services_excluded_list || found.services_excluded || [],
+                            ] : [])).map(group => {
+                                if (lang === 'en') {
+                                    return {
+                                        ...group,
+                                        customLocationName: group.customLocationName_en || group.customLocationNameEn || group.customLocationName,
+                                        items: group.items_en || group.itemsEn || group.items
+                                    };
+                                }
+                                return group;
+                            }),
+                            servicesExcludedList: lang === 'en' ? (found.servicesExcludedList_en || found.servicesExcludedListEn || found.servicesExcludedList || found.services_excluded_list || found.services_excluded || []) : (found.servicesExcludedList || found.services_excluded_list || found.services_excluded || []),
                             hotelsPlanned: found.hotelsPlanned || found.hotels_planned || [],
                             // Convert itinerary array to JSON string format expected by renderTrip
                             itineraryJson: found.itinerary ? JSON.stringify(found.itinerary.map(day => {
@@ -287,15 +307,17 @@
                                         displayTitle = dayLocs.map(l => l.name || (locations.find(loc => loc.id === l.id)?.name) || '').filter(Boolean).join(', ');
                                     }
                                     if (!displayTitle) {
-                                        displayTitle = day.customLocationName || 'Visita';
+                                        displayTitle = day.customLocationName || window.i18n?.t('itinerary.visitDefault', 'trip') || 'Visita';
                                     }
                                 }
 
                                 return {
-                                    day: `Día ${String(day.dayNumber).padStart(2, '0')}`,
-                                    title: displayTitle,
-                                    desc: (day.activities || []).map(act => act.description).join('\n') || '',
-                                    meals: day.accommodationType || '',
+                                    day: window.i18n?.t('itinerary.dayPrefix', 'trip') ? `${window.i18n.t('itinerary.dayPrefix', 'trip')} ${String(day.dayNumber).padStart(2, '0')}` : `Día ${String(day.dayNumber).padStart(2, '0')}`,
+                                    title: lang === 'en' ? (day.dayTitle_en || day.dayTitleEn || displayTitle) : displayTitle,
+                                    desc: (day.activities && day.activities.length > 0) 
+                                        ? day.activities.map(act => lang === 'en' ? (act.description_en || act.descriptionEn || act.description) : act.description).join('\n')
+                                        : (lang === 'en' ? (day.desc_en || day.descEn || day.desc || day.description_en || day.descriptionEn || day.description) : (day.desc || day.description)) || '',
+                                    meals: lang === 'en' ? (day.accommodationType_en || day.accommodationTypeEn || day.accommodationType || '') : (day.accommodationType || ''),
                                     info: '',
                                     imageUrl: uniqueImages.length > 0 ? uniqueImages[0] : '',
                                     imageUrls: uniqueImages,
@@ -313,13 +335,24 @@
             if (!trip) {
                 const products = await window.DataSource.getItems('cms_products');
                 const slugify = (text) => text ? text.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '') : '';
-                const found = products.find(p => p.id === tripId || p.sku === tripId || p.slug === tripId || slugify(p.name) === tripId || slugify(p.title) === tripId);
+                const found = products.find(p => 
+                    p.id === tripId || 
+                    p.sku === tripId || 
+                    p.slug === tripId || 
+                    slugify(p.name) === tripId || 
+                    slugify(p.title) === tripId ||
+                    slugify(p.name_en) === tripId ||
+                    slugify(p.nameEn) === tripId ||
+                    slugify(p.title_en) === tripId ||
+                    slugify(p.titleEn) === tripId
+                );
                 if (found) {
+                    const lang = window.i18n && typeof window.i18n.getCurrentLang === 'function' ? window.i18n.getCurrentLang() : 'es';
                     trip = {
                         id: found.id,
-                        name: found.name,
-                        subtitle: found.subtitle || '',
-                        overview: found.overview || '',
+                        name: lang === 'en' && found.name_en ? found.name_en : found.name,
+                        subtitle: lang === 'en' && found.subtitle_en ? found.subtitle_en : (found.subtitle || ''),
+                        overview: lang === 'en' && found.overview_en ? found.overview_en : (found.overview || ''),
                         imageUrl: found.imageUrl || '',
                         headerImageUrl: found.headerImageUrl || found.header_image_url || found.imageUrl || '',
                         bestSeason: found.bestSeason || '',
@@ -332,18 +365,27 @@
                         hotelTaxUSD: found.pricing_and_notes?.hotelTaxUSD || 0,
                         visaCostUSD: found.pricing_and_notes?.visaCostUSD || 0,
                         disclaimer: found.pricing_and_notes?.disclaimer || '',
-                        servicesIncludedList: found.servicesIncludedList || (found.services_included ? [
+                        servicesIncludedList: (found.servicesIncludedList || (found.services_included ? [
                             ...(found.services_included.egypt || []),
                             ...(found.services_included.turkey || [])
-                        ] : []),
-                        servicesExcludedList: found.servicesExcludedList || found.services_excluded || [],
-                        itineraryJson: found.itineraryJson || '[]'
+                        ] : [])).map(group => {
+                            if (lang === 'en') {
+                                return {
+                                    ...group,
+                                    customLocationName: group.customLocationName_en || group.customLocationNameEn || group.customLocationName,
+                                    items: group.items_en || group.itemsEn || group.items
+                                };
+                            }
+                            return group;
+                        }),
+                        servicesExcludedList: lang === 'en' ? (found.servicesExcludedList_en || found.servicesExcludedListEn || found.servicesExcludedList || found.services_excluded || []) : (found.servicesExcludedList || found.services_excluded || []),
+                        itineraryJson: lang === 'en' ? (found.itineraryJson_en || found.itineraryJsonEn || found.itineraryJson || '[]') : (found.itineraryJson || '[]')
                     };
                 }
             }
 
             if (!trip) {
-                showError('El viaje solicitado no existe o no se encuentra disponible.');
+                showError(window.i18n?.t('error.notFound', 'trip') || 'El viaje solicitado no existe o no se encuentra disponible.');
                 return;
             }
 
@@ -352,7 +394,7 @@
             renderTrip(trip);
         } catch (error) {
             console.error(error);
-            showError('Ocurrió un error al cargar los datos del viaje.');
+            showError(window.i18n?.t('error.general', 'trip') || 'Ocurrió un error al cargar los datos del viaje.');
         }
     };
 
@@ -361,8 +403,8 @@
         if (loader) {
             loader.innerHTML = `
                 <span class="material-symbols-outlined text-red-500 text-5xl">error</span>
-                <p class="text-on-surface font-semibold text-lg mt-2">${message}</p>
-                <a href="index.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg">Volver al inicio</a>
+                <p class="text-on-surface font-semibold text-lg mt-2" data-i18n="error.title">${message}</p>
+                <a href="index.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg" data-i18n="error.backHome">${window.i18n?.t('error.backHome', 'trip') || 'Volver al inicio'}</a>
             `;
         }
     };
@@ -376,12 +418,14 @@
         }
 
         // --- Render UI Fields ---
-        document.getElementById('hero-duration').textContent = `${trip.durationDays || '10'} Días | ${trip.durationNights || '9'} Noches`;
+        const diasStr = window.i18n?.t('hero.days', 'trip') || 'Días';
+        const nochesStr = window.i18n?.t('hero.nights', 'trip') || 'Noches';
+        document.getElementById('hero-duration').textContent = `${trip.durationDays || '10'} ${diasStr} | ${trip.durationNights || '9'} ${nochesStr}`;
         document.getElementById('hero-title').textContent = trip.name;
         document.getElementById('hero-subtitle').textContent = trip.subtitle || '';
         document.getElementById('hero-bg').style.backgroundImage = `url('${trip.headerImageUrl || trip.imageUrl || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920'}')`;
         
-        document.getElementById('overview-title').textContent = `La Magia de tu Destino`;
+        document.getElementById('overview-title').textContent = window.i18n?.t('overview.title', 'trip') || `La Magia de tu Destino`;
         
         const overviewTextEl = document.getElementById('overview-text');
         if (trip.overview && trip.overview.trim().length > 0) {
@@ -389,7 +433,7 @@
                 .map(p => `<p class="leading-relaxed text-on-surface-variant mb-4">${p.trim()}</p>`)
                 .join('');
         } else {
-            overviewTextEl.innerHTML = '<p class="leading-relaxed text-on-surface-variant/70 italic">Descripción general no provista en la base de datos.</p>';
+            overviewTextEl.innerHTML = `<p class="leading-relaxed text-on-surface-variant/70 italic" data-i18n="overview.noDesc">${window.i18n?.t('overview.noDesc', 'trip') || 'Descripción general no provista en la base de datos.'}</p>`;
         }
 
         // Map is handled below in the overview map container
@@ -433,9 +477,10 @@
                                 `;
                             }).join('');
                         } else {
-                            // Split description by lines for clean points
-                            const points = (dayInfo.desc || '').split('\n').map(p => p.trim()).filter(Boolean);
-                            activitiesHtml = points.map(p => {
+                        // Split description by lines for clean points
+                        const descText = dayInfo.desc || dayInfo.description || '';
+                        const points = descText.split('\n').map(p => p.trim()).filter(Boolean);
+                        activitiesHtml = points.map(p => {
                                 const icon = getIcon(p);
                                 return `
                                     <li class="flex items-start gap-4 text-on-surface-variant">
@@ -518,7 +563,7 @@
                 }
             } catch (e) {
                 console.error("Error parsing itinerary JSON:", e);
-                itineraryList.innerHTML = `<p class="text-red-500 italic">Error al estructurar el itinerario día a día.</p>`;
+                itineraryList.innerHTML = `<p class="text-red-500 italic" data-i18n="error.itineraryStructure">${window.i18n?.t('error.itineraryStructure', 'trip') || 'Error al estructurar el itinerario día a día.'}</p>`;
             }
         }
 
@@ -626,16 +671,16 @@
         }
 
         // Render Practical Info & Costs
-        document.getElementById('info-duration').textContent = `${trip.durationDays || '10'} Días / ${trip.durationNights || '9'} Noches`;
+        document.getElementById('info-duration').textContent = `${trip.durationDays || '10'} ${window.i18n?.t('hero.days', 'trip') || 'Días'} / ${trip.durationNights || '9'} ${window.i18n?.t('hero.nights', 'trip') || 'Noches'}`;
         document.getElementById('info-destinations').textContent = trip.subtitle || '';
-        document.getElementById('info-best-season').textContent = trip.bestSeason || 'Octubre a Abril';
-        document.getElementById('info-currency').textContent = trip.currency || 'Moneda internacional y local';
-        document.getElementById('info-visa').textContent = `Visado: ${trip.visa || 'Consultar'}`;
+        document.getElementById('info-best-season').textContent = trip.bestSeason || window.i18n?.t('info.defaultBestSeason', 'trip') || 'Octubre a Abril';
+        document.getElementById('info-currency').textContent = trip.currency || window.i18n?.t('info.defaultCurrency', 'trip') || 'Moneda internacional y local';
+        document.getElementById('info-visa').textContent = window.i18n?.t('info.visaPrefix', 'trip') ? `${window.i18n.t('info.visaPrefix', 'trip')}: ${trip.visa || window.i18n.t('info.consult', 'trip') || 'Consultar'}` : `Visado: ${trip.visa || 'Consultar'}`;
         
         // Cost details
-        document.getElementById('info-hotel-tax').innerHTML = `Impuesto Hotelero: <strong>USD ${trip.hotelTaxUSD || 0}</strong>`;
-        document.getElementById('info-visa-cost').innerHTML = `Costo Visa aprox: <strong>USD ${trip.visaCostUSD || 0}</strong>`;
-        document.getElementById('info-disclaimer').textContent = trip.disclaimer || '* Precios referenciales sujetos a cambios.';
+        document.getElementById('info-hotel-tax').innerHTML = window.i18n?.t('info.hotelTaxPrefix', 'trip') ? `${window.i18n.t('info.hotelTaxPrefix', 'trip')}: <strong>USD ${trip.hotelTaxUSD || 0}</strong>` : `Impuesto Hotelero: <strong>USD ${trip.hotelTaxUSD || 0}</strong>`;
+        document.getElementById('info-visa-cost').innerHTML = window.i18n?.t('info.visaCostPrefix', 'trip') ? `${window.i18n.t('info.visaCostPrefix', 'trip')}: <strong>USD ${trip.visaCostUSD || 0}</strong>` : `Costo Visa aprox: <strong>USD ${trip.visaCostUSD || 0}</strong>`;
+        document.getElementById('info-disclaimer').textContent = trip.disclaimer || window.i18n?.t('info.defaultDisclaimer', 'trip') || '* Precios referenciales sujetos a cambios.';
 
         // Render Services Included / Excluded
         const includedUl = document.getElementById('services-included-list');
@@ -668,7 +713,7 @@
                     });
                 });
             } else {
-                includedUl.innerHTML = '<li class="text-on-surface-variant/70 italic">Consultar servicios incluidos con su asesor.</li>';
+                includedUl.innerHTML = `<li class="text-on-surface-variant/70 italic" data-i18n="services.consultIncluded">${window.i18n?.t('services.consultIncluded', 'trip') || 'Consultar servicios incluidos con su asesor.'}</li>`;
             }
 
             if (trip.servicesExcludedList && trip.servicesExcludedList.length > 0) {
@@ -682,7 +727,7 @@
                     excludedUl.appendChild(li);
                 });
             } else {
-                excludedUl.innerHTML = '<li class="text-on-surface-variant/70 italic">Consultar exclusiones con su asesor.</li>';
+                excludedUl.innerHTML = `<li class="text-on-surface-variant/70 italic" data-i18n="services.consultExcluded">${window.i18n?.t('services.consultExcluded', 'trip') || 'Consultar exclusiones con su asesor.'}</li>`;
             }
         }
 
@@ -718,10 +763,11 @@
                 dep.status !== 'closed'
             );
 
+            const lang = window.i18n && typeof window.i18n.getCurrentLang === 'function' ? window.i18n.getCurrentLang() : 'es';
             const formatDate = (dateStr) => {
                 if (!dateStr) return '';
                 const date = new Date(dateStr);
-                return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+                return date.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
             };
 
             tripDeps.forEach(dep => {
@@ -729,13 +775,13 @@
                 card.className = 'bg-white border border-outline-variant/30 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden';
                 
                 const spotsLeft = Math.max(0, (dep.capacity || 10) - (dep.passengersCount || 0));
-                let statusLabel = 'Cupos disponibles';
+                let statusLabel = window.i18n?.t('departures.available', 'trip') || 'Cupos disponibles';
                 let statusColor = 'text-green-700 bg-green-50 border-green-200';
                 if (spotsLeft === 0) {
-                    statusLabel = 'Agotado';
+                    statusLabel = window.i18n?.t('departures.soldOut', 'trip') || 'Agotado';
                     statusColor = 'text-red-700 bg-red-50 border-red-200';
                 } else if (spotsLeft <= 3) {
-                    statusLabel = `¡Últimos ${spotsLeft} cupos!`;
+                    statusLabel = window.i18n?.t('departures.lastSpots', 'trip')?.replace('{n}', spotsLeft) || `¡Últimos ${spotsLeft} cupos!`;
                     statusColor = 'text-orange-700 bg-orange-50 border-orange-200';
                 }
 
@@ -749,23 +795,23 @@
                                     ${statusLabel}
                                 </span>
                             </div>
-                            <h3 class="text-xl font-bold text-primary mb-1">Salida Grupal</h3>
+                            <h3 class="text-xl font-bold text-primary mb-1" data-i18n="departures.card.title">${window.i18n?.t('departures.card.title', 'trip') || 'Salida Grupal'}</h3>
                             <h4 class="text-lg font-bold text-secondary mb-2">
                                 ${formatDate(dep.departureDate || dep.departure_date)}
-                                ${(dep.endDate || dep.end_date) ? ` al <span class="text-sm font-medium text-on-surface-variant">${formatDate(dep.endDate || dep.end_date)}</span>` : ''}
+                                ${(dep.endDate || dep.end_date) ? ` <span data-i18n="departures.card.to">${window.i18n?.t('departures.card.to', 'trip') || 'al'}</span> <span class="text-sm font-medium text-on-surface-variant">${formatDate(dep.endDate || dep.end_date)}</span>` : ''}
                             </h4>
                             <p class="text-sm text-on-surface-variant mb-6">
-                                Capacidad total: ${dep.capacity || 10} viajeros.
+                                ${window.i18n?.t('departures.card.capacity', 'trip')?.replace('{n}', dep.capacity || 10) || `Capacidad total: ${dep.capacity || 10} viajeros.`}
                             </p>
                             ${dep.priceOverride ? `
                                 <div class="mb-6">
-                                    <span class="text-xs text-on-surface-variant block">Precio Especial Salida:</span>
+                                    <span class="text-xs text-on-surface-variant block" data-i18n="departures.card.specialPrice">${window.i18n?.t('departures.card.specialPrice', 'trip') || 'Precio Especial Salida:'}</span>
                                     <span class="text-2xl font-extrabold text-primary">USD $${dep.priceOverride}</span>
                                 </div>
                             ` : ''}
                         </div>
                         <button onclick="if(window.openContactModal) window.openContactModal('group', document.title.replace(/'/g, '\\''), '${formatDate(dep.departureDate || dep.departure_date)}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-secondary transition-all mt-4 text-center">
-                            Reservar esta Salida
+                            <span data-i18n="departures.card.reserveBtn">${window.i18n?.t('departures.card.reserveBtn', 'trip') || 'Reservar esta Salida'}</span>
                         </button>
                     </div>
                 `;
@@ -779,17 +825,17 @@
                 <div>
                     <div class="flex justify-between items-start mb-6">
                         <span class="material-symbols-outlined text-secondary text-3xl">explore_nearby</span>
-                        <span class="text-xs font-bold px-3 py-1 rounded-full border border-secondary/20 bg-secondary/5 text-secondary">
-                            100% Personalizado
+                        <span class="text-xs font-bold px-3 py-1 rounded-full border border-secondary/20 bg-secondary/5 text-secondary" data-i18n="departures.custom.badge">
+                            ${window.i18n?.t('departures.custom.badge', 'trip') || '100% Personalizado'}
                         </span>
                     </div>
-                    <h3 class="text-xl font-bold text-primary mb-2">Gestiona tu propio viaje</h3>
-                    <p class="text-sm text-on-surface-variant mb-6">
-                        ¿Ninguna de estas fechas se adapta a tus planes? Diseñamos este itinerario a tu medida en la fecha que prefieras.
+                    <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.custom.title">${window.i18n?.t('departures.custom.title', 'trip') || 'Gestiona tu propio viaje'}</h3>
+                    <p class="text-sm text-on-surface-variant mb-6" data-i18n="departures.custom.desc">
+                        ${window.i18n?.t('departures.custom.desc', 'trip') || '¿Ninguna de estas fechas se adapta a tus planes? Diseñamos este itinerario a tu medida en la fecha que prefieras.'}
                     </p>
                 </div>
                 <button onclick="if(window.openContactModal) window.openContactModal('custom', document.title.replace(/'/g, '\\''))" class="w-full bg-secondary text-on-secondary py-3 rounded-xl font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all mt-4 text-center block">
-                    Crear viaje a medida
+                    <span data-i18n="departures.custom.btn">${window.i18n?.t('departures.custom.btn', 'trip') || 'Crear viaje a medida'}</span>
                 </button>
             `;
             grid.appendChild(customTripCard);

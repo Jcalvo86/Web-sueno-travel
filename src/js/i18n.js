@@ -142,6 +142,7 @@ async function setLanguage(lang, pageNs) {
     document.documentElement.setAttribute('lang', lang);
     applyTranslations(pageNs || _loadedNamespaces[0] || 'common');
     updateLangButtons(lang);
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 }
 
 // ─── Actualizar estado visual de botones EN/ES ────────────────────────────────
@@ -165,12 +166,17 @@ function updateLangButtons(lang) {
 
 // ─── Bootstrap ───────────────────────────────────────────────────────────────
 async function initI18n({ namespaces = ['header'], pageNs = 'home' } = {}) {
-    await loadResources([...new Set(['header', ...namespaces])]);
     _currentLang = detectLanguage();
     persistLanguage(_currentLang);
     document.documentElement.setAttribute('lang', _currentLang);
+    
+    await loadResources([...new Set(['header', ...namespaces])]);
+    
     applyTranslations(pageNs);
     updateLangButtons(_currentLang);
+    
+    // Disparar evento para que cualquier componente montado tarde pueda re-renderizar
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: _currentLang } }));
 }
 
 // ─── API pública global ───────────────────────────────────────────────────────

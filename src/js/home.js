@@ -13,14 +13,6 @@ const FALLBACK_IMAGES = {
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920';
 
-const FALLBACK_TAGS = {
-    egipto: 'Misterio Milenario',
-    jordania: 'Maravilla del Desierto',
-    grecia: 'Mármoles Eternos',
-    turquia: 'Puente entre Mundos',
-    turquía: 'Puente entre Mundos'
-};
-
 const VISITAR_DATA = {
     egipto: {
         images: [
@@ -32,17 +24,23 @@ const VISITAR_DATA = {
         locations: [
             {
                 title: 'Pirámides de Giza',
+                title_en: 'Pyramids of Giza',
                 desc: 'Contempla la última de las Siete Maravillas del Mundo Antiguo que aún permanece en pie.',
+                desc_en: 'Behold the last of the Seven Wonders of the Ancient World still standing.',
                 icon: 'history_edu'
             },
             {
                 title: 'Templos de Luxor y Karnak',
+                title_en: 'Temples of Luxor and Karnak',
                 desc: 'Camina por las avenidas de esfinges y contempla las colosales columnas talladas en piedra.',
+                desc_en: 'Walk down the avenues of sphinxes and gaze at the colossal stone-carved columns.',
                 icon: 'account_balance'
             },
             {
                 title: 'El Nilo en Dahabiya',
+                title_en: 'The Nile in a Dahabiya',
                 desc: 'Navega en una embarcación tradicional de vela para una experiencia íntima e histórica.',
+                desc_en: 'Sail on a traditional sailboat for an intimate and historical experience.',
                 icon: 'sailing'
             }
         ]
@@ -57,17 +55,23 @@ const VISITAR_DATA = {
         locations: [
             {
                 title: 'Petra: La Ciudad Rosa',
+                title_en: 'Petra: The Rose City',
                 desc: 'Caminata por el Siq para descubrir una ciudad esculpida directamente en los acantilados.',
+                desc_en: 'Hike through the Siq to discover a city carved directly into the cliffs.',
                 icon: 'landscape'
             },
             {
                 title: 'Desierto de Wadi Rum',
+                title_en: 'Wadi Rum Desert',
                 desc: 'Explora dunas rojizas en 4x4 y descansa en un campamento de lujo bajo el cielo estrellado.',
+                desc_en: 'Explore red dunes in a 4x4 and rest in a luxury camp under the starry sky.',
                 icon: 'wb_sunny'
             },
             {
                 title: 'El Mar Muerto',
+                title_en: 'The Dead Sea',
                 desc: 'Flota sin esfuerzo en las aguas más saladas y terapéuticas del planeta.',
+                desc_en: 'Float effortlessly in the saltiest and most therapeutic waters on the planet.',
                 icon: 'waves'
             }
         ]
@@ -82,17 +86,23 @@ const VISITAR_DATA = {
         locations: [
             {
                 title: 'Acrópolis de Atenas',
+                title_en: 'Acropolis of Athens',
                 desc: 'El corazón de la civilización occidental bajo el sol radiante del Mediterráneo.',
+                desc_en: 'The heart of Western civilization beneath the radiant Mediterranean sun.',
                 icon: 'architecture'
             },
             {
                 title: 'Santorini al Atardecer',
+                title_en: 'Santorini at Sunset',
                 desc: 'Disfruta de las icónicas cúpulas azules y vistas infinitas sobre el mar Egeo.',
+                desc_en: 'Enjoy the iconic blue domes and endless views over the Aegean Sea.',
                 icon: 'wb_twilight'
             },
             {
                 title: 'Delos Sagrado',
+                title_en: 'Sacred Delos',
                 desc: 'Explora la isla mitológica del nacimiento de Apolo, repleta de ruinas y mosaicos.',
+                desc_en: 'Explore the mythological island of Apollo\'s birth, full of ruins and mosaics.',
                 icon: 'theater_comedy'
             }
         ]
@@ -107,17 +117,23 @@ const VISITAR_DATA = {
         locations: [
             {
                 title: 'Magia de Estambul',
+                title_en: 'Magic of Istanbul',
                 desc: 'Navega entre dos continentes y déjate envolver por los aromas de sus especias.',
+                desc_en: 'Sail between two continents and let yourself be enveloped by the aromas of its spices.',
                 icon: 'synagogue'
             },
             {
                 title: 'Capadocia en Globo',
+                title_en: 'Cappadocia by Balloon',
                 desc: 'Vuela al amanecer sobre las chimeneas de hadas y valles lunares.',
+                desc_en: 'Fly at dawn over the fairy chimneys and lunar valleys.',
                 icon: 'flight_takeoff'
             },
             {
                 title: 'Éfeso Antiguo',
+                title_en: 'Ancient Ephesus',
                 desc: 'Camina por la Vía del Puerto y maravíllate ante la magnífica Biblioteca de Celso.',
+                desc_en: 'Walk down the Harbour Street and marvel at the magnificent Library of Celsus.',
                 icon: 'temple_hindu'
             }
         ]
@@ -125,42 +141,17 @@ const VISITAR_DATA = {
 };
 
 const HERO_SLIDES = [
-    { bg: 'Imagenes/Egipto1.webp' },
-    { bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARW6O-iYW0cCE6qywTlen-VnUlwIUb5izt7istCid-AL43a3K2iVhX-1iaWdiN9go_61I1HjP2wmx0ESzzU76cKCqu_NGztzUyHashzvY7yORPqLjSACCgyTe00Bv3SGaolY5usEnDlMA22mrWvyIH3qLiNCAND0fPv7sE7aHpcjejcS39u2EH1RSrxy7cWo384KDgmKOTuV1sFuWOQePMUmXENlA8p4n97TgP78Y_2rDr8TGlO95v' },
-    { bg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBRPNyuNnsvszdmjNwdzlgJZch5nLMNYdygJFrwX6MkTGbQ1--zQZ3gtYkh9xhP3A_uIsRRw_XVrGg9xVelBtyqHkVQ0YlCZ2Icf3Gt8eHOC7xyzjCVimJZDYfl0cLgooVTtoQNP__K-b4Mb1GRvxOieqjqV5NIS1UOAsO1ikMYPYZU6shDczugSPq5VmF8ZyS_hYuICiRFLYam8KZSxLMOTk03DaQPdnen_6_FHl1LL89KVLDtWfSV' },
-    { bg: 'Imagenes/Sueno-travel-4.webp' }
+    { bg: 'Imagenes/ancient-carvings-and-pillars-against-a-blue-sky-2026-03-18-17-45-57-utc.webp' },
+    { bg: 'Imagenes/blue-mosque-in-istanbul-2026-03-17-19-36-03-utc.webp' },
+    { bg: 'Imagenes/boats-and-buildings-along-a-riverbank-in-egypt-2026-03-20-01-00-43-utc.webp' },
+    { bg: 'Imagenes/camels-and-ancient-architecture-in-desert-setting-2026-03-09-09-01-19-utc.webp' }
 ];
 
 // ==========================================
 // NAVBAR LOGIC
 // ==========================================
 export function initScrollBehavior() {
-    const header = document.querySelector('header');
-    if (!header) {
-        setTimeout(initScrollBehavior, 50);
-        return;
-    }
-
-    header.style.transition = 'transform 0.4s ease, opacity 0.4s ease, height 0.3s ease, background-color 0.3s ease';
-
-    const updateHeader = () => {
-        if (window.scrollY > 50) {
-            header.style.transform = 'translateY(0)';
-            header.style.opacity = '1';
-            header.style.pointerEvents = 'auto';
-            header.classList.add('shadow-md', 'h-16');
-            header.classList.remove('h-20');
-        } else {
-            header.style.transform = 'translateY(-100%)';
-            header.style.opacity = '0';
-            header.style.pointerEvents = 'none';
-            header.classList.remove('shadow-md', 'h-16');
-            header.classList.add('h-20');
-        }
-    };
-
-    window.addEventListener('scroll', updateHeader);
-    updateHeader(); 
+    // Delegado a global-header.js
 }
 
 // ==========================================
@@ -223,17 +214,23 @@ export function selectVisitarCountry(country) {
 
     const listContainer = document.getElementById('visitar-list-container');
     if (listContainer) {
-        listContainer.innerHTML = data.locations.map(loc => `
+        const lang = window.i18n && window.i18n.getCurrentLang ? window.i18n.getCurrentLang() : 'es';
+        
+        listContainer.innerHTML = data.locations.map(loc => {
+            const displayTitle = lang === 'en' ? (loc.title_en || loc.title) : loc.title;
+            const displayDesc = lang === 'en' ? (loc.desc_en || loc.desc) : loc.desc;
+            
+            return `
         <div class="flex gap-6 items-start transition-all duration-300">
             <div class="bg-secondary text-on-primary w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                 <span class="material-symbols-outlined">${loc.icon}</span>
             </div>
             <div>
-                <h4 class="text-xl font-bold text-secondary-fixed">${loc.title}</h4>
-                <p class="text-sm opacity-80 mt-1">${loc.desc}</p>
+                <h4 class="text-xl font-bold text-secondary-fixed">${displayTitle}</h4>
+                <p class="text-sm opacity-80 mt-1">${displayDesc}</p>
             </div>
-        </div>
-    `).join('');
+        </div>`;
+        }).join('');
     }
 }
 window.selectVisitarCountry = selectVisitarCountry;
@@ -419,6 +416,8 @@ export async function fetchActiveTrips() {
     if (!window.DataSource) return [];
 
     let trips = [];
+    const lang = window.i18n && typeof window.i18n.getCurrentLang === 'function' ? window.i18n.getCurrentLang() : 'es';
+
     try {
         const travelItems = await window.DataSource.getItems('travel');
         let departures = [];
@@ -442,21 +441,21 @@ export async function fetchActiveTrips() {
                 if (departureDate) {
                     try {
                         const d = new Date(departureDate + 'T00:00:00');
-                        dateStr = d.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+                        dateStr = d.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-ES', { month: 'long', year: 'numeric' });
                         dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
                     } catch(e) { dateStr = departureDate; }
                 }
 
                 return {
                     id: item.id,
-                    title: item.title,
-                    desc: item.description || (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : ''),
+                    title: lang === 'en' ? (item.title_en || item.titleEn || item.name_en || item.nameEn || item.title || item.name) : (item.title || item.name),
+                    desc: lang === 'en' ? (item.description_en || item.descriptionEn || item.description || (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : '')) : (item.description || (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum) : '')),
                     imgUrl: item.headerImageUrl || item.header_image_url || item.imageUrl || item.image_url || (item.itinerary && item.itinerary[0]?.imageUrl) || '',
                     isDraft: isDraft,
-                    flavorText: item.flavorText || item.flavor_text || item.agency || '',
-                    days: item.durationDays || item.duration_days || '',
-                    nights: item.durationNights || item.duration_nights || '',
-                    locations: destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : '',
+                    flavorText: lang === 'en' ? (item.flavorText_en || item.flavorTextEn || item.flavor_text_en || item.flavorText || item.flavor_text || item.agency || '') : (item.flavorText || item.flavor_text || item.agency || ''),
+                    days: item.duration_days || item.durationDays || '',
+                    nights: item.duration_nights || item.durationNights || '',
+                    locations: lang === 'en' && (item.destinationsSummary_en || item.destinationsSummaryEn || item.destinations_summary_en || item.destination_en || item.destinationEn) ? (item.destinationsSummary_en || item.destinationsSummaryEn || item.destinations_summary_en || item.destination_en || item.destinationEn).replace(/\s*\([^)]*\)/g, '') : (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : ''),
                     date: dateStr
                 };
             });
@@ -470,11 +469,11 @@ export async function fetchActiveTrips() {
             const products = await window.DataSource.getItems('cms_products');
             trips = products.map(item => ({
                 id: item.id,
-                title: item.name,
-                desc: item.subtitle || item.overview || '',
+                title: lang === 'en' ? (item.name_en || item.nameEn || item.title_en || item.titleEn || item.name || item.title) : (item.name || item.title),
+                desc: lang === 'en' ? (item.overview_en || item.overviewEn || item.subtitle_en || item.subtitleEn || item.overview || item.subtitle || '') : (item.overview || item.subtitle || ''),
                 imgUrl: item.headerImageUrl || item.header_image_url || item.imageUrl || '',
                 isDraft: item.isDraft || item.status === 'hidden',
-                flavorText: item.flavorText || item.flavor_text || item.agency || '',
+                flavorText: lang === 'en' ? (item.flavorText_en || item.flavorTextEn || item.flavor_text_en || item.flavorText || item.flavor_text || item.agency || '') : (item.flavorText || item.flavor_text || item.agency || ''),
                 days: '', nights: '', locations: '', date: ''
             }));
         } catch (e) {}
@@ -509,21 +508,18 @@ export function renderTripCards(trips) {
         if (!bgImg) bgImg = DEFAULT_IMAGE;
 
         let tag = trip.flavorText;
-        if (!tag || tag === 'Sueño Travel Chile' || tag === 'Operador') {
-            for (const key in FALLBACK_TAGS) {
-                if (lowerTitle.includes(key)) {
-                    tag = FALLBACK_TAGS[key];
-                    break;
-                }
-            }
-        }
         if (!tag && trip.desc) tag = 'Experiencia';
 
         let hoverInfo = [];
-        if (trip.date) hoverInfo.push(`<span class="font-semibold block mb-1">📅 Próximo viaje en grupo: ${trip.date}</span>`);
+        if (trip.date) {
+            const nextTripStr = window.i18n && typeof window.i18n.t === 'function' ? window.i18n.t('nextTrip', 'home') || 'Próximo viaje en grupo:' : 'Próximo viaje en grupo:';
+            hoverInfo.push(`<span class="font-semibold block mb-1">📅 ${nextTripStr} ${trip.date}</span>`);
+        }
         if (trip.days) {
-            let duration = `${trip.days} Días`;
-            if (trip.nights) duration += ` / ${trip.nights} Noches`;
+            const diasStr = window.i18n && typeof window.i18n.t === 'function' ? window.i18n.t('days', 'home') || 'Días' : 'Días';
+            const nochesStr = window.i18n && typeof window.i18n.t === 'function' ? window.i18n.t('nights', 'home') || 'Noches' : 'Noches';
+            let duration = `${trip.days} ${diasStr}`;
+            if (trip.nights) duration += ` / ${trip.nights} ${nochesStr}`;
             hoverInfo.push(`⏱️ ${duration}`);
         }
         if (trip.locations) hoverInfo.push(`📍 ${trip.locations}`);
@@ -555,7 +551,9 @@ export function renderTripCards(trips) {
 
         const linkBtn = node.querySelector('.trip-link-btn');
         if (linkBtn) {
+            const verItinStr = window.i18n && typeof window.i18n.t === 'function' ? window.i18n.t('verItinerario', 'home') || 'Ver Itinerario' : 'Ver Itinerario';
             linkBtn.href = `viaje.html?nombre=${window.generateSlug(trip.title)}`;
+            linkBtn.textContent = verItinStr;
             linkBtn.className = `bg-primary text-on-primary ${isWide ? 'px-6' : 'px-4'} py-2.5 rounded-lg hover:bg-primary-fixed-dim transition-all font-label-md trip-link-btn ${isWide ? '' : 'text-sm'}`;
         }
         
@@ -644,6 +642,12 @@ const initHome = async () => {
     const trips = await fetchActiveTrips();
     if(trips && trips.length > 0) {
         renderTripCards(trips);
+    } else {
+        const grid = document.getElementById('destinations-grid');
+        if (grid) {
+            grid.innerHTML = '<div class="col-span-full text-center py-10 text-on-surface-variant">Pronto publicaremos nuevos viajes. ¡Mantente atento!</div>';
+            grid.className = 'grid grid-cols-1 gap-6 h-auto';
+        }
     }
 };
 
@@ -652,3 +656,13 @@ if (document.getElementById('destinations-grid')) {
 } else {
     window.addEventListener('componentsLoaded', initHome);
 }
+
+window.addEventListener('languageChanged', async () => {
+    // Re-render trip cards
+    const trips = await fetchActiveTrips();
+    if(trips && trips.length > 0) {
+        renderTripCards(trips);
+    }
+    // Re-render What to visit section in the new language
+    selectVisitarCountry(currentCountry);
+});

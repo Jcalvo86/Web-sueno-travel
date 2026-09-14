@@ -1,0 +1,96 @@
+{
+  "pageTitle": "Itinerario de Viaje | Sueño Travel",
+  "hero": {
+    "days": "Días",
+    "nights": "Noches",
+    "exploreBtn": "Explorar Itinerario",
+    "viewMapBtn": "Ver Mapa de la Ruta"
+  },
+  "sidebar": {
+    "title": "Índice del Viaje",
+    "overview": "Nuestra Ruta",
+    "departures": "Salidas",
+    "itinerary": "Itinerario",
+    "gallery": "Galería",
+    "services": "Servicios",
+    "summary": "Resumen"
+  },
+  "overview": {
+    "title": "La Magia de tu Destino",
+    "noDesc": "Sin descripción disponible.",
+    "features": {
+        "culture": "Cultura Viva",
+        "luxury": "Lujo Superior",
+        "guide": "Guía Privado"
+    }
+  },
+  "map": {
+    "title": "Nuestra Ruta"
+  },
+  "departures": {
+    "title": "Salidas Programadas",
+    "subtitle": "Selecciona una de nuestras próximas salidas grupales exclusivas con todo incluido, o solicita un viaje a la medida.",
+    "card": {
+      "to": "Al",
+      "capacity": "Cupos Disponibles",
+      "reserveBtn": "Reservar",
+      "title": "Salida Especial"
+    },
+    "custom": {
+      "badge": "A tu medida",
+      "title": "Viaje Privado",
+      "desc": "Elige tus propias fechas y viaja con tu grupo.",
+      "btn": "Solicitar a medida"
+    },
+    "available": "Disponible"
+  },
+  "itinerary": {
+    "title": "Itinerario Día a Día",
+    "subtitle": "Una cronología de maravillas diseñada para equilibrar el descubrimiento arqueológico con el descanso reparador.",
+    "dayPrefix": "Día"
+  },
+  "gallery": {
+    "title": "Capturando la Eternidad"
+  },
+  "services": {
+    "title": "Servicios y Coberturas",
+    "included": "Servicios Incluidos",
+    "excluded": "No Incluido",
+    "consultExcluded": "Consultar exclusiones con su asesor."
+  },
+  "info": {
+    "summary": "Resumen",
+    "bestSeason": "Mejor Época",
+    "currencyVisa": "Moneda y Visa",
+    "costs": "Costos y Notas",
+    "defaultBestSeason": "Octubre a Abril",
+    "defaultCurrency": "Moneda internacional y local",
+    "visaPrefix": "Visado",
+    "consult": "Consultar",
+    "hotelTaxPrefix": "Impuesto Hotelero",
+    "visaCostPrefix": "Costo Visa aprox",
+    "defaultDisclaimer": "* Precios referenciales sujetos a cambios."
+  },
+  "reservation": {
+    "title": "Reservar Salida",
+    "desc": "Completa el formulario y un asesor se pondrá en contacto contigo a la brevedad.",
+    "name": "Nombre Completo",
+    "email": "Correo Electrónico",
+    "comments": "Comentarios / Preguntas",
+    "sendBtn": "Enviar Solicitud"
+  },
+  "cta": {
+    "title": "¿Listo para escribir su propia historia en la arena?",
+    "subtitle": "Nuestros especialistas en el destino están listos para personalizar cada detalle de su viaje.",
+    "btnReserve": "Reservar mi Experiencia",
+    "btnContact": "Hablar con un Asesor"
+  },
+  "error": {
+    "notFound": "El viaje solicitado no existe o no se encuentra disponible.",
+    "backHome": "Volver al inicio",
+    "noTripId": "No se especificó un identificador de viaje en la URL.",
+    "dbConnection": "Error al conectar con la base de datos de contenidos.",
+    "general": "Ocurrió un error al cargar los datos del viaje."
+  },
+  "loading": "Cargando itinerario de viaje..."
+}

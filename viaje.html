@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Cargando itinerario... | Sueño Travel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n-title-tag="trip:pageTitle">Cargando itinerario... | Sueño Travel</title>
     <meta name="description" id="meta-description"
         content="Diseñamos experiencias de lujo personalizadas para exploradores cultos. Cargando itinerario..." />
     <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
@@ -75,16 +75,17 @@
     <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>
     <!-- Dynamic Header Component -->
+    <script src="src/js/i18n.js"></script>
     <script src="global-header.js"></script>
 </head>
 
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20">
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20" data-page-ns="trip">
     <div id="global-header"></div>
 
     <!-- Loader State -->
     <div id="loading-state" class="min-h-[80vh] flex flex-col items-center justify-center gap-4">
         <span class="material-symbols-outlined text-secondary text-5xl animate-spin">progress_activity</span>
-        <p class="text-on-surface-variant font-medium text-lg">Cargando itinerario de viaje...</p>
+        <p class="text-on-surface-variant font-medium text-lg" data-i18n="loading">Cargando itinerario de viaje...</p>
     </div>
 
     <!-- Main Content (Hidden initially) -->
@@ -96,25 +97,25 @@
                 <!-- Sidebar Navigation -->
                 <aside class="hidden lg:block w-1/4 shrink-0">
                     <div class="sticky top-28 space-y-6 bg-surface border border-outline-variant/50 p-6 rounded-3xl shadow-sm">
-                        <h4 class="font-display-lg text-sm font-bold text-primary border-b border-outline-variant/60 pb-3 uppercase tracking-wider">Índice del Viaje</h4>
+                        <h4 class="font-display-lg text-sm font-bold text-primary border-b border-outline-variant/60 pb-3 uppercase tracking-wider" data-i18n="sidebar.title">Índice del Viaje</h4>
                         <nav id="viaje-index-nav" class="flex flex-col gap-4 text-xs font-semibold">
                             <a href="#section-overview" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors border-transparent text-primary">
-                                <span class="material-symbols-outlined text-base">info</span> Nuestra Ruta
+                                <span class="material-symbols-outlined text-base">info</span> <span data-i18n="sidebar.overview">Nuestra Ruta</span>
                             </a>
                             <a href="#section-departures" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors border-transparent text-primary">
-                                <span class="material-symbols-outlined text-base">calendar_today</span> Salidas
+                                <span class="material-symbols-outlined text-base">calendar_today</span> <span data-i18n="sidebar.departures">Salidas</span>
                             </a>
                             <a href="#section-itinerary" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors border-transparent text-primary">
-                                <span class="material-symbols-outlined text-base">map</span> Itinerario
+                                <span class="material-symbols-outlined text-base">map</span> <span data-i18n="sidebar.itinerary">Itinerario</span>
                             </a>
                             <a href="#section-gallery" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors border-transparent text-primary">
-                                <span class="material-symbols-outlined text-base">photo_library</span> Galería
+                                <span class="material-symbols-outlined text-base">photo_library</span> <span data-i18n="sidebar.gallery">Galería</span>
                             </a>
                             <a href="#section-services" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors border-transparent text-primary">
-                                <span class="material-symbols-outlined text-base">task_alt</span> Servicios
+                                <span class="material-symbols-outlined text-base">task_alt</span> <span data-i18n="sidebar.services">Servicios</span>
                             </a>
                             <a href="#section-info" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors border-transparent text-primary">
-                                <span class="material-symbols-outlined text-base">summarize</span> Resumen
+                                <span class="material-symbols-outlined text-base">summarize</span> <span data-i18n="sidebar.summary">Resumen</span>
                             </a>
                         </nav>
                     </div>
@@ -187,6 +188,7 @@
 
             // Ejecutamos la lógica de cargar viaje de forma segura una única vez
             loadTripData();
+            window.addEventListener('languageChanged', loadTripData);
         });
     </script>
 </body>

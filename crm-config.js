@@ -8,7 +8,7 @@ window.CRM_CONFIG = {
     projectId: "suenotravel"    // Reemplaza con tu Project ID de Firebase
   },
   // 2. Active Modules for this project
-  activeModules: ["terms", "products", "design_tokens"],
+  activeModules: ["blog", "terms", "products", "design_tokens"],
   // 3. Project Branding Customizations
   branding: {
     appName: "Sueño Travel",

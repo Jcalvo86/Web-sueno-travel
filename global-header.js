@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inject Navigation Header HTML
     headerContainer.innerHTML = `
-    <header id="main-header-nav" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 transition-all duration-300 bg-transparent border-transparent">
+    <header id="main-header-nav" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 transition-all duration-300 bg-white/60 backdrop-blur-md border-transparent">
         <div class="flex items-center gap-3">
             <a href="index.html" class="flex items-center gap-3">
                 <img data-i18n-alt="logoAlt" data-i18n-ns="header" alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel%20Chile.svg"/>
@@ -180,11 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mainHeaderNav) {
         const handleScroll = () => {
             if (window.scrollY > 20) {
-                mainHeaderNav.classList.remove('bg-transparent', 'border-transparent');
-                mainHeaderNav.classList.add('bg-white/90', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-outline-variant/10');
+                mainHeaderNav.classList.remove('bg-white/60', 'backdrop-blur-md', 'border-transparent');
+                mainHeaderNav.classList.add('bg-white/95', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-outline-variant/10');
             } else {
-                mainHeaderNav.classList.add('bg-transparent', 'border-transparent');
-                mainHeaderNav.classList.remove('bg-white/90', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-outline-variant/10');
+                mainHeaderNav.classList.add('bg-white/60', 'backdrop-blur-md', 'border-transparent');
+                mainHeaderNav.classList.remove('bg-white/95', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-outline-variant/10');
             }
         };
         window.addEventListener('scroll', handleScroll);

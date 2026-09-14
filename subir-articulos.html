@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <title>Migración de Artículos a Base de Datos</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        .log { background: #f0f0f0; padding: 1rem; border-radius: 8px; margin-top: 1rem; white-space: pre-wrap; font-family: monospace; min-height: 200px;}
+        button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: bold;}
+        button:disabled { background: #ccc; cursor: not-allowed; }
+    </style>
+    
+    <script src="controlpanel/adapters/adapter-interface.js"></script>
+    <script src="controlpanel/adapters/supabase-adapter.js"></script>
+    <script src="controlpanel/adapters/firebase-adapter.js"></script>
+    <script src="crm-config.js"></script>
+    <script src="controlpanel/data-source-config.js"></script>
+</head>
+<body>
+    <h1>Migrador de Artículos</h1>
+    <p>Haz clic en el botón para crear los artículos de prueba (Turquía y Egipto Mágico) en tu base de datos configurada.</p>
+    
+    <button id="btn-start" onclick="iniciarMigracion()">Subir Artículos</button>
+
+    <div class="log" id="log-output">Esperando para iniciar...</div>
+
+    <script>
+        const log = (msg) => {
+            const out = document.getElementById('log-output');
+            if (out.textContent === "Esperando para iniciar...") out.textContent = "";
+            out.textContent += msg + '\n';
+        };
+
+        async function iniciarMigracion() {
+            document.getElementById('btn-start').disabled = true;
+            log("Iniciando migración...");
+
+            try {
+                let checks = 0;
+                while (!window.DataSource && checks < 10) {
+                    await new Promise(r => setTimeout(r, 100));
+                    checks++;
+                }
+
+                if (!window.DataSource) {
+                    log("❌ ERROR: No hay conexión a la base de datos.");
+                    log("Asegúrate de haber configurado tu Firebase/Supabase en el Panel de Control y recarga esta página.");
+                    return;
+                }
+
+                log(`✅ Conectado usando adaptador: ${window.DataSource.provider}`);
+
+                const articles = window.Glosaurio.SEED_ARTICLES;
+                if (!articles || articles.length === 0) {
+                    log("❌ ERROR: No se encontraron artículos en SEED_ARTICLES.");
+                    return;
+                }
+
+                for (const article of articles) {
+                    log(`Subiendo: ${article.title} (ID: ${article.id})...`);
+                    
+                    // Adaptar campos para que calcen con el Schema de Control Panel
+                    article.slug = article.id;
+                    article.summary = article.excerpt;
+                    article.coverImage = article.headerImage;
+                    article.category = article.tag;
+                    
+                    if (window.DataSource.provider === 'firebase') {
+                        const fireData = window.DataSource._toFirestore(article);
+                        delete fireData.fields.id;
+                        
+                        const res = await fetch(`https://firestore.googleapis.com/v1/projects/${window.DataSource.projectId}/databases/(default)/documents/cms_posts?documentId=${article.id}&key=${window.DataSource.apiKey}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(fireData)
+                        });
+                        
+                        if (!res.ok) {
+                            if (res.status === 409) {
+                                log(`⚠️ El artículo ${article.id} ya existe en Firebase. Saltando...`);
+                            } else {
+                                throw new Error(`Error al crear en Firebase: ${await res.text()}`);
+                            }
+                        } else {
+                            log(`✅ Artículo ${article.id} creado con éxito.`);
+                        }
+                    } else {
+                        // For Supabase
+                        try {
+                            const exists = await window.DataSource.getItem('cms_posts', article.id);
+                            if (exists) {
+                                log(`⚠️ El artículo ${article.id} ya existe. Saltando...`);
+                            } else {
+                                await window.DataSource.createItem('cms_posts', article);
+                                log(`✅ Artículo ${article.id} creado con éxito.`);
+                            }
+                        } catch (e) {
+                            throw new Error(`Error al crear en Supabase: ${e.message}`);
+                        }
+                    }
+                }
+                
+                log("\n🎉 Migración completada exitosamente.");
+                log("Ya puedes acceder a articulo.html?id=turquia");
+            } catch (error) {
+                log(`\n❌ ERROR: ${error.message}`);
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

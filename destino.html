@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destino | Sueño Travel</title>
+    <title data-i18n-title-tag="destination:pageTitle">Destino | Sueño Travel</title>
     <meta name="description" id="meta-description" content="Información práctica y consejos de viaje para tu próximo destino con Sueño Travel.">
     <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -28,15 +28,16 @@
     <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>
     <!-- Dynamic Header Component -->
+    <script src="src/js/i18n.js"></script>
     <script src="global-header.js"></script>
 </head>
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20">
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20" data-page-ns="destination">
 <div id="global-header"></div>
 
 <!-- Loader State -->
 <div id="loading-state" class="min-h-[80vh] flex flex-col items-center justify-center gap-4">
     <span class="material-symbols-outlined text-secondary text-5xl animate-spin">progress_activity</span>
-    <p class="text-on-surface-variant font-medium text-lg">Cargando información del destino...</p>
+    <p class="text-on-surface-variant font-medium text-lg" data-i18n="loading">Cargando información del destino...</p>
 </div>
 
 <!-- Main Content -->
@@ -49,7 +50,7 @@
             <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60"></div>
         </div>
         <div class="relative z-10 text-center px-margin-mobile max-w-4xl">
-            <span class="text-secondary-fixed-dim font-label-md tracking-widest uppercase mb-3 block font-bold">Guía de Destino</span>
+            <span class="text-secondary-fixed-dim font-label-md tracking-widest uppercase mb-3 block font-bold" data-i18n="hero.label">Guía de Destino</span>
             <h1 id="dest-name" class="font-display-lg text-4xl md:text-6xl text-white mb-3 font-extrabold tracking-tight"></h1>
             <p id="dest-subtitle" class="text-white/90 text-body-lg max-w-2xl mx-auto"></p>
         </div>
@@ -69,19 +70,19 @@
         <!-- Sidebar Navigation (Index) -->
         <aside class="hidden lg:block w-1/4 shrink-0">
             <div class="sticky top-28 space-y-6 bg-surface border border-outline-variant/50 p-6 rounded-3xl shadow-sm">
-                <h4 class="font-display-lg text-sm font-bold text-primary border-b border-outline-variant/60 pb-3 uppercase tracking-wider">En esta guía</h4>
+                <h4 class="font-display-lg text-sm font-bold text-primary border-b border-outline-variant/60 pb-3 uppercase tracking-wider" data-i18n="sidebar.title">En esta guía</h4>
                 <nav class="flex flex-col gap-4 text-xs font-semibold">
                     <a href="#sec-overview" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-base">info</span> Resumen General
+                        <span class="material-symbols-outlined text-base">info</span> <span data-i18n="sidebar.overview">Resumen General</span>
                     </a>
                     <a href="#sec-map" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-base">map</span> Ubicación y Mapa
+                        <span class="material-symbols-outlined text-base">map</span> <span data-i18n="sidebar.map">Ubicación y Mapa</span>
                     </a>
                     <a id="toc-link-explore" href="#explore-section" class="toc-link hidden flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-base">explore</span> Qué Visitar
+                        <span class="material-symbols-outlined text-base">explore</span> <span data-i18n="sidebar.explore">Qué Visitar</span>
                     </a>
                     <a id="toc-link-itineraries" href="#itineraries-section" class="toc-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-base">route</span> Itinerarios
+                        <span class="material-symbols-outlined text-base">route</span> <span data-i18n="sidebar.itineraries">Itinerarios</span>
                     </a>
                 </nav>
             </div>
@@ -98,21 +99,21 @@
                     
                     <!-- Estilo del Viaje -->
                     <div class="space-y-4">
-                        <h2 class="font-display-lg text-3xl font-bold text-primary">Estilo del Viaje</h2>
+                        <h2 class="font-display-lg text-3xl font-bold text-primary" data-i18n="overview.travelStyle">Estilo del Viaje</h2>
                         <div id="dest-tags" class="flex flex-wrap gap-2"></div>
                     </div>
                     
                     <!-- Ubicación y Territorio -->
                     <div class="space-y-4" id="sec-map">
-                        <h2 class="font-display-lg text-3xl font-bold text-primary pt-2">Ubicación y Territorio</h2>
-                        <p class="text-on-surface-variant leading-relaxed">
+                        <h2 class="font-display-lg text-3xl font-bold text-primary pt-2" data-i18n="map.title">Ubicación y Territorio</h2>
+                        <p class="text-on-surface-variant leading-relaxed" data-i18n="map.description">
                             Visualiza la distribución geográfica y las rutas recomendadas por nuestros egiptólogos y expertos en destino para optimizar cada jornada de tu travesía.
                         </p>
                         <div class="p-6 bg-tertiary-fixed rounded-2xl border border-outline-variant/30 flex items-start gap-4">
                             <span class="material-symbols-outlined text-secondary text-3xl mt-1">info</span>
                             <div>
-                                <h4 class="font-bold text-primary">Consejo de Viajero</h4>
-                                <p class="text-sm text-on-surface-variant/95 mt-1 leading-relaxed">
+                                <h4 class="font-bold text-primary" data-i18n="map.tipTitle">Consejo de Viajero</h4>
+                                <p class="text-sm text-on-surface-variant/95 mt-1 leading-relaxed" data-i18n="map.tipDesc">
                                     Puedes hacer clic directamente en la imagen del mapa de la derecha para abrir una versión en alta resolución y examinar en detalle cada parada.
                                 </p>
                             </div>
@@ -135,15 +136,15 @@
                     <!-- Info Box -->
                     <div class="bg-surface p-6 rounded-2xl border border-outline-variant/50 shadow-sm space-y-3 text-on-surface-variant leading-relaxed text-sm md:text-base">
                         <p>
-                            <strong class="text-primary font-bold">Mejor Época:</strong> 
+                            <strong class="text-primary font-bold" data-i18n="info.bestSeason">Mejor Época:</strong> 
                             <span id="info-best-season"></span>
                         </p>
                         <p>
-                            <strong class="text-primary font-bold">Cómo Moverse:</strong> 
+                            <strong class="text-primary font-bold" data-i18n="info.getAround">Cómo Moverse:</strong> 
                             <span id="info-get-around"></span>
                         </p>
                         <p>
-                            <strong class="text-primary font-bold">Estadía Sugerida:</strong> 
+                            <strong class="text-primary font-bold" data-i18n="info.duration">Estadía Sugerida:</strong> 
                             <span id="info-duration"></span>
                         </p>
                     </div>
@@ -152,8 +153,8 @@
             
             <!-- 3. Unified Explore Section -->
             <div id="explore-section" class="border-t border-outline-variant/60 pt-16 hidden scroll-mt-28">
-                <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4">Qué Visitar</h2>
-                <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-6">Descubre todas las ciudades, áreas geográficas y atractivos de este destino.</p>
+                <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4" data-i18n="explore.title">Qué Visitar</h2>
+                <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-6" data-i18n="explore.subtitle">Descubre todas las ciudades, áreas geográficas y atractivos de este destino.</p>
                 
                 <!-- Filter Tabs -->
                 <div id="explore-filter-container" class="flex flex-wrap justify-center gap-2 mb-10"></div>
@@ -165,8 +166,8 @@
 
             <!-- 5. Suggested Itineraries Section -->
             <div id="itineraries-section" class="border-t border-outline-variant/60 pt-16 scroll-mt-28">
-                <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4">Itinerarios en este Destino</h2>
-                <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-12">Programas exclusivos diseñados por Sueño Travel para ofrecerte una inmersión completa y de alto estándar.</p>
+                <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4" data-i18n="itineraries.title">Itinerarios en este Destino</h2>
+                <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-12" data-i18n="itineraries.subtitle">Programas exclusivos diseñados por Sueño Travel para ofrecerte una inmersión completa y de alto estándar.</p>
                 
                 <div id="itineraries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Dynamic itinerary cards go here -->
@@ -223,7 +224,7 @@
         // "Todos" Tab
         const allTab = document.createElement('button');
         allTab.className = 'explore-filter-tab bg-primary text-white border border-primary px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer shadow-sm hover:scale-105';
-        allTab.textContent = 'Todos';
+        allTab.textContent = window.i18n?.t('explore.filter.all', 'destination') || 'Todos';
         allTab.setAttribute('data-filter', 'all');
         allTab.addEventListener('click', () => filterExplore('all'));
         filterContainer.appendChild(allTab);
@@ -232,7 +233,7 @@
         if (relatedCities.length > 0) {
             const citiesTab = document.createElement('button');
             citiesTab.className = 'explore-filter-tab bg-white text-on-surface-variant border border-outline-variant/60 hover:border-primary px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer shadow-sm hover:scale-105';
-            citiesTab.textContent = 'Ciudades y Áreas';
+            citiesTab.textContent = window.i18n?.t('explore.filter.cities', 'destination') || 'Ciudades y Áreas';
             citiesTab.setAttribute('data-filter', 'type:city');
             citiesTab.addEventListener('click', () => filterExplore('type:city'));
             filterContainer.appendChild(citiesTab);
@@ -242,7 +243,7 @@
         if (relatedAttractions.length > 0) {
             const attractionsTab = document.createElement('button');
             attractionsTab.className = 'explore-filter-tab bg-white text-on-surface-variant border border-outline-variant/60 hover:border-primary px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer shadow-sm hover:scale-105';
-            attractionsTab.textContent = 'Atractivos';
+            attractionsTab.textContent = window.i18n?.t('explore.filter.attractions', 'destination') || 'Atractivos';
             attractionsTab.setAttribute('data-filter', 'type:attraction');
             attractionsTab.addEventListener('click', () => filterExplore('type:attraction'));
             filterContainer.appendChild(attractionsTab);
@@ -345,7 +346,7 @@
             }
 
             if (!window.DataSource) {
-                showError('Error de conexión a la base de datos.');
+                showError(window.i18n?.t('error.dbConnection', 'destination') || 'Error de conexión a la base de datos.');
                 return;
             }
 
@@ -360,13 +361,13 @@
             );
 
             if (!targetDest) {
-                showError('El destino no se encuentra registrado en la base de datos del CRM.');
+                showError(window.i18n?.t('error.notFound', 'destination') || 'El destino no se encuentra registrado en la base de datos del CRM.');
             } else {
                 renderDestination(targetDest, locations);
             }
         } catch (error) {
             console.error(error);
-            showError('Ocurrió un error al cargar el destino.');
+            showError(window.i18n?.t('error.general', 'destination') || 'Ocurrió un error al cargar el destino.');
         }
     };
 
@@ -378,9 +379,9 @@
         // Render Breadcrumb
         const breadcrumbContainer = document.getElementById('breadcrumb-container');
         if (breadcrumbContainer) {
-            let breadcrumbHtml = `<a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-sm">home</span> Inicio</a>`;
+            let breadcrumbHtml = `<a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-sm">home</span> <span data-i18n="breadcrumb.home">${window.i18n?.t('breadcrumb.home', 'destination') || 'Inicio'}</span></a>`;
             breadcrumbHtml += `<span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>`;
-            breadcrumbHtml += `<a href="index.html#destinos" class="hover:text-primary transition-colors opacity-70">Destinos</a>`;
+            breadcrumbHtml += `<a href="index.html#destinos" class="hover:text-primary transition-colors opacity-70"><span data-i18n="breadcrumb.destinations">${window.i18n?.t('breadcrumb.destinations', 'destination') || 'Destinos'}</span></a>`;
             
             let parentRegId = dest.parent_region_id || dest.parentRegionId;
             let parentCityId = dest.parent_city_id || dest.parentCityId;
@@ -407,9 +408,9 @@
         }
         document.getElementById('dest-subtitle').textContent = dest.subtitle || '';
         document.getElementById('dest-description').textContent = dest.description || '';
-        document.getElementById('info-best-season').textContent = dest.guideBestSeason || 'Todo el año.';
-        document.getElementById('info-get-around').textContent = dest.guideHowToGetAround || 'Traslados privados.';
-        document.getElementById('info-duration').textContent = dest.guideRecommendedDuration || 'Consultar con asesores.';
+        document.getElementById('info-best-season').textContent = dest.guideBestSeason || window.i18n?.t('info.defaultSeason', 'destination') || 'Todo el año.';
+        document.getElementById('info-get-around').textContent = dest.guideHowToGetAround || window.i18n?.t('info.defaultGetAround', 'destination') || 'Traslados privados.';
+        document.getElementById('info-duration').textContent = dest.guideRecommendedDuration || window.i18n?.t('info.defaultDuration', 'destination') || 'Consultar con asesores.';
         
         // Hero background image
         const heroBg = dest.imageUrl || dest.image_url || dest.headerImageUrl || dest.header_image_url || dest.mapUrl || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1920';
@@ -543,12 +544,12 @@
                             </div>
                             <div class="p-6 space-y-2">
                                 <h3 class="font-display-lg text-lg font-bold text-primary group-hover:text-secondary transition-colors">${city.name}</h3>
-                                <p class="text-xs text-on-surface-variant line-clamp-2">${city.description || city.subtitle || 'Explora este maravilloso destino con Sueño Travel.'}</p>
+                                <p class="text-xs text-on-surface-variant line-clamp-2">${city.description || city.subtitle || (window.i18n?.t('explore.card.cityDesc', 'destination') || 'Explora este maravilloso destino con Sueño Travel.')}</p>
                             </div>
                         </div>
                         <div class="px-6 pb-6 pt-2">
                             <a href="destino.html?id=${city.id}" class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-xs uppercase tracking-wider hover:bg-primary/95 text-center block w-full font-bold transition-all">
-                                Ver Ciudad o Área
+                                <span data-i18n="explore.card.viewCity">${window.i18n?.t('explore.card.viewCity', 'destination') || 'Ver Ciudad o Área'}</span>
                             </a>
                         </div>
                     `;
@@ -579,12 +580,12 @@
                             </div>
                             <div class="p-6 space-y-2">
                                 <h3 class="font-display-lg text-lg font-bold text-primary group-hover:text-secondary transition-colors">${attr.name}</h3>
-                                <p class="text-xs text-on-surface-variant line-clamp-2">${attr.description || attr.subtitle || 'Descubre este increíble punto de interés histórico y cultural.'}</p>
+                                <p class="text-xs text-on-surface-variant line-clamp-2">${attr.description || attr.subtitle || (window.i18n?.t('explore.card.attrDesc', 'destination') || 'Descubre este increíble punto de interés histórico y cultural.')}</p>
                             </div>
                         </div>
                         <div class="px-6 pb-6 pt-2">
                             <a href="destino.html?id=${attr.id}" class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-xs uppercase tracking-wider hover:bg-primary/95 text-center block w-full font-bold transition-all">
-                                Ver Atracción
+                                <span data-i18n="explore.card.viewAttraction">${window.i18n?.t('explore.card.viewAttraction', 'destination') || 'Ver Atracción'}</span>
                             </a>
                         </div>
                     `;
@@ -658,7 +659,7 @@
                         <div class="h-56 overflow-hidden relative">
                             <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${tripTitle}">
                             <div class="absolute top-4 right-4 bg-primary text-white font-bold text-xs px-3 py-1.5 rounded-full shadow-md uppercase tracking-wider">
-                                ${duration} ${typeof duration === 'number' ? 'Días' : ''}
+                                ${duration} <span data-i18n="itineraries.card.days">${window.i18n?.t('itineraries.card.days', 'destination') || (typeof duration === 'number' ? 'Días' : '')}</span>
                             </div>
                         </div>
                         <div class="p-8 space-y-3">
@@ -666,7 +667,7 @@
                             <p class="text-sm text-on-surface-variant line-clamp-2">${sub}</p>
                             <div class="pt-4 flex justify-between items-center border-t border-outline-variant/40">
                                 <a href="viaje.html?nombre=${window.generateSlug(tripTitle)}" class="text-secondary font-bold hover:underline flex items-center gap-1 text-sm">
-                                    Explorar Itinerario
+                                    <span data-i18n="itineraries.card.explore">${window.i18n?.t('itineraries.card.explore', 'destination') || 'Explorar Itinerario'}</span>
                                     <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </a>
                             </div>
@@ -691,8 +692,8 @@
         if (loader) {
             loader.innerHTML = `
                 <span class="material-symbols-outlined text-red-500 text-5xl">error</span>
-                <p class="text-on-surface font-semibold text-lg mt-2">${message}</p>
-                <a href="index.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg">Volver al inicio</a>
+                <p class="text-on-surface font-semibold text-lg mt-2" data-i18n="error.title">${message}</p>
+                <a href="index.html" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-lg" data-i18n="error.backHome">${window.i18n?.t('error.backHome', 'destination') || 'Volver al inicio'}</a>
             `;
         }
     };
