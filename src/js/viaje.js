@@ -1,3 +1,5 @@
+import SEOManager from './seo-manager.js';
+
     // Smooth reveal on scroll logic
     const setupRevealObserver = () => {
         const observerOptions = { threshold: 0.1 };
@@ -410,12 +412,21 @@
     };
 
     const renderTrip = (trip) => {
-        // --- Dynamic SEO ---
-        document.title = `${trip.name} | Sueño Travel`;
-        const metaDesc = document.getElementById('meta-description');
-        if (metaDesc && trip.subtitle) {
-            metaDesc.setAttribute('content', trip.subtitle);
-        }
+        // --- Dynamic SEO & AEO ---
+        SEOManager.updateMetaTags({
+            title: `${trip.name} | Sueño Travel`,
+            description: trip.subtitle || `Itinerario de ${trip.durationDays} días a ${trip.name}`,
+            image: trip.headerImageUrl || trip.imageUrl,
+            url: window.location.href
+        });
+
+        // Generar e inyectar Schema TouristTrip
+        const tripSchema = SEOManager.generateTouristTripSchema({
+            name: trip.name,
+            description: trip.overview || trip.subtitle,
+            image: trip.headerImageUrl || trip.imageUrl
+        });
+        SEOManager.injectJSONLD(tripSchema);
 
         // --- Render UI Fields ---
         const diasStr = window.i18n?.t('hero.days', 'trip') || 'Días';

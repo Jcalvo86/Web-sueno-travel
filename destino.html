@@ -213,7 +213,9 @@
     </div>
 </footer>
 
-<script>
+<script type="module">
+    import SEOManager from './src/js/seo-manager.js';
+
     const setupExploreFilter = (relatedCities, relatedAttractions, locations) => {
         const filterContainer = document.getElementById('explore-filter-container');
         if (!filterContainer) return;
@@ -373,7 +375,26 @@
 
     const renderDestination = async (dest, locations = []) => {
         // --- Populate Details ---
-        document.title = `${dest.name} | Sueño Travel`;
+        const heroBg = dest.imageUrl || dest.image_url || dest.headerImageUrl || dest.header_image_url || dest.mapUrl || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1920';
+        
+        // --- Dynamic SEO & AEO ---
+        SEOManager.updateMetaTags({
+            title: `${dest.name} | Sueño Travel`,
+            description: dest.subtitle || dest.description || `Guía de viaje y atractivos para ${dest.name}`,
+            image: heroBg,
+            url: window.location.href
+        });
+
+        // Generar schema básico para AEO
+        const destSchema = {
+            "@context": "https://schema.org",
+            "@type": "TouristDestination",
+            "name": dest.name,
+            "description": dest.description || dest.subtitle,
+            "image": heroBg
+        };
+        SEOManager.injectJSONLD(destSchema);
+
         document.getElementById('dest-name').textContent = dest.name;
         
         // Render Breadcrumb

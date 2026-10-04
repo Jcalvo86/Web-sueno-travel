@@ -13,6 +13,7 @@ project: Sueño Travel Chile (Web)
 ## 2. Global System Rules (STRICT)
 
 ### Core Directives
+- **ALWAYS (PROJECT STATE):** Al iniciar tu tarea, **DEBES leer el archivo `project_state.md`** para entender el contexto temporal y las últimas decisiones. Al finalizar tu tarea o sesión, **DEBES actualizar `project_state.md`** registrando los cambios realizados.
 - **ALWAYS:** Usa HTML5 semántico estándar y clases de Tailwind CSS para todo el maquetado.
 - **NEVER:** Evita quemar estilos en línea (inline styles) si existe una utilidad de Tailwind para el mismo propósito.
 - **JS Components:** Reutiliza componentes globales inyectados por JS (como `global-header.js`) para mantener la coherencia. No dupliques lógica de navegación o de modales en cada archivo HTML.
