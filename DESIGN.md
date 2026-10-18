@@ -46,10 +46,12 @@ Utilizados para elementos clásicos, páginas de detalle del CMS y componentes d
 El sitio web utiliza fuentes cargadas desde Google Fonts, optimizadas para legibilidad en pantalla y distinción visual:
 
 ### 3.1. Tipografía en Secciones Modernas (Tailwind)
-- **Familia Display (Títulos):** `'BJ Cree'`, `'Manrope'`, sans-serif.
-  - *Estilo:* Negrita extrema (`font-extrabold` / `font-bold`), espaciado estrecho (`tracking-tight`).
-- **Familia Body (Textos):** `'Plus Jakarta Sans'`, sans-serif.
-  - *Estilo:* Peso regular (`font-normal`), espaciado amplio y limpio para facilitar la lectura.
+- **Familia Display (Títulos de Lujo):** `'Gloock'`, serif.
+  - *Estilo:* Regular (`font-normal`), serifa clásica de alta gama tipo editorial de viajes.
+- **Familia Labels y Botones:** `'Manrope'`, sans-serif.
+  - *Estilo:* Seminegrita (`font-semibold` / `font-bold`), espaciado amplio (`tracking-wider`).
+- **Familia Body (Textos y Párrafos):** `'Plus Jakarta Sans'`, sans-serif.
+  - *Estilo:* Peso regular (`font-normal`), espaciado limpio para máxima legibilidad.
 
 ### 3.2. Tipografía en Secciones Clásicas (`styles.css`)
 - **Títulos (`h1` a `h6`):** `'Poppins'`, sans-serif (Peso 700+).
