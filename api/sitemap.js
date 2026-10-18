@@ -11,8 +11,9 @@ export default async function handler(req) {
 
     let urls = [
         { loc: '/', priority: 1.0, changefreq: 'weekly' },
-        { loc: '/sobre-nosotros.html', priority: 0.8, changefreq: 'monthly' },
-        { loc: '/viajes-grupales.html', priority: 0.9, changefreq: 'weekly' }
+        { loc: '/conocenos.html', priority: 0.8, changefreq: 'monthly' },
+        { loc: '/viajes-grupales.html', priority: 0.9, changefreq: 'weekly' },
+        { loc: '/itinerarios.html', priority: 0.9, changefreq: 'weekly' }
     ];
 
     try {

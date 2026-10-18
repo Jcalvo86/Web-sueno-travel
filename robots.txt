@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Proteger panel de administración y utilidades internas
+Disallow: /controlpanel/
+Disallow: /api/send
+
+# Sitemap
+Sitemap: https://suenotravel.cl/sitemap.xml

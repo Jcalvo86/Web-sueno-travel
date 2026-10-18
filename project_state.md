@@ -44,4 +44,11 @@ Este archivo (`project_state.md`) sirve como el **contexto temporal y registro d
 - **Decisión:** Creación del archivo `.agents/components_library/COMPONENT_SPEC_CHECKLIST.md` como rúbrica de calidad ponderada (100 puntos) para validar si una especificación de componente está lista para producción (abarcando tokens, punchout ring, fallbacks, accesibilidad A11y, API tipada y código de referencia).
 - **Actualización:** Vinculación de `AvatarGroup.md` y `COMPONENT_SPEC_CHECKLIST.md` en el catálogo principal `.agents/components_library/SKILL.md`.
 
+### [2026-10-18] - Sesión Actual
+- **Estado (SEO & Estructura):** Auditoría técnica global completada (estructura, arquitectura, SEO/AEO, diseño y rendimiento).
+- **Decisión (Sitemap & Robots):** Corrección de `api/sitemap.js` para reemplazar la ruta obsoleta `/sobre-nosotros.html` por la página oficial `/conocenos.html`, e inclusión de `/itinerarios.html`.
+- **Acción (Robots.txt):** Creación del archivo `robots.txt` en la raíz enlazado a `https://suenotravel.cl/sitemap.xml` y protegiendo `/controlpanel/`.
+- **Acción (Depuración de Enlaces):** Actualización de enlaces en `itinerario-egipto-el-legado-de-los-faraones.html` y `PLAN_SEO_AEO.md` para apuntar a `conocenos.html`.
+- **Limpieza de Archivos Legados:** Archivo/eliminación de `inicio.html` y `sobre-nosotros.html` para evitar colisiones y contenido desactualizado en la raíz.
+
 *(Agrega nuevas entradas aquí al finalizar tus tareas en futuras sesiones)*

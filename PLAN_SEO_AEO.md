@@ -32,7 +32,7 @@ Los motores de respuesta (IA) dependen de los datos estructurados para comprende
 *   **Acciones:**
     *   Ampliar el `seo-manager.js` para generar esquemas `Schema.org` en formato `JSON-LD`.
     *   Inyectar una etiqueta `<script type="application/ld+json">` en el `<head>` con la siguiente información:
-        *   **`TravelAgency`**: En `index.html` y `sobre-nosotros.html`. Incluir nombre, logo, contacto y URL.
+        *   **`TravelAgency`**: En `index.html` y `conocenos.html`. Incluir nombre, logo, contacto y URL.
         *   **`TouristTrip` / `Product`**: En `destino.html` y los itinerarios. Incluir el nombre del viaje, destinos visitados, imágenes y proveedor (`Sueño Travel`).
         *   **`FAQPage`**: Identificar preguntas frecuentes sobre viajes (ej. visas, moneda, clima) y mapearlas en este formato.
 
@@ -50,7 +50,7 @@ Ayudar a los motores a descubrir todas las rutas y a entender las versiones de i
 *   **Acciones:**
     *   Implementar dinámicamente etiquetas `<link rel="alternate" hreflang="es" href="...">` y `<link rel="alternate" hreflang="en" href="...">` dependiendo del idioma activo o del parámetro URL.
     *   Crear un generador de `sitemap.xml`. Dado que hay un archivo `vercel.json`, podemos crear una ruta `api/sitemap.js` (Serverless Function) que:
-        1.  Tenga las rutas estáticas hardcodeadas (`/`, `/sobre-nosotros.html`, etc.).
+        1.  Tenga las rutas estáticas hardcodeadas (`/`, `/conocenos.html`, etc.).
         2.  Consulte Supabase/Firebase para obtener los IDs de todos los destinos activos.
         3.  Genere las rutas dinámicas (`/destino.html?id=...`).
         4.  Devuelva todo formateado como XML.
