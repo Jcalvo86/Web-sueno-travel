@@ -3,95 +3,114 @@ const path = require('path');
 const sharp = require('sharp');
 
 const ROOT_DIR = path.join(__dirname, '..');
-const TARGET_DIR = path.join(ROOT_DIR, 'Imagenes');
-const SOURCE_DIRS = [
-    path.join(ROOT_DIR, 'Fotos'),
-    path.join(ROOT_DIR, 'Imagenes_suenotravel')
-];
+const IMAGES_DIR = path.join(ROOT_DIR, 'Imagenes');
+const SUENO_DIR = path.join(ROOT_DIR, 'Imagenes_suenotravel');
 
-const EXTENSIONS_TO_CONVERT = ['.jpg', '.jpeg', '.png', '.jfif'];
+// Extensiones a convertir a WebP
+const CONVERT_EXTENSIONS = ['.jpg', '.jpeg', '.jfif'];
+// Archivos a proteger / excluir de conversión o compresión destructiva
+const EXCLUDE_FILES = ['favicon.png', 'logo_suenotravel.png', 'palette.png', 'egipto.png', 'grecia.png', 'jordania.png', 'turquia.png'];
 
-function ensureDirSync(dirPath) {
-    if (!fs.existsSync(dirPath)) {
-        fs.mkdirSync(dirPath, { recursive: true });
+async function copyUsefulSvgs() {
+    console.log('--- 1. Copiando iconos necesarios de Imagenes_suenotravel a Imagenes ---');
+    const svgs = ['destination.svg', 'discover.svg', 'world.svg', 'booking.svg'];
+    for (const svg of svgs) {
+        const src = path.join(SUENO_DIR, svg);
+        const dest = path.join(IMAGES_DIR, svg);
+        if (fs.existsSync(src) && !fs.existsSync(dest)) {
+            fs.copyFileSync(src, dest);
+            console.log(`  -> Copiado icono: ${svg}`);
+        }
     }
 }
 
-function moveFilesToTarget() {
-    console.log('--- 1. Consolidando imágenes ---');
-    ensureDirSync(TARGET_DIR);
-
-    SOURCE_DIRS.forEach(sourceDir => {
-        if (!fs.existsSync(sourceDir)) return;
-        
-        console.log(`Revisando carpeta: ${path.basename(sourceDir)}`);
-        const files = fs.readdirSync(sourceDir);
-        
-        files.forEach(file => {
-            const srcPath = path.join(sourceDir, file);
-            const destPath = path.join(TARGET_DIR, file);
-            
-            if (fs.statSync(srcPath).isFile()) {
-                if (!fs.existsSync(destPath)) {
-                    fs.copyFileSync(srcPath, destPath);
-                    console.log(`  -> Copiado: ${file}`);
-                }
-            }
-        });
-    });
-    console.log('Consolidación terminada.\n');
-}
-
-async function optimizeToWebp() {
-    console.log('--- 2. Optimizando a WebP ---');
-    const files = fs.readdirSync(TARGET_DIR);
+async function optimizeImages() {
+    console.log('\n--- 2. Optimizando imágenes en carpeta Imagenes/ ---');
+    const files = fs.readdirSync(IMAGES_DIR);
     let convertedCount = 0;
+    let resizedCount = 0;
     let savedBytes = 0;
 
     for (const file of files) {
+        const filePath = path.join(IMAGES_DIR, file);
+        if (!fs.statSync(filePath).isFile()) continue;
+
+        // Limpieza de archivos temporales previos
+        if (file.startsWith('temp_')) {
+            try { fs.unlinkSync(filePath); } catch (e) {}
+            continue;
+        }
+
         const ext = path.extname(file).toLowerCase();
-        
-        if (EXTENSIONS_TO_CONVERT.includes(ext)) {
-            const srcPath = path.join(TARGET_DIR, file);
-            const destName = path.basename(file, path.extname(file)) + '.webp';
-            const destPath = path.join(TARGET_DIR, destName);
-            
-            if (fs.existsSync(destPath)) {
-                // If WebP exists but original still exists, just delete original to clean up
-                console.log(`- Saltando ${file}, ya existe ${destName}. Borrando original...`);
-                try { fs.unlinkSync(srcPath); } catch(e) {}
-                continue;
-            }
+        const baseName = path.basename(file, ext);
+
+        if (EXCLUDE_FILES.includes(file.toLowerCase())) {
+            continue;
+        }
+
+        // Caso A: Convertir .jfif, .jpg, .jpeg a .webp
+        if (CONVERT_EXTENSIONS.includes(ext)) {
+            const destName = `${baseName}.webp`;
+            const destPath = path.join(IMAGES_DIR, destName);
+            const originalSize = fs.statSync(filePath).size;
 
             try {
-                const originalSize = fs.statSync(srcPath).size;
-                
-                await sharp(srcPath)
+                const inputBuffer = fs.readFileSync(filePath);
+                const outputBuffer = await sharp(inputBuffer)
+                    .resize({ width: 1920, height: 1920, fit: 'inside', withoutEnlargement: true })
                     .webp({ quality: 80, effort: 4 })
-                    .toFile(destPath);
-                
-                const newSize = fs.statSync(destPath).size;
-                const saved = originalSize - newSize;
-                savedBytes += saved;
+                    .toBuffer();
+
+                fs.writeFileSync(destPath, outputBuffer);
+                const saved = originalSize - outputBuffer.length;
+                savedBytes += (saved > 0 ? saved : 0);
                 convertedCount++;
-                
-                console.log(`✓ Convertido: ${file} -> ${destName} (Ahorro: ${(saved / 1024 / 1024).toFixed(2)} MB)`);
-                
-                fs.unlinkSync(srcPath);
+
+                console.log(`✓ Convertido: ${file} -> ${destName} (Antes: ${(originalSize / 1024).toFixed(0)} KB -> Ahora: ${(outputBuffer.length / 1024).toFixed(0)} KB)`);
+
+                // Eliminar archivo original
+                fs.unlinkSync(filePath);
             } catch (err) {
-                console.error(`X Error convirtiendo ${file}:`, err.message);
+                console.error(`X Error al convertir ${file}:`, err.message);
+            }
+        }
+
+        // Caso B: WebP existente pero excesivamente pesado (> 500 KB)
+        else if (ext === '.webp') {
+            const originalSize = fs.statSync(filePath).size;
+            if (originalSize > 500 * 1024) { // Mayor a 500 KB
+                try {
+                    // Usar Buffers en memoria para evitar bloqueos de archivos en Windows
+                    const inputBuffer = fs.readFileSync(filePath);
+                    const outputBuffer = await sharp(inputBuffer)
+                        .resize({ width: 1920, height: 1920, fit: 'inside', withoutEnlargement: true })
+                        .webp({ quality: 80, effort: 4 })
+                        .toBuffer();
+
+                    if (outputBuffer.length < originalSize) {
+                        fs.writeFileSync(filePath, outputBuffer);
+                        const saved = originalSize - outputBuffer.length;
+                        savedBytes += saved;
+                        resizedCount++;
+                        console.log(`⚡ Comprimido: ${file} (Antes: ${(originalSize / 1024 / 1024).toFixed(2)} MB -> Ahora: ${(outputBuffer.length / 1024).toFixed(0)} KB, Ahorro: ${(saved / 1024 / 1024).toFixed(2)} MB)`);
+                    }
+                } catch (err) {
+                    console.error(`X Error al optimizar WebP ${file}:`, err.message);
+                }
             }
         }
     }
 
-    console.log(`\n--- Resumen ---`);
-    console.log(`Archivos convertidos: ${convertedCount}`);
-    console.log(`Espacio total ahorrado: ${(savedBytes / 1024 / 1024).toFixed(2)} MB`);
+    console.log(`\n========================================`);
+    console.log(`Archivos convertidos a WebP: ${convertedCount}`);
+    console.log(`Imágenes gigantes comprimidas: ${resizedCount}`);
+    console.log(`Espacio adicional ahorrado: ${(savedBytes / 1024 / 1024).toFixed(2)} MB`);
+    console.log(`========================================\n`);
 }
 
 async function run() {
-    moveFilesToTarget();
-    await optimizeToWebp();
+    await copyUsefulSvgs();
+    await optimizeImages();
 }
 
 run();
