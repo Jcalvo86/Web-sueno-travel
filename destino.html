@@ -5,9 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n-title-tag="destination:pageTitle">Destino | Sueño Travel</title>
     <meta name="description" id="meta-description" content="Información práctica y consejos de viaje para tu próximo destino con Sueño Travel.">
+
+    <!-- Canonical & Open Graph (Fallback para bots que no ejecutan JS) -->
+    <link rel="canonical" href="https://suenotravel.cl/destino.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sueño Travel" />
+    <meta property="og:url" content="https://suenotravel.cl/destino.html" />
+    <meta property="og:title" id="og-title" content="Guías de Destino | Sueño Travel" />
+    <meta property="og:description" id="og-description" content="Información práctica y consejos de viaje para tu próximo destino con Sueño Travel." />
+    <meta property="og:image" id="og-image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://suenotravel.cl/destino.html" />
+    <meta name="twitter:title" id="tw-title" content="Guías de Destino | Sueño Travel" />
+    <meta name="twitter:description" id="tw-description" content="Información práctica y consejos de viaje para tu próximo destino con Sueño Travel." />
+    <meta name="twitter:image" id="tw-image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
+
     <!-- Google Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="tailwind-config.js"></script>
@@ -23,7 +42,6 @@
     </style>
     <!-- CMS Adapters -->
     <script src="controlpanel/adapters/adapter-interface.js"></script>
-    <script src="controlpanel/adapters/supabase-adapter.js"></script>
     <script src="controlpanel/adapters/firebase-adapter.js"></script>
     <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>

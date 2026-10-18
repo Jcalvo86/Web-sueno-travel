@@ -9,16 +9,26 @@
         content="Diseñamos experiencias de lujo personalizadas para exploradores cultos. Cargando itinerario..." />
     <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
 
+    <!-- Canonical & Open Graph (Fallback para bots que no ejecutan JS) -->
+    <link rel="canonical" href="https://suenotravel.cl/viaje.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sueño Travel" />
+    <meta property="og:url" content="https://suenotravel.cl/viaje.html" />
+    <meta property="og:title" id="og-title" content="Itinerario de Viaje | Sueño Travel" />
+    <meta property="og:description" id="og-description" content="Diseñamos experiencias de lujo personalizadas para exploradores cultos." />
+    <meta property="og:image" id="og-image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://suenotravel.cl/viaje.html" />
+    <meta name="twitter:title" id="tw-title" content="Itinerario de Viaje | Sueño Travel" />
+    <meta name="twitter:description" id="tw-description" content="Diseñamos experiencias de lujo personalizadas para exploradores cultos." />
+    <meta name="twitter:image" id="tw-image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=BJ+Cree&family=Manrope:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -70,7 +80,6 @@
 
     <!-- CMS/Data Source Connection Scripts -->
     <script src="controlpanel/adapters/adapter-interface.js"></script>
-    <script src="controlpanel/adapters/supabase-adapter.js"></script>
     <script src="controlpanel/adapters/firebase-adapter.js"></script>
     <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>

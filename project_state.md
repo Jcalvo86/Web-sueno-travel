@@ -50,5 +50,7 @@ Este archivo (`project_state.md`) sirve como el **contexto temporal y registro d
 - **Acción (Robots.txt):** Creación del archivo `robots.txt` en la raíz enlazado a `https://suenotravel.cl/sitemap.xml` y protegiendo `/controlpanel/`.
 - **Acción (Depuración de Enlaces):** Actualización de enlaces en `itinerario-egipto-el-legado-de-los-faraones.html` y `PLAN_SEO_AEO.md` para apuntar a `conocenos.html`.
 - **Limpieza de Archivos Legados:** Archivo/eliminación de `inicio.html` y `sobre-nosotros.html` para evitar colisiones y contenido desactualizado en la raíz.
+- **Acción (SEO & Open Graph en HTML Base):** Implementación de etiquetas canónicas (`canonical`), Open Graph (`og:title`, `og:image`, `og:url`, etc.) y Twitter Cards en todas las páginas (`index.html`, `conocenos.html`, `viajes-grupales.html`, `itinerarios.html`, `destino.html`, `viaje.html`, `articulo.html`) para garantizar previsualizaciones sociales inmediatas sin depender de JS.
+- **Optimización de Rendimiento en `<head>`:** Adición de `preconnect` a Google Fonts, eliminación de la familia inexistente `BJ Cree` (que causaba error 400) y de llamadas duplicadas, además de retirar `supabase-adapter.js` del frontend público.
 
 *(Agrega nuevas entradas aquí al finalizar tus tareas en futuras sesiones)*
