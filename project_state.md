@@ -39,4 +39,9 @@ Este archivo (`project_state.md`) sirve como el **contexto temporal y registro d
 - **Decisión (SEO/AEO):** Iniciamos la Fase 1 y 2 creando el módulo `src/js/seo-manager.js` para la inyección dinámica de metaetiquetas en el cliente y esquemas de datos estructurados (JSON-LD). Implementado en `viaje.js` y `destino.html`.
 - **Estado (Sitemap):** Se ha completado la Fase 4, creando una API Serverless en Vercel (`api/sitemap.js`) conectada a Firebase REST API para indexar todas las rutas dinámicas, junto con una regla rewrite en `vercel.json` para servirlo en `/sitemap.xml`.
 
+### [2026-10-16] - Sesión Actual
+- **Estado (Component Specs & Design System):** Definición del estándar conceptual para fichas técnicas de interfaz (`Component Specs`).
+- **Decisión:** Creación del archivo `.agents/components_library/COMPONENT_SPEC_CHECKLIST.md` como rúbrica de calidad ponderada (100 puntos) para validar si una especificación de componente está lista para producción (abarcando tokens, punchout ring, fallbacks, accesibilidad A11y, API tipada y código de referencia).
+- **Actualización:** Vinculación de `AvatarGroup.md` y `COMPONENT_SPEC_CHECKLIST.md` en el catálogo principal `.agents/components_library/SKILL.md`.
+
 *(Agrega nuevas entradas aquí al finalizar tus tareas en futuras sesiones)*
