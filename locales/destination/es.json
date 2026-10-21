@@ -1,0 +1,65 @@
+{
+  "pageTitle": "Destino | Sueño Travel",
+  "loading": "Cargando información del destino...",
+  "hero": {
+    "label": "Guía de Destino"
+  },
+  "sidebar": {
+    "title": "En esta guía",
+    "overview": "Resumen General",
+    "map": "Ubicación y Mapa",
+    "explore": "Qué Visitar",
+    "itineraries": "Itinerarios"
+  },
+  "overview": {
+    "travelStyle": "Estilo del Viaje"
+  },
+  "map": {
+    "title": "Ubicación y Territorio",
+    "description": "Explora la geografía, conexiones y los puntos de interés más representativos de esta región.",
+    "tipTitle": "Consejo de Viajero",
+    "tipDesc": "Recomendamos organizar los traslados y visitas con tiempo suficiente para disfrutar cada parada con tranquilidad."
+  },
+  "info": {
+    "bestSeason": "Mejor época:",
+    "getAround": "Cómo Moverse:",
+    "duration": "Estadía Sugerida:",
+    "defaultSeason": "Todo el año.",
+    "defaultGetAround": "Traslados privados.",
+    "defaultDuration": "Consultar con asesores."
+  },
+  "explore": {
+    "title": "Qué Visitar",
+    "subtitle": "Descubre todas las ciudades, áreas geográficas y atractivos de este destino.",
+    "filter": {
+      "all": "Todos",
+      "cities": "Ciudades y Áreas",
+      "attractions": "Atractivos"
+    },
+    "card": {
+      "cityDesc": "Explora este maravilloso destino con Sueño Travel.",
+      "attrDesc": "Descubre este increíble punto de interés histórico y cultural.",
+      "viewCity": "Ver Ciudad o Área",
+      "viewAttraction": "Ver Atracción"
+    }
+  },
+  "itineraries": {
+    "title": "Itinerarios en este Destino",
+    "subtitle": "Programas exclusivos diseñados por Sueño Travel para ofrecerte una inmersión completa y de alto estándar.",
+    "card": {
+      "days": "Días",
+      "explore": "Explorar Itinerario"
+    }
+  },
+  "breadcrumb": {
+    "home": "Inicio",
+    "destinations": "Destinos"
+  },
+  "error": {
+    "title": "Error",
+    "dbConnection": "Error de conexión a la base de datos.",
+    "notFound": "El destino no se encuentra registrado en la base de datos del CRM.",
+    "general": "Ocurrió un error al cargar el destino.",
+    "backHome": "Volver al inicio"
+  }
+}

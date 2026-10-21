@@ -37,6 +37,7 @@
     <!-- Dynamic Header Component -->
     <script src="src/js/i18n.js"></script>
     <script src="global-header.js"></script>
+    <script src="app.js"></script>
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20" data-page-ns="destination">
 <div id="global-header"></div>
@@ -348,7 +349,7 @@
 
             const targetDest = (locations || []).find(loc => 
                 (loc.id && loc.id.toLowerCase() === destIdLower) || 
-                loc.name.toLowerCase().includes(destIdLower) ||
+                (loc.name && loc.name.toLowerCase().includes(destIdLower)) ||
                 (loc.country && loc.country.toLowerCase().includes(destIdLower))
             );
 
@@ -424,7 +425,6 @@
         document.getElementById('info-duration').textContent = dest.guideRecommendedDuration || window.i18n?.t('info.defaultDuration', 'destination') || 'Consultar con asesores.';
         
         // Hero background image
-        const heroBg = dest.imageUrl || dest.image_url || dest.headerImageUrl || dest.header_image_url || dest.mapUrl || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1920';
         document.getElementById('hero-bg').style.backgroundImage = `url('${heroBg}')`;
 
         // Tags
@@ -677,7 +677,7 @@
                             <h3 class="font-display-lg text-xl font-bold text-primary group-hover:text-secondary transition-colors line-clamp-1">${tripTitle}</h3>
                             <p class="text-sm text-on-surface-variant line-clamp-2">${sub}</p>
                             <div class="pt-4 flex justify-between items-center border-t border-outline-variant/40">
-                                <a href="viaje.html?nombre=${window.generateSlug(tripTitle)}" class="text-secondary font-bold hover:underline flex items-center gap-1 text-sm">
+                                <a href="viaje.html?nombre=${window.generateSlug ? window.generateSlug(tripTitle) : encodeURIComponent(tripTitle)}" class="text-secondary font-bold hover:underline flex items-center gap-1 text-sm">
                                     <span data-i18n="itineraries.card.explore">${window.i18n?.t('itineraries.card.explore', 'destination') || 'Explorar Itinerario'}</span>
                                     <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </a>
@@ -737,7 +737,12 @@
         }
     };
 
-    window.onload = loadDestinationData;
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadDestinationData);
+    } else {
+        loadDestinationData();
+    }
+    window.addEventListener('languageChanged', loadDestinationData);
 </script>
 </body>
 </html>

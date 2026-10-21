@@ -1,0 +1,65 @@
+{
+  "pageTitle": "Destination | Sueño Travel",
+  "loading": "Loading destination details...",
+  "hero": {
+    "label": "Destination Guide"
+  },
+  "sidebar": {
+    "title": "In this guide",
+    "overview": "Overview",
+    "map": "Location & Map",
+    "explore": "What to Visit",
+    "itineraries": "Itineraries"
+  },
+  "overview": {
+    "travelStyle": "Travel Style"
+  },
+  "map": {
+    "title": "Location & Territory",
+    "description": "Explore the geography, connections, and iconic landmarks of this region.",
+    "tipTitle": "Traveler Tip",
+    "tipDesc": "We recommend planning transfers and sightseeing in advance to enjoy every stop at a relaxed pace."
+  },
+  "info": {
+    "bestSeason": "Best Time to Visit:",
+    "getAround": "Getting Around:",
+    "duration": "Suggested Stay:",
+    "defaultSeason": "All year round.",
+    "defaultGetAround": "Private transfers.",
+    "defaultDuration": "Consult with our travel designers."
+  },
+  "explore": {
+    "title": "What to Visit",
+    "subtitle": "Discover all cities, geographic areas, and key landmarks in this destination.",
+    "filter": {
+      "all": "All",
+      "cities": "Cities & Areas",
+      "attractions": "Attractions"
+    },
+    "card": {
+      "cityDesc": "Explore this wonderful destination with Sueño Travel.",
+      "attrDesc": "Discover this remarkable cultural and historical landmark.",
+      "viewCity": "View City or Area",
+      "viewAttraction": "View Attraction"
+    }
+  },
+  "itineraries": {
+    "title": "Itineraries in this Destination",
+    "subtitle": "Exclusive programs crafted by Sueño Travel to deliver an immersive, high-standard journey.",
+    "card": {
+      "days": "Days",
+      "explore": "Explore Itinerary"
+    }
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "destinations": "Destinations"
+  },
+  "error": {
+    "title": "Error",
+    "dbConnection": "Database connection error.",
+    "notFound": "Destination not found in CRM database.",
+    "general": "An error occurred while loading this destination.",
+    "backHome": "Back to Home"
+  }
+}

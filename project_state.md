@@ -116,5 +116,20 @@ Este archivo (`project_state.md`) sirve como el **contexto temporal y registro d
   - Se blindó la función `t()` en [src/js/i18n.js](file:///c:/andreia/Web-sueno-travel/src/js/i18n.js) para que devuelva `null` cuando una clave no exista, permitiendo que las expresiones JavaScript con fallback (`t(...) || 'Texto Default'`) se ejecuten siempre sin mostrar la clave cruda.
   - Se añadieron 3 tarjetas esqueleto (`animate-pulse`) en [itinerarios.html](file:///c:/andreia/Web-sueno-travel/itinerarios.html) para mantener la misma suavidad de carga que en viajes grupales.
 
+- **Depuración de Datos en Firebase Firestore:**
+  - Se eliminó el documento de prueba obsoleto `MiXJp1KHyQLEQPGl5NpN` ("Egipto 1") de la colección `cms_products`, evitando que aparezca erróneamente en las guías de destino e itinerarios de Egipto.
+  - Se confirmó que el proyecto está conectado y configurado con Firebase en [crm-config.js](file:///c:/andreia/Web-sueno-travel/crm-config.js) (`projectId: "suenotravel"`).
+  - Se autenticó exitosamente la sesión de Firebase CLI con la cuenta del usuario (`jcalvo86@gmail.com`).
+  - Se creó el archivo [.firebaserc](file:///c:/andreia/Web-sueno-travel/.firebaserc) vinculando automáticamente el proyecto a `suenotravel`.
+  - Se inspeccionó y confirmó la base de datos Firestore activa: `projects/suenotravel/databases/(default)` (Modo: `FIRESTORE_NATIVE`, Edición: `STANDARD`, Región: `nam5`).
+  - Se comprobó la accesibilidad total a las colecciones de datos: `location` (34 docs), `travel` (4 viajes), `cms_products` (2 productos) y `cms_posts` (2 artículos).
+
+- **Corrección de Carga Infinita en `destino.html`:**
+  - **Causa Raíz Principal (Error Fatal de Sintaxis):** En [destino.html](file:///c:/andreia/Web-sueno-travel/destino.html), la constante `const heroBg` estaba redeclarada dos veces dentro de la misma función `renderDestination` (línea 368 y 428). Esto disparaba un `Uncaught SyntaxError: Identifier 'heroBg' has already been declared` al momento de compilar el módulo `<script type="module">`, bloqueando por completo la ejecución de todo el script y dejando el spinner girando indefinidamente.
+  - **Causa Secundaria (Timing de Ejecución):** Se utilizaba `window.onload = loadDestinationData;` dentro de un script de tipo módulo. En navegadores modernos o bajo Vite dev server, el evento `load` ya se había disparado antes de resolver las importaciones del módulo, por lo que la función nunca se invocaba.
+  - **Dependencia y Seguridad de Slugs:** Se vinculó el script global `app.js` en el `<head>` y se añadió fallback `window.generateSlug ? window.generateSlug(...) : encodeURIComponent(...)` para evitar excepciones al renderizar tarjetas de itinerarios sugeridos.
+  - **Internacionalización (i18n):** Se crearon los diccionarios oficiales [locales/destination/es.json](file:///c:/andreia/Web-sueno-travel/locales/destination/es.json) y [locales/destination/en.json](file:///c:/andreia/Web-sueno-travel/locales/destination/en.json) y se validaron con `node scripts/auto-translate.js`.
+  - **Control de Ciclo de Vida:** Se reemplazó la asignación a `window.onload` por una comprobación resiliente de `document.readyState` y suscripción al evento `languageChanged`.
+
 *(Agrega nuevas entradas aquí al finalizar tus tareas en futuras sesiones)*
 
