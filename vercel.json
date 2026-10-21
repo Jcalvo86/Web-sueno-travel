@@ -4,6 +4,23 @@
       "includeFiles": "node_modules/uploadthing/**"
     }
   },
+  "redirects": [
+    {
+      "source": "/egipto-magico.html",
+      "destination": "/articulo.html?id=egipto-magico",
+      "permanent": true
+    },
+    {
+      "source": "/turquia.html",
+      "destination": "/articulo.html?id=turquia",
+      "permanent": true
+    },
+    {
+      "source": "/viajar-en-grupo.html",
+      "destination": "/articulo.html?id=viajar-en-grupo",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/sitemap.xml",

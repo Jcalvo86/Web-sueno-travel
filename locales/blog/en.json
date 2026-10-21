@@ -1,0 +1,23 @@
+{
+  "tituloPagina": "Experience Journal",
+  "subtituloPagina": "First-hand stories, travel guides and secrets discovered over years exploring Egypt, Jordan, Greece and Turkey.",
+  "metaDescription": "Explore Sueño Travel's Experience Journal. Authentic stories, tips and travel recommendations around the world.",
+  "filtroTodos": "All",
+  "filtroEgipto": "Egypt",
+  "filtroTurquia": "Turkey",
+  "filtroGrupales": "Group Trips",
+  "cargandoArticulos": "Loading journal...",
+  "sinArticulos": "No posts found in this category.",
+  "cargando": "Loading article...",
+  "volverConocenos": "Back to About Us",
+  "volverBlog": "Back to Journal",
+  "ctaTitle": "Ready for your next adventure?",
+  "ctaDesc": "Let us coordinate every detail of your trip, ensuring boutique luxury stays and exclusive experiences.",
+  "ctaBtn": "Plan my route",
+  "masArticulos": "More stories from our journal",
+  "leerArticulo": "Read story",
+  "errorNoId": "No article identifier was specified.",
+  "errorNotFound": "The requested article does not exist or is not available.",
+  "errorLoad": "An error occurred while loading the article.",
+  "volverBtn": "Back to About Us"
+}

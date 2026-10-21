@@ -52,27 +52,31 @@
     <div id="global-header"></div>
     <main class="pt-0">
         <!-- Hero Section -->
-        <section class="relative h-[75vh] flex items-center overflow-hidden">
+        <section class="relative min-h-[85vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden pt-28 pb-14 md:pt-32 md:pb-20 hero-home-section">
             <!-- Contenedor del Slider Dinámico -->
             <div id="hero-slider-container" class="hero-slider-container"></div>
 
             <div
                 class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col items-center text-center">
-                <div class="text-on-primary space-y-6 max-w-3xl flex flex-col items-center">
-                    <img alt="Sueño Travel Logo"
-                        class="h-20 w-auto mb-4 bg-white/85 backdrop-blur-md p-4 rounded-xl shadow-lg"
-                        src="Imagenes/logo_suenoTravel Chile.svg" />
-                    <h1 class="font-display-lg text-[56px] leading-[64px] font-extrabold tracking-tight">
+                <div class="text-on-primary space-y-4 sm:space-y-6 max-w-3xl flex flex-col items-center">
+                    <div class="hero-logo-badge">
+                        <img alt="Sueño Travel Logo"
+                            width="75"
+                            height="26"
+                            class="h-[26px] w-auto max-w-[80px] object-contain"
+                            src="Imagenes/logo_suenoTravel Chile.svg" />
+                    </div>
+                    <h1 class="font-display-lg text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-tight md:leading-[64px] font-extrabold tracking-tight">
                         <span data-i18n="hero.line1" data-i18n-ns="home">Tu Próximo Destino</span> <br />
                         <span class="text-secondary-fixed" data-i18n="hero.line2" data-i18n-ns="home">Comienza
                             Aquí</span>
                     </h1>
-                    <p class="font-body-lg text-body-lg max-w-2xl opacity-90" data-i18n="hero.subtitle"
+                    <p class="font-body-lg text-sm sm:text-base md:text-body-lg max-w-2xl opacity-90 px-2 sm:px-0" data-i18n="hero.subtitle"
                         data-i18n-ns="home">
                         Diseñamos experiencias únicas y personalizadas para viajeros que buscan descubrir el mundo de una manera diferente. Desde los susurros del desierto en Jordania hasta los mármoles eternos de Grecia.
                     </p>
-                    <div class="flex flex-wrap gap-4 pt-4 justify-center">
-                        <a class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-lg font-bold text-lg hover:bg-secondary-fixed-dim transition-all shadow-lg flex items-center gap-2"
+                    <div class="flex flex-wrap gap-4 pt-2 sm:pt-4 justify-center">
+                        <a class="bg-secondary-container text-on-secondary-container px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-secondary-fixed-dim transition-all shadow-lg flex items-center gap-2"
                             href="#destinos">
                             <span data-i18n="hero.cta" data-i18n-ns="home">Conoce nuestros próximos viajes</span>
                             <span class="material-symbols-outlined">explore</span>

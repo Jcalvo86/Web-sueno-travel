@@ -41,7 +41,8 @@ function t(key, ns = 'common') {
 
     // Soporte a dot-notation: "hero.title"
     const resolve = (obj, dotKey) => dotKey.split('.').reduce((o, k) => o?.[k], obj);
-    return resolve(langData, key) ?? resolve(fallbackData, key) ?? key;
+    const resolved = resolve(langData, key) ?? resolve(fallbackData, key);
+    return (resolved !== undefined && resolved !== null) ? resolved : null;
 }
 
 // ─── Detección de idioma ─────────────────────────────────────────────────────
@@ -78,7 +79,10 @@ function applyTranslations(ns) {
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
             // nada — estos usan placeholder
         } else {
-            el.textContent = translated;
+            // Solo sobrescribir si se encontró una traducción real (evita mostrar la clave raw si falta)
+            if (translated && translated !== key) {
+                el.textContent = translated;
+            }
         }
     });
 
@@ -86,35 +90,50 @@ function applyTranslations(ns) {
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
         const key = el.getAttribute('data-i18n-html');
         const elNs = el.getAttribute('data-i18n-ns') || ns;
-        el.innerHTML = t(key, elNs);
+        const translated = t(key, elNs);
+        if (translated && translated !== key) {
+            el.innerHTML = translated;
+        }
     });
 
     // Placeholders: data-i18n-placeholder="key"
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
         const elNs = el.getAttribute('data-i18n-ns') || ns;
-        el.setAttribute('placeholder', t(key, elNs));
+        const translated = t(key, elNs);
+        if (translated && translated !== key) {
+            el.setAttribute('placeholder', translated);
+        }
     });
 
     // Alt: data-i18n-alt="key"
     document.querySelectorAll('[data-i18n-alt]').forEach(el => {
         const key = el.getAttribute('data-i18n-alt');
         const elNs = el.getAttribute('data-i18n-ns') || ns;
-        el.setAttribute('alt', t(key, elNs));
+        const translated = t(key, elNs);
+        if (translated && translated !== key) {
+            el.setAttribute('alt', translated);
+        }
     });
 
     // Aria-label: data-i18n-aria="key"
     document.querySelectorAll('[data-i18n-aria]').forEach(el => {
         const key = el.getAttribute('data-i18n-aria');
         const elNs = el.getAttribute('data-i18n-ns') || ns;
-        el.setAttribute('aria-label', t(key, elNs));
+        const translated = t(key, elNs);
+        if (translated && translated !== key) {
+            el.setAttribute('aria-label', translated);
+        }
     });
 
     // Title: data-i18n-title="key"
     document.querySelectorAll('[data-i18n-title]').forEach(el => {
         const key = el.getAttribute('data-i18n-title');
         const elNs = el.getAttribute('data-i18n-ns') || ns;
-        el.setAttribute('title', t(key, elNs));
+        const translated = t(key, elNs);
+        if (translated && translated !== key) {
+            el.setAttribute('title', translated);
+        }
     });
 
     // Page <title> tag: data-i18n-title-tag="namespace:key"
@@ -170,7 +189,8 @@ async function initI18n({ namespaces = ['header'], pageNs = 'home' } = {}) {
     persistLanguage(_currentLang);
     document.documentElement.setAttribute('lang', _currentLang);
     
-    await loadResources([...new Set(['header', ...namespaces])]);
+    // header y home (footer global) siempre cargados en todas las vistas
+    await loadResources([...new Set(['header', 'home', ...namespaces])]);
     
     applyTranslations(pageNs);
     updateLangButtons(_currentLang);
@@ -185,6 +205,7 @@ window.i18n = {
     setLanguage,
     detectLanguage,
     initI18n,
+    applyTranslations,
     getCurrentLang: () => _currentLang,
 };
 

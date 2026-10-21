@@ -1,0 +1,23 @@
+{
+  "tituloPagina": "Bitácora de Experiencias",
+  "subtituloPagina": "Relatos en primera persona, guías de viaje y secretos descubiertos a lo largo de años recorriendo Egipto, Jordania, Grecia y Turquía.",
+  "metaDescription": "Explora la Bitácora de Experiencias de Sueño Travel. Relatos, consejos y recomendaciones de viaje auténticas por el mundo.",
+  "filtroTodos": "Todos",
+  "filtroEgipto": "Egipto",
+  "filtroTurquia": "Turquía",
+  "filtroGrupales": "Viajes Grupales",
+  "cargandoArticulos": "Cargando bitácora...",
+  "sinArticulos": "No se encontraron publicaciones en esta categoría.",
+  "cargando": "Cargando artículo...",
+  "volverConocenos": "Volver a Conócenos",
+  "volverBlog": "Volver a la Bitácora",
+  "ctaTitle": "¿Listo para tu próxima aventura?",
+  "ctaDesc": "Déjanos coordinar cada detalle de tu viaje, asegurando alojamientos boutique de lujo y experiencias exclusivas.",
+  "ctaBtn": "Planificar mi ruta",
+  "masArticulos": "Otras historias de nuestra bitácora",
+  "leerArticulo": "Leer historia",
+  "errorNoId": "No se especificó un identificador de artículo.",
+  "errorNotFound": "El artículo solicitado no existe o no se encuentra disponible.",
+  "errorLoad": "Ocurrió un error al cargar el artículo.",
+  "volverBtn": "Volver a Conócenos"
+}

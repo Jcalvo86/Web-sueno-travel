@@ -43,6 +43,63 @@
 }
 
 /* ==========================================================================
+   GLOBAL HEADER & DROPDOWNS - SUEÑO TRAVEL
+   ========================================================================== */
+.nav-dropdown-group {
+    position: relative;
+}
+
+.nav-dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, 8px);
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                visibility 0.2s;
+}
+
+/* Puente invisible para evitar que el ratón pierda el hover al bajar */
+.nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: transparent;
+}
+
+.nav-dropdown-group:hover .nav-dropdown-menu,
+.nav-dropdown-group:focus-within .nav-dropdown-menu,
+.nav-dropdown-group.is-open .nav-dropdown-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translate(-50%, 0) !important;
+}
+
+.nav-dropdown-group:hover .nav-dropdown-icon,
+.nav-dropdown-group.is-open .nav-dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-icon {
+    transition: transform 0.25s ease;
+}
+
+/* Mobile drawer helpers */
+#mobile-drawer {
+    z-index: 9999;
+}
+#mobile-drawer-content {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.translate-x-full {
+    transform: translateX(100%);
+}
+
+/* ==========================================================================
    HERO SLIDER - SUEÑO TRAVEL
    ========================================================================== */
 .hero-slider-container {
@@ -104,6 +161,46 @@
     inset: 0;
     background: linear-gradient(to right, rgba(9, 21, 36, 0.75) 0%, rgba(9, 21, 36, 0.3) 50%, rgba(9, 21, 36, 0.6) 100%);
     z-index: 2;
+}
+
+.hero-home-section {
+    position: relative;
+    min-height: 85vh;
+    padding-top: calc(5rem + 1.5rem); /* Header fijo (80px) + margen de seguridad */
+    padding-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .hero-home-section {
+        min-height: 80vh;
+        padding-top: calc(5rem + 2.5rem);
+        padding-bottom: 4.5rem;
+    }
+}
+
+.hero-logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 16px;
+    border-radius: 9999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.75rem;
+}
+
+.hero-logo-badge img {
+    height: 26px !important;
+    width: auto !important;
+    max-width: 80px !important;
+    object-fit: contain;
 }
 
 /* ==========================================================================

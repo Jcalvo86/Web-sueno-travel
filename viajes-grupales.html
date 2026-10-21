@@ -59,7 +59,48 @@
     <p class="text-on-surface-variant text-center max-w-xl mx-auto mb-12" data-i18n="groups.main.subtitle">Las plazas son limitadas para garantizar la mejor experiencia. Elige tu próximo viaje.</p>
     
     <div id="itineraries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Dynamic itinerary cards will go here via JS, or placeholder -->
+        <!-- Skeleton Card 1 -->
+        <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+            <div class="h-56 bg-outline-variant/20"></div>
+            <div class="p-8 space-y-4 flex-1 flex flex-col">
+                <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-full"></div>
+                <div class="pt-4 border-t border-outline-variant/20 flex justify-between items-center mt-auto">
+                    <div class="h-4 bg-outline-variant/20 rounded w-24"></div>
+                    <div class="h-8 bg-outline-variant/20 rounded-lg w-28"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Skeleton Card 2 -->
+        <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+            <div class="h-56 bg-outline-variant/20"></div>
+            <div class="p-8 space-y-4 flex-1 flex flex-col">
+                <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-full"></div>
+                <div class="pt-4 border-t border-outline-variant/20 flex justify-between items-center mt-auto">
+                    <div class="h-4 bg-outline-variant/20 rounded w-24"></div>
+                    <div class="h-8 bg-outline-variant/20 rounded-lg w-28"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Skeleton Card 3 -->
+        <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+            <div class="h-56 bg-outline-variant/20"></div>
+            <div class="p-8 space-y-4 flex-1 flex flex-col">
+                <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-full"></div>
+                <div class="pt-4 border-t border-outline-variant/20 flex justify-between items-center mt-auto">
+                    <div class="h-4 bg-outline-variant/20 rounded w-24"></div>
+                    <div class="h-8 bg-outline-variant/20 rounded-lg w-28"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
 <script>
     // Logic to fetch departures and itineraries from DataSource
     const loadGroupTrips = async () => {
@@ -234,6 +275,9 @@
         .then(response => response.text())
         .then(html => {
             document.getElementById('section-footer').innerHTML = html;
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                window.i18n.applyTranslations('itineraries');
+            }
         });
 </script>
 </body>

@@ -12,6 +12,7 @@ export default async function handler(req) {
     let urls = [
         { loc: '/', priority: 1.0, changefreq: 'weekly' },
         { loc: '/conocenos.html', priority: 0.8, changefreq: 'monthly' },
+        { loc: '/blog.html', priority: 0.8, changefreq: 'weekly' },
         { loc: '/viajes-grupales.html', priority: 0.9, changefreq: 'weekly' },
         { loc: '/itinerarios.html', priority: 0.9, changefreq: 'weekly' }
     ];
@@ -73,6 +74,38 @@ export default async function handler(req) {
 
         await fetchTrips('travel');
         await fetchTrips('cms_products');
+
+        // --- 3. Obtener Artículos de Blog / Bitácora ---
+        const seedPosts = ['egipto-magico', 'turquia', 'viajar-en-grupo'];
+        const postSlugs = new Set(seedPosts);
+
+        try {
+            const postsRes = await fetch(`${firebaseUrl}/cms_posts`);
+            if (postsRes.ok) {
+                const postsData = await postsRes.json();
+                const postDocs = postsData.documents || [];
+                postDocs.forEach(doc => {
+                    const fields = doc.fields;
+                    if (!fields) return;
+                    if (fields.isDraft?.booleanValue) return;
+
+                    const idPath = doc.name.split('/');
+                    const id = idPath[idPath.length - 1];
+                    const slug = fields.slug?.stringValue || id;
+                    if (slug) postSlugs.add(slug);
+                });
+            }
+        } catch (e) {
+            console.warn("Could not fetch cms_posts for sitemap:", e);
+        }
+
+        postSlugs.forEach(slug => {
+            urls.push({
+                loc: `/articulo.html?id=${slug}`,
+                priority: 0.7,
+                changefreq: 'monthly'
+            });
+        });
 
     } catch (error) {
         console.error("Error al generar sitemap:", error);

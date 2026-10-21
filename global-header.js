@@ -7,27 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
     <header id="main-header-nav" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 transition-all duration-300 bg-white/60 backdrop-blur-md border-transparent">
         <div class="flex items-center gap-3">
             <a href="index.html" class="flex items-center gap-3">
-                <img data-i18n-alt="logoAlt" data-i18n-ns="header" alt="Sueño Travel Logo" class="h-10 w-auto" src="Imagenes/logo_suenoTravel%20Chile.svg"/>
+                <img data-i18n-alt="logoAlt" data-i18n-ns="header" alt="Sueño Travel Logo" class="h-8 md:h-9 w-auto opacity-95 hover:opacity-100 transition-opacity" src="Imagenes/logo_suenoTravel%20Chile.svg"/>
             </a>
         </div>
         <nav class="hidden md:flex gap-8 items-center">
-            <div class="relative group">
-                <button id="nav-viajes-dropdown" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
+            <div class="relative group nav-dropdown-group">
+                <button id="nav-viajes-dropdown" type="button" aria-expanded="false" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
                     <span data-i18n="viajes" data-i18n-ns="header">Viajes</span>
-                    <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                    <span class="material-symbols-outlined text-sm transition-transform nav-dropdown-icon">expand_more</span>
                 </button>
-                <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 rounded-xl bg-white shadow-lg border border-outline-variant/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                <div class="nav-dropdown-menu absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 rounded-xl bg-white shadow-lg border border-outline-variant/10 z-50 py-2">
                     <a id="nav-viajes-grupales" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="viajes-grupales.html" data-i18n="viajesGrupales" data-i18n-ns="header">Viajes Grupales</a>
                     <a id="nav-itinerarios" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="itinerarios.html" data-i18n="itinerarios" data-i18n-ns="header">Itinerarios</a>
                 </div>
             </div>
             <!-- Dropdown Destinos -->
-            <div class="relative group">
-                <button id="nav-destinos" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
+            <div class="relative group nav-dropdown-group">
+                <button id="nav-destinos" type="button" aria-expanded="false" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
                     <span data-i18n="destinos" data-i18n-ns="header">Destinos</span>
-                    <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                    <span class="material-symbols-outlined text-sm transition-transform nav-dropdown-icon">expand_more</span>
                 </button>
-                <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-48 rounded-xl bg-white shadow-lg border border-outline-variant/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                <div class="nav-dropdown-menu absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 rounded-xl bg-white shadow-lg border border-outline-variant/10 z-50 py-2">
                     <a id="nav-egipto" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=egipto" data-i18n="egipto" data-i18n-ns="header">Egipto</a>
                     <a id="nav-jordania" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=jordania" data-i18n="jordania" data-i18n-ns="header">Jordania</a>
                     <a id="nav-grecia" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="destino.html?id=grecia" data-i18n="grecia" data-i18n-ns="header">Grecia</a>
@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <a id="nav-nosotros" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="conocenos.html" data-i18n="conocenos" data-i18n-ns="header">Conócenos</a>
+            <a id="nav-bitacora" class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="blog.html" data-i18n="bitacora" data-i18n-ns="header">Bitácora</a>
         </nav>
         <div class="flex items-center gap-4">
             <button onclick="if(window.openContactModal) window.openContactModal();" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md uppercase tracking-wider scale-95 active:scale-90 transition-transform hover:bg-primary/95 text-xs md:text-sm font-bold" data-i18n="contactar" data-i18n-ns="header">
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </header>
 
     <!-- Mobile Drawer Navigation -->
-    <div id="mobile-drawer" class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-[999] hidden transition-opacity duration-300">
+    <div id="mobile-drawer" class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-[9999] hidden opacity-0 transition-opacity duration-300">
         <div class="fixed top-0 right-0 w-64 h-full bg-white shadow-2xl p-8 flex flex-col gap-6 transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-drawer-content">
             <div class="flex justify-between items-center border-b border-outline-variant/10 pb-4">
                 <span class="font-display-lg text-lg font-black text-primary" data-i18n="navegacion" data-i18n-ns="header">Navegación</span>
@@ -75,10 +76,65 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a id="mobile-nav-turquia" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="destino.html?id=turquia" data-i18n="turquia" data-i18n-ns="header">Turquía</a>
                 </div>
                 <a id="mobile-nav-nosotros" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary border-t border-outline-variant/10 pt-4" href="conocenos.html" data-i18n="conocenos" data-i18n-ns="header">Conócenos</a>
+                <a id="mobile-nav-bitacora" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary" href="blog.html" data-i18n="bitacora" data-i18n-ns="header">Bitácora</a>
             </nav>
         </div>
     </div>
     `;
+
+    // ── Dropdowns Click & Keyboard Handlers ────────────────────────────────────
+    const viajesBtn = document.getElementById('nav-viajes-dropdown');
+    const destinosBtn = document.getElementById('nav-destinos');
+    const viajesGroup = viajesBtn?.closest('.nav-dropdown-group');
+    const destinosGroup = destinosBtn?.closest('.nav-dropdown-group');
+
+    const toggleDropdown = (btn, group, otherGroup) => {
+        if (!btn || !group) return;
+        const willOpen = !group.classList.contains('is-open');
+        otherGroup?.classList.remove('is-open');
+        otherGroup?.querySelector('button')?.setAttribute('aria-expanded', 'false');
+        if (willOpen) {
+            group.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+        } else {
+            group.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    };
+
+    if (viajesBtn && viajesGroup) {
+        viajesBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleDropdown(viajesBtn, viajesGroup, destinosGroup);
+        });
+    }
+
+    if (destinosBtn && destinosGroup) {
+        destinosBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleDropdown(destinosBtn, destinosGroup, viajesGroup);
+        });
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-dropdown-group')) {
+            viajesGroup?.classList.remove('is-open');
+            destinosGroup?.classList.remove('is-open');
+            viajesBtn?.setAttribute('aria-expanded', 'false');
+            destinosBtn?.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            viajesGroup?.classList.remove('is-open');
+            destinosGroup?.classList.remove('is-open');
+            viajesBtn?.setAttribute('aria-expanded', 'false');
+            destinosBtn?.setAttribute('aria-expanded', 'false');
+        }
+    });
 
     // ── Active link highlight ──────────────────────────────────────────────────
     const params = new URLSearchParams(window.location.search);
@@ -92,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
             activeLink.classList.remove('text-on-surface-variant');
             activeLink.classList.add('text-primary', 'font-bold');
             
-            const destinosBtn = document.getElementById('nav-destinos');
             if (destinosBtn) {
                 destinosBtn.classList.remove('text-on-surface-variant');
                 destinosBtn.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
@@ -104,13 +159,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     } else {
         const pathname = window.location.pathname;
-        if (
-            pathname.includes('conocenos.html') || 
-            pathname.includes('conocenos.html') ||
-            pathname.includes('conoceme.html') || 
+        if (pathname.includes('viajes-grupales.html')) {
+            const navGrupales = document.getElementById('nav-viajes-grupales');
+            const mobileGrupales = document.getElementById('mobile-nav-viajes-grupales');
+            if (viajesBtn) {
+                viajesBtn.classList.remove('text-on-surface-variant');
+                viajesBtn.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
+            }
+            if (navGrupales) {
+                navGrupales.classList.remove('text-on-surface-variant');
+                navGrupales.classList.add('text-primary', 'font-bold');
+            }
+            if (mobileGrupales) {
+                mobileGrupales.classList.remove('text-on-surface-variant');
+                mobileGrupales.classList.add('text-secondary', 'font-bold');
+            }
+        } else if (pathname.includes('itinerarios.html')) {
+            const navItin = document.getElementById('nav-itinerarios');
+            const mobileItin = document.getElementById('mobile-nav-itinerarios');
+            if (viajesBtn) {
+                viajesBtn.classList.remove('text-on-surface-variant');
+                viajesBtn.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
+            }
+            if (navItin) {
+                navItin.classList.remove('text-on-surface-variant');
+                navItin.classList.add('text-primary', 'font-bold');
+            }
+            if (mobileItin) {
+                mobileItin.classList.remove('text-on-surface-variant');
+                mobileItin.classList.add('text-secondary', 'font-bold');
+            }
+        } else if (
+            pathname.includes('blog.html') || 
+            pathname.includes('articulo.html') ||
             pathname.includes('egipto-magico.html') || 
             pathname.includes('turquia.html') || 
             pathname.includes('viajar-en-grupo.html')
+        ) {
+            const navBitacora = document.getElementById('nav-bitacora');
+            const mobileNavBitacora = document.getElementById('mobile-nav-bitacora');
+            if (navBitacora) {
+                navBitacora.classList.remove('text-on-surface-variant');
+                navBitacora.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
+            }
+            if (mobileNavBitacora) {
+                mobileNavBitacora.classList.remove('text-on-surface-variant');
+                mobileNavBitacora.classList.add('text-secondary', 'font-bold');
+            }
+        } else if (
+            pathname.includes('conocenos.html') || 
+            pathname.includes('conoceme.html')
         ) {
             const navNosotros = document.getElementById('nav-nav-nosotros') || document.getElementById('nav-nosotros');
             const mobileNavNosotros = document.getElementById('mobile-nav-nosotros');
@@ -134,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const openDrawer = () => {
         drawer.classList.remove('hidden');
         setTimeout(() => {
+            drawer.classList.remove('opacity-0');
             drawer.classList.add('opacity-100');
             drawerContent.classList.remove('translate-x-full');
         }, 10);
@@ -142,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeDrawer = () => {
         drawerContent.classList.add('translate-x-full');
         drawer.classList.remove('opacity-100');
+        drawer.classList.add('opacity-0');
         setTimeout(() => {
             drawer.classList.add('hidden');
         }, 300);

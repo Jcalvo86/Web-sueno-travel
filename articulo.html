@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="es">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title id="page-title">Blog | Sueño Travel</title>
     <meta name="description" id="meta-description" content="" />
     <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
-    
+
     <!-- Canonical & Open Graph -->
     <link rel="canonical" href="https://suenotravel.cl/articulo.html" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Sueño Travel" />
     <meta property="og:url" content="https://suenotravel.cl/articulo.html" />
     <meta property="og:title" id="og-title" content="Blog & Artículos | Sueño Travel" />
-    <meta property="og:description" id="og-description" content="Artículos, bitácoras y recomendaciones de viaje por Sueño Travel." />
+    <meta property="og:description" id="og-description"
+        content="Artículos, bitácoras y recomendaciones de viaje por Sueño Travel." />
     <meta property="og:image" id="og-image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://suenotravel.cl/articulo.html" />
     <meta name="twitter:title" id="tw-title" content="Blog & Artículos | Sueño Travel" />
-    <meta name="twitter:description" id="tw-description" content="Artículos, bitácoras y recomendaciones de viaje por Sueño Travel." />
+    <meta name="twitter:description" id="tw-description"
+        content="Artículos, bitácoras y recomendaciones de viaje por Sueño Travel." />
     <meta name="twitter:image" id="tw-image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
 
     <!-- Fuentes Google Oficiales -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- CSS Único Compilado y Optimizado de Sueño Travel -->
     <link rel="stylesheet" href="dist/styles.css" />
 
@@ -38,12 +43,16 @@
     <script src="crm-config.js"></script>
     <script src="controlpanel/data-source-config.js"></script>
 
+    <!-- i18n Module -->
+    <script src="src/js/i18n.js"></script>
+
     <!-- Dynamic Header Component -->
     <script src="global-header.js"></script>
 </head>
+
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20" data-page-ns="blog">
     <div id="global-header"></div>
-    
+
     <!-- Loader State -->
     <div id="loading-state" class="min-h-[80vh] flex flex-col items-center justify-center gap-4">
         <span class="material-symbols-outlined text-secondary text-5xl animate-spin">progress_activity</span>
@@ -54,15 +63,20 @@
     <main id="content-state" class="py-12 hidden">
         <div class="max-w-4xl mx-auto px-6">
             <!-- Back button -->
-            <a href="conocenos.html" class="inline-flex items-center gap-2 text-secondary hover:text-primary font-bold transition-colors mb-8 group">
-                <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
-                <span data-i18n="volverConocenos">Volver a Conócenos</span>
+            <a href="blog.html"
+                class="inline-flex items-center gap-2 text-secondary hover:text-primary font-bold transition-colors mb-8 group">
+                <span
+                    class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                <span data-i18n="volverBlog">Volver a la Bitácora</span>
             </a>
-            
+
             <!-- Article Header -->
             <header class="space-y-6 mb-10">
-                <span id="article-tag" class="bg-secondary-fixed text-secondary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"></span>
-                <h1 id="article-title" class="text-4xl md:text-5xl font-display-lg font-extrabold tracking-tight text-primary leading-tight font-display-lg"></h1>
+                <span id="article-tag"
+                    class="bg-secondary-fixed text-secondary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"></span>
+                <h1 id="article-title"
+                    class="text-4xl md:text-5xl font-display-lg font-extrabold tracking-tight text-primary leading-tight font-display-lg">
+                </h1>
                 <p id="article-excerpt" class="text-xl text-on-surface-variant leading-relaxed"></p>
                 <div class="flex items-center gap-4 py-4 border-y border-outline-variant/30">
                     <img id="article-author-avatar" src="" alt="Author" class="w-12 h-12 rounded-full object-cover">
@@ -72,24 +86,37 @@
                     </div>
                 </div>
             </header>
-            
+
             <!-- Article Image -->
             <div class="relative rounded-3xl overflow-hidden shadow-lg mb-12 aspect-[16/9]">
                 <img id="article-header-image" src="" alt="" class="w-full h-full object-cover">
             </div>
-            
+
             <!-- Article Body -->
-            <article id="article-content" class="prose max-w-none text-on-surface-variant leading-relaxed text-[1.1rem] space-y-6">
+            <article id="article-content"
+                class="prose max-w-none text-on-surface-variant leading-relaxed text-[1.1rem] space-y-6">
             </article>
-            
+
+            <!-- Artículos relacionados / Bitácora -->
+            <section id="related-articles-section" class="mt-16 pt-12 border-t border-outline-variant/30 hidden">
+                <h3 class="text-2xl font-bold font-display-lg text-primary mb-6" data-i18n="masArticulos">Otras
+                    historias de nuestra bitácora</h3>
+                <div id="related-articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                </div>
+            </section>
+
             <!-- CTA Section inside blog -->
             <div class="mt-16 p-8 rounded-3xl bg-primary text-white space-y-6 relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-secondary/15 rounded-full blur-2xl"></div>
-                <h4 class="text-2xl font-bold font-display-lg text-secondary-fixed" data-i18n="ctaTitle">¿Listo para tu próxima aventura?</h4>
+                <h4 class="text-2xl font-bold font-display-lg text-secondary-fixed" data-i18n="ctaTitle">¿Listo para tu
+                    próxima aventura?</h4>
                 <p class="opacity-95 text-sm md:text-base max-w-2xl" data-i18n="ctaDesc">
-                    Déjanos coordinar cada detalle de tu viaje, asegurando alojamientos boutique de lujo y experiencias exclusivas.
+                    Déjanos coordinar cada detalle de tu viaje, asegurando alojamientos boutique de lujo y experiencias
+                    exclusivas.
                 </p>
-                <a href="index.html#contacto" class="inline-block bg-secondary text-white font-bold uppercase tracking-wider px-6 py-3 rounded-lg hover:bg-secondary/90 transition-all text-sm" data-i18n="ctaBtn">
+                <a href="index.html#contacto"
+                    class="inline-block bg-secondary text-white font-bold uppercase tracking-wider px-6 py-3 rounded-lg hover:bg-secondary/90 transition-all text-sm"
+                    data-i18n="ctaBtn">
                     Planificar mi ruta
                 </a>
             </div>
@@ -123,4 +150,5 @@
         });
     </script>
 </body>
+
 </html>

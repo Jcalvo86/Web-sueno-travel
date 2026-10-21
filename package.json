@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "dev": "npm run build:css && npm run dev --prefix controlpanel",
     "build:css": "tailwindcss -i ./src/css/main.css -o ./dist/styles.css --minify",
     "watch:css": "tailwindcss -i ./src/css/main.css -o ./dist/styles.css --watch",
     "build": "npm run build:css && npm install --prefix controlpanel --legacy-peer-deps && npm run build --prefix controlpanel && cp -r controlpanel/dist/assets . && cp controlpanel/dist/controlpanel/index.html controlpanel/index.html"

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Bitácora de Experiencias | Sueño Travel Chile</title>
+    <meta name="description" content="Explora la Bitácora de Experiencias de Sueño Travel. Relatos, consejos y recomendaciones de viaje auténticas por el mundo." />
+    <link rel="icon" type="image/png" id="dynamic-favicon" href="Imagenes/Favicon.png">
+    
+    <!-- Canonical & Open Graph -->
+    <link rel="canonical" href="https://suenotravel.cl/blog.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sueño Travel" />
+    <meta property="og:url" content="https://suenotravel.cl/blog.html" />
+    <meta property="og:title" content="Bitácora de Experiencias | Sueño Travel Chile" />
+    <meta property="og:description" content="Explora la Bitácora de Experiencias de Sueño Travel. Relatos, consejos y recomendaciones de viaje auténticas por el mundo." />
+    <meta property="og:image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://suenotravel.cl/blog.html" />
+    <meta name="twitter:title" content="Bitácora de Experiencias | Sueño Travel Chile" />
+    <meta name="twitter:description" content="Explora la Bitácora de Experiencias de Sueño Travel. Relatos, consejos y recomendaciones de viaje auténticas por el mundo." />
+    <meta name="twitter:image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
+
+    <!-- Fuentes Google Oficiales -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Único Compilado y Optimizado de Sueño Travel -->
+    <link rel="stylesheet" href="dist/styles.css" />
+
+    <!-- CMS/Data Source Connection Scripts -->
+    <script src="controlpanel/adapters/adapter-interface.js"></script>
+    <script src="controlpanel/adapters/firebase-adapter.js"></script>
+    <script src="crm-config.js"></script>
+    <script src="controlpanel/data-source-config.js"></script>
+
+    <!-- i18n Module -->
+    <script src="src/js/i18n.js"></script>
+
+    <!-- Dynamic Header Component -->
+    <script src="global-header.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20" data-page-ns="blog">
+    <div id="global-header"></div>
+
+    <main class="py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <!-- Hero Header -->
+            <header class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                <span class="inline-block bg-secondary-fixed text-secondary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                    Bitácora de Viajes
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold text-primary tracking-tight font-display-lg" data-i18n="tituloPagina" data-i18n-ns="blog">
+                    Bitácora de Experiencias
+                </h1>
+                <p class="text-on-surface-variant text-base md:text-lg leading-relaxed" data-i18n="subtituloPagina" data-i18n-ns="blog">
+                    Relatos en primera persona, guías de viaje y secretos descubiertos a lo largo de años recorriendo Egipto, Jordania, Grecia y Turquía.
+                </p>
+                <div class="w-24 h-1 bg-secondary mx-auto rounded-full mt-4"></div>
+            </header>
+
+            <!-- Filtros de Categoría -->
+            <div class="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-12">
+                <button data-filter="all" class="blog-filter-btn px-5 py-2 rounded-full font-bold text-xs md:text-sm tracking-wider uppercase transition-all duration-200 bg-primary text-white shadow-md">
+                    <span data-i18n="filtroTodos" data-i18n-ns="blog">Todos</span>
+                </button>
+                <button data-filter="egipto" class="blog-filter-btn px-5 py-2 rounded-full font-bold text-xs md:text-sm tracking-wider uppercase transition-all duration-200 bg-surface text-on-surface-variant border border-outline-variant/40 hover:border-secondary">
+                    <span data-i18n="filtroEgipto" data-i18n-ns="blog">Egipto</span>
+                </button>
+                <button data-filter="turqu" class="blog-filter-btn px-5 py-2 rounded-full font-bold text-xs md:text-sm tracking-wider uppercase transition-all duration-200 bg-surface text-on-surface-variant border border-outline-variant/40 hover:border-secondary">
+                    <span data-i18n="filtroTurquia" data-i18n-ns="blog">Turquía</span>
+                </button>
+                <button data-filter="grupo" class="blog-filter-btn px-5 py-2 rounded-full font-bold text-xs md:text-sm tracking-wider uppercase transition-all duration-200 bg-surface text-on-surface-variant border border-outline-variant/40 hover:border-secondary">
+                    <span data-i18n="filtroGrupales" data-i18n-ns="blog">Viajes Grupales</span>
+                </button>
+            </div>
+
+            <!-- Loader State -->
+            <div id="blog-loading" class="py-20 flex flex-col items-center justify-center gap-4">
+                <span class="material-symbols-outlined text-secondary text-5xl animate-spin">progress_activity</span>
+                <p class="text-on-surface-variant font-medium text-lg" data-i18n="cargandoArticulos" data-i18n-ns="blog">Cargando bitácora...</p>
+            </div>
+
+            <!-- Estado Vacío -->
+            <div id="blog-empty" class="hidden py-16 text-center space-y-4">
+                <span class="material-symbols-outlined text-secondary text-5xl">travel_explore</span>
+                <p class="text-on-surface-variant font-semibold text-lg" data-i18n="sinArticulos" data-i18n-ns="blog">No se encontraron publicaciones en esta categoría.</p>
+            </div>
+
+            <!-- Grilla Principal de Artículos -->
+            <div id="blog-grid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Se inyecta dinámicamente mediante src/js/blog.js -->
+            </div>
+
+            <!-- CTA Section -->
+            <section class="mt-20 p-8 md:p-12 rounded-3xl bg-primary text-white space-y-6 relative overflow-hidden shadow-xl">
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-secondary/20 rounded-full blur-2xl"></div>
+                <div class="max-w-2xl space-y-4 relative z-10">
+                    <h3 class="text-2xl md:text-3xl font-bold font-display-lg text-secondary-fixed" data-i18n="ctaTitle" data-i18n-ns="blog">
+                        ¿Listo para tu próxima aventura?
+                    </h3>
+                    <p class="text-sm md:text-base opacity-90 leading-relaxed" data-i18n="ctaDesc" data-i18n-ns="blog">
+                        Déjanos coordinar cada detalle de tu viaje, asegurando alojamientos boutique de lujo y experiencias exclusivas.
+                    </p>
+                    <a href="index.html#contacto" class="inline-block bg-secondary text-white font-bold uppercase tracking-wider px-8 py-3.5 rounded-xl hover:bg-secondary/90 transition-all text-sm shadow-md" data-i18n="ctaBtn" data-i18n-ns="blog">
+                        Planificar mi ruta
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="section-footer"></div>
+
+    <script type="module">
+        import { initBlogPage } from './src/js/blog.js';
+
+        async function loadSection(id, url) {
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const html = await response.text();
+                    document.getElementById(id).innerHTML = html;
+                    return true;
+                }
+            } catch (error) {
+                console.error('Error loading ' + url, error);
+            }
+            return false;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([
+                loadSection('section-footer', 'components/footer.html')
+            ]);
+            initBlogPage();
+        });
+    </script>
+</body>
+</html>

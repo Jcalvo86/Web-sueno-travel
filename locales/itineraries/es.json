@@ -1,0 +1,48 @@
+{
+  "pageTitle": "Itinerarios Exclusivos | Sueño Travel",
+  "groupsPageTitle": "Viajes Grupales | Sueño Travel",
+  "itinerariesPageTitle": "Itinerarios Exclusivos | Sueño Travel",
+  "hero": {
+    "title": "Itinerarios Exclusivos",
+    "subtitle": "Programas de viaje diseñados al detalle para ofrecerte una inmersión completa y de alto estándar."
+  },
+  "main": {
+    "title": "Descubre nuestros Programas",
+    "subtitle": "Desde aventuras por el Nilo hasta el esplendor de Petra. Encuentra el itinerario perfecto para ti."
+  },
+  "card": {
+    "days": "días",
+    "explore": "Explorar",
+    "viewProgram": "Ver Programa"
+  },
+  "empty": "Actualmente no hay itinerarios disponibles.",
+  "error": "Ocurrió un error al cargar los itinerarios.",
+  "loading": "Cargando itinerarios disponibles...",
+  "groups": {
+    "hero": {
+      "title": "Viajes Grupales",
+      "subtitle": "Únete a nuestros grupos y descubre el mundo en la mejor compañía, con el respaldo de nuestros expertos."
+    },
+    "main": {
+      "title": "Nuestras Próximas Salidas",
+      "subtitle": "Las plazas son limitadas para garantizar la mejor experiencia. Elige tu próximo viaje."
+    },
+    "card": {
+      "days": "Días",
+      "to": "al",
+      "consult": "Consultar",
+      "specialPrice": "Precio Especial:",
+      "viewItinerary": "Ver Itinerario",
+      "book": "Reservar Cupo",
+      "soldOutBtn": "Agotado"
+    },
+    "status": {
+      "confirmed": "Salida Confirmada",
+      "soldOut": "Agotado",
+      "lastSpots": "¡Últimos {spots} cupos!",
+      "open": "Abierto"
+    },
+    "empty": "Pronto publicaremos nuestros nuevos viajes grupales. ¡Mantente atento!",
+    "error": "Ocurrió un error al cargar los viajes grupales."
+  }
+}

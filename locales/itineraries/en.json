@@ -1,0 +1,48 @@
+{
+  "pageTitle": "Exclusive Itineraries | Sueño Travel",
+  "groupsPageTitle": "Group Departures | Sueño Travel",
+  "itinerariesPageTitle": "Exclusive Itineraries | Sueño Travel",
+  "hero": {
+    "title": "Exclusive Itineraries",
+    "subtitle": "Travel programs tailored down to the last detail to offer you a complete, high-standard immersion."
+  },
+  "main": {
+    "title": "Discover Our Programs",
+    "subtitle": "From adventures along the Nile to the splendor of Petra. Find the perfect itinerary for you."
+  },
+  "card": {
+    "days": "days",
+    "explore": "Explore",
+    "viewProgram": "View Program"
+  },
+  "empty": "Currently no itineraries available.",
+  "error": "An error occurred while loading itineraries.",
+  "loading": "Loading available itineraries...",
+  "groups": {
+    "hero": {
+      "title": "Group Departures",
+      "subtitle": "Join our groups and discover the world in great company, backed by our destination experts."
+    },
+    "main": {
+      "title": "Our Upcoming Departures",
+      "subtitle": "Spots are limited to guarantee the best experience. Choose your next journey."
+    },
+    "card": {
+      "days": "Days",
+      "to": "to",
+      "consult": "Inquire",
+      "specialPrice": "Special Price:",
+      "viewItinerary": "View Itinerary",
+      "book": "Book Spot",
+      "soldOutBtn": "Sold Out"
+    },
+    "status": {
+      "confirmed": "Confirmed Departure",
+      "soldOut": "Sold Out",
+      "lastSpots": "Only {spots} spots left!",
+      "open": "Open"
+    },
+    "empty": "We will be publishing new group departures soon. Stay tuned!",
+    "error": "An error occurred while loading group departures."
+  }
+}

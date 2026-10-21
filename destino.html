@@ -190,35 +190,18 @@
     <button class="absolute top-6 right-6 text-white text-4xl font-bold cursor-pointer select-none">&times;</button>
 </div>
 
-<!-- Footer -->
-<footer class="bg-primary text-white py-16 px-margin-mobile md:px-margin-desktop border-t border-white/10">
-    <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="space-y-4">
-            <div class="flex items-center gap-3">
-                <img alt="Sueño Travel Logo" class="h-8 w-auto bg-white/10 p-2 rounded-lg" src="Imagenes/logo_suenoTravel Chile.svg"/>
-                <span class="font-display-lg text-xl font-bold">Sueño Travel</span>
-            </div>
-            <p class="text-sm text-white/70">Creamos las experiencias de viaje más exclusivas para los exploradores de hoy.</p>
-        </div>
-        <div>
-            <h4 class="font-bold text-white mb-4 uppercase tracking-wider text-sm">Destinos</h4>
-            <ul class="space-y-2 text-sm text-white/70">
-                <li><a class="hover:text-secondary transition-colors" href="destino.html?id=egipto">Egipto</a></li>
-                <li><a class="hover:text-secondary transition-colors" href="destino.html?id=jordania">Jordania</a></li>
-                <li><a class="hover:text-secondary transition-colors" href="destino.html?id=grecia">Grecia</a></li>
-                <li><a class="hover:text-secondary transition-colors" href="destino.html?id=turquia">Turquía</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="font-bold text-white mb-4 uppercase tracking-wider text-sm">Contacto</h4>
-            <p class="text-sm text-white/70">contacto@suenotravel.cl</p>
-        </div>
-        <div>
-            <h4 class="font-bold text-white mb-4 uppercase tracking-wider text-sm">Oficina</h4>
-            <p class="text-sm text-white/70">Santiago, Chile</p>
-        </div>
-    </div>
-</footer>
+<!-- Footer Component -->
+<div id="section-footer"></div>
+<script>
+    fetch('components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('section-footer').innerHTML = html;
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                window.i18n.applyTranslations('destination');
+            }
+        });
+</script>
 
 <script type="module">
     import SEOManager from './src/js/seo-manager.js';
