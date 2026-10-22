@@ -13,7 +13,8 @@
   "card": {
     "days": "days",
     "explore": "Explore",
-    "viewProgram": "View Program"
+    "viewProgram": "View Program",
+    "adaptMedida": "Customize to Measure"
   },
   "empty": "Currently no itineraries available.",
   "error": "An error occurred while loading itineraries.",
@@ -21,7 +22,8 @@
   "groups": {
     "hero": {
       "title": "Group Departures",
-      "subtitle": "Join our groups and discover the world in great company, backed by our destination experts."
+      "subtitle": "Join our groups and discover the world in great company, backed by our destination experts.",
+      "badge": "Exclusive Dream Travel"
     },
     "main": {
       "title": "Our Upcoming Departures",
@@ -34,7 +36,8 @@
       "specialPrice": "Special Price:",
       "viewItinerary": "View Itinerary",
       "book": "Book Spot",
-      "soldOutBtn": "Sold Out"
+      "soldOutBtn": "Sold Out",
+      "accompaniedBadge": "Accompanied from Chile"
     },
     "status": {
       "confirmed": "Confirmed Departure",
@@ -43,6 +46,128 @@
       "open": "Open"
     },
     "empty": "We will be publishing new group departures soon. Stay tuned!",
-    "error": "An error occurred while loading group departures."
+    "error": "An error occurred while loading group departures.",
+    "pillars": {
+      "title": "The Difference of Traveling in an Accompanied Group",
+      "subtitle": "An experience designed so that you can only dedicate yourself to enjoying, with the support and closeness of our team.",
+      "p1": {
+        "title": "Companion from Chile",
+        "desc": "An expert Tour Leader from Sueño Travel travels from Santiago and accompanies you during each day of the trip."
+      },
+      "p2": {
+        "title": "Itinerary to the letter",
+        "desc": "Millimetric and rigorous organization in each visit, transfer and hotel so that you live a stress-free experience."
+      },
+      "p3": {
+        "title": "Limited quotas",
+        "desc": "Small groups to guarantee personalized attention, camaraderie and a comfortable trip."
+      }
+    }
+  },
+  "medidaPageTitle": "Tailor-made Trips | Dream Travel",
+  "abiertosPageTitle": "Open Groups | Dream Travel",
+  "modalitiesBanner": {
+    "badge": "Three Ways to Live Each Route",
+    "title": "How do you want to do these itineraries?",
+    "desc": "Any of our pre-designed programs can be enjoyed in the mode you prefer:",
+    "grupales": "Accompanied Group Trip",
+    "grupalesDesc": "If you have a scheduled date, you travel with a Tour Leader from Chile and an exclusive group.",
+    "medida": "Tailor-made Trip (Private)",
+    "medidaDesc": "Designed at your own pace, with the freedom to modify days, itinerary and activities.",
+    "abiertos": "Open Group in Destination",
+    "abiertosDesc": "You choose a guaranteed date, fly to the departure point and join an international group."
+  },
+  "medida": {
+    "hero": {
+      "badge": "Private Experiences",
+      "title": "Tailor Made Trips",
+      "subtitle": "You imagine the journey; We and our local operators make it happen. Designed according to your dates, pace and interests."
+    },
+    "howItWorks": {
+      "title": "How We Design Your Custom Trip",
+      "subtitle": "A close and personalized process in 4 stages together with our specialists.",
+      "s1": {
+        "title": "1. Tell us your dream",
+        "desc": "Tell us which destinations you want to visit (Egypt, Jordan, Greece, Türkiye or combination), how many days you have and your preferred travel style."
+      },
+      "s2": {
+        "title": "2. Co-design with the Operator",
+        "desc": "We connect with our operator at the destination to put together an optimal route proposal, high-level hospitality and authentic experiences."
+      },
+      "s3": {
+        "title": "3. Detail adjustments",
+        "desc": "We modify the times, add special activities or refine the budget until the itinerary is perfect for you."
+      },
+      "s4": {
+        "title": "4. Your private trip",
+        "desc": "Travel with maximum peace of mind: itinerary coordinated to detail and permanent 24/7 assistance from our team."
+      }
+    },
+    "inspiration": {
+      "title": "Routes of Inspiration to Adapt",
+      "subtitle": "Any of these base programs can be modified according to your tastes, add days or combine countries."
+    },
+    "cta": {
+      "title": "Ready to create a unique trip?",
+      "subtitle": "Let's talk about your plans and we will present you with an initial proposal without obligation.",
+      "button": "Quote My Custom Trip",
+      "whatsapp": "Talk on WhatsApp"
+    }
+  },
+  "abiertos": {
+    "hero": {
+      "badge": "Regular Circuits",
+      "title": "Open Groups",
+      "subtitle": "Choose a guaranteed date, arrive at your destination and join a group of travelers from different parts of the world with a guide in Spanish."
+    },
+    "howItWorks": {
+      "title": "How does an Open Group Work?",
+      "subtitle": "The perfect combination of convenient rates, frequent departures and the warmth of sharing the route with like-minded people.",
+      "s1": {
+        "title": "1. Choose your ideal date",
+        "desc": "Our circuits have fixed and scheduled departures throughout the year, guaranteeing your departure on the date that best suits you."
+      },
+      "s2": {
+        "title": "2. Flight to the starting point",
+        "desc": "You buy your airfare to reach the starting city of the tour (for example, Cairo or Istanbul). Sueño Travel advises and supports you in the search for the best flights."
+      },
+      "s3": {
+        "title": "3. Integration at destination",
+        "desc": "When you land, the local operator welcomes you and joins you with a group of people from different countries who start the same tour on that date, always guided in Spanish."
+      },
+      "s4": {
+        "title": "4. Complete circuit and return",
+        "desc": "They take the tour together with hotels, transfers and excursions included, ending at the return point where you take your return flight."
+      }
+    },
+    "advantages": {
+      "title": "Why choose an Open Group?",
+      "a1": {
+        "title": "Guaranteed Departures All Year Round",
+        "desc": "Wide variety of dates to choose from depending on your vacation."
+      },
+      "a2": {
+        "title": "More Convenient Rates",
+        "desc": "By sharing services with other travelers you enjoy preferential prices."
+      },
+      "a3": {
+        "title": "Multicultural Experience",
+        "desc": "Meet and share experiences with people from different cultures and languages."
+      },
+      "a4": {
+        "title": "Support on Flights from Chile",
+        "desc": "We help you find and coordinate your tickets to arrive just in time."
+      }
+    },
+    "circuits": {
+      "title": "Circuits Available for Open Groups",
+      "subtitle": "Explore regular programs operated in destination with frequent scheduled departures."
+    },
+    "cta": {
+      "title": "Do you want to join an Open Group?",
+      "subtitle": "Tell us which circuit you are interested in and what month you would like to travel in so we can send you the departure dates and rates.",
+      "button": "Check Upcoming Dates",
+      "whatsapp": "Consult by WhatsApp"
+    }
   }
 }

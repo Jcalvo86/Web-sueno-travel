@@ -42,17 +42,53 @@
 <div id="global-header"></div>
 
 <!-- Hero Section -->
-<header class="relative h-[45vh] w-full flex items-center justify-center overflow-hidden">
+<header class="relative h-[48vh] w-full flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
         <div class="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920')">
         </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary/95"></div>
+        <div class="absolute inset-0 bg-primary/20"></div>
     </div>
-    <div class="relative z-10 text-center px-margin-mobile max-w-4xl">
-        <h1 class="font-display-lg text-4xl md:text-6xl text-white mb-3 font-extrabold tracking-tight" data-i18n="hero.title">Itinerarios Exclusivos</h1>
-        <p class="text-white/90 text-body-lg max-w-2xl mx-auto" data-i18n="hero.subtitle">Programas de viaje diseñados al detalle para ofrecerte una inmersión completa y de alto estándar.</p>
+    <div class="relative z-10 text-center px-margin-mobile max-w-4xl pt-8">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary/90 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider mb-4 border border-white/25 shadow-lg">Programas de Inspiración</span>
+        <h1 class="font-display-lg text-4xl md:text-6xl text-white mb-4 font-extrabold tracking-tight drop-shadow-[0_3px_12px_rgba(0,0,0,0.8)]" data-i18n="hero.title">Itinerarios Sugeridos</h1>
+        <p class="text-white text-body-lg max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]" data-i18n="hero.subtitle">Programas de viaje diseñados al detalle por nuestros expertos. Listos para realizarse en grupo abierto, o como base para diseñar tu viaje a medida.</p>
     </div>
 </header>
+
+<!-- Modalities Banner -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop -mt-8 relative z-20 mb-6">
+    <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 md:p-8 shadow-xl">
+        <div class="text-center max-w-2xl mx-auto mb-6">
+            <span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="modalitiesBanner.badge">Tres Formas de Vivir Cada Ruta</span>
+            <h2 class="font-display-lg text-xl md:text-2xl font-bold text-primary mt-1" data-i18n="modalitiesBanner.title">¿Cómo deseas realizar estos itinerarios?</h2>
+            <p class="text-xs text-on-surface-variant mt-1" data-i18n="modalitiesBanner.desc">Cualquiera de nuestros programas prediseñados puede disfrutarse en la modalidad que prefieras:</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="viajes-grupales.html" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary/10 border border-outline-variant/20 hover:border-secondary/40 transition-all group block">
+                <div class="flex items-center gap-2 mb-1.5">
+                    <span class="material-symbols-outlined text-secondary text-lg">group</span>
+                    <h3 class="font-bold text-primary text-sm group-hover:text-secondary transition-colors" data-i18n="modalitiesBanner.grupales">Viaje en Grupo Acompañado</h3>
+                </div>
+                <p class="text-[11px] text-on-surface-variant leading-relaxed" data-i18n="modalitiesBanner.grupalesDesc">Si cuenta con fecha programada, viajas con un Tour Leader desde Chile y grupo exclusivo.</p>
+            </a>
+            <a href="viajes-a-medida.html" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary/10 border border-outline-variant/20 hover:border-secondary/40 transition-all group block">
+                <div class="flex items-center gap-2 mb-1.5">
+                    <span class="material-symbols-outlined text-secondary text-lg">tune</span>
+                    <h3 class="font-bold text-primary text-sm group-hover:text-secondary transition-colors" data-i18n="modalitiesBanner.medida">Viaje a Medida (Privado)</h3>
+                </div>
+                <p class="text-[11px] text-on-surface-variant leading-relaxed" data-i18n="modalitiesBanner.medidaDesc">Diseñado a tu propio ritmo, con la libertad de modificar días, itinerario y actividades.</p>
+            </a>
+            <a href="grupos-abiertos.html" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary/10 border border-outline-variant/20 hover:border-secondary/40 transition-all group block">
+                <div class="flex items-center gap-2 mb-1.5">
+                    <span class="material-symbols-outlined text-secondary text-lg">public</span>
+                    <h3 class="font-bold text-primary text-sm group-hover:text-secondary transition-colors" data-i18n="modalitiesBanner.abiertos">Grupo Abierto en Destino</h3>
+                </div>
+                <p class="text-[11px] text-on-surface-variant leading-relaxed" data-i18n="modalitiesBanner.abiertosDesc">Eliges una fecha garantizada, vuelas al punto de partida y te sumas a un grupo internacional.</p>
+            </a>
+        </div>
+    </div>
+</section>
 
 <main class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
     <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4" data-i18n="main.title">Descubre nuestros Programas</h2>

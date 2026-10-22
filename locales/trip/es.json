@@ -9,7 +9,7 @@
   "sidebar": {
     "title": "Índice del Viaje",
     "overview": "Nuestra Ruta",
-    "departures": "Salidas",
+    "departures": "Modalidades y Salidas",
     "itinerary": "Itinerario",
     "gallery": "Galería",
     "services": "Servicios",
@@ -28,21 +28,34 @@
     "title": "Nuestra Ruta"
   },
   "departures": {
-    "title": "Salidas Programadas",
-    "subtitle": "Selecciona una de nuestras próximas salidas grupales exclusivas con todo incluido, o solicita un viaje a la medida.",
-    "card": {
-      "to": "Al",
-      "capacity": "Cupos Disponibles",
-      "reserveBtn": "Reservar",
-      "title": "Salida Especial"
+    "title": "Modalidades y Salidas para este Viaje",
+    "subtitle": "Puedes vivir este itinerario en cualquiera de nuestras 3 modalidades: en grupo cerrado acompañado desde Chile, de forma privada a tu medida, o sumándote a un grupo abierto en destino.",
+    "group": {
+      "badge": "Acompañado desde Chile",
+      "title": "Viaje en Grupo Acompañado",
+      "subtitle": "Salida exclusiva con Tour Leader desde Chile",
+      "to": "al",
+      "capacity": "Cupos disponibles",
+      "reserveBtn": "Reservar Cupo",
+      "noActiveTitle": "Próximas Salidas en Grupo",
+      "noActiveDesc": "Actualmente estamos preparando las próximas fechas acompañadas para esta ruta. Escríbenos para sumarte a la lista de espera prioritaria.",
+      "notifyBtn": "Consultar Próxima Salida"
     },
     "custom": {
-      "badge": "A tu medida",
-      "title": "Viaje Privado",
-      "desc": "Elige tus propias fechas y viaja con tu grupo.",
-      "btn": "Solicitar a medida"
+      "badge": "100% Personalizado",
+      "title": "Viaje Privado a Medida",
+      "desc": "Realiza esta misma ruta en tus propias fechas, con la total libertad de ajustar hoteles, ritmo y experiencias según tus preferencias.",
+      "btn": "Cotizar a Medida"
     },
-    "available": "Disponible"
+    "openGroup": {
+      "badge": "Súmate en Destino",
+      "title": "Grupo Abierto Internacional",
+      "desc": "Elige una fecha fija de circuito, viaja a destino con nuestro apoyo en vuelos y realiza el tour con un grupo internacional guiado en español.",
+      "btn": "Consultar Fechas de Grupo Abierto"
+    },
+    "available": "Disponible",
+    "soldOut": "Agotado",
+    "lastSpots": "¡Últimos {n} cupos!"
   },
   "itinerary": {
     "title": "Itinerario Día a Día",

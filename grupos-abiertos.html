@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-title-tag="itineraries:abiertosPageTitle">Grupos Abiertos | Sueño Travel</title>
+    <meta name="description" id="meta-description" content="Elige una fecha garantizada, llega a destino y súmate a un grupo multicultural con guía en español. Asistencia en vuelos desde Chile.">
+    
+    <!-- Canonical & Open Graph -->
+    <link rel="canonical" href="https://suenotravel.cl/grupos-abiertos.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sueño Travel" />
+    <meta property="og:url" content="https://suenotravel.cl/grupos-abiertos.html" />
+    <meta property="og:title" content="Grupos Abiertos | Sueño Travel" />
+    <meta property="og:description" content="Elige una fecha garantizada, llega a destino y súmate a un grupo multicultural con guía en español. Asistencia en vuelos desde Chile." />
+    <meta property="og:image" content="https://suenotravel.cl/Imagenes/jordania-hisham-zayadneh.webp" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://suenotravel.cl/grupos-abiertos.html" />
+    <meta name="twitter:title" content="Grupos Abiertos | Sueño Travel" />
+    <meta name="twitter:description" content="Elige una fecha garantizada, llega a destino y súmate a un grupo multicultural con guía en español. Asistencia en vuelos desde Chile." />
+    <meta name="twitter:image" content="https://suenotravel.cl/Imagenes/jordania-hisham-zayadneh.webp" />
+
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- CSS Único Compilado y Optimizado de Sueño Travel -->
+    <link rel="stylesheet" href="dist/styles.css" />
+    <!-- CMS Adapters -->
+    <script src="controlpanel/adapters/adapter-interface.js"></script>
+    <script src="controlpanel/adapters/firebase-adapter.js"></script>
+    <script src="crm-config.js"></script>
+    <script src="controlpanel/data-source-config.js"></script>
+    <!-- Dynamic Header & i18n -->
+    <script src="src/js/i18n.js"></script>
+    <script src="global-header.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20" data-page-ns="itineraries">
+<div id="global-header"></div>
+
+<!-- Hero Section -->
+<header class="relative h-[48vh] w-full flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <div class="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105" style="background-image: url('Imagenes/jordania-hisham-zayadneh.webp')">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary/95"></div>
+        <div class="absolute inset-0 bg-primary/20"></div>
+    </div>
+    <div class="relative z-10 text-center px-margin-mobile max-w-4xl pt-8">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary/90 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider mb-4 border border-white/25 shadow-lg" data-i18n="abiertos.hero.badge">Circuitos Regulares</span>
+        <h1 class="font-display-lg text-4xl md:text-6xl text-white mb-4 font-extrabold tracking-tight drop-shadow-[0_3px_12px_rgba(0,0,0,0.8)]" data-i18n="abiertos.hero.title">Grupos Abiertos</h1>
+        <p class="text-white text-body-lg max-w-2xl mx-auto leading-relaxed mb-6 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]" data-i18n="abiertos.hero.subtitle">Elige una fecha garantizada, llega a destino y súmate a un grupo de viajeros de distintas partes del mundo con guía en español.</p>
+        <a href="#circuitos" class="bg-secondary text-white px-8 py-3.5 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-xl uppercase tracking-wider inline-block">
+            Ver Circuitos Disponibles
+        </a>
+    </div>
+</header>
+
+<!-- How It Works Section -->
+<section class="py-16 md:py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <div class="text-center mb-12 space-y-3">
+        <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary" data-i18n="abiertos.howItWorks.title">¿Cómo Funciona un Grupo Abierto?</h2>
+        <p class="text-on-surface-variant max-w-2xl mx-auto" data-i18n="abiertos.howItWorks.subtitle">La combinación perfecta entre tarifas convenientes, salidas frecuentes y la calidez de compartir la ruta con personas afines.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">event_available</span>
+            </div>
+            <h3 class="font-display-sm text-lg font-bold text-primary mb-2" data-i18n="abiertos.howItWorks.s1.title">1. Elige tu fecha ideal</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="abiertos.howItWorks.s1.desc">Nuestros circuitos cuentan con salidas fijas y programadas durante todo el año, garantizando tu salida en la fecha que más te acomode.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">flight_takeoff</span>
+            </div>
+            <h3 class="font-display-sm text-lg font-bold text-primary mb-2" data-i18n="abiertos.howItWorks.s2.title">2. Vuelo al punto de inicio</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="abiertos.howItWorks.s2.desc">Compras tu pasaje aéreo para llegar a la ciudad de inicio del tour (por ejemplo, El Cairo o Estambul). Sueño Travel te asesora y apoya en la búsqueda de los mejores vuelos.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">groups_2</span>
+            </div>
+            <h3 class="font-display-sm text-lg font-bold text-primary mb-2" data-i18n="abiertos.howItWorks.s3.title">3. Integración en destino</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="abiertos.howItWorks.s3.desc">Al aterrizar, el operador local te recibe y te une a un grupo de personas de diversos países que inician el mismo tour en esa fecha, guiados siempre en español.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">tour</span>
+            </div>
+            <h3 class="font-display-sm text-lg font-bold text-primary mb-2" data-i18n="abiertos.howItWorks.s4.title">4. Circuito completo y regreso</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="abiertos.howItWorks.s4.desc">Realizan juntos el recorrido con hoteles, traslados y excursiones incluidas, finalizando en el punto de retorno donde tomas tu vuelo de regreso.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Advantages Grid -->
+<section class="py-12 bg-surface border-y border-outline-variant/20 px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-container-max mx-auto">
+        <h3 class="font-display-lg text-2xl font-bold text-primary text-center mb-8" data-i18n="abiertos.advantages.title">¿Por qué elegir un Grupo Abierto?</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="flex items-center gap-3 p-4 bg-background rounded-2xl border border-outline-variant/30">
+                <span class="material-symbols-outlined text-secondary text-2xl">calendar_month</span>
+                <div>
+                    <h4 class="font-bold text-primary text-sm" data-i18n="abiertos.advantages.a1.title">Salidas Todo el Año</h4>
+                    <p class="text-[11px] text-on-surface-variant" data-i18n="abiertos.advantages.a1.desc">Múltiples opciones para tus vacaciones.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 p-4 bg-background rounded-2xl border border-outline-variant/30">
+                <span class="material-symbols-outlined text-secondary text-2xl">savings</span>
+                <div>
+                    <h4 class="font-bold text-primary text-sm" data-i18n="abiertos.advantages.a2.title">Tarifas Más Convenientes</h4>
+                    <p class="text-[11px] text-on-surface-variant" data-i18n="abiertos.advantages.a2.desc">Precios optimizados por grupo.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 p-4 bg-background rounded-2xl border border-outline-variant/30">
+                <span class="material-symbols-outlined text-secondary text-2xl">public</span>
+                <div>
+                    <h4 class="font-bold text-primary text-sm" data-i18n="abiertos.advantages.a3.title">Experiencia Multicultural</h4>
+                    <p class="text-[11px] text-on-surface-variant" data-i18n="abiertos.advantages.a3.desc">Comparte con viajeros de todo el mundo.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 p-4 bg-background rounded-2xl border border-outline-variant/30">
+                <span class="material-symbols-outlined text-secondary text-2xl">airplane_ticket</span>
+                <div>
+                    <h4 class="font-bold text-primary text-sm" data-i18n="abiertos.advantages.a4.title">Soporte en Vuelos</h4>
+                    <p class="text-[11px] text-on-surface-variant" data-i18n="abiertos.advantages.a4.desc">Te ayudamos a cotizar tus pasajes aéreos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Circuits List Section -->
+<section id="circuitos" class="py-16 md:py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <div class="text-center mb-12 space-y-3">
+        <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary" data-i18n="abiertos.circuits.title">Circuitos Disponibles para Grupos Abiertos</h2>
+        <p class="text-on-surface-variant max-w-2xl mx-auto" data-i18n="abiertos.circuits.subtitle">Explora los programas regulares operados en destino con salidas programadas frecuentes.</p>
+    </div>
+
+    <div id="circuits-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Skeleton Card 1 -->
+        <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+            <div class="h-56 bg-outline-variant/20"></div>
+            <div class="p-6 space-y-4 flex-1 flex flex-col">
+                <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+            </div>
+        </div>
+        <!-- Skeleton Card 2 -->
+        <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+            <div class="h-56 bg-outline-variant/20"></div>
+            <div class="p-6 space-y-4 flex-1 flex flex-col">
+                <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+            </div>
+        </div>
+        <!-- Skeleton Card 3 -->
+        <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+            <div class="h-56 bg-outline-variant/20"></div>
+            <div class="p-6 space-y-4 flex-1 flex flex-col">
+                <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden relative bg-primary text-white p-10 md:p-16 text-center shadow-2xl">
+        <div class="relative z-10 space-y-6">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-bold uppercase tracking-wider border border-white/20">Salidas Garantizadas</span>
+            <h2 class="font-display-lg text-3xl md:text-5xl font-bold" data-i18n="abiertos.cta.title">¿Quieres sumarte a un Grupo Abierto?</h2>
+            <p class="text-white/80 max-w-xl mx-auto text-base" data-i18n="abiertos.cta.subtitle">Indícanos qué circuito te interesa y en qué mes te gustaría viajar para enviarte las fechas de salida y tarifas.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
+                <button onclick="if(window.openContactModal) window.openContactModal('open-group');" class="bg-secondary text-white px-8 py-4 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-xl uppercase tracking-wider w-full sm:w-auto" data-i18n="abiertos.cta.button">
+                    Consultar Próximas Fechas
+                </button>
+                <a href="https://wa.me/201110572308" target="_blank" class="flex items-center justify-center gap-2 border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-xl font-bold text-sm transition-all w-full sm:w-auto">
+                    <span class="material-symbols-outlined text-lg">chat</span>
+                    <span data-i18n="abiertos.cta.whatsapp">Consultar por WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dynamic Loader for Circuits -->
+<script>
+    const loadCircuits = async () => {
+        try {
+            let checks = 0;
+            while (!window.DataSource && checks < 20) {
+                await new Promise(r => setTimeout(r, 100));
+                checks++;
+            }
+            if (!window.DataSource) return;
+
+            const travels = await window.DataSource.getItems('travel');
+            const products = await window.DataSource.getItems('cms_products');
+            const allTrips = [...(travels || []), ...(products || [])];
+
+            const activeTrips = allTrips.filter(t => {
+                const isDraft = t.is_published !== undefined ? !t.is_published : (t.isPublished !== undefined ? !t.isPublished : (t.isDraft || false));
+                const tripTitle = (t.title || t.name || '').toLowerCase().trim();
+                return !isDraft && t.status !== 'hidden' && tripTitle !== 'egipto 1' && tripTitle !== 'turquia';
+            });
+
+            const grid = document.getElementById('circuits-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            if (activeTrips.length > 0) {
+                activeTrips.forEach(trip => {
+                    const imgUrl = trip.headerImageUrl || trip.header_image_url || trip.imageUrl || trip.image_url || (trip.itinerary && trip.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
+                    const tripTitle = trip.title || trip.name;
+                    const duration = trip.durationDays || trip.duration_days || trip.duration || 'Consultar';
+                    let sub = trip.destinationsSummary || trip.destinations_summary || trip.subtitle || '';
+                    if (Array.isArray(sub)) sub = sub.join(', ');
+                    sub = sub.replace(/\s*\([^)]*\)/g, '');
+
+                    const card = document.createElement('div');
+                    card.className = 'bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col';
+                    card.innerHTML = `
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${tripTitle}">
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                ${duration} <span>${window.i18n?.t('card.days', 'itineraries') || 'días'}</span>
+                            </div>
+                            <div class="absolute bottom-3 left-4 bg-primary/90 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 border border-white/20">
+                                <span class="material-symbols-outlined text-[12px]">public</span>
+                                <span>Salidas Frecuentes</span>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3 flex-1 flex flex-col">
+                            <h3 class="font-display-sm text-xl font-bold text-primary">${tripTitle}</h3>
+                            <p class="text-on-surface-variant text-sm line-clamp-2 flex-1 flex items-center">
+                                <span class="material-symbols-outlined text-base mr-1 opacity-70">location_on</span>
+                                ${sub}
+                            </p>
+                            <div class="pt-4 border-t border-outline-variant/30 flex justify-between items-center mt-auto">
+                                <a href="viaje.html?nombre=${window.generateSlug ? window.generateSlug(tripTitle) : encodeURIComponent(tripTitle)}" class="text-primary font-bold text-xs hover:underline flex items-center gap-1">
+                                    <span>${window.i18n?.t('card.viewProgram', 'itineraries') || 'Ver Itinerario'}</span>
+                                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </a>
+                                <button onclick="if(window.openContactModal) window.openContactModal('open-group', '${tripTitle.replace(/'/g, "\\'")}')" class="bg-primary text-white px-3.5 py-2 rounded-lg font-bold text-xs hover:bg-secondary transition-all shadow-sm">
+                                    <span>Consultar Fechas</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        } catch (e) {
+            console.error('Error loading circuits:', e);
+        }
+    };
+
+    if (!window.generateSlug) {
+        window.generateSlug = (text) => {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
+        };
+    }
+
+    window.addEventListener('DOMContentLoaded', loadCircuits);
+</script>
+
+<!-- Contact Modal Integration -->
+<div id="contact-modal-container"></div>
+<script>
+    fetch('components/contact-modal.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('contact-modal-container').innerHTML = html;
+        });
+</script>
+
+<!-- Footer Integration -->
+<div id="section-footer"></div>
+<script>
+    fetch('components/footer.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('section-footer').innerHTML = html;
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                window.i18n.applyTranslations('itineraries');
+            }
+        });
+</script>
+</body>
+</html>

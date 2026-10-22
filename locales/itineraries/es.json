@@ -1,31 +1,62 @@
 {
-  "pageTitle": "Itinerarios Exclusivos | Sueño Travel",
-  "groupsPageTitle": "Viajes Grupales | Sueño Travel",
-  "itinerariesPageTitle": "Itinerarios Exclusivos | Sueño Travel",
+  "pageTitle": "Itinerarios Sugeridos | Sueño Travel",
+  "groupsPageTitle": "Viajes en Grupo con Guía desde Chile | Sueño Travel",
+  "itinerariesPageTitle": "Itinerarios Sugeridos | Sueño Travel",
+  "medidaPageTitle": "Viajes a Medida | Sueño Travel",
+  "abiertosPageTitle": "Grupos Abiertos | Sueño Travel",
   "hero": {
-    "title": "Itinerarios Exclusivos",
-    "subtitle": "Programas de viaje diseñados al detalle para ofrecerte una inmersión completa y de alto estándar."
+    "title": "Itinerarios Sugeridos",
+    "subtitle": "Programas prediseñados y optimizados por nuestros expertos. Úsalos como inspiración para tu viaje a medida o vívelos en grupo abierto."
   },
   "main": {
-    "title": "Descubre nuestros Programas",
-    "subtitle": "Desde aventuras por el Nilo hasta el esplendor de Petra. Encuentra el itinerario perfecto para ti."
+    "title": "Descubre nuestras Rutas de Inspiración",
+    "subtitle": "Desde las maravillas faraónicas del Nilo hasta los cañones de Petra y los mares de Grecia. Encuentra la base de tu próximo viaje."
+  },
+  "modalitiesBanner": {
+    "badge": "Tres Formas de Vivir Cada Ruta",
+    "title": "¿Cómo deseas realizar estos itinerarios?",
+    "desc": "Cualquiera de nuestros programas prediseñados puede disfrutarse en la modalidad que prefieras:",
+    "grupales": "Viaje en Grupo Acompañado",
+    "grupalesDesc": "Si cuenta con fecha programada, viajas con un Tour Leader desde Chile y grupo exclusivo.",
+    "medida": "Viaje a Medida (Privado)",
+    "medidaDesc": "Diseñado a tu propio ritmo, con la libertad de modificar días, itinerario y actividades.",
+    "abiertos": "Grupo Abierto en Destino",
+    "abiertosDesc": "Eliges una fecha garantizada, vuelas al punto de partida y te sumas a un grupo internacional."
   },
   "card": {
     "days": "días",
     "explore": "Explorar",
-    "viewProgram": "Ver Programa"
+    "viewProgram": "Ver Programa",
+    "adaptMedida": "Personalizar a Medida"
   },
   "empty": "Actualmente no hay itinerarios disponibles.",
   "error": "Ocurrió un error al cargar los itinerarios.",
   "loading": "Cargando itinerarios disponibles...",
   "groups": {
     "hero": {
-      "title": "Viajes Grupales",
-      "subtitle": "Únete a nuestros grupos y descubre el mundo en la mejor compañía, con el respaldo de nuestros expertos."
+      "badge": "Exclusivo Sueño Travel",
+      "title": "Viajes en Grupo",
+      "subtitle": "Grupos exclusivos creados junto a nuestro operador con fechas fijas y cupos limitados. Un Tour Leader de Sueño Travel viaja desde Chile y está contigo en todo momento."
+    },
+    "pillars": {
+      "title": "La Diferencia de Viajar en un Grupo Acompañado",
+      "subtitle": "Una experiencia pensada para que solo te dediques a disfrutar, con el respaldo y la cercanía de nuestro equipo.",
+      "p1": {
+        "title": "Acompañante desde Chile",
+        "desc": "Un Tour Leader experto de Sueño Travel viaja desde Santiago y te acompaña durante cada día del viaje."
+      },
+      "p2": {
+        "title": "Itinerario al Pie de la Letra",
+        "desc": "Organización milimétrica y rigurosa en cada visita, traslado y hotel para que vivas una experiencia sin estrés."
+      },
+      "p3": {
+        "title": "Cupos Limitados",
+        "desc": "Grupos reducidos para garantizar atención personalizada, camaradería y un viaje confortable."
+      }
     },
     "main": {
-      "title": "Nuestras Próximas Salidas",
-      "subtitle": "Las plazas son limitadas para garantizar la mejor experiencia. Elige tu próximo viaje."
+      "title": "Nuestras Próximas Salidas Confirmadas",
+      "subtitle": "Las plazas son limitadas para preservar la calidad del grupo. Asegura tu lugar con anticipación."
     },
     "card": {
       "days": "Días",
@@ -34,7 +65,8 @@
       "specialPrice": "Precio Especial:",
       "viewItinerary": "Ver Itinerario",
       "book": "Reservar Cupo",
-      "soldOutBtn": "Agotado"
+      "soldOutBtn": "Agotado",
+      "accompaniedBadge": "Acompañado desde Chile"
     },
     "status": {
       "confirmed": "Salida Confirmada",
@@ -42,7 +74,100 @@
       "lastSpots": "¡Últimos {spots} cupos!",
       "open": "Abierto"
     },
-    "empty": "Pronto publicaremos nuestros nuevos viajes grupales. ¡Mantente atento!",
+    "empty": "Pronto publicaremos nuestros nuevos viajes grupales acompañados. ¡Mantente atento!",
     "error": "Ocurrió un error al cargar los viajes grupales."
+  },
+  "medida": {
+    "hero": {
+      "badge": "Experiencias Privadas",
+      "title": "Viajes a Medida",
+      "subtitle": "Tú imaginas el viaje; nosotros y nuestros operadores locales lo hacemos realidad. Diseñado según tus fechas, ritmo e intereses."
+    },
+    "howItWorks": {
+      "title": "Cómo Diseñamos Tu Viaje a Medida",
+      "subtitle": "Un proceso cercano y personalizado en 4 etapas junto a nuestros especialistas.",
+      "s1": {
+        "title": "1. Cuéntanos tu sueño",
+        "desc": "Dinos qué destinos deseas visitar (Egipto, Jordania, Grecia, Turquía o combinación), cuántos días tienes y tu estilo de viaje preferido."
+      },
+      "s2": {
+        "title": "2. Co-diseño con el Operador",
+        "desc": "Conectamos con nuestro operador en destino para armar una propuesta óptima de ruta, hotelería de alto nivel y experiencias auténticas."
+      },
+      "s3": {
+        "title": "3. Ajustes al detalle",
+        "desc": "Modificamos los tiempos, sumamos actividades especiales o afinamos el presupuesto hasta que el itinerario quede perfecto para ti."
+      },
+      "s4": {
+        "title": "4. Tu viaje privado",
+        "desc": "Viaja con la máxima tranquilidad: itinerario coordinado al detalle y asistencia permanente 24/7 de nuestro equipo."
+      }
+    },
+    "inspiration": {
+      "title": "Rutas de Inspiración para Adaptar",
+      "subtitle": "Cualquiera de estos programas base puede modificarse según tus gustos, agregar días o combinar países."
+    },
+    "cta": {
+      "title": "¿Listo para crear un viaje único?",
+      "subtitle": "Conversemos sobre tus planes y te presentaremos una propuesta inicial sin compromiso.",
+      "button": "Cotizar Mi Viaje a Medida",
+      "whatsapp": "Hablar por WhatsApp"
+    }
+  },
+  "abiertos": {
+    "hero": {
+      "badge": "Circuitos Regulares",
+      "title": "Grupos Abiertos",
+      "subtitle": "Elige una fecha garantizada, llega a destino y súmate a un grupo de viajeros de distintas partes del mundo con guía en español."
+    },
+    "howItWorks": {
+      "title": "¿Cómo Funciona un Grupo Abierto?",
+      "subtitle": "La combinación perfecta entre tarifas convenientes, salidas frecuentes y la calidez de compartir la ruta con personas afines.",
+      "s1": {
+        "title": "1. Elige tu fecha ideal",
+        "desc": "Nuestros circuitos cuentan con salidas fijas y programadas durante todo el año, garantizando tu salida en la fecha que más te acomode."
+      },
+      "s2": {
+        "title": "2. Vuelo al punto de inicio",
+        "desc": "Compras tu pasaje aéreo para llegar a la ciudad de inicio del tour (por ejemplo, El Cairo o Estambul). Sueño Travel te asesora y apoya en la búsqueda de los mejores vuelos."
+      },
+      "s3": {
+        "title": "3. Integración en destino",
+        "desc": "Al aterrizar, el operador local te recibe y te une a un grupo de personas de diversos países que inician el mismo tour en esa fecha, guiados siempre en español."
+      },
+      "s4": {
+        "title": "4. Circuito completo y regreso",
+        "desc": "Realizan juntos el recorrido con hoteles, traslados y excursiones incluidas, finalizando en el punto de retorno donde tomas tu vuelo de regreso."
+      }
+    },
+    "advantages": {
+      "title": "¿Por qué elegir un Grupo Abierto?",
+      "a1": {
+        "title": "Salidas Garantizadas Todo el Año",
+        "desc": "Gran variedad de fechas para elegir según tus vacaciones."
+      },
+      "a2": {
+        "title": "Tarifas Más Convenientes",
+        "desc": "Al compartir servicios con otros viajeros disfrutas de precios preferenciales."
+      },
+      "a3": {
+        "title": "Experiencia Multicultural",
+        "desc": "Conoce y comparte experiencias con personas de distintas culturas e idiomas."
+      },
+      "a4": {
+        "title": "Soporte en Vuelos desde Chile",
+        "desc": "Te ayudamos a buscar y coordinar tus pasajes para llegar justo a tiempo."
+      }
+    },
+    "circuits": {
+      "title": "Circuitos Disponibles para Grupos Abiertos",
+      "subtitle": "Explora los programas regulares operados en destino con salidas programadas frecuentes."
+    },
+    "cta": {
+      "title": "¿Quieres sumarte a un Grupo Abierto?",
+      "subtitle": "Indícanos qué circuito te interesa y en qué mes te gustaría viajar para enviarte las fechas de salida y tarifas.",
+      "button": "Consultar Próximas Fechas",
+      "whatsapp": "Consultar por WhatsApp"
+    }
   }
 }

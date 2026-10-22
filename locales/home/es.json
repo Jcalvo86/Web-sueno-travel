@@ -8,6 +8,29 @@
     "cta": "Conoce nuestros próximos viajes",
     "logoAlt": "Sueño Travel Logo"
   },
+  "modalidades": {
+    "badge": "Nuestras Experiencias",
+    "title": "3 Formas de Viajar con Nosotros",
+    "subtitle": "Cada viajero es único. Elige la modalidad que mejor se adapte a tu estilo de viaje, tiempos y preferencias.",
+    "m1": {
+      "badge": "Acompañado desde Chile",
+      "title": "Viajes en Grupo",
+      "desc": "Grupos exclusivos con fechas fijas y cupos limitados. Un Tour Leader de Sueño Travel viaja contigo desde Chile y te acompaña durante todo el recorrido.",
+      "btn": "Ver Salidas Grupales"
+    },
+    "m2": {
+      "badge": "100% Personalizado",
+      "title": "Viajes a Medida",
+      "desc": "Tu itinerario privado diseñado junto al operador local según tus días, intereses y presupuesto, con total flexibilidad.",
+      "btn": "Diseñar a Medida"
+    },
+    "m3": {
+      "badge": "Súmate en Destino",
+      "title": "Grupos Abiertos",
+      "desc": "Elige una fecha fija de tour, llega a destino con nuestro apoyo en vuelos y únete a un grupo internacional con guía en español al mejor precio.",
+      "btn": "Ver Grupos Abiertos"
+    }
+  },
   "destinos": {
     "title": "Conoce nuestros viajes",
     "subtitle": "Seleccionamos cuidadosamente cada ruta para ofrecer el equilibrio perfecto entre historia milenaria y confort contemporáneo."

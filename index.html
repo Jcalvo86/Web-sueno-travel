@@ -86,6 +86,7 @@
             </div>
         </section>
 
+        <div id="section-modalidades"></div>
         <div id="section-destinations"></div>
         <div id="section-testimonials"></div>
         <div id="section-que-visitar"></div>
@@ -118,6 +119,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             // Cargamos todas las secciones en paralelo
             await Promise.all([
+                loadSection('section-modalidades', 'components/modalidades-viaje.html'),
                 loadSection('section-destinations', 'components/destinations.html'),
                 loadSection('section-testimonials', 'components/testimonials.html'),
                 loadSection('section-que-visitar', 'components/que-visitar.html'),
@@ -129,6 +131,9 @@
             ]);
             
             // Disparamos un evento para que i18n y home.js sepan que el DOM está completo
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                window.i18n.applyTranslations('home');
+            }
             window.dispatchEvent(new Event('componentsLoaded'));
         });
     </script>

@@ -19,9 +19,9 @@
     "title": "The Magic of your Destination",
     "noDesc": "No description available.",
     "features": {
-        "culture": "Living Culture",
-        "luxury": "Superior Luxury",
-        "guide": "Private Guide"
+      "culture": "Living Culture",
+      "luxury": "Superior Luxury",
+      "guide": "Private Guide"
     }
   },
   "map": {
@@ -37,12 +37,31 @@
       "title": "Special Departure"
     },
     "custom": {
-      "badge": "Tailor-made",
-      "title": "Private Trip",
-      "desc": "Choose your own dates and travel with your group.",
-      "btn": "Request Tailor-made"
+      "badge": "100% Tailor-Made",
+      "title": "Private Tailor-Made Trip",
+      "desc": "Take this same route on your own dates, with the complete freedom to adjust hotels, pace and experiences according to your preferences.",
+      "btn": "Request Tailor-Made"
     },
-    "available": "Available"
+    "available": "Available",
+    "group": {
+      "badge": "Accompanied from Chile",
+      "title": "Accompanied Group Trip",
+      "subtitle": "Exclusive departure with Tour Leader from Chile",
+      "to": "to the",
+      "capacity": "Available places",
+      "reserveBtn": "Reserve Space",
+      "noActiveTitle": "Upcoming Group Outings",
+      "noActiveDesc": "We are currently preparing the next accompanied dates for this route. Write to us to join the priority waiting list.",
+      "notifyBtn": "Check Next Departure"
+    },
+    "openGroup": {
+      "badge": "Join Destination",
+      "title": "International Open Group",
+      "desc": "Choose a fixed circuit date, travel to the destination with our flight support and take the tour with an international group guided in Spanish.",
+      "btn": "Check Open Group Dates"
+    },
+    "soldOut": "Exhausted",
+    "lastSpots": "Last {n} spots!"
   },
   "itinerary": {
     "title": "Day by Day Itinerary",

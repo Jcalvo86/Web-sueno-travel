@@ -1,7 +1,10 @@
 {
   "destinos": "Destinos",
   "viajes": "Viajes",
-  "viajesGrupales": "Viajes Grupales",
+  "viajesGrupales": "Viajes en Grupo",
+  "viajesMedida": "Viajes a Medida",
+  "gruposAbiertos": "Grupos Abiertos",
+  "todosItinerarios": "Todos los Itinerarios",
   "itinerarios": "Itinerarios",
   "conocenos": "Conócenos",
   "bitacora": "Bitácora",

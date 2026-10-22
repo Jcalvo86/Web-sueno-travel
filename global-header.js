@@ -16,9 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span data-i18n="viajes" data-i18n-ns="header">Viajes</span>
                     <span class="material-symbols-outlined text-sm transition-transform nav-dropdown-icon">expand_more</span>
                 </button>
-                <div class="nav-dropdown-menu absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 rounded-xl bg-white shadow-lg border border-outline-variant/10 z-50 py-2">
-                    <a id="nav-viajes-grupales" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="viajes-grupales.html" data-i18n="viajesGrupales" data-i18n-ns="header">Viajes Grupales</a>
-                    <a id="nav-itinerarios" class="block px-4 py-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors" href="itinerarios.html" data-i18n="itinerarios" data-i18n-ns="header">Itinerarios</a>
+                <div class="nav-dropdown-menu absolute left-1/2 -translate-x-1/2 top-full mt-2 w-64 rounded-2xl bg-white shadow-xl border border-outline-variant/15 z-50 py-2.5">
+                    <a id="nav-viajes-grupales" class="block px-5 py-2.5 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors whitespace-nowrap" href="viajes-grupales.html" data-i18n="viajesGrupales" data-i18n-ns="header">Viajes en Grupo</a>
+                    <a id="nav-viajes-medida" class="block px-5 py-2.5 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors whitespace-nowrap" href="viajes-a-medida.html" data-i18n="viajesMedida" data-i18n-ns="header">Viajes a Medida</a>
+                    <a id="nav-grupos-abiertos" class="block px-5 py-2.5 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:bg-primary/5 hover:text-primary transition-colors whitespace-nowrap" href="grupos-abiertos.html" data-i18n="gruposAbiertos" data-i18n-ns="header">Grupos Abiertos</a>
+                    <div class="my-1.5 border-t border-outline-variant/15"></div>
+                    <a id="nav-itinerarios" class="block px-5 py-2 font-label-md text-xs uppercase tracking-wider text-on-surface-variant/80 hover:bg-primary/5 hover:text-primary transition-colors whitespace-nowrap" href="itinerarios.html" data-i18n="todosItinerarios" data-i18n-ns="header">Todos los Itinerarios</a>
                 </div>
             </div>
             <!-- Dropdown Destinos -->
@@ -65,8 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <nav class="flex flex-col gap-4">
                 <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant/60 font-semibold" data-i18n="viajes" data-i18n-ns="header">Viajes</span>
                 <div class="flex flex-col gap-3 pl-3 border-l-2 border-outline-variant/10 pb-4">
-                    <a id="mobile-nav-viajes-grupales" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="viajes-grupales.html" data-i18n="viajesGrupales" data-i18n-ns="header">Viajes Grupales</a>
-                    <a id="mobile-nav-itinerarios" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="itinerarios.html" data-i18n="itinerarios" data-i18n-ns="header">Itinerarios</a>
+                    <a id="mobile-nav-viajes-grupales" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="viajes-grupales.html" data-i18n="viajesGrupales" data-i18n-ns="header">Viajes en Grupo</a>
+                    <a id="mobile-nav-viajes-medida" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="viajes-a-medida.html" data-i18n="viajesMedida" data-i18n-ns="header">Viajes a Medida</a>
+                    <a id="mobile-nav-grupos-abiertos" class="font-label-md text-base uppercase tracking-wider text-on-surface-variant hover:text-primary pb-1" href="grupos-abiertos.html" data-i18n="gruposAbiertos" data-i18n-ns="header">Grupos Abiertos</a>
+                    <div class="my-0.5 border-t border-outline-variant/10"></div>
+                    <a id="mobile-nav-itinerarios" class="font-label-md text-sm uppercase tracking-wider text-on-surface-variant/75 hover:text-primary pb-1" href="itinerarios.html" data-i18n="todosItinerarios" data-i18n-ns="header">Todos los Itinerarios</a>
                 </div>
                 <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant/60 font-semibold" data-i18n="destinos" data-i18n-ns="header">Destinos</span>
                 <div class="flex flex-col gap-3 pl-3 border-l-2 border-outline-variant/10">
@@ -173,6 +179,36 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mobileGrupales) {
                 mobileGrupales.classList.remove('text-on-surface-variant');
                 mobileGrupales.classList.add('text-secondary', 'font-bold');
+            }
+        } else if (pathname.includes('viajes-a-medida.html')) {
+            const navMedida = document.getElementById('nav-viajes-medida');
+            const mobileMedida = document.getElementById('mobile-nav-viajes-medida');
+            if (viajesBtn) {
+                viajesBtn.classList.remove('text-on-surface-variant');
+                viajesBtn.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
+            }
+            if (navMedida) {
+                navMedida.classList.remove('text-on-surface-variant');
+                navMedida.classList.add('text-primary', 'font-bold');
+            }
+            if (mobileMedida) {
+                mobileMedida.classList.remove('text-on-surface-variant');
+                mobileMedida.classList.add('text-secondary', 'font-bold');
+            }
+        } else if (pathname.includes('grupos-abiertos.html')) {
+            const navAbiertos = document.getElementById('nav-grupos-abiertos');
+            const mobileAbiertos = document.getElementById('mobile-nav-grupos-abiertos');
+            if (viajesBtn) {
+                viajesBtn.classList.remove('text-on-surface-variant');
+                viajesBtn.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-secondary', 'pb-1');
+            }
+            if (navAbiertos) {
+                navAbiertos.classList.remove('text-on-surface-variant');
+                navAbiertos.classList.add('text-primary', 'font-bold');
+            }
+            if (mobileAbiertos) {
+                mobileAbiertos.classList.remove('text-on-surface-variant');
+                mobileAbiertos.classList.add('text-secondary', 'font-bold');
             }
         } else if (pathname.includes('itinerarios.html')) {
             const navItin = document.getElementById('nav-itinerarios');
@@ -329,7 +365,9 @@ window.openContactModal = function(tripType = null, tripTitle = null, date = nul
             const finalTitle = tripTitle || (document.querySelector('h1') ? document.querySelector('h1').textContent.trim() : null);
             
             if (tripType === 'group' && finalTitle) {
-                msg = `Hola, quiero reservar mi cupo para la salida grupal de ${finalTitle} en la fecha: ${date || 'pronto'}.\n\nPor favor contáctenme para continuar con la reserva.`;
+                msg = `Hola, quiero reservar mi cupo para el viaje en grupo acompañado de ${finalTitle} en la fecha: ${date || 'pronto'}.\n\nPor favor contáctenme para continuar con la reserva.`;
+            } else if (tripType === 'open-group' && finalTitle) {
+                msg = `Hola, me interesa sumarme a un Grupo Abierto para el circuito: ${finalTitle}.\n\nPor favor indíquenme las próximas fechas disponibles y asistencia en vuelos.`;
             } else if (tripType === 'custom' && finalTitle) {
                 msg = `Hola, me interesa armar mi viaje a medida basado en el itinerario: ${finalTitle}.\n\nMis fechas ideales son: \n\nQuedo a la espera de su respuesta.`;
             } else if (path.includes('viaje.html') && finalTitle) {

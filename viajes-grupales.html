@@ -42,17 +42,52 @@
 <div id="global-header"></div>
 
 <!-- Hero Section -->
-<header class="relative h-[45vh] w-full flex items-center justify-center overflow-hidden">
+<header class="relative h-[48vh] w-full flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
         <div class="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105" style="background-image: url('Imagenes/ParejaEgipto.webp')">
         </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary/95"></div>
+        <div class="absolute inset-0 bg-primary/20"></div>
     </div>
-    <div class="relative z-10 text-center px-margin-mobile max-w-4xl">
-        <h1 class="font-display-lg text-4xl md:text-6xl text-white mb-3 font-extrabold tracking-tight" data-i18n="groups.hero.title">Viajes Grupales</h1>
-        <p class="text-white/90 text-body-lg max-w-2xl mx-auto" data-i18n="groups.hero.subtitle">Únete a nuestros grupos y descubre el mundo en la mejor compañía, con el respaldo de nuestros expertos.</p>
+    <div class="relative z-10 text-center px-margin-mobile max-w-4xl pt-8">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary/90 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider mb-4 border border-white/25 shadow-lg" data-i18n="groups.hero.badge">Exclusivo Sueño Travel</span>
+        <h1 class="font-display-lg text-4xl md:text-6xl text-white mb-4 font-extrabold tracking-tight drop-shadow-[0_3px_12px_rgba(0,0,0,0.8)]" data-i18n="groups.hero.title">Viajes en Grupo</h1>
+        <p class="text-white text-body-lg max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]" data-i18n="groups.hero.subtitle">Grupos exclusivos creados junto a nuestro operador con fechas fijas y cupos limitados. Un Tour Leader de Sueño Travel viaja desde Chile y está contigo en todo momento.</p>
     </div>
 </header>
+
+<!-- Pillars Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop -mt-8 relative z-20 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-surface border border-outline-variant/40 rounded-3xl p-6 md:p-8 shadow-xl backdrop-blur-md">
+        <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-2xl">person_pin_circle</span>
+            </div>
+            <div>
+                <h3 class="font-bold text-primary text-base mb-1" data-i18n="groups.pillars.p1.title">Acompañante desde Chile</h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="groups.pillars.p1.desc">Un Tour Leader experto de Sueño Travel viaja desde Santiago y te acompaña durante cada día del viaje.</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-2xl">verified</span>
+            </div>
+            <div>
+                <h3 class="font-bold text-primary text-base mb-1" data-i18n="groups.pillars.p2.title">Itinerario al Pie de la Letra</h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="groups.pillars.p2.desc">Organización milimétrica y rigurosa en cada visita, traslado y hotel para que vivas una experiencia sin estrés.</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-2xl">group</span>
+            </div>
+            <div>
+                <h3 class="font-bold text-primary text-base mb-1" data-i18n="groups.pillars.p3.title">Cupos Limitados</h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="groups.pillars.p3.desc">Grupos reducidos para garantizar atención personalizada, camaradería y un viaje confortable.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <main class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
     <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary text-center mb-4" data-i18n="groups.main.title">Nuestras Próximas Salidas</h2>
@@ -194,6 +229,10 @@
                             <div class="absolute top-4 left-4 ${statusColor} font-bold text-[10px] px-2.5 py-1 rounded-full shadow-sm uppercase tracking-wider border">
                                 ${statusLabel}
                             </div>
+                            <div class="absolute bottom-3 left-4 bg-primary/90 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 border border-white/20">
+                                <span class="material-symbols-outlined text-[13px]">person_pin_circle</span>
+                                <span data-i18n="groups.card.accompaniedBadge">${window.i18n?.t('groups.card.accompaniedBadge', 'itineraries') || 'Acompañado desde Chile'}</span>
+                            </div>
                         </div>
                         <div class="p-8 space-y-3 flex-1 flex flex-col">
                             <h3 class="font-display-lg text-xl font-bold text-primary group-hover:text-secondary transition-colors line-clamp-2">${tripTitle}</h3>
@@ -265,6 +304,16 @@
     }
 
     window.addEventListener('DOMContentLoaded', loadGroupTrips);
+</script>
+
+<!-- Contact Modal Integration -->
+<div id="contact-modal-container"></div>
+<script>
+    fetch('components/contact-modal.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('contact-modal-container').innerHTML = html;
+        });
 </script>
 
 <!-- Footer Integration -->

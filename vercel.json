@@ -19,6 +19,11 @@
       "source": "/viajar-en-grupo.html",
       "destination": "/articulo.html?id=viajar-en-grupo",
       "permanent": true
+    },
+    {
+      "source": "/egipto-a-medida.html",
+      "destination": "/viajes-a-medida.html",
+      "permanent": true
     }
   ],
   "rewrites": [

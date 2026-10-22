@@ -131,5 +131,52 @@ Este archivo (`project_state.md`) sirve como el **contexto temporal y registro d
   - **Internacionalización (i18n):** Se crearon los diccionarios oficiales [locales/destination/es.json](file:///c:/andreia/Web-sueno-travel/locales/destination/es.json) y [locales/destination/en.json](file:///c:/andreia/Web-sueno-travel/locales/destination/en.json) y se validaron con `node scripts/auto-translate.js`.
   - **Control de Ciclo de Vida:** Se reemplazó la asignación a `window.onload` por una comprobación resiliente de `document.readyState` y suscripción al evento `languageChanged`.
 
+- **Reestructuración de "Viajes" en 3 Modalidades Bien Diferenciadas:**
+  - **Diagnóstico:** Anteriormente el menú "Viajes" dividía entre "Viajes Grupales" e "Itinerarios", lo cual no reflejaba con claridad las 3 modalidades reales de viaje que ofrece la agencia (Viajes en Grupo acompañados desde Chile, Viajes a Medida privados, y Grupos Abiertos internacionales en destino), dejando "Itinerarios" como un concepto confuso al lado de los viajes grupales.
+  - **Decisión de Arquitectura y Nomenclatura:** Se consolidaron las 3 modalidades oficiales:
+    1. **Viajes en Grupo** (`viajes-grupales.html`): Grupos exclusivos con fechas fijas, cupos limitados y un Tour Leader de Sueño Travel que viaja desde Chile y acompaña al grupo durante todo el recorrido.
+    2. **Viajes a Medida** (`viajes-a-medida.html`): Itinerarios privados diseñados paso a paso con el operador según gustos, días e intereses del viajero.
+    3. **Grupos Abiertos** (`grupos-abiertos.html`): Salidas en fechas fijas donde el viajero llega por su cuenta (con asistencia en pasajes aéreos de Sueño Travel) y se integra en destino a un grupo internacional con guía en español.
+    4. **Itinerarios Sugeridos** (`itinerarios.html`): Biblioteca y catálogo de programas prediseñados de inspiración, accesible dentro del menú "Viajes" mediante un separador visual y desde las páginas de A Medida y Grupos Abiertos.
+  - **Actualización de Navegación Global (`global-header.js`):**
+    - Desplegable de escritorio y drawer móvil actualizados con las 3 modalidades + enlace a todos los itinerarios.
+    - Detección activa de ruta y apertura por hover y clic para `viajes-grupales.html`, `viajes-a-medida.html`, `grupos-abiertos.html` e `itinerarios.html`.
+    - Expansión de `openContactModal` para soportar el contexto `open-group` con mensajes predefinidos en el formulario.
+  - **Páginas Creadas y Actualizadas:**
+    - `viajes-grupales.html`: Hero reforzado, sección explicativa de 3 pilares del grupo acompañado (Tour leader desde Chile, itinerario riguroso, cupos limitados) y badge en tarjetas de salida.
+    - `viajes-a-medida.html`: Nueva página con proceso de co-diseño en 4 pasos, tarjetas de programas de inspiración y formulario/CTA de cotización personalizada.
+    - `grupos-abiertos.html`: Nueva página con infografía paso a paso (Vuelo a destino + Asistencia en pasajes + Integración al grupo), ventajas comparativas y listado dinámico de circuitos regulares.
+    - `itinerarios.html`: Banner superior interactivo aclarando cómo vivir cada itinerario en cualquiera de las 3 modalidades.
+    - `index.html` + `components/modalidades-viaje.html`: Nueva sección de alto impacto en el Home ("3 Formas de Viajar con Nosotros") con 3 tarjetas interactivas enlazando a cada sección.
+  - **Internacionalización y SEO:**
+    - Nuevos diccionarios y claves en `locales/header/`, `locales/home/` y `locales/itineraries/` para español e inglés.
+    - Sincronización automática validada con `node scripts/auto-translate.js`.
+    - Indexación de las nuevas rutas en `api/sitemap.js` y redirección permanente 301 de `/egipto-a-medida.html` a `/viajes-a-medida.html` en `vercel.json`.
+    - Compilación minificada de CSS ejecutada con `npm run build:css`.
+
+  - **Ajuste de Escala Visual en Menú Desplegable "Viajes":**
+    - Se amplió el ancho del menú flotante de `w-56` (224px) a `w-64` (256px), se agregó `whitespace-nowrap` a cada enlace y se ajustó el espaciado a `px-5 py-2.5 rounded-2xl shadow-xl`.
+    - Esto evita que los textos largos ("Viajes en Grupo", "Viajes a Medida", "Grupos Abiertos", "Todos los Itinerarios") se quiebren en dos renglones apretados, permitiendo una lectura limpia en una sola línea con márgenes holgados y estética de lujo.
+
+  - **Mejora de Legibilidad y Contraste en Cabeceras Hero:**
+    - Se calibró el contraste visual en las cabeceras de `grupos-abiertos.html`, `viajes-a-medida.html`, `viajes-grupales.html` e `itinerarios.html`.
+    - Se incrementó la profundidad del degradado oscuro (`from-primary/80 via-primary/60 to-primary/95` más un velo base `bg-primary/20`), eliminando el lavado que generaban las fotografías con textura clara (ruinas, casitas y columnas).
+    - Se añadieron sombras cinematográficas suaves (`drop-shadow-[0_3px_12px_rgba(0,0,0,0.8)]` en H1 y `drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]` en subtítulos) para garantizar que las letras blancas resalten con máxima nitidez.
+    - Se transformaron los badges superiores a contenedores de alto contraste (`bg-primary/90 text-white border border-white/25 shadow-lg`).
+
+  - **Resolución de Duplicación y Visualización de las 3 Modalidades en cada Itinerario (`viaje.html`):**
+    - **Causa Raíz de Duplicación:** Al iniciar la vista, `loadTripData()` se ejecutaba en `DOMContentLoaded` y simultáneamente `i18n.js` disparaba el evento `languageChanged`, ejecutando una segunda llamada concurrente a `renderDepartures()`. Ambas llamadas esperaban de forma asíncrona a `DataSource.getItems('departure')` y luego ambas insertaban sus tarjetas en el DOM, duplicando las fechas y tarjetas privadas.
+    - **Solución Técnica:** Se implementó un semáforo de concurrencia (`isTripLoading` / `pendingTripReload`) en `src/js/viaje.js` y se pasó la limpieza `grid.innerHTML = ''` inmediatamente antes de la inserción síncrona en el DOM con deduplicación por ID.
+    - **Estructuración de las 3 Modalidades por Itinerario:**
+      1. *Viaje en Grupo Acompañado (Cerrado):* Muestra la fecha exacta de salida, cupos disponibles, badge *"Acompañado desde Chile"* y botón *"Reservar Cupo"*. Si no hay salida activa, muestra estado en preparación con botón *"Consultar Próxima Salida"*.
+      2. *Viaje Privado a Medida (Propio):* Muestra badge *"100% Personalizado"*, explicación de chofer y guías privados con fechas a elección y botón *"Cotizar a Medida"*.
+      3. *Grupo Abierto Internacional:* Muestra badge *"Súmate en Destino"*, explicación de fechas regulares con asistencia en pasajes aéreos y botón *"Consultar Fechas de Grupo Abierto"*.
+    - Sincronización automática de i18n (`locales/trip/es.json` y `en.json`) y compilación en `dist/styles.css`.
+    - Servidor Vite levantado y validado en `http://localhost:5175/`.
+
+  - **Ajuste de Redacción en 'Viajes a Medida' (Eliminación de chofer y guías privados):**
+    - Se eliminó la mención explícita a *"chofer y guías privados"* en todas las descripciones de Viajes a Medida / Viaje Privado en `src/js/viaje.js`, `viajes-a-medida.html`, `itinerarios.html`, `components/modalidades-viaje.html` y en los diccionarios de i18n (`locales/trip/`, `locales/itineraries/`, `locales/home/` tanto en español como en inglés).
+    - La redacción ahora se enfoca en la flexibilidad, personalización de ritmo, hoteles y experiencias a gusto del viajero.
+
 *(Agrega nuevas entradas aquí al finalizar tus tareas en futuras sesiones)*
 

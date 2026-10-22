@@ -79,5 +79,28 @@
   "nextTrip": "Next group trip:",
   "days": "Days",
   "nights": "Nights",
-  "verItinerario": "View Itinerary"
+  "verItinerario": "View Itinerary",
+  "modalidades": {
+    "badge": "Our Experiences",
+    "title": "3 Ways to Travel with Us",
+    "subtitle": "Each traveler is unique. Choose the mode that best suits your travel style, times and preferences.",
+    "m1": {
+      "badge": "Accompanied from Chile",
+      "title": "Group Trips",
+      "desc": "Exclusive groups with fixed dates and limited spaces. A Sueño Travel Tour Leader travels with you from Chile and accompanies you throughout the tour.",
+      "btn": "See Group Outings"
+    },
+    "m2": {
+      "badge": "100% Personalized",
+      "title": "Tailor Made Trips",
+      "desc": "Your private itinerary designed together with the local operator according to your days, interests and budget, with total flexibility.",
+      "btn": "Custom Design"
+    },
+    "m3": {
+      "badge": "Join Destination",
+      "title": "Open Groups",
+      "desc": "Choose a fixed tour date, arrive at your destination with our flight support and join an international group with a guide in Spanish at the best price.",
+      "btn": "See Open Groups"
+    }
+  }
 }

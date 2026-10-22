@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-title-tag="itineraries:medidaPageTitle">Viajes a Medida | Sueño Travel</title>
+    <meta name="description" id="meta-description" content="Diseñamos tu viaje soñado en privado y a tu propio ritmo, junto a nuestros operadores y expertos en destino.">
+    
+    <!-- Canonical & Open Graph -->
+    <link rel="canonical" href="https://suenotravel.cl/viajes-a-medida.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sueño Travel" />
+    <meta property="og:url" content="https://suenotravel.cl/viajes-a-medida.html" />
+    <meta property="og:title" content="Viajes a Medida | Sueño Travel" />
+    <meta property="og:description" content="Diseñamos tu viaje soñado en privado y a tu propio ritmo, junto a nuestros operadores y expertos en destino." />
+    <meta property="og:image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://suenotravel.cl/viajes-a-medida.html" />
+    <meta name="twitter:title" content="Viajes a Medida | Sueño Travel" />
+    <meta name="twitter:description" content="Diseñamos tu viaje soñado en privado y a tu propio ritmo, junto a nuestros operadores y expertos en destino." />
+    <meta name="twitter:image" content="https://suenotravel.cl/Imagenes/Sueno-travel-1.webp" />
+
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- CSS Único Compilado y Optimizado de Sueño Travel -->
+    <link rel="stylesheet" href="dist/styles.css" />
+    <!-- CMS Adapters -->
+    <script src="controlpanel/adapters/adapter-interface.js"></script>
+    <script src="controlpanel/adapters/firebase-adapter.js"></script>
+    <script src="crm-config.js"></script>
+    <script src="controlpanel/data-source-config.js"></script>
+    <!-- Dynamic Header & i18n -->
+    <script src="src/js/i18n.js"></script>
+    <script src="global-header.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-20" data-page-ns="itineraries">
+<div id="global-header"></div>
+
+<!-- Hero Section -->
+<header class="relative h-[48vh] w-full flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <div class="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105" style="background-image: url('Imagenes/Sueno-travel-1.webp')">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary/95"></div>
+        <div class="absolute inset-0 bg-primary/20"></div>
+    </div>
+    <div class="relative z-10 text-center px-margin-mobile max-w-4xl pt-8">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary/90 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider mb-4 border border-white/25 shadow-lg" data-i18n="medida.hero.badge">Experiencias Privadas</span>
+        <h1 class="font-display-lg text-4xl md:text-6xl text-white mb-4 font-extrabold tracking-tight drop-shadow-[0_3px_12px_rgba(0,0,0,0.8)]" data-i18n="medida.hero.title">Viajes a Medida</h1>
+        <p class="text-white text-body-lg max-w-2xl mx-auto leading-relaxed mb-6 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]" data-i18n="medida.hero.subtitle">Tú imaginas el viaje; nosotros y nuestros operadores locales lo hacemos realidad. Diseñado según tus fechas, ritmo e intereses.</p>
+        <button onclick="if(window.openContactModal) window.openContactModal('custom');" class="bg-secondary text-white px-8 py-3.5 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-xl uppercase tracking-wider" data-i18n="medida.cta.button">
+            Cotizar Mi Viaje a Medida
+        </button>
+    </div>
+</header>
+
+<!-- How It Works Section -->
+<section class="py-16 md:py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <div class="text-center mb-12 space-y-3">
+        <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary" data-i18n="medida.howItWorks.title">Cómo Diseñamos Tu Viaje a Medida</h2>
+        <p class="text-on-surface-variant max-w-2xl mx-auto" data-i18n="medida.howItWorks.subtitle">Un proceso cercano y personalizado en 4 etapas junto a nuestros especialistas.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">edit_note</span>
+            </div>
+            <h3 class="font-display-sm text-lg font-bold text-primary mb-2" data-i18n="medida.howItWorks.s1.title">1. Cuéntanos tu sueño</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="medida.howItWorks.s1.desc">Dinos qué destinos deseas visitar (Egipto, Jordania, Grecia, Turquía o combinación), cuántos días tienes y tu estilo de viaje preferido.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">handshake</span>
+            </div>
+            <h3 class="font-display-sm text-lg font-bold text-primary mb-2" data-i18n="medida.howItWorks.s2.title">2. Co-diseño con el Operador</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="medida.howItWorks.s2.desc">Conectamos con nuestro operador en destino para armar una propuesta óptima de ruta, hotelería de alto nivel y experiencias auténticas.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">tune</span>
+            </div>
+            <h3 class="font-display-sm text-lg font-bold text-primary mb-2" data-i18n="medida.howItWorks.s3.title">3. Ajustes al detalle</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="medida.howItWorks.s3.desc">Modificamos los tiempos, sumamos actividades especiales o afinamos el presupuesto hasta que el itinerario quede perfecto para ti.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-surface border border-outline-variant/40 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow relative">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">verified_user</span>
+            </div>
+            <h3 class="font-display-sm text-lg font-bold text-primary mb-2" data-i18n="medida.howItWorks.s4.title">4. Tu viaje privado</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed" data-i18n="medida.howItWorks.s4.desc">Viaja con la máxima tranquilidad: itinerario coordinado al detalle y asistencia permanente 24/7 de nuestro equipo.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Inspiration Itineraries Section -->
+<section class="py-16 bg-surface-container-low border-y border-outline-variant/20 px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-container-max mx-auto">
+        <div class="text-center mb-12 space-y-3">
+            <h2 class="font-display-lg text-3xl md:text-4xl font-bold text-primary" data-i18n="medida.inspiration.title">Rutas de Inspiración para Adaptar</h2>
+            <p class="text-on-surface-variant max-w-2xl mx-auto" data-i18n="medida.inspiration.subtitle">Cualquiera de estos programas base puede modificarse según tus gustos, agregar días o combinar países.</p>
+        </div>
+
+        <div id="inspiration-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Skeleton Card 1 -->
+            <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+                <div class="h-56 bg-outline-variant/20"></div>
+                <div class="p-6 space-y-4 flex-1 flex flex-col">
+                    <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                    <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+                </div>
+            </div>
+            <!-- Skeleton Card 2 -->
+            <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+                <div class="h-56 bg-outline-variant/20"></div>
+                <div class="p-6 space-y-4 flex-1 flex flex-col">
+                    <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                    <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+                </div>
+            </div>
+            <!-- Skeleton Card 3 -->
+            <div class="bg-surface border border-outline-variant/30 rounded-3xl overflow-hidden shadow-sm animate-pulse flex flex-col">
+                <div class="h-56 bg-outline-variant/20"></div>
+                <div class="p-6 space-y-4 flex-1 flex flex-col">
+                    <div class="h-6 bg-outline-variant/20 rounded-md w-3/4"></div>
+                    <div class="h-4 bg-outline-variant/20 rounded-md w-1/2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Luxury CTA Section -->
+<section class="py-20 px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden relative bg-primary text-white p-10 md:p-16 text-center shadow-2xl">
+        <div class="relative z-10 space-y-6">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-bold uppercase tracking-wider border border-white/20">Sueño Travel Boutique</span>
+            <h2 class="font-display-lg text-3xl md:text-5xl font-bold" data-i18n="medida.cta.title">¿Listo para crear un viaje único?</h2>
+            <p class="text-white/80 max-w-xl mx-auto text-base" data-i18n="medida.cta.subtitle">Conversemos sobre tus planes y te presentaremos una propuesta inicial sin compromiso.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
+                <button onclick="if(window.openContactModal) window.openContactModal('custom');" class="bg-secondary text-white px-8 py-4 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-xl uppercase tracking-wider w-full sm:w-auto" data-i18n="medida.cta.button">
+                    Cotizar Mi Viaje a Medida
+                </button>
+                <a href="https://wa.me/201110572308" target="_blank" class="flex items-center justify-center gap-2 border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-xl font-bold text-sm transition-all w-full sm:w-auto">
+                    <span class="material-symbols-outlined text-lg">chat</span>
+                    <span data-i18n="medida.cta.whatsapp">Hablar por WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dynamic Loader for Inspiration Itineraries -->
+<script>
+    const loadInspirationTrips = async () => {
+        try {
+            let checks = 0;
+            while (!window.DataSource && checks < 20) {
+                await new Promise(r => setTimeout(r, 100));
+                checks++;
+            }
+            if (!window.DataSource) return;
+
+            const travels = await window.DataSource.getItems('travel');
+            const products = await window.DataSource.getItems('cms_products');
+            const allTrips = [...(travels || []), ...(products || [])];
+
+            const activeTrips = allTrips.filter(t => {
+                const isDraft = t.is_published !== undefined ? !t.is_published : (t.isPublished !== undefined ? !t.isPublished : (t.isDraft || false));
+                const tripTitle = (t.title || t.name || '').toLowerCase().trim();
+                return !isDraft && t.status !== 'hidden' && tripTitle !== 'egipto 1' && tripTitle !== 'turquia';
+            });
+
+            const grid = document.getElementById('inspiration-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            if (activeTrips.length > 0) {
+                activeTrips.slice(0, 6).forEach(trip => {
+                    const imgUrl = trip.headerImageUrl || trip.header_image_url || trip.imageUrl || trip.image_url || (trip.itinerary && trip.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
+                    const tripTitle = trip.title || trip.name;
+                    const duration = trip.durationDays || trip.duration_days || trip.duration || 'Consultar';
+                    let sub = trip.destinationsSummary || trip.destinations_summary || trip.subtitle || '';
+                    if (Array.isArray(sub)) sub = sub.join(', ');
+                    sub = sub.replace(/\s*\([^)]*\)/g, '');
+
+                    const card = document.createElement('div');
+                    card.className = 'bg-surface border border-outline-variant/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col';
+                    card.innerHTML = `
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${tripTitle}">
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                ${duration} <span>${window.i18n?.t('card.days', 'itineraries') || 'días'}</span>
+                            </div>
+                            <div class="absolute bottom-3 left-4 bg-secondary/90 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 border border-white/20">
+                                <span class="material-symbols-outlined text-[12px]">tune</span>
+                                <span>100% Adaptable</span>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3 flex-1 flex flex-col">
+                            <h3 class="font-display-sm text-xl font-bold text-primary">${tripTitle}</h3>
+                            <p class="text-on-surface-variant text-sm line-clamp-2 flex-1 flex items-center">
+                                <span class="material-symbols-outlined text-base mr-1 opacity-70">location_on</span>
+                                ${sub}
+                            </p>
+                            <div class="pt-4 border-t border-outline-variant/30 flex justify-between items-center mt-auto">
+                                <a href="viaje.html?nombre=${window.generateSlug ? window.generateSlug(tripTitle) : encodeURIComponent(tripTitle)}" class="text-primary font-bold text-xs hover:underline flex items-center gap-1">
+                                    <span>${window.i18n?.t('card.viewProgram', 'itineraries') || 'Ver Ruta Base'}</span>
+                                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </a>
+                                <button onclick="if(window.openContactModal) window.openContactModal('custom', '${tripTitle.replace(/'/g, "\\'")}')" class="bg-secondary text-white px-3.5 py-2 rounded-lg font-bold text-xs hover:bg-secondary/90 transition-all shadow-sm">
+                                    <span>${window.i18n?.t('card.adaptMedida', 'itineraries') || 'Personalizar'}</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        } catch (e) {
+            console.error('Error loading inspiration trips:', e);
+        }
+    };
+
+    if (!window.generateSlug) {
+        window.generateSlug = (text) => {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
+        };
+    }
+
+    window.addEventListener('DOMContentLoaded', loadInspirationTrips);
+</script>
+
+<!-- Contact Modal Integration -->
+<div id="contact-modal-container"></div>
+<script>
+    fetch('components/contact-modal.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('contact-modal-container').innerHTML = html;
+        });
+</script>
+
+<!-- Footer Integration -->
+<div id="section-footer"></div>
+<script>
+    fetch('components/footer.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('section-footer').innerHTML = html;
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                window.i18n.applyTranslations('itineraries');
+            }
+        });
+</script>
+</body>
+</html>

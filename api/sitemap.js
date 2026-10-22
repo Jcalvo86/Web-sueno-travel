@@ -14,6 +14,8 @@ export default async function handler(req) {
         { loc: '/conocenos.html', priority: 0.8, changefreq: 'monthly' },
         { loc: '/blog.html', priority: 0.8, changefreq: 'weekly' },
         { loc: '/viajes-grupales.html', priority: 0.9, changefreq: 'weekly' },
+        { loc: '/viajes-a-medida.html', priority: 0.9, changefreq: 'weekly' },
+        { loc: '/grupos-abiertos.html', priority: 0.9, changefreq: 'weekly' },
         { loc: '/itinerarios.html', priority: 0.9, changefreq: 'weekly' }
     ];
 
