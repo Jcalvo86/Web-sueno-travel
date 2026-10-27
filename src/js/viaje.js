@@ -235,8 +235,16 @@ import SEOManager from './seo-manager.js';
                             })(),
                             regionMaps: regionMaps,
                             // Additional attributes
-                            durationDays: found.duration_days || found.durationDays || found.duration || 10,
-                            durationNights: found.duration_nights || found.durationNights || 9,
+                            durationDays: Math.max(
+                                Number(found.duration_days) || 0,
+                                Number(found.durationDays) || 0,
+                                Array.isArray(found.itinerary) ? found.itinerary.length : 0
+                            ) || found.duration || 10,
+                            durationNights: Math.max(
+                                Number(found.duration_nights) || 0,
+                                Number(found.durationNights) || 0,
+                                (Array.isArray(found.itinerary) && found.itinerary.length > 1) ? found.itinerary.length - 1 : 0
+                            ) || 9,
                             hotelTaxUSD: found.hotelTaxUSD !== undefined ? found.hotelTaxUSD : (found.pricing_and_notes?.hotelTaxUSD || 0),
                             visaCostUSD: found.visaCostUSD !== undefined ? found.visaCostUSD : (found.pricing_and_notes?.visaCostUSD || 0),
                             disclaimer: found.disclaimer || found.pricing_and_notes?.disclaimer || '',

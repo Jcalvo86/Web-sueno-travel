@@ -4,11 +4,11 @@
 // GLOBALS & CONSTANTS
 // ==========================================
 const FALLBACK_IMAGES = {
-    egipto: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC21HcAA-eLGjKKNOu3nimssvF1BzqrZtxgkWzFqn2uFvvWu9zubXPFmBkhx5DX9ydjuCDnZKWESOXoJ2MsU9GCt3300gpNHueS3SdnDtNJQIaD6dBxkBsT-QbTYSba0nADYE2ve4nPbO2UIu7VkWIxIsXxZtpvpOuQTxpOQzdYn-ZqtWATFj04Cz-iqQHZoVf_vYqQxBTPRm1Lsw3wtTKfAKPIQtC8Ze3Pa3TqGQoxtL4lCZtVjSYl',
-    jordania: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARW6O-iYW0cCE6qywTlen-VnUlwIUb5izt7istCid-AL43a3K2iVhX-1iaWdiN9go_61I1HjP2wmx0ESzzU76cKCqu_NGztzUyHashzvY7yORPqLjSACCgyTe00Bv3SGaolY5usEnDlMA22mrWvyIH3qLiNCAND0fPv7sE7aHpcjejcS39u2EH1RSrxy7cWo384KDgmKOTuV1sFuWOQePMUmXENlA8p4n97TgP78Y_2rDr8TGlO95v',
-    grecia: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBRPNyuNnsvszdmjNwdzlgJZch5nLMNYdygJFrwX6MkTGbQ1--zQZ3gtYkh9xhP3A_uIsRRw_XVrGg9xVelBtyqHkVQ0YlCZ2Icf3Gt8eHOC7xyzjCVimJZDYfl0cLgooVTtoQNP__K-b4Mb1GRvxOieqjqV5NIS1UOAsO1ikMYPYZU6shDczugSPq5VmF8ZyS_hYuICiRFLYam8KZSxLMOTk03DaQPdnen_6_FHl1LL89KVLDtWfSV',
-    turquia: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB',
-    turquía: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB'
+    egipto: 'Imagenes/egipto5.webp',
+    jordania: 'Imagenes/jordania-alex-vasey.webp',
+    grecia: 'Imagenes/athens-the-parthenon-on-the-acropolis-2026-03-25-22-47-31-utc.webp',
+    turquia: 'Imagenes/blue-mosque-in-istanbul-2026-03-17-19-36-03-utc.webp',
+    turquía: 'Imagenes/blue-mosque-in-istanbul-2026-03-17-19-36-03-utc.webp'
 };
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920';
@@ -78,8 +78,8 @@ const VISITAR_DATA = {
     },
     grecia: {
         images: [
-            'https://lh3.googleusercontent.com/aida-public/AB6AXuAwdc1ko-NLsluSmskx1Bmf6ipIa1d--LMQLjDSBMycp5DstQUXDzi0pWZrgxF6O23rUcHKTfnA-pNLDTm4Pb3lFnaATkWfp6rZA1-_yfugX1POWmIXHeOM7GcsFj81cX6wrwO21xsHSSsEc9rHBpnenOTnsHozloXgtyQlOwY8E1FP1wUnei7IwzNvISidqZh1X0w7iRmkjVw1Xvb6RVVsjj7a8DhawgtAtD3UzX33ql-1II4a_vCe',
-            'https://lh3.googleusercontent.com/aida-public/AB6AXuBRPNyuNnsvszdmjNwdzlgJZch5nLMNYdygJFrwX6MkTGbQ1--zQZ3gtYkh9xhP3A_uIsRRw_XVrGg9xVelBtyqHkVQ0YlCZ2Icf3Gt8eHOC7xyzjCVimJZDYfl0cLgooVTtoQNP__K-b4Mb1GRvxOieqjqV5NIS1UOAsO1ikMYPYZU6shDczugSPq5VmF8ZyS_hYuICiRFLYam8KZSxLMOTk03DaQPdnen_6_FHl1LL89KVLDtWfSV',
+            'Imagenes/athens-the-parthenon-on-the-acropolis-2026-03-25-22-47-31-utc.webp',
+            'Imagenes/santorini-greece-2026-03-24-14-11-27-utc.webp',
             'Imagenes/grecia-constantinos-kollias.webp',
             'Imagenes/grecia-johnny-africa.webp'
         ],
@@ -109,10 +109,10 @@ const VISITAR_DATA = {
     },
     turquia: {
         images: [
-            'https://lh3.googleusercontent.com/aida-public/AB6AXuDKpuOU-Z25k5Ovr6w9iB0i3dWZ7FWzzLtr4cyr586msvEPleUvT5MrN29Kb4TbLQ9LeAog6wr-P-NQS2qlEFdJSTBh5xCVNGcujIds27H0Np5ly7uGgHs16VNcgAdMsbCvBfsg-ohwY1Xx2R9TyxELBTgepMmJa8eCph5HrzPtVZ7DqTJY1YQgnoLm2wpL4fgvbdyAW_kZGWVieVr4YNuhGSkoQm2JpK1FTSwljtY_NJ-rbbYIC9g8',
-            'https://lh3.googleusercontent.com/aida-public/AB6AXuAkmNu2RAGYf0SL7T_DWU_uAWTotvXbpTajg3t78s4jltQX8mADL9QSmH2s_sjjRgc-R5i3Wo1zR63pCXCXIEizJZeHUIRP0ru72_1hH_z0L63_12KXOyI4j9LD2cANz8BlbbD0xI6DjnUdHYBZdAApvMBP_p_tewHDYOR__Sc5NKAkeb4AWpCvkPZOFYwWGgV_hk2MxkyECFSICH7DtTM_R1Lju05gmCG3W156fcH-hB3J5dquiUBB',
-            'Imagenes/turquia-mar-cerdeira.webp',
-            'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=600'
+            'Imagenes/blue-mosque-in-istanbul-2026-03-17-19-36-03-utc.webp',
+            'Imagenes/balloons-in-love-valley-cappadocia-flights-in-go-2026-03-18-04-25-34-utc.webp',
+            'Imagenes/efeso-biblioteca-celso.webp',
+            'Imagenes/evening-view-of-hagia-sophia-in-istanbul-2026-03-23-22-59-29-utc.webp'
         ],
         locations: [
             {
@@ -446,6 +446,11 @@ export async function fetchActiveTrips() {
                     } catch(e) { dateStr = departureDate; }
                 }
 
+                const rawLoc = lang === 'en' && (item.destinationsSummary_en || item.destinationsSummaryEn || item.destinations_summary_en || item.destination_en || item.destinationEn)
+                    ? (item.destinationsSummary_en || item.destinationsSummaryEn || item.destinations_summary_en || item.destination_en || item.destinationEn)
+                    : destSum;
+                const locStr = Array.isArray(rawLoc) ? rawLoc.join(', ') : (rawLoc != null ? String(rawLoc) : '');
+
                 return {
                     id: item.id,
                     title: lang === 'en' ? (item.title_en || item.titleEn || item.name_en || item.nameEn || item.title || item.name) : (item.title || item.name),
@@ -453,9 +458,17 @@ export async function fetchActiveTrips() {
                     imgUrl: item.headerImageUrl || item.header_image_url || item.imageUrl || item.image_url || (item.itinerary && item.itinerary[0]?.imageUrl) || '',
                     isDraft: isDraft,
                     flavorText: lang === 'en' ? (item.flavorText_en || item.flavorTextEn || item.flavor_text_en || item.flavorText || item.flavor_text || item.agency || '') : (item.flavorText || item.flavor_text || item.agency || ''),
-                    days: item.duration_days || item.durationDays || '',
-                    nights: item.duration_nights || item.durationNights || '',
-                    locations: lang === 'en' && (item.destinationsSummary_en || item.destinationsSummaryEn || item.destinations_summary_en || item.destination_en || item.destinationEn) ? (item.destinationsSummary_en || item.destinationsSummaryEn || item.destinations_summary_en || item.destination_en || item.destinationEn).replace(/\s*\([^)]*\)/g, '') : (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : ''),
+                    days: Math.max(
+                        Number(item.duration_days) || 0,
+                        Number(item.durationDays) || 0,
+                        Array.isArray(item.itinerary) ? item.itinerary.length : 0
+                    ) || '',
+                    nights: Math.max(
+                        Number(item.duration_nights) || 0,
+                        Number(item.durationNights) || 0,
+                        (Array.isArray(item.itinerary) && item.itinerary.length > 1) ? item.itinerary.length - 1 : 0
+                    ) || '',
+                    locations: locStr.replace(/\s*\([^)]*\)/g, ''),
                     date: dateStr
                 };
             });

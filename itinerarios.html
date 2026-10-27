@@ -172,7 +172,11 @@
                 activeTrips.forEach(trip => {
                     const imgUrl = trip.headerImageUrl || trip.header_image_url || trip.imageUrl || trip.image_url || (trip.itinerary && trip.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=800';
                     const tripTitle = trip.title || trip.name;
-                    const duration = trip.durationDays || trip.duration_days || trip.duration || 'Consultar';
+                    const duration = Math.max(
+                        Number(trip.duration_days) || 0,
+                        Number(trip.durationDays) || 0,
+                        Array.isArray(trip.itinerary) ? trip.itinerary.length : 0
+                    ) || trip.duration || 'Consultar';
                     let sub = trip.destinationsSummary || trip.destinations_summary || trip.subtitle || '';
                     if (Array.isArray(sub)) sub = sub.join(', ');
                     sub = sub.replace(/\s*\([^)]*\)/g, '');

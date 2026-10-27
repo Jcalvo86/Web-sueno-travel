@@ -196,7 +196,11 @@
                     
                     const isClosed = dep.status === 'closed';
                     const spotsLeft = isClosed ? 0 : Math.max(0, (dep.capacity || 10) - (dep.passengersCount || 0));
-                    const duration = trip.durationDays || trip.duration_days || trip.duration || (window.i18n?.t('groups.card.consult', 'itineraries') || 'Consultar');
+                    const duration = Math.max(
+                        Number(trip.duration_days) || 0,
+                        Number(trip.durationDays) || 0,
+                        Array.isArray(trip.itinerary) ? trip.itinerary.length : 0
+                    ) || trip.duration || (window.i18n?.t('groups.card.consult', 'itineraries') || 'Consultar');
                     
                     let sub = lang === 'en'
                         ? (trip.destinationsSummary_en || trip.destinationsSummaryEn || trip.destinations_summary_en || trip.subtitle_en || trip.subtitleEn || trip.destinationsSummary || trip.destinations_summary || trip.subtitle || '')

@@ -178,5 +178,30 @@ Este archivo (`project_state.md`) sirve como el **contexto temporal y registro d
     - Se eliminó la mención explícita a *"chofer y guías privados"* en todas las descripciones de Viajes a Medida / Viaje Privado en `src/js/viaje.js`, `viajes-a-medida.html`, `itinerarios.html`, `components/modalidades-viaje.html` y en los diccionarios de i18n (`locales/trip/`, `locales/itineraries/`, `locales/home/` tanto en español como en inglés).
     - La redacción ahora se enfoca en la flexibilidad, personalización de ritmo, hoteles y experiencias a gusto del viajero.
 
+  - **Optimización y Reemplazo de Imágenes en Alta Definición para Grecia y Turquía (`#que-visitar` en `index.html`):**
+    - **Diagnóstico:** Las imágenes de fondo del carrusel interactivo en la sección "¿Qué Visitar?" de la home cargaban enlaces externos de vista previa de Google AIDA y una URL de Unsplash limitada a `w=600`, provocando pixelación y pérdida de calidad en pantallas de escritorio grandes.
+    - **Solución y Reemplazo de Recursos:** Se sustituyeron por archivos WebP locales de resolución completa (1920x1280 / Full HD y calidad 82-85):
+      - **Grecia:**
+        1. Acrópolis de Atenas: `Imagenes/athens-the-parthenon-on-the-acropolis-2026-03-25-22-47-31-utc.webp` (1920x1280)
+        2. Santorini al Atardecer: `Imagenes/santorini-greece-2026-03-24-14-11-27-utc.webp` (1920x1441)
+        3. Delos Sagrado: `Imagenes/grecia-constantinos-kollias.webp` (1920x1280)
+        4. Islas Griegas: `Imagenes/grecia-johnny-africa.webp` (1920x1440)
+      - **Turquía:**
+        1. Magia de Estambul: `Imagenes/blue-mosque-in-istanbul-2026-03-17-19-36-03-utc.webp` (1920x1280)
+        2. Capadocia en Globo: `Imagenes/balloons-in-love-valley-cappadocia-flights-in-go-2026-03-18-04-25-34-utc.webp` (1920x1280)
+        3. Éfeso Antiguo: `Imagenes/efeso-biblioteca-celso.webp` (1920x1336, fachada de la Biblioteca de Celso optimizada en WebP)
+        4. Hagia Sophia al Atardecer: `Imagenes/evening-view-of-hagia-sophia-in-istanbul-2026-03-23-22-59-29-utc.webp` (1920x1231)
+    - **Mejora Adicional:** Se actualizaron también las imágenes de respaldo `FALLBACK_IMAGES` en `src/js/home.js` con estos mismos recursos WebP de alta definición y se blindó el formateo de destinos en `fetchActiveTrips()`.
+
+  - **Corrección de Duración Errónea (1 Día) en "Egipto y Turquía":**
+    - **Causa Raíz:** En la colección Firestore `travel`, el documento de *Egipto y Turquía* (`UM92J1UeKg6kMZAvUq5C`) tenía el campo legado `durationDays` configurado erróneamente en `1` (y `durationNights: 0`), a pesar de tener `duration_days: 16` y 16 días completos detallados en su itinerario. En el código del frontend, las tarjetas leían prioritariamente `trip.durationDays || trip.duration_days`, evaluando `1` como valor verdadero y mostrando "1 Día" en todas las vistas.
+    - **Corrección en Base de Datos:** Se actualizó el documento en Firestore vía REST API estableciendo `durationDays: 16` y `durationNights: 15`.
+    - **Blindaje Resiliente en Frontend:** Se implementó una lógica de cálculo unificada y resiliente `Math.max(Number(duration_days) || 0, Number(durationDays) || 0, trip.itinerary?.length || 0)` en [itinerarios.html](file:///c:/andreia/Web-sueno-travel/itinerarios.html), [viajes-grupales.html](file:///c:/andreia/Web-sueno-travel/viajes-grupales.html), [viajes-a-medida.html](file:///c:/andreia/Web-sueno-travel/viajes-a-medida.html), [grupos-abiertos.html](file:///c:/andreia/Web-sueno-travel/grupos-abiertos.html), [destino.html](file:///c:/andreia/Web-sueno-travel/destino.html), [src/js/home.js](file:///c:/andreia/Web-sueno-travel/src/js/home.js) y [src/js/viaje.js](file:///c:/andreia/Web-sueno-travel/src/js/viaje.js). De esta manera, el sistema siempre toma la duración real más precisa aun si un campo numérico secundario estuviera desfasado.
+
+  - **Eliminación de Números de Teléfono y Presentación de Dirección:**
+    - **Diagnóstico:** En el pie de página global (`components/footer.html`) y archivos estáticos asociados se mostraba un número de teléfono (`+20 111 057 2308` / `+56 9 9999 8888`), en lugar de la dirección oficial de la agencia.
+    - **Solución:** Se retiraron todos los números telefónicos impresos y se reemplazaron por la dirección corporativa: `"Santiago, Chile / El Cairo, Egipto"`, acompañada del icono de ubicación (`fa-location-dot`) y de la cuenta de correo oficial `contacto@suenotravel.cl`.
+    - **Internacionalización:** Se añadió la clave `"footer.direccion"` en [locales/home/es.json](file:///c:/andreia/Web-sueno-travel/locales/home/es.json) y [locales/home/en.json](file:///c:/andreia/Web-sueno-travel/locales/home/en.json), validado con `node scripts/auto-translate.js`.
+
 *(Agrega nuevas entradas aquí al finalizar tus tareas en futuras sesiones)*
 
