@@ -203,5 +203,23 @@ Este archivo (`project_state.md`) sirve como el **contexto temporal y registro d
     - **Solución:** Se retiraron todos los números telefónicos impresos y se reemplazaron por la dirección corporativa: `"Santiago, Chile / El Cairo, Egipto"`, acompañada del icono de ubicación (`fa-location-dot`) y de la cuenta de correo oficial `contacto@suenotravel.cl`.
     - **Internacionalización:** Se añadió la clave `"footer.direccion"` en [locales/home/es.json](file:///c:/andreia/Web-sueno-travel/locales/home/es.json) y [locales/home/en.json](file:///c:/andreia/Web-sueno-travel/locales/home/en.json), validado con `node scripts/auto-translate.js`.
 
+### [2026-10-28] - Sesión Actual
+- **Incorporación de Susana Cutire y Tarjetas Expandibles de Equipo (`conocenos.html`):**
+  - **Requerimiento:** Agregar a una segunda persona (Susana Cutire, "Tu acompañante de viaje") junto a Jessica Lagos en la sección "Conócenos", incorporando la capacidad interactiva de hacer clic en cada tarjeta para extender y contraer información detallada con animación fluida.
+  - **Corrección de Imagen Rota:** Se corrigió la ruta del avatar de Jessica en `conocenos.html` (de `Imagenes/Jessica.jpeg` que provocaba imagen rota a `Imagenes/Jessica.webp`), añadiendo además un contenedor de respaldo estilizado con iniciales `JL`.
+  - **Diseño de Avatar y Tarjeta de Susana Cutire:** Se integró la tarjeta de Susana Cutire con soporte para imagen `Imagenes/Susana.webp` y fallback automático con iniciales `SC` en tono bronce/dorado (`bg-secondary/15 text-secondary border-2 border-secondary/20`).
+  - **Interactividad y Animación Robusta:** 
+    - Implementación de `.card-expandable-content` con animación moderna de CSS grid (`grid-template-rows: 0fr` a `1fr`), permitiendo una transición de altura dinámica y fluida sin alturas fijas.
+    - Soporte de apertura/cierre por clic en toda la tarjeta y por teclado (`Enter` / `Space`), rotación fluida de 180° del chevron y alternancia de etiqueta ("Conoce más" / "Ver menos").
+    - Escucha del evento `languageChanged` para mantener las etiquetas sincronizadas al cambiar de idioma.
+  - **Internacionalización Completa (i18n):**
+    - Extracción de todas las cadenas de texto (nombres, cargos, lemas, biografías detalladas y botones) a [locales/conocenos/es.json](file:///c:/andreia/Web-sueno-travel/locales/conocenos/es.json) y su traducción completa al inglés en [locales/conocenos/en.json](file:///c:/andreia/Web-sueno-travel/locales/conocenos/en.json).
+  - **Integración de Fotos de Perfil Oficiales:**
+    - Se procesaron y optimizaron en formato WebP (calidad 85) las fotografías de perfil provistas por el usuario:
+      - Foto de Jessica Lagos (en templos de Egipto con gafas de sol redondas): guardada en `Imagenes/Jessica-perfil.webp`.
+      - Foto de Susana Cutire (con visera y gafas oscuras frente a las pirámides): guardada en `Imagenes/Susana.webp`.
+    - Ambas fotos quedan perfectamente integradas en los avatares circulares de las tarjetas expandibles en `conocenos.html`.
+  - **Compilación de Estilos:** Se ejecutó `npm run build:css` generando el archivo optimizado [dist/styles.css](file:///c:/andreia/Web-sueno-travel/dist/styles.css).
+
 *(Agrega nuevas entradas aquí al finalizar tus tareas en futuras sesiones)*
 

@@ -113,26 +113,92 @@
             </div>
 
             <!-- Block 3: Text Left, Image Right -->
-            <div class="flex flex-col lg:flex-row gap-12 items-center">
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
                 <div class="lg:w-1/2 space-y-6">
                     <div class="space-y-4 text-on-surface-variant leading-relaxed text-lg">
-                        <p>
-                            Detrás de Sueño Travel Chile estoy yo, una persona que ama viajar, que conoce estos destinos de primera mano y quiere ayudarte a vivir una experiencia realmente especial.
+                        <p data-i18n="about.teamIntro" data-i18n-ns="conocenos">
+                            Detrás de Sueño Travel Chile estamos personas apasionadas por viajar, que conocemos estos destinos de primera mano y queremos ayudarte a vivir una experiencia realmente especial.
                         </p>
-                        <p class="text-secondary font-bold text-2xl mt-6 mb-2">
+                        <p class="text-secondary font-bold text-2xl mt-6 mb-2" data-i18n="about.teamQuoteTitle" data-i18n-ns="conocenos">
                             ¡Viaja con quien conoce el camino!
                         </p>
-                        <p class="italic border-l-4 border-secondary pl-4 mt-4 text-on-surface-variant font-semibold">
+                        <p class="italic border-l-4 border-secondary pl-4 mt-4 text-on-surface-variant font-semibold" data-i18n="about.teamQuote" data-i18n-ns="conocenos">
                             Porque cuando viajas con alguien que ya lo ha recorrido, cada detalle marca la diferencia.
                         </p>
                     </div>
 
-                    <!-- Jessica Profile Card -->
-                    <div class="mt-8 p-6 rounded-2xl bg-surface-container-low border border-outline-variant/30 flex flex-col sm:flex-row gap-6 items-center ambient-glow">
-                        <img src="Imagenes/Jessica.jpeg" alt="Jessica Lagos" class="w-20 h-20 rounded-full object-cover shadow-md shrink-0">
-                        <div class="space-y-2 text-center sm:text-left">
-                            <h4 class="text-xl font-bold text-primary font-display-lg">Jessica Lagos</h4>
-                            <p class="text-xs text-secondary font-semibold uppercase tracking-wider">Fundadora y Operadora Principal</p>
+                    <!-- Team Cards Container (Expandable) -->
+                    <div class="mt-8 space-y-5">
+                        <!-- Card 1: Jessica Lagos -->
+                        <div id="card-jessica" class="team-card rounded-2xl bg-surface-container-low border border-outline-variant/30 hover:border-secondary/40 transition-all duration-300 ambient-glow overflow-hidden" aria-expanded="false">
+                            <div class="p-5 sm:p-6 cursor-pointer flex items-center justify-between gap-4 select-none" role="button" tabindex="0" onclick="toggleTeamCard('card-jessica')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleTeamCard('card-jessica');}">
+                                <div class="flex items-center gap-4 sm:gap-5">
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden shadow-md shrink-0 border-2 border-secondary/20 bg-surface-container">
+                                        <img src="Imagenes/Jessica-perfil.webp" alt="Jessica Lagos" data-i18n-alt="about.jessicaAlt" data-i18n-ns="conocenos" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <div class="hidden w-full h-full flex items-center justify-center bg-secondary/15 text-secondary font-display-lg font-bold text-xl sm:text-2xl">JL</div>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <h4 class="text-xl sm:text-2xl font-bold text-primary font-display-lg" data-i18n="about.jessicaName" data-i18n-ns="conocenos">Jessica Lagos</h4>
+                                        <p class="text-xs text-secondary font-semibold uppercase tracking-wider" data-i18n="about.jessicaRole" data-i18n-ns="conocenos">Fundadora y Operadora Principal</p>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors pointer-events-none" aria-hidden="true">
+                                    <span class="toggle-label hidden sm:inline" data-i18n="about.expandMore" data-i18n-ns="conocenos">Conoce más</span>
+                                    <span class="material-symbols-outlined card-chevron text-lg transition-transform duration-300">keyboard_arrow_down</span>
+                                </div>
+                            </div>
+                            <!-- Expandable Content -->
+                            <div class="card-expandable-content">
+                                <div class="card-expandable-inner px-5 sm:px-6 pb-6 pt-1">
+                                    <div class="border-t border-outline-variant/20 pt-4 space-y-3">
+                                        <p class="italic text-secondary font-semibold text-sm sm:text-base border-l-2 border-secondary pl-3" data-i18n="about.jessicaTagline" data-i18n-ns="conocenos">
+                                            Porque cuando viajas con alguien que ya lo ha recorrido, cada detalle marca la diferencia.
+                                        </p>
+                                        <p class="text-on-surface-variant text-sm sm:text-base leading-relaxed" data-i18n="about.jessicaBio1" data-i18n-ns="conocenos">
+                                            Jessica es la fundadora y operadora principal de Sueño Travel Chile. Con más de 9 años de experiencia recorriendo Egipto y el Medio Oriente de manera anual, mantiene una estrecha relación directa con los operadores locales.
+                                        </p>
+                                        <p class="text-on-surface-variant text-sm sm:text-base leading-relaxed" data-i18n="about.jessicaBio2" data-i18n-ns="conocenos">
+                                            Diseña personalmente cada itinerario y acompaña a nuestros viajeros con asesoría experta y de primera mano, asegurando que cada viaje sea una experiencia auténtica, cercana y de máxima calidad.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Susana Cutire -->
+                        <div id="card-susana" class="team-card rounded-2xl bg-surface-container-low border border-outline-variant/30 hover:border-secondary/40 transition-all duration-300 ambient-glow overflow-hidden" aria-expanded="false">
+                            <div class="p-5 sm:p-6 cursor-pointer flex items-center justify-between gap-4 select-none" role="button" tabindex="0" onclick="toggleTeamCard('card-susana')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleTeamCard('card-susana');}">
+                                <div class="flex items-center gap-4 sm:gap-5">
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden shadow-md shrink-0 border-2 border-secondary/20 bg-surface-container">
+                                        <img src="Imagenes/Susana.webp" alt="Susana Cutire" data-i18n-alt="about.susanaAlt" data-i18n-ns="conocenos" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                        <div class="hidden w-full h-full flex items-center justify-center bg-secondary/15 text-secondary font-display-lg font-bold text-xl sm:text-2xl">SC</div>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <h4 class="text-xl sm:text-2xl font-bold text-primary font-display-lg" data-i18n="about.susanaName" data-i18n-ns="conocenos">Susana Cutire</h4>
+                                        <p class="text-xs text-secondary font-semibold uppercase tracking-wider" data-i18n="about.susanaRole" data-i18n-ns="conocenos">Tu acompañante de viaje</p>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors pointer-events-none" aria-hidden="true">
+                                    <span class="toggle-label hidden sm:inline" data-i18n="about.expandMore" data-i18n-ns="conocenos">Conoce más</span>
+                                    <span class="material-symbols-outlined card-chevron text-lg transition-transform duration-300">keyboard_arrow_down</span>
+                                </div>
+                            </div>
+                            <!-- Expandable Content -->
+                            <div class="card-expandable-content">
+                                <div class="card-expandable-inner px-5 sm:px-6 pb-6 pt-1">
+                                    <div class="border-t border-outline-variant/20 pt-4 space-y-3">
+                                        <p class="italic text-secondary font-semibold text-sm sm:text-base border-l-2 border-secondary pl-3" data-i18n="about.susanaTagline" data-i18n-ns="conocenos">
+                                            Viaja con la tranquilidad de quien ya ha recorrido el camino
+                                        </p>
+                                        <p class="text-on-surface-variant text-sm sm:text-base leading-relaxed" data-i18n="about.susanaBio1" data-i18n-ns="conocenos">
+                                            Nada reemplaza la vivencia real de haber recorrido rutas, aeropuertos y culturas. Mi experiencia personal como viajera me permite ofrecerte un acompañamiento cercano, práctico y empático en cada itinerario.
+                                        </p>
+                                        <p class="text-on-surface-variant text-sm sm:text-base leading-relaxed" data-i18n="about.susanaBio2" data-i18n-ns="conocenos">
+                                            Ya sea que busques la comodidad de un viaje en grupo organizado o la seguridad de contar con alguien experimentado a tu lado, te acompaño a explorar el mundo con la máxima tranquilidad y calidez
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -268,6 +334,49 @@
     <!-- Footer Component -->
     <div id="section-footer"></div>
     <script>
+        function toggleTeamCard(cardId) {
+            const card = document.getElementById(cardId);
+            if (!card) return;
+            const isExpanded = card.getAttribute('aria-expanded') === 'true';
+            const content = card.querySelector('.card-expandable-content');
+            const chevron = card.querySelector('.card-chevron');
+            const label = card.querySelector('.toggle-label');
+
+            if (isExpanded) {
+                card.setAttribute('aria-expanded', 'false');
+                card.classList.remove('is-open');
+                if (content) content.classList.remove('is-expanded');
+                if (chevron) chevron.classList.remove('rotate-180');
+                if (label) {
+                    label.setAttribute('data-i18n', 'about.expandMore');
+                    const txt = (window.i18n && typeof window.i18n.t === 'function') ? window.i18n.t('about.expandMore', 'conocenos') : null;
+                    label.textContent = txt || 'Conoce más';
+                }
+            } else {
+                card.setAttribute('aria-expanded', 'true');
+                card.classList.add('is-open');
+                if (content) content.classList.add('is-expanded');
+                if (chevron) chevron.classList.add('rotate-180');
+                if (label) {
+                    label.setAttribute('data-i18n', 'about.expandLess');
+                    const txt = (window.i18n && typeof window.i18n.t === 'function') ? window.i18n.t('about.expandLess', 'conocenos') : null;
+                    label.textContent = txt || 'Ver menos';
+                }
+            }
+        }
+
+        window.addEventListener('languageChanged', () => {
+            document.querySelectorAll('.team-card').forEach(card => {
+                const isExpanded = card.getAttribute('aria-expanded') === 'true';
+                const label = card.querySelector('.toggle-label');
+                if (label && window.i18n && typeof window.i18n.t === 'function') {
+                    const key = isExpanded ? 'about.expandLess' : 'about.expandMore';
+                    label.setAttribute('data-i18n', key);
+                    label.textContent = window.i18n.t(key, 'conocenos') || (isExpanded ? 'Ver menos' : 'Conoce más');
+                }
+            });
+        });
+
         fetch('components/footer.html')
             .then(res => res.text())
             .then(html => {
