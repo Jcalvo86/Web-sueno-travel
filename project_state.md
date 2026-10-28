@@ -219,6 +219,10 @@ Este archivo (`project_state.md`) sirve como el **contexto temporal y registro d
       - Foto de Jessica Lagos (en templos de Egipto con gafas de sol redondas): guardada en `Imagenes/Jessica-perfil.webp`.
       - Foto de Susana Cutire (con visera y gafas oscuras frente a las pirámides): guardada en `Imagenes/Susana.webp`.
     - Ambas fotos quedan perfectamente integradas en los avatares circulares de las tarjetas expandibles en `conocenos.html`.
+  - **Actualización de Cargos Oficiales:**
+    - Jessica Lagos: Cambiado a `"Fundadora y Directora Chile"`.
+    - Susana Cutire: Cambiado a `"Travel Planner"`.
+    - Sincronizado en `conocenos.html`, `locales/conocenos/es.json` y `locales/conocenos/en.json`.
   - **Compilación de Estilos:** Se ejecutó `npm run build:css` generando el archivo optimizado [dist/styles.css](file:///c:/andreia/Web-sueno-travel/dist/styles.css).
 
 *(Agrega nuevas entradas aquí al finalizar tus tareas en futuras sesiones)*
