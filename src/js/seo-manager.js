@@ -64,7 +64,7 @@ class SEOManager {
      * Generador Helper para esquema TouristTrip (Viajes/Destinos)
      */
     static generateTouristTripSchema(tripData) {
-        return {
+        const schema = {
             "@context": "https://schema.org",
             "@type": "TouristTrip",
             "name": tripData.name,
@@ -75,8 +75,24 @@ class SEOManager {
                 "name": "Sueño Travel",
                 "url": "https://suenotravel.cl"
             }
-            // Aquí se pueden agregar más campos como 'itinerary' si están disponibles
         };
+
+        if (Array.isArray(tripData.pricingOptions) && tripData.pricingOptions.length > 0) {
+            const validOffers = tripData.pricingOptions
+                .filter(opt => opt && Number(opt.amount) > 0)
+                .map(opt => ({
+                    "@type": "Offer",
+                    "name": opt.label || opt.label_en || "Programa de viaje",
+                    "price": Number(opt.amount),
+                    "priceCurrency": opt.currency || "USD",
+                    "availability": "https://schema.org/InStock"
+                }));
+            if (validOffers.length > 0) {
+                schema.offers = validOffers;
+            }
+        }
+
+        return schema;
     }
 
     /**

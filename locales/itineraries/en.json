@@ -14,7 +14,8 @@
     "days": "days",
     "explore": "Explore",
     "viewProgram": "View Program",
-    "adaptMedida": "Customize to Measure"
+    "adaptMedida": "Customize to Measure",
+    "fromPrice": "From"
   },
   "empty": "Currently no itineraries available.",
   "error": "An error occurred while loading itineraries.",

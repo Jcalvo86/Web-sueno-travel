@@ -451,6 +451,10 @@ export async function fetchActiveTrips() {
                     : destSum;
                 const locStr = Array.isArray(rawLoc) ? rawLoc.join(', ') : (rawLoc != null ? String(rawLoc) : '');
 
+                const rawPrices = Array.isArray(item.pricing_options) ? item.pricing_options : (Array.isArray(item.pricingOptions) ? item.pricingOptions : []);
+                const validPrices = rawPrices.map(o => Number(o?.amount) || 0).filter(n => n > 0);
+                const minPrice = validPrices.length > 0 ? Math.min(...validPrices) : 0;
+
                 return {
                     id: item.id,
                     title: lang === 'en' ? (item.title_en || item.titleEn || item.name_en || item.nameEn || item.title || item.name) : (item.title || item.name),
@@ -469,7 +473,8 @@ export async function fetchActiveTrips() {
                         (Array.isArray(item.itinerary) && item.itinerary.length > 1) ? item.itinerary.length - 1 : 0
                     ) || '',
                     locations: locStr.replace(/\s*\([^)]*\)/g, ''),
-                    date: dateStr
+                    date: dateStr,
+                    minPrice
                 };
             });
         }
@@ -536,6 +541,10 @@ export function renderTripCards(trips) {
             hoverInfo.push(`⏱️ ${duration}`);
         }
         if (trip.locations) hoverInfo.push(`📍 ${trip.locations}`);
+        if (trip.minPrice > 0) {
+            const fromStr = window.i18n && typeof window.i18n.t === 'function' ? window.i18n.t('fromPrice', 'home') || 'Desde' : 'Desde';
+            hoverInfo.push(`<span class="font-bold text-secondary-fixed tabular-nums">${fromStr} USD $${trip.minPrice.toLocaleString('es-CL')}</span>`);
+        }
         const hoverHTML = hoverInfo.length > 0 
             ? hoverInfo.join('<br/>') 
             : `<p class="max-w-md opacity-80 text-sm overflow-hidden">${trip.desc}</p>`;

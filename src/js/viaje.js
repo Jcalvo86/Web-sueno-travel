@@ -248,6 +248,7 @@ import SEOManager from './seo-manager.js';
                             hotelTaxUSD: found.hotelTaxUSD !== undefined ? found.hotelTaxUSD : (found.pricing_and_notes?.hotelTaxUSD || 0),
                             visaCostUSD: found.visaCostUSD !== undefined ? found.visaCostUSD : (found.pricing_and_notes?.visaCostUSD || 0),
                             disclaimer: found.disclaimer || found.pricing_and_notes?.disclaimer || '',
+                            pricingOptions: Array.isArray(found.pricing_options) ? found.pricing_options : (Array.isArray(found.pricingOptions) ? found.pricingOptions : []),
                             servicesIncludedList: (found.servicesIncludedList || found.services_included_list || (found.services_included ? [
                                 ...(found.services_included.egypt || []),
                                 ...(found.services_included.turkey || [])
@@ -386,6 +387,7 @@ import SEOManager from './seo-manager.js';
                         hotelTaxUSD: found.pricing_and_notes?.hotelTaxUSD || 0,
                         visaCostUSD: found.pricing_and_notes?.visaCostUSD || 0,
                         disclaimer: found.pricing_and_notes?.disclaimer || '',
+                        pricingOptions: Array.isArray(found.pricing_options) ? found.pricing_options : (Array.isArray(found.pricingOptions) ? found.pricingOptions : []),
                         servicesIncludedList: (found.servicesIncludedList || (found.services_included ? [
                             ...(found.services_included.egypt || []),
                             ...(found.services_included.turkey || [])
@@ -449,7 +451,8 @@ import SEOManager from './seo-manager.js';
         const tripSchema = SEOManager.generateTouristTripSchema({
             name: trip.name,
             description: trip.overview || trip.subtitle,
-            image: trip.headerImageUrl || trip.imageUrl
+            image: trip.headerImageUrl || trip.imageUrl,
+            pricingOptions: trip.pricingOptions || []
         });
         SEOManager.injectJSONLD(tripSchema);
 
@@ -483,7 +486,8 @@ import SEOManager from './seo-manager.js';
                 if (Array.isArray(days)) {
                     days.forEach((dayInfo, index) => {
                         const dayDiv = document.createElement('div');
-                        dayDiv.className = 'relative group border-b border-outline-variant/10 pb-3 last:border-b-0';
+                        dayDiv.id = `day-item-${index}`;
+                        dayDiv.className = 'itinerary-day-item scroll-mt-28 relative group border-b border-outline-variant/10 pb-3 last:border-b-0';
                         
                         // Helper to get matching icon based on text keywords
                         const getIcon = (text, type = '') => {
@@ -776,8 +780,78 @@ import SEOManager from './seo-manager.js';
             });
         }
 
+        const formatUSD = (amount) => {
+            const num = Number(amount);
+            if (!Number.isFinite(num) || num <= 0) return '';
+            return `USD $${num.toLocaleString('es-CL')}`;
+        };
+
+        const renderPricingOptions = (tripData) => {
+            const container = document.getElementById('trip-pricing-container');
+            if (!container) return;
+
+            const validOptions = Array.isArray(tripData.pricingOptions)
+                ? tripData.pricingOptions.filter(opt => opt && Number(opt.amount) > 0)
+                : [];
+
+            if (validOptions.length === 0) {
+                container.innerHTML = '';
+                container.classList.add('hidden');
+                return;
+            }
+
+            const lang = window.i18n && typeof window.i18n.getCurrentLang === 'function' ? window.i18n.getCurrentLang() : 'es';
+            const titleText = window.i18n?.t('pricing.title', 'trip') || 'Valores del Viaje';
+            const perPersonText = window.i18n?.t('pricing.perPersonNote', 'trip') || 'Valores por persona en base a habitación doble.';
+            const recommendedText = window.i18n?.t('pricing.recommended', 'trip') || 'Más Completo';
+
+            const colsClass = validOptions.length >= 3 ? 'lg:grid-cols-3' : (validOptions.length === 2 ? 'md:grid-cols-2' : 'grid-cols-1');
+
+            const cardsHtml = validOptions.map(opt => {
+                const label = (lang === 'en' && opt.label_en) ? opt.label_en : (opt.label || '');
+                const subtitle = (lang === 'en' && opt.subtitle_en) ? opt.subtitle_en : (opt.subtitle || '');
+                const formattedPrice = formatUSD(opt.amount);
+                const isFeatured = Boolean(opt.featured);
+                const includesFlights = Boolean(opt.includes_flights);
+
+                return `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 md:p-5 rounded-2xl ${isFeatured ? 'bg-secondary/5 border border-secondary/40' : 'bg-surface-container-low/70 border border-outline-variant/50'}">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${isFeatured ? 'bg-secondary/15 text-secondary' : 'bg-primary/10 text-primary'}">
+                                <span class="material-symbols-outlined text-xl">${includesFlights ? 'flight_takeoff' : 'tour'}</span>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <h4 class="font-display-lg text-lg md:text-xl text-primary">${label}</h4>
+                                    ${isFeatured ? `<span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-secondary text-white">${recommendedText}</span>` : ''}
+                                </div>
+                                ${subtitle ? `<p class="text-xs text-on-surface-variant mt-0.5 leading-relaxed">${subtitle}</p>` : ''}
+                            </div>
+                        </div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary tabular-nums whitespace-nowrap sm:text-right">${formattedPrice}</div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="bg-surface border border-outline-variant/60 rounded-3xl p-6 md:px-8 md:py-6 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-5 mb-5 border-b border-outline-variant/40">
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-secondary text-2xl">payments</span>
+                            <h3 class="font-display-lg text-xl md:text-2xl text-primary">${titleText}</h3>
+                        </div>
+                        <p class="text-xs md:text-sm text-on-surface-variant">${perPersonText}</p>
+                    </div>
+                    <div class="grid grid-cols-1 ${colsClass} gap-4">
+                        ${cardsHtml}
+                    </div>
+                </div>
+            `;
+            container.classList.remove('hidden');
+        };
+
         // Render Departures & Modalities
-        const renderDepartures = async (tripId, tripTitle, tripImg) => {
+        const renderDepartures = async (tripId, tripTitle, tripImg, pricingOptions = []) => {
             const grid = document.getElementById('departures-grid');
             const section = document.getElementById('departures-section');
             if (!grid || !section) return;
@@ -861,9 +935,14 @@ import SEOManager from './seo-manager.js';
                                 ${dep.priceOverride ? `
                                     <div class="mb-4">
                                         <span class="text-[11px] text-on-surface-variant block">Precio Especial Salida:</span>
-                                        <span class="text-xl font-extrabold text-primary">USD $${dep.priceOverride}</span>
+                                        <span class="text-xl font-extrabold text-primary tabular-nums">USD $${Number(dep.priceOverride).toLocaleString('es-CL')}</span>
                                     </div>
-                                ` : ''}
+                                ` : (Array.isArray(pricingOptions) && pricingOptions.some(o => Number(o?.amount) > 0) ? `
+                                    <div class="mb-4">
+                                        <span class="text-[11px] text-on-surface-variant block">${window.i18n?.t('pricing.from', 'trip') || 'Desde'}:</span>
+                                        <span class="text-xl font-extrabold text-primary tabular-nums">${formatUSD(Math.min(...pricingOptions.map(o => Number(o?.amount) || 0).filter(n => n > 0)))}</span>
+                                    </div>
+                                ` : '')}
                             </div>
                             <button onclick="if(window.openContactModal) window.openContactModal('group', '${safeTitle}', '${depDateFormatted}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary transition-all mt-4 text-center">
                                 <span data-i18n="departures.group.reserveBtn">${window.i18n?.t('departures.group.reserveBtn', 'trip') || 'Reservar Cupo'}</span>
@@ -875,78 +954,85 @@ import SEOManager from './seo-manager.js';
             } else {
                 // Tarjeta informativa si no hay fecha grupal abierta hoy
                 const noDepCard = document.createElement('div');
-                noDepCard.className = 'bg-surface border border-outline-variant/60 rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative';
+                noDepCard.className = 'bg-surface border border-outline-variant/60 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden group';
                 noDepCard.innerHTML = `
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-secondary/15 text-secondary flex items-center justify-center">
-                                <span class="material-symbols-outlined text-xl">group</span>
-                            </div>
-                            <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-secondary/10 text-secondary uppercase tracking-wider" data-i18n="departures.group.badge">
-                                ${window.i18n?.t('departures.group.badge', 'trip') || 'Acompañado desde Chile'}
-                            </span>
+                    <div class="h-44 w-full overflow-hidden relative">
+                        <img src="Imagenes/viaje_grupo.webp" alt="" aria-hidden="true" loading="lazy" class="w-full h-full object-cover object-[50%_72%] group-hover:scale-105 transition-transform duration-500" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
+                        <div class="absolute top-3 left-3 bg-secondary text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow uppercase tracking-wider flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[13px]">group</span>
+                            <span data-i18n="departures.group.badge">${window.i18n?.t('departures.group.badge', 'trip') || 'Acompañado desde Chile'}</span>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.group.noActiveTitle">${window.i18n?.t('departures.group.noActiveTitle', 'trip') || 'Próximas Salidas en Grupo'}</h3>
-                        <p class="text-xs text-on-surface-variant leading-relaxed mb-6" data-i18n="departures.group.noActiveDesc">
-                            ${window.i18n?.t('departures.group.noActiveDesc', 'trip') || 'Actualmente estamos preparando las próximas fechas acompañadas con Tour Leader desde Chile para esta ruta. Escríbenos para sumarte a la lista de espera prioritaria.'}
-                        </p>
                     </div>
-                    <button onclick="if(window.openContactModal) window.openContactModal('group', '${safeTitle}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary transition-all mt-4 text-center">
-                        <span data-i18n="departures.group.notifyBtn">${window.i18n?.t('departures.group.notifyBtn', 'trip') || 'Consultar Próxima Salida'}</span>
-                    </button>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.group.noActiveTitle">${window.i18n?.t('departures.group.noActiveTitle', 'trip') || 'Próximas Salidas en Grupo'}</h3>
+                            <p class="text-xs text-on-surface-variant leading-relaxed mb-6" data-i18n="departures.group.noActiveDesc">
+                                ${window.i18n?.t('departures.group.noActiveDesc', 'trip') || 'Actualmente estamos preparando las próximas fechas acompañadas con Tour Leader desde Chile para esta ruta. Escríbenos para sumarte a la lista de espera prioritaria.'}
+                            </p>
+                        </div>
+                        <button onclick="if(window.openContactModal) window.openContactModal('group', '${safeTitle}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary transition-all mt-4 text-center">
+                            <span data-i18n="departures.group.notifyBtn">${window.i18n?.t('departures.group.notifyBtn', 'trip') || 'Consultar Próxima Salida'}</span>
+                        </button>
+                    </div>
                 `;
                 grid.appendChild(noDepCard);
             }
 
             // 2. MODALIDAD: VIAJE A MEDIDA (PRIVADO / PROPIO)
             const customTripCard = document.createElement('div');
-            customTripCard.className = 'bg-surface border-2 border-secondary/40 rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative shadow-sm';
+            customTripCard.className = 'bg-surface border-2 border-secondary/40 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden group shadow-sm';
             customTripCard.innerHTML = `
-                <div>
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-secondary/20 text-secondary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-xl">tune</span>
-                        </div>
-                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-secondary/15 text-secondary uppercase tracking-wider" data-i18n="departures.custom.badge">
-                            ${window.i18n?.t('departures.custom.badge', 'trip') || '100% Personalizado'}
-                        </span>
+                <div class="h-44 w-full overflow-hidden relative">
+                    <img src="Imagenes/viaje_pareja.webp" alt="" aria-hidden="true" loading="lazy" class="w-full h-full object-cover object-[50%_58%] group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
+                    <div class="absolute top-3 left-3 bg-secondary text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow uppercase tracking-wider flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[13px]">tune</span>
+                        <span data-i18n="departures.custom.badge">${window.i18n?.t('departures.custom.badge', 'trip') || '100% Personalizado'}</span>
                     </div>
-                    <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.custom.title">${window.i18n?.t('departures.custom.title', 'trip') || 'Viaje Privado a Medida'}</h3>
-                    <p class="text-xs text-on-surface-variant leading-relaxed mb-6" data-i18n="departures.custom.desc">
-                        ${window.i18n?.t('departures.custom.desc', 'trip') || 'Realiza esta misma ruta en tus propias fechas y solo con tu grupo. Adaptamos hoteles, días y experiencias junto al operador según tus preferencias.'}
-                    </p>
                 </div>
-                <button onclick="if(window.openContactModal) window.openContactModal('custom', '${safeTitle}')" class="w-full bg-secondary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary/90 transition-all mt-4 text-center">
-                    <span data-i18n="departures.custom.btn">${window.i18n?.t('departures.custom.btn', 'trip') || 'Cotizar a Medida'}</span>
-                </button>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.custom.title">${window.i18n?.t('departures.custom.title', 'trip') || 'Viaje Privado a Medida'}</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed mb-6" data-i18n="departures.custom.desc">
+                            ${window.i18n?.t('departures.custom.desc', 'trip') || 'Realiza esta misma ruta en tus propias fechas y solo con tu grupo. Adaptamos hoteles, días y experiencias junto al operador según tus preferencias.'}
+                        </p>
+                    </div>
+                    <button onclick="if(window.openContactModal) window.openContactModal('custom', '${safeTitle}')" class="w-full bg-secondary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary/90 transition-all mt-4 text-center">
+                        <span data-i18n="departures.custom.btn">${window.i18n?.t('departures.custom.btn', 'trip') || 'Cotizar a Medida'}</span>
+                    </button>
+                </div>
             `;
             grid.appendChild(customTripCard);
 
             // 3. MODALIDAD: GRUPO ABIERTO INTERNACIONAL (EN DESTINO)
             const openGroupCard = document.createElement('div');
-            openGroupCard.className = 'bg-surface border border-outline-variant/60 rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative';
+            openGroupCard.className = 'bg-surface border border-outline-variant/60 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden group';
             openGroupCard.innerHTML = `
-                <div>
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-xl">public</span>
-                        </div>
-                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-primary/10 text-primary uppercase tracking-wider" data-i18n="departures.openGroup.badge">
-                            ${window.i18n?.t('departures.openGroup.badge', 'trip') || 'Súmate en Destino'}
-                        </span>
+                <div class="h-44 w-full overflow-hidden relative">
+                    <img src="Imagenes/viaje_paises.webp" alt="" aria-hidden="true" loading="lazy" class="w-full h-full object-cover object-[50%_45%] group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
+                    <div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow uppercase tracking-wider flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[13px]">public</span>
+                        <span data-i18n="departures.openGroup.badge">${window.i18n?.t('departures.openGroup.badge', 'trip') || 'Súmate en Destino'}</span>
                     </div>
-                    <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.openGroup.title">${window.i18n?.t('departures.openGroup.title', 'trip') || 'Grupo Abierto Internacional'}</h3>
-                    <p class="text-xs text-on-surface-variant leading-relaxed mb-6" data-i18n="departures.openGroup.desc">
-                        ${window.i18n?.t('departures.openGroup.desc', 'trip') || 'Elige una fecha fija de circuito, viaja a destino (te ayudamos con tus vuelos desde Chile) y realiza el tour con un grupo internacional guiado en español.'}
-                    </p>
                 </div>
-                <button onclick="if(window.openContactModal) window.openContactModal('open-group', '${safeTitle}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary transition-all mt-4 text-center">
-                    <span data-i18n="departures.openGroup.btn">${window.i18n?.t('departures.openGroup.btn', 'trip') || 'Consultar Fechas de Grupo Abierto'}</span>
-                </button>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.openGroup.title">${window.i18n?.t('departures.openGroup.title', 'trip') || 'Grupo Abierto Internacional'}</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed mb-6" data-i18n="departures.openGroup.desc">
+                            ${window.i18n?.t('departures.openGroup.desc', 'trip') || 'Elige una fecha fija de circuito, viaja a destino (te ayudamos con tus vuelos desde Chile) y realiza el tour con un grupo internacional guiado en español.'}
+                        </p>
+                    </div>
+                    <button onclick="if(window.openContactModal) window.openContactModal('open-group', '${safeTitle}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary transition-all mt-4 text-center">
+                        <span data-i18n="departures.openGroup.btn">${window.i18n?.t('departures.openGroup.btn', 'trip') || 'Consultar Fechas de Grupo Abierto'}</span>
+                    </button>
+                </div>
             `;
             grid.appendChild(openGroupCard);
         };
-        renderDepartures(trip.id, trip.title || trip.name, trip.headerImageUrl || trip.header_image_url || trip.imageUrl);
+        renderPricingOptions(trip);
+        renderDepartures(trip.id, trip.title || trip.name, trip.headerImageUrl || trip.header_image_url || trip.imageUrl, trip.pricingOptions || []);
 
         // Setup ScrollSpy for Left Index
         const setupScrollSpy = () => {
@@ -1000,10 +1086,20 @@ import SEOManager from './seo-manager.js';
 
         const isCurrentlyOpen = targetContent.style.maxHeight && targetContent.style.maxHeight !== '0px';
 
-        // Close all other days in the itinerary
         const allContents = document.querySelectorAll('#section-itinerary [id^="content-"]');
         const allChevrons = document.querySelectorAll('#section-itinerary [id^="chevron-"]');
-        
+
+        let collapsedHeightAbove = 0;
+        if (!isCurrentlyOpen) {
+            allContents.forEach(c => {
+                const idx = parseInt(c.id.replace('content-', ''), 10);
+                if (!Number.isNaN(idx) && idx < index && c.style.maxHeight && c.style.maxHeight !== '0px') {
+                    collapsedHeightAbove += c.getBoundingClientRect().height;
+                }
+            });
+        }
+
+        // Close all other days in the itinerary
         allContents.forEach(c => c.style.maxHeight = '0px');
         allChevrons.forEach(ch => ch.style.transform = 'rotate(0deg)');
 
@@ -1011,6 +1107,22 @@ import SEOManager from './seo-manager.js';
         if (!isCurrentlyOpen) {
             targetContent.style.maxHeight = targetContent.scrollHeight + 'px';
             targetChevron.style.transform = 'rotate(180deg)';
+
+            const dayEl = document.getElementById(`day-item-${index}`) || targetContent.closest('.itinerary-day-item');
+            if (dayEl) {
+                const headerOffset = (document.querySelector('#global-header header, header.fixed, nav.fixed')?.getBoundingClientRect().height || 80) + 24;
+                const targetTop = Math.max(0, dayEl.getBoundingClientRect().top + window.scrollY - collapsedHeightAbove - headerOffset);
+                window.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+                setTimeout(() => {
+                    if (targetContent.style.maxHeight !== '0px') {
+                        const settledTop = Math.max(0, dayEl.getBoundingClientRect().top + window.scrollY - headerOffset);
+                        if (Math.abs(window.scrollY - settledTop) > 12) {
+                            window.scrollTo({ top: settledTop, behavior: 'smooth' });
+                        }
+                    }
+                }, 520);
+            }
         }
     };
 

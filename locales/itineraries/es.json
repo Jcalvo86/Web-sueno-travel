@@ -27,7 +27,8 @@
     "days": "días",
     "explore": "Explorar",
     "viewProgram": "Ver Programa",
-    "adaptMedida": "Personalizar a Medida"
+    "adaptMedida": "Personalizar a Medida",
+    "fromPrice": "Desde"
   },
   "empty": "Actualmente no hay itinerarios disponibles.",
   "error": "Ocurrió un error al cargar los itinerarios.",

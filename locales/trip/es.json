@@ -57,6 +57,16 @@
     "soldOut": "Agotado",
     "lastSpots": "¡Últimos {n} cupos!"
   },
+  "pricing": {
+    "badge": "Tarifas del Programa",
+    "title": "Valores del Viaje",
+    "perPersonNote": "Valores por persona en base a habitación doble.",
+    "from": "Desde",
+    "includesFlights": "Incluye pasajes",
+    "landOnly": "Solo programa terrestre",
+    "recommended": "Más Completo",
+    "selectBtn": "Consultar esta opción"
+  },
   "itinerary": {
     "title": "Itinerario Día a Día",
     "subtitle": "Una cronología de maravillas diseñada para equilibrar el descubrimiento arqueológico con el descanso reparador.",

@@ -246,12 +246,27 @@
                             </h4>
                             <p class="text-sm text-on-surface-variant line-clamp-2 flex-1">${sub}</p>
                             
-                            ${dep.priceOverride ? `
+                            ${(() => {
+                                if (dep.priceOverride) {
+                                    return `
                                 <div class="mt-4 mb-2">
                                     <span class="text-xs text-on-surface-variant block" data-i18n="groups.card.specialPrice">${window.i18n?.t('groups.card.specialPrice', 'itineraries') || 'Precio Especial:'}</span>
-                                    <span class="text-2xl font-extrabold text-primary">USD $${dep.priceOverride}</span>
-                                </div>
-                            ` : ''}
+                                    <span class="text-2xl font-extrabold text-primary tabular-nums">USD $${Number(dep.priceOverride).toLocaleString('es-CL')}</span>
+                                </div>`;
+                                }
+                                const rawPrices = Array.isArray(trip.pricing_options) ? trip.pricing_options : (Array.isArray(trip.pricingOptions) ? trip.pricingOptions : []);
+                                const validPrices = rawPrices.map(o => Number(o?.amount) || 0).filter(n => n > 0);
+                                const minPrice = validPrices.length > 0 ? Math.min(...validPrices) : 0;
+                                if (minPrice > 0) {
+                                    const fromStr = window.i18n?.t('card.fromPrice', 'itineraries') || 'Desde';
+                                    return `
+                                <div class="mt-4 mb-2">
+                                    <span class="text-xs text-on-surface-variant block">${fromStr}</span>
+                                    <span class="text-2xl font-extrabold text-primary tabular-nums">USD $${minPrice.toLocaleString('es-CL')}</span>
+                                </div>`;
+                                }
+                                return '';
+                            })()}
                             
                             <div class="pt-4 flex justify-between items-center border-t border-outline-variant/40 mt-auto">
                                 ${trip.id ? `

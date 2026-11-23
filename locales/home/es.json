@@ -103,5 +103,6 @@
   "nextTrip": "Próximo viaje en grupo:",
   "days": "Días",
   "nights": "Noches",
-  "verItinerario": "Ver Itinerario"
+  "verItinerario": "Ver Itinerario",
+  "fromPrice": "Desde"
 }

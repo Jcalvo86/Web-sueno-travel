@@ -111,5 +111,15 @@
     "dbConnection": "Error connecting to content database.",
     "general": "An error occurred while loading the trip data."
   },
-  "loading": "Loading trip itinerary..."
+  "loading": "Loading trip itinerary...",
+  "pricing": {
+    "badge": "Program Rates",
+    "title": "Trip Rates",
+    "perPersonNote": "Rates per person based on double occupancy.",
+    "from": "From",
+    "includesFlights": "Flights included",
+    "landOnly": "Land program only",
+    "recommended": "Most Complete",
+    "selectBtn": "Inquire about this option"
+  }
 }
