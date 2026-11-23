@@ -55,7 +55,9 @@
     },
     "available": "Disponible",
     "soldOut": "Agotado",
-    "lastSpots": "¡Últimos {n} cupos!"
+    "lastSpots": "¡Últimos {n} cupos!",
+    "onlySpotsLeft": "¡Solo quedan {n} cupos!",
+    "spotsAvailable": "{n} cupos disponibles"
   },
   "pricing": {
     "badge": "Tarifas del Programa",
@@ -65,7 +67,8 @@
     "includesFlights": "Incluye pasajes",
     "landOnly": "Solo programa terrestre",
     "recommended": "Más Completo",
-    "selectBtn": "Consultar esta opción"
+    "selectBtn": "Consultar esta opción",
+    "flightsAssistanceNote": "También podemos gestionar tus pasajes aéreos internacionales según tu ciudad de salida."
   },
   "itinerary": {
     "title": "Itinerario Día a Día",

@@ -201,7 +201,7 @@ import SEOManager from './seo-manager.js';
                             id: found.id,
                             name: lang === 'en' && found.title_en ? found.title_en : found.title,
                             subtitle: lang === 'en' && found.destination_en ? found.destination_en : (destSum ? (Array.isArray(destSum) ? destSum.join(', ') : destSum).replace(/\s*\([^)]*\)/g, '') : found.title),
-                            overview: lang === 'en' && found.description_en ? found.description_en : (found.description || ''),
+                            overview: lang === 'en' ? (found.description_en || found.overview_en || found.description || found.overview || '') : (found.description || found.overview || ''),
                             imageUrl: found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
                             headerImageUrl: found.headerImageUrl || found.header_image_url || found.imageUrl || found.image_url || (found.itinerary && found.itinerary[0]?.imageUrl) || 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1920',
                             bestSeason: found.guideBestSeason || found.guide_best_season || '',
@@ -717,10 +717,13 @@ import SEOManager from './seo-manager.js';
         document.getElementById('info-currency').textContent = trip.currency || window.i18n?.t('info.defaultCurrency', 'trip') || 'Moneda internacional y local';
         document.getElementById('info-visa').textContent = window.i18n?.t('info.visaPrefix', 'trip') ? `${window.i18n.t('info.visaPrefix', 'trip')}: ${trip.visa || window.i18n.t('info.consult', 'trip') || 'Consultar'}` : `Visado: ${trip.visa || 'Consultar'}`;
         
-        // Cost details
-        document.getElementById('info-hotel-tax').innerHTML = window.i18n?.t('info.hotelTaxPrefix', 'trip') ? `${window.i18n.t('info.hotelTaxPrefix', 'trip')}: <strong>USD ${trip.hotelTaxUSD || 0}</strong>` : `Impuesto Hotelero: <strong>USD ${trip.hotelTaxUSD || 0}</strong>`;
-        document.getElementById('info-visa-cost').innerHTML = window.i18n?.t('info.visaCostPrefix', 'trip') ? `${window.i18n.t('info.visaCostPrefix', 'trip')}: <strong>USD ${trip.visaCostUSD || 0}</strong>` : `Costo Visa aprox: <strong>USD ${trip.visaCostUSD || 0}</strong>`;
-        document.getElementById('info-disclaimer').textContent = trip.disclaimer || window.i18n?.t('info.defaultDisclaimer', 'trip') || '* Precios referenciales sujetos a cambios.';
+        // Cost details (optional if present in template)
+        const hotelTaxEl = document.getElementById('info-hotel-tax');
+        if (hotelTaxEl) hotelTaxEl.innerHTML = window.i18n?.t('info.hotelTaxPrefix', 'trip') ? `${window.i18n.t('info.hotelTaxPrefix', 'trip')}: <strong>USD ${trip.hotelTaxUSD || 0}</strong>` : `Impuesto Hotelero: <strong>USD ${trip.hotelTaxUSD || 0}</strong>`;
+        const visaCostEl = document.getElementById('info-visa-cost');
+        if (visaCostEl) visaCostEl.innerHTML = window.i18n?.t('info.visaCostPrefix', 'trip') ? `${window.i18n.t('info.visaCostPrefix', 'trip')}: <strong>USD ${trip.visaCostUSD || 0}</strong>` : `Costo Visa aprox: <strong>USD ${trip.visaCostUSD || 0}</strong>`;
+        const disclaimerEl = document.getElementById('info-disclaimer');
+        if (disclaimerEl) disclaimerEl.textContent = trip.disclaimer || window.i18n?.t('info.defaultDisclaimer', 'trip') || '* Precios referenciales sujetos a cambios.';
 
         // Render Services Included / Excluded
         const includedUl = document.getElementById('services-included-list');
@@ -804,6 +807,8 @@ import SEOManager from './seo-manager.js';
             const titleText = window.i18n?.t('pricing.title', 'trip') || 'Valores del Viaje';
             const perPersonText = window.i18n?.t('pricing.perPersonNote', 'trip') || 'Valores por persona en base a habitación doble.';
             const recommendedText = window.i18n?.t('pricing.recommended', 'trip') || 'Más Completo';
+            const flightsAssistanceText = window.i18n?.t('pricing.flightsAssistanceNote', 'trip') || 'También podemos gestionar tus pasajes aéreos internacionales según tu ciudad de salida.';
+            const hasFlightOption = validOptions.some(opt => Boolean(opt.includes_flights));
 
             const colsClass = validOptions.length >= 3 ? 'lg:grid-cols-3' : (validOptions.length === 2 ? 'md:grid-cols-2' : 'grid-cols-1');
 
@@ -845,6 +850,12 @@ import SEOManager from './seo-manager.js';
                     <div class="grid grid-cols-1 ${colsClass} gap-4">
                         ${cardsHtml}
                     </div>
+                    ${!hasFlightOption ? `
+                        <div class="mt-4 pt-4 border-t border-outline-variant/40 flex items-center gap-2.5 text-xs md:text-sm text-on-surface-variant">
+                            <span class="material-symbols-outlined text-secondary text-lg shrink-0">flight_takeoff</span>
+                            <span>${flightsAssistanceText}</span>
+                        </div>
+                    ` : ''}
                 </div>
             `;
             container.classList.remove('hidden');
@@ -884,26 +895,54 @@ import SEOManager from './seo-manager.js';
             const lang = window.i18n && typeof window.i18n.getCurrentLang === 'function' ? window.i18n.getCurrentLang() : 'es';
             const formatDate = (dateStr) => {
                 if (!dateStr) return '';
-                const date = new Date(dateStr);
+                const datePart = String(dateStr).split('T')[0];
+                const parts = datePart.split('-').map(Number);
+                const date = parts.length === 3 ? new Date(parts[0], parts[1] - 1, parts[2]) : new Date(dateStr);
                 return date.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
             };
 
             const defaultImg = tripImg || 'Imagenes/group_departure_default.jpg';
             const safeTitle = (tripTitle || document.title || 'Itinerario').replace(/'/g, "\\'");
 
-            // 1. MODALIDAD: VIAJE EN GRUPO ACOMPAÑADO (DESDE CHILE)
+            // 1. MODALIDAD: GRUPO ABIERTO INTERNACIONAL (EN DESTINO)
+            const openGroupCard = document.createElement('div');
+            openGroupCard.className = 'bg-surface border border-outline-variant/60 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden group';
+            openGroupCard.innerHTML = `
+                <div class="h-44 w-full overflow-hidden relative">
+                    <img src="Imagenes/viaje_paises.webp" alt="" aria-hidden="true" loading="lazy" class="w-full h-full object-cover object-[50%_45%] group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
+                    <div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow uppercase tracking-wider flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[13px]">public</span>
+                        <span data-i18n="departures.openGroup.badge">${window.i18n?.t('departures.openGroup.badge', 'trip') || 'Súmate en Destino'}</span>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.openGroup.title">${window.i18n?.t('departures.openGroup.title', 'trip') || 'Grupo Abierto Internacional'}</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed mb-6" data-i18n="departures.openGroup.desc">
+                            ${window.i18n?.t('departures.openGroup.desc', 'trip') || 'Elige una fecha fija de circuito, viaja a destino (te ayudamos con tus vuelos desde Chile) y realiza el tour con un grupo internacional guiado en español.'}
+                        </p>
+                    </div>
+                    <button onclick="if(window.openContactModal) window.openContactModal('open-group', '${safeTitle}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary transition-all mt-4 text-center">
+                        <span data-i18n="departures.openGroup.btn">${window.i18n?.t('departures.openGroup.btn', 'trip') || 'Consultar Fechas de Grupo Abierto'}</span>
+                    </button>
+                </div>
+            `;
+            grid.appendChild(openGroupCard);
+
+            // 2. MODALIDAD: VIAJE EN GRUPO ACOMPAÑADO (DESDE CHILE)
             if (tripDeps.length > 0) {
                 tripDeps.forEach(dep => {
                     const card = document.createElement('div');
                     card.className = 'bg-surface border border-outline-variant/60 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden group';
                     
-                    const spotsLeft = Math.max(0, (dep.capacity || 10) - (dep.passengersCount || 0));
+                    const spotsLeft = Math.max(0, (dep.capacity || 10) - (dep.passengersCount ?? dep.passengers_count ?? 0));
                     let statusLabel = window.i18n?.t('departures.available', 'trip') || 'Cupos Disponibles';
                     let statusColor = 'text-green-800 bg-green-100 border-green-200';
                     if (spotsLeft === 0) {
                         statusLabel = window.i18n?.t('departures.soldOut', 'trip') || 'Agotado';
                         statusColor = 'text-red-800 bg-red-100 border-red-200';
-                    } else if (spotsLeft <= 3) {
+                    } else if (spotsLeft <= 6) {
                         statusLabel = window.i18n?.t('departures.lastSpots', 'trip')?.replace('{n}', spotsLeft) || `¡Últimos ${spotsLeft} cupos!`;
                         statusColor = 'text-orange-800 bg-orange-100 border-orange-200';
                     }
@@ -918,7 +957,7 @@ import SEOManager from './seo-manager.js';
                                 <span class="material-symbols-outlined text-[13px]">person_pin_circle</span>
                                 <span data-i18n="departures.group.badge">${window.i18n?.t('departures.group.badge', 'trip') || 'Acompañado desde Chile'}</span>
                             </div>
-                            <div class="absolute top-3 right-3 ${statusColor} font-bold text-[10px] px-2.5 py-1 rounded-full shadow-sm border uppercase">
+                            <div class="absolute bottom-3 right-3 ${statusColor} font-bold text-[10px] px-2.5 py-1 rounded-full shadow-sm border uppercase">
                                 ${statusLabel}
                             </div>
                         </div>
@@ -929,20 +968,17 @@ import SEOManager from './seo-manager.js';
                                     ${depDateFormatted}
                                     ${(dep.endDate || dep.end_date) ? ` <span data-i18n="departures.group.to">${window.i18n?.t('departures.group.to', 'trip') || 'al'}</span> <span class="text-sm font-medium text-on-surface-variant">${formatDate(dep.endDate || dep.end_date)}</span>` : ''}
                                 </h4>
+                                ${spotsLeft > 0 ? `
+                                    <div class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full mb-3 ${spotsLeft <= 6 ? 'bg-orange-50 text-orange-800 border border-orange-200' : 'bg-green-50 text-green-800 border border-green-200'}">
+                                        <span class="material-symbols-outlined text-[15px]">group</span>
+                                        <span>${spotsLeft <= 6
+                                            ? (window.i18n?.t('departures.onlySpotsLeft', 'trip') || '¡Solo quedan {n} cupos!').replace('{n}', spotsLeft)
+                                            : (window.i18n?.t('departures.spotsAvailable', 'trip') || '{n} cupos disponibles').replace('{n}', spotsLeft)}</span>
+                                    </div>
+                                ` : ''}
                                 <p class="text-xs text-on-surface-variant leading-relaxed mb-4">
                                     ${dep.capacity ? `Capacidad: ${dep.capacity} viajeros. ` : ''}Grupo exclusivo con Tour Leader desde Chile. Cumplimiento riguroso del itinerario.
                                 </p>
-                                ${dep.priceOverride ? `
-                                    <div class="mb-4">
-                                        <span class="text-[11px] text-on-surface-variant block">Precio Especial Salida:</span>
-                                        <span class="text-xl font-extrabold text-primary tabular-nums">USD $${Number(dep.priceOverride).toLocaleString('es-CL')}</span>
-                                    </div>
-                                ` : (Array.isArray(pricingOptions) && pricingOptions.some(o => Number(o?.amount) > 0) ? `
-                                    <div class="mb-4">
-                                        <span class="text-[11px] text-on-surface-variant block">${window.i18n?.t('pricing.from', 'trip') || 'Desde'}:</span>
-                                        <span class="text-xl font-extrabold text-primary tabular-nums">${formatUSD(Math.min(...pricingOptions.map(o => Number(o?.amount) || 0).filter(n => n > 0)))}</span>
-                                    </div>
-                                ` : '')}
                             </div>
                             <button onclick="if(window.openContactModal) window.openContactModal('group', '${safeTitle}', '${depDateFormatted}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary transition-all mt-4 text-center">
                                 <span data-i18n="departures.group.reserveBtn">${window.i18n?.t('departures.group.reserveBtn', 'trip') || 'Reservar Cupo'}</span>
@@ -979,7 +1015,7 @@ import SEOManager from './seo-manager.js';
                 grid.appendChild(noDepCard);
             }
 
-            // 2. MODALIDAD: VIAJE A MEDIDA (PRIVADO / PROPIO)
+            // 3. MODALIDAD: VIAJE A MEDIDA (PRIVADO / PROPIO)
             const customTripCard = document.createElement('div');
             customTripCard.className = 'bg-surface border-2 border-secondary/40 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden group shadow-sm';
             customTripCard.innerHTML = `
@@ -1004,32 +1040,6 @@ import SEOManager from './seo-manager.js';
                 </div>
             `;
             grid.appendChild(customTripCard);
-
-            // 3. MODALIDAD: GRUPO ABIERTO INTERNACIONAL (EN DESTINO)
-            const openGroupCard = document.createElement('div');
-            openGroupCard.className = 'bg-surface border border-outline-variant/60 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden group';
-            openGroupCard.innerHTML = `
-                <div class="h-44 w-full overflow-hidden relative">
-                    <img src="Imagenes/viaje_paises.webp" alt="" aria-hidden="true" loading="lazy" class="w-full h-full object-cover object-[50%_45%] group-hover:scale-105 transition-transform duration-500" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
-                    <div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow uppercase tracking-wider flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[13px]">public</span>
-                        <span data-i18n="departures.openGroup.badge">${window.i18n?.t('departures.openGroup.badge', 'trip') || 'Súmate en Destino'}</span>
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-primary mb-2" data-i18n="departures.openGroup.title">${window.i18n?.t('departures.openGroup.title', 'trip') || 'Grupo Abierto Internacional'}</h3>
-                        <p class="text-xs text-on-surface-variant leading-relaxed mb-6" data-i18n="departures.openGroup.desc">
-                            ${window.i18n?.t('departures.openGroup.desc', 'trip') || 'Elige una fecha fija de circuito, viaja a destino (te ayudamos con tus vuelos desde Chile) y realiza el tour con un grupo internacional guiado en español.'}
-                        </p>
-                    </div>
-                    <button onclick="if(window.openContactModal) window.openContactModal('open-group', '${safeTitle}')" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary transition-all mt-4 text-center">
-                        <span data-i18n="departures.openGroup.btn">${window.i18n?.t('departures.openGroup.btn', 'trip') || 'Consultar Fechas de Grupo Abierto'}</span>
-                    </button>
-                </div>
-            `;
-            grid.appendChild(openGroupCard);
         };
         renderPricingOptions(trip);
         renderDepartures(trip.id, trip.title || trip.name, trip.headerImageUrl || trip.header_image_url || trip.imageUrl, trip.pricingOptions || []);

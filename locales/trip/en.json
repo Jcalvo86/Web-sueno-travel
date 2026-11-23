@@ -61,7 +61,9 @@
       "btn": "Check Open Group Dates"
     },
     "soldOut": "Exhausted",
-    "lastSpots": "Last {n} spots!"
+    "lastSpots": "Last {n} spots!",
+    "onlySpotsLeft": "Only {n} spots left!",
+    "spotsAvailable": "{n} spots available"
   },
   "itinerary": {
     "title": "Day by Day Itinerary",
@@ -120,6 +122,7 @@
     "includesFlights": "Flights included",
     "landOnly": "Land program only",
     "recommended": "Most Complete",
-    "selectBtn": "Inquire about this option"
+    "selectBtn": "Inquire about this option",
+    "flightsAssistanceNote": "We can also arrange your international flights from your departure city."
   }
 }

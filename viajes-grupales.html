@@ -172,7 +172,9 @@
 
             const formatDate = (dateStr) => {
                 if (!dateStr) return '';
-                const date = new Date(dateStr);
+                const datePart = String(dateStr).split('T')[0];
+                const parts = datePart.split('-').map(Number);
+                const date = parts.length === 3 ? new Date(parts[0], parts[1] - 1, parts[2]) : new Date(dateStr);
                 return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
             };
 
@@ -195,7 +197,7 @@
                         : (dep.title || dep.name || trip.title || trip.name || 'Salida Grupal');
                     
                     const isClosed = dep.status === 'closed';
-                    const spotsLeft = isClosed ? 0 : Math.max(0, (dep.capacity || 10) - (dep.passengersCount || 0));
+                    const spotsLeft = isClosed ? 0 : Math.max(0, (dep.capacity || 10) - (dep.passengersCount ?? dep.passengers_count ?? 0));
                     const duration = Math.max(
                         Number(trip.duration_days) || 0,
                         Number(trip.durationDays) || 0,
@@ -217,7 +219,7 @@
                     } else if (spotsLeft <= 0) {
                         statusLabel = window.i18n?.t('groups.status.soldOut', 'itineraries') || 'Agotado';
                         statusColor = 'bg-surface-variant text-on-surface-variant/70 border-outline-variant/30';
-                    } else if (spotsLeft <= 4) {
+                    } else if (spotsLeft <= 6) {
                         statusLabel = (window.i18n?.t('groups.status.lastSpots', 'itineraries') || '¡Últimos Cupos!').replace('{spots}', spotsLeft);
                         statusColor = 'bg-orange-100 text-orange-800 border-orange-200';
                     } else {
